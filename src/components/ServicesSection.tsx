@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ServiceCard } from '@/components/ServiceCard';
@@ -55,7 +54,7 @@ export const ServicesSection = () => {
       icon: Gift,
       title: "Silver Package",
       category: 'wedding',
-      tier: 'silver',
+      tier: 'silver' as const,
       description: "Essential wedding coverage with traditional photography and videography for your special day",
       features: [
         { name: "1 Traditional Photographer", premium: false },
@@ -76,7 +75,7 @@ export const ServicesSection = () => {
       icon: Award,
       title: "Gold Package", 
       category: 'wedding',
-      tier: 'gold',
+      tier: 'gold' as const,
       description: "Enhanced wedding coverage with cinematic videography, candid photography and aerial drone shots",
       features: [
         { name: "1 Traditional Photographer", premium: false },
@@ -101,7 +100,7 @@ export const ServicesSection = () => {
       icon: Crown,
       title: "Platinum Package",
       category: 'wedding',
-      tier: 'platinum',
+      tier: 'platinum' as const,
       description: "Premium wedding coverage with multiple cinematographers, candid photographers and comprehensive documentation",
       features: [
         { name: "1 Traditional Photographer", premium: false },
@@ -127,7 +126,7 @@ export const ServicesSection = () => {
       icon: Heart,
       title: "Jaipur Pre-Wedding Shoot",
       category: 'prewedding',
-      tier: 'gold',
+      tier: 'gold' as const,
       description: "Vibrant pre-wedding shoot in the Pink City with iconic locations and professional editing",
       features: [
         { name: "50 Fully Edited Photos", premium: false },
@@ -151,7 +150,7 @@ export const ServicesSection = () => {
       icon: MapPin,
       title: "Udaipur Pre-Wedding Shoot",
       category: 'prewedding',
-      tier: 'platinum',
+      tier: 'platinum' as const,
       description: "Capture your love story in the City of Lakes with comprehensive 2-day coverage and raw footage",
       features: [
         { name: "50 Professionally Edited Photos", premium: false },
