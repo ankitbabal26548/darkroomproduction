@@ -1,7 +1,6 @@
 
 import { Card, CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Phone, Mail, MapPin, Clock, Star, MessageCircle, Instagram, Facebook, Youtube } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock, Star, Instagram, Facebook, Youtube } from 'lucide-react';
 
 export const ContactInfo = () => {
   const contactMethods = [
@@ -67,27 +66,27 @@ export const ContactInfo = () => {
   const testimonials = [
     {
       name: "Priya & Arjun",
-      text: "Captured our love story beautifully!",
+      text: "Captured our love story beautifully! Every moment was perfect.",
       rating: 5,
       image: "👰"
     },
     {
       name: "Rohit Sharma",
-      text: "Professional and creative team.",
+      text: "Professional team with incredible attention to detail.",
       rating: 5,
       image: "🤵"
     },
     {
       name: "Meera Patel",
-      text: "Best photography experience ever!",
+      text: "Best photography experience ever! Highly recommended.",
       rating: 5,
       image: "👩"
     }
   ];
 
   return (
-    <div className="space-y-8">
-      {/* Contact Methods */}
+    <div className="space-y-6">
+      {/* Contact Methods Grid */}
       <div className="grid gap-4">
         {contactMethods.map((method, index) => {
           const Component = method.link ? 'a' : 'div';
@@ -100,19 +99,19 @@ export const ContactInfo = () => {
               className={`block group ${method.link ? 'cursor-pointer' : ''}`}
             >
               <Card className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-border/50">
-                <CardContent className="p-6">
-                  <div className="flex items-start space-x-4">
+                <CardContent className="p-4">
+                  <div className="flex items-center space-x-4">
                     <div className={`p-3 rounded-lg ${method.bgColor} group-hover:scale-110 transition-transform duration-300`}>
-                      <method.icon className={`w-6 h-6 ${method.textColor}`} />
+                      <method.icon className={`w-5 h-5 ${method.textColor}`} />
                     </div>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-foreground group-hover:text-accent transition-colors">
+                      <h4 className="font-semibold text-foreground group-hover:text-accent transition-colors text-sm">
                         {method.title}
                       </h4>
-                      <p className="text-sm text-muted-foreground mb-2">{method.subtitle}</p>
+                      <p className="text-xs text-muted-foreground mb-1">{method.subtitle}</p>
                       <div className="space-y-1">
                         {method.details.map((detail, idx) => (
-                          <p key={idx} className="text-sm text-muted-foreground">{detail}</p>
+                          <p key={idx} className="text-xs text-muted-foreground">{detail}</p>
                         ))}
                       </div>
                     </div>
@@ -124,30 +123,29 @@ export const ContactInfo = () => {
         })}
       </div>
 
-      {/* Quick Actions */}
-      <div className="grid grid-cols-2 gap-4">
-        <a
-          href="https://wa.me/919876543210"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group"
-        >
-          <Card className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-green-200 bg-green-50/50">
-            <CardContent className="p-4 text-center">
-              <MessageCircle className="w-6 h-6 text-green-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-              <span className="text-sm font-medium text-green-700">WhatsApp</span>
-            </CardContent>
-          </Card>
-        </a>
-        <a href="tel:+919876543210" className="group">
-          <Card className="transition-all duration-300 hover:shadow-lg hover:-translate-y-1 border-blue-200 bg-blue-50/50">
-            <CardContent className="p-4 text-center">
-              <Phone className="w-6 h-6 text-blue-600 mx-auto mb-2 group-hover:scale-110 transition-transform" />
-              <span className="text-sm font-medium text-blue-700">Call Now</span>
-            </CardContent>
-          </Card>
-        </a>
-      </div>
+      {/* Business Stats */}
+      <Card className="bg-gradient-to-br from-accent/5 to-accent/10 border-accent/20">
+        <CardContent className="p-6 text-center">
+          <h4 className="font-playfair text-lg font-semibold mb-4">Why Choose Us</h4>
+          <div className="grid grid-cols-3 gap-4">
+            <div>
+              <div className="flex justify-center mb-2">
+                <Star className="w-5 h-5 text-accent fill-current" />
+              </div>
+              <div className="font-semibold text-accent">4.9/5</div>
+              <div className="text-xs text-muted-foreground">Rating</div>
+            </div>
+            <div>
+              <div className="font-semibold text-accent">500+</div>
+              <div className="text-xs text-muted-foreground">Projects</div>
+            </div>
+            <div>
+              <div className="font-semibold text-accent">100%</div>
+              <div className="text-xs text-muted-foreground">Satisfaction</div>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Social Media */}
       <Card className="border-border/50">
@@ -175,25 +173,31 @@ export const ContactInfo = () => {
         </CardContent>
       </Card>
 
-      {/* Business Stats */}
-      <Card className="bg-gradient-to-br from-accent/5 to-accent/10 border-accent/20">
-        <CardContent className="p-6 text-center">
-          <div className="grid grid-cols-3 gap-4">
-            <div>
-              <div className="flex justify-center mb-2">
-                <Star className="w-5 h-5 text-accent fill-current" />
+      {/* Client Testimonials */}
+      <Card className="border-border/50">
+        <CardContent className="p-6">
+          <h4 className="font-playfair text-lg font-semibold mb-4 text-center">
+            What Clients Say
+          </h4>
+          <div className="space-y-4">
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="p-4 bg-muted/30 rounded-lg">
+                <div className="flex items-start space-x-3">
+                  <div className="text-2xl">{testimonial.image}</div>
+                  <div className="flex-1">
+                    <div className="flex items-center space-x-2 mb-1">
+                      <span className="font-medium text-sm">{testimonial.name}</span>
+                      <div className="flex">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="w-3 h-3 text-accent fill-current" />
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{testimonial.text}</p>
+                  </div>
+                </div>
               </div>
-              <div className="font-semibold text-accent">4.9/5</div>
-              <div className="text-xs text-muted-foreground">Rating</div>
-            </div>
-            <div>
-              <div className="font-semibold text-accent">500+</div>
-              <div className="text-xs text-muted-foreground">Projects</div>
-            </div>
-            <div>
-              <div className="font-semibold text-accent">100%</div>
-              <div className="text-xs text-muted-foreground">Satisfaction</div>
-            </div>
+            ))}
           </div>
         </CardContent>
       </Card>

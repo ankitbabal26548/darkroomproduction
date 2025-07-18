@@ -1,7 +1,8 @@
 
 import { ContactForm } from '@/components/ContactForm';
 import { ContactInfo } from '@/components/ContactInfo';
-import { Star, Camera, CheckCircle } from 'lucide-react';
+import { Star, Camera, CheckCircle, MessageCircle, Phone } from 'lucide-react';
+import { Card, CardContent } from '@/components/ui/card';
 
 export const ContactSection = () => {
   return (
@@ -44,10 +45,43 @@ export const ContactSection = () => {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid lg:grid-cols-2 gap-16 items-start">
-          {/* Left Side - Contact Form */}
+        <div className="grid lg:grid-cols-2 gap-12 items-start">
+          {/* Left Side - Contact Form + Quick Actions */}
           <div className="space-y-8">
             <ContactForm />
+            
+            {/* Quick Contact Actions */}
+            <Card className="shadow-elegant border-border/50">
+              <CardContent className="p-6">
+                <h3 className="font-playfair text-xl font-semibold mb-4 text-center">
+                  Need Immediate Response?
+                </h3>
+                <div className="grid grid-cols-2 gap-4">
+                  <a
+                    href="https://wa.me/919876543210"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center space-x-3 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-all duration-300 hover:scale-105"
+                  >
+                    <MessageCircle className="w-5 h-5 text-green-600 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <div className="text-sm font-medium text-green-700">WhatsApp</div>
+                      <div className="text-xs text-green-600">Instant Reply</div>
+                    </div>
+                  </a>
+                  <a 
+                    href="tel:+919876543210" 
+                    className="group flex items-center justify-center space-x-3 p-4 bg-blue-50 hover:bg-blue-100 rounded-lg transition-all duration-300 hover:scale-105"
+                  >
+                    <Phone className="w-5 h-5 text-blue-600 group-hover:scale-110 transition-transform" />
+                    <div className="text-left">
+                      <div className="text-sm font-medium text-blue-700">Call Now</div>
+                      <div className="text-xs text-blue-600">10 AM - 8 PM</div>
+                    </div>
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Right Side - Contact Information */}
