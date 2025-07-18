@@ -80,12 +80,22 @@ export const ServicesSection = () => {
   return (
     <section id="services" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Services Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
-            Our <span className="text-accent">Services</span>
+        {/* Enhanced Services Header */}
+        <div className="text-center mb-16 relative">
+          {/* Decorative Background */}
+          <div className="absolute inset-0 -z-10">
+            <div className="absolute top-8 left-1/4 w-2 h-2 bg-accent/30 rounded-full animate-pulse" />
+            <div className="absolute top-16 right-1/3 w-1 h-1 bg-accent/40 rounded-full animate-float" />
+            <div className="absolute bottom-8 left-1/3 w-3 h-3 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '1s' }} />
+          </div>
+          
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 relative">
+            Our <span className="text-accent relative">
+              Services
+              <div className="absolute -bottom-1 left-0 w-full h-0.5 bg-gradient-to-r from-transparent via-accent to-transparent animate-pulse" />
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up">
             Professional photography and cinematography services tailored to capture 
             your special moments with artistic excellence.
           </p>
@@ -96,19 +106,23 @@ export const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index}
-              className={`relative overflow-hidden hover:shadow-photo transition-all duration-500 lens-effect group ${
-                service.popular ? 'ring-2 ring-accent' : ''
+              className={`relative overflow-hidden hover:shadow-photo transition-all duration-500 lens-effect group hover:scale-105 ${
+                service.popular ? 'ring-2 ring-accent shadow-accent/20' : ''
               }`}
             >
               {service.popular && (
-                <div className="absolute top-0 right-0 bg-accent text-accent-foreground px-3 py-1 rounded-bl-lg text-sm font-medium">
-                  Most Popular
+                <div className="absolute top-0 right-0 bg-gradient-to-br from-accent to-accent/80 text-accent-foreground px-4 py-2 rounded-bl-xl text-sm font-medium shadow-lg animate-pulse">
+                  ⭐ Most Popular
                 </div>
               )}
               
-              <CardContent className="p-6 h-full flex flex-col">
-                <div className="w-16 h-16 mx-auto mb-4 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                  <service.icon className="w-8 h-8 text-accent" />
+              {/* Background Pattern */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              
+              <CardContent className="p-6 h-full flex flex-col relative z-10">
+                <div className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-accent/10 to-accent/20 rounded-full flex items-center justify-center group-hover:scale-110 transition-all duration-500 relative">
+                  <service.icon className="w-10 h-10 text-accent group-hover:animate-pulse" />
+                  <div className="absolute inset-0 rounded-full border-2 border-accent/20 animate-pulse" />
                 </div>
                 
                 <h3 className="font-playfair text-xl font-semibold text-center mb-3">
@@ -129,13 +143,16 @@ export const ServicesSection = () => {
                 </ul>
                 
                 <div className="mt-auto">
-                  <p className="font-playfair text-lg font-semibold text-accent text-center mb-4">
-                    {service.price}
-                  </p>
+                  <div className="text-center mb-4 p-3 bg-accent/5 rounded-lg group-hover:bg-accent/10 transition-colors duration-300">
+                    <p className="font-playfair text-xl font-bold text-accent">
+                      {service.price}
+                    </p>
+                  </div>
                   <Button 
-                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90"
+                    className="w-full bg-accent text-accent-foreground hover:bg-accent/90 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-accent/25 relative overflow-hidden group"
                   >
-                    Get Quote
+                    <span className="relative z-10">Get Quote</span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-500" />
                   </Button>
                 </div>
               </CardContent>

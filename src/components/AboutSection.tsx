@@ -30,14 +30,28 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
-            About <span className="text-accent">Darkroom Production</span>
+        <div className="text-center mb-16 relative">
+          {/* Background Decorative Elements */}
+          <div className="absolute -top-4 left-1/2 transform -translate-x-1/2 w-32 h-1 bg-gradient-to-r from-transparent via-accent to-transparent" />
+          
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 relative">
+            About <span className="text-accent relative">
+              Darkroom Production
+              <div className="absolute -inset-2 bg-accent/10 rounded-lg transform rotate-1 animate-pulse" />
+            </span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-up">
             We are passionate photographers and cinematographers dedicated to capturing 
             the beauty, emotion, and authenticity of your most precious moments.
           </p>
+          
+          {/* Decorative Camera Elements */}
+          <div className="absolute top-0 left-8 w-8 h-8 opacity-20 animate-float">
+            <Camera className="w-full h-full text-accent" />
+          </div>
+          <div className="absolute top-12 right-12 w-6 h-6 opacity-30 animate-float" style={{ animationDelay: '1s' }}>
+            <Film className="w-full h-full text-accent" />
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
@@ -58,38 +72,67 @@ export const AboutSection = () => {
               is treated as a unique story waiting to be told.
             </p>
             
-            <div className="flex items-center space-x-8 pt-4">
-              <div className="text-center">
-                <p className="font-playfair text-3xl font-bold text-accent">500+</p>
-                <p className="text-sm text-muted-foreground">Weddings Captured</p>
+            <div className="grid grid-cols-3 gap-8 pt-6">
+              <div className="text-center group">
+                <div className="relative mb-2">
+                  <p className="font-playfair text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">500+</p>
+                  <div className="absolute -inset-2 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <p className="text-sm text-muted-foreground font-medium">Weddings Captured</p>
+                <Heart className="w-4 h-4 mx-auto mt-1 text-accent/50" />
               </div>
-              <div className="text-center">
-                <p className="font-playfair text-3xl font-bold text-accent">13+</p>
-                <p className="text-sm text-muted-foreground">Years Experience</p>
+              <div className="text-center group">
+                <div className="relative mb-2">
+                  <p className="font-playfair text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">13+</p>
+                  <div className="absolute -inset-2 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <p className="text-sm text-muted-foreground font-medium">Years Experience</p>
+                <Camera className="w-4 h-4 mx-auto mt-1 text-accent/50" />
               </div>
-              <div className="text-center">
-                <p className="font-playfair text-3xl font-bold text-accent">50+</p>
-                <p className="text-sm text-muted-foreground">Awards Won</p>
+              <div className="text-center group">
+                <div className="relative mb-2">
+                  <p className="font-playfair text-4xl font-bold text-accent group-hover:scale-110 transition-transform duration-300">50+</p>
+                  <div className="absolute -inset-2 bg-accent/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </div>
+                <p className="text-sm text-muted-foreground font-medium">Awards Won</p>
+                <Award className="w-4 h-4 mx-auto mt-1 text-accent/50" />
               </div>
             </div>
           </div>
 
-          {/* Image Grid */}
-          <div className="grid grid-cols-2 gap-4 animate-slide-in-right">
-            <div className="photo-frame darkroom-glow">
+          {/* Enhanced Image Grid */}
+          <div className="grid grid-cols-2 gap-6 animate-slide-in-right relative">
+            {/* Main Image */}
+            <div className="photo-frame darkroom-glow group relative overflow-hidden">
               <img 
                 src={cameraLens} 
                 alt="Professional Camera Equipment" 
-                className="w-full h-64 object-cover"
+                className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-semibold">Professional Equipment</p>
+                <p className="text-sm">High-end cameras & lenses</p>
+              </div>
             </div>
-            <div className="photo-frame darkroom-glow mt-8">
+            
+            {/* Second Image with Offset */}
+            <div className="photo-frame darkroom-glow group relative overflow-hidden mt-12">
               <img 
                 src={darkroomSetup} 
                 alt="Darkroom Setup" 
-                className="w-full h-64 object-cover"
+                className="w-full h-72 object-cover transition-transform duration-700 group-hover:scale-110"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute bottom-4 left-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <p className="font-semibold">Traditional Darkroom</p>
+                <p className="text-sm">Where the magic happens</p>
+              </div>
             </div>
+            
+            {/* Floating Elements */}
+            <div className="absolute -top-4 -right-4 w-16 h-16 bg-accent/10 rounded-full animate-float" style={{ animationDelay: '0.5s' }} />
+            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-accent/20 rounded-full animate-float" style={{ animationDelay: '1.5s' }} />
           </div>
         </div>
 
