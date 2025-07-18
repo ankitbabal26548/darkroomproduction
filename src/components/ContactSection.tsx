@@ -6,7 +6,7 @@ import { Card, CardContent } from '@/components/ui/card';
 
 export const ContactSection = () => {
   return (
-    <section id="contact" className="relative py-20 bg-gradient-to-br from-background via-muted/20 to-accent/5">
+    <section id="contact" className="relative py-20">
       {/* Clean Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-32 h-32 border border-accent/20 rounded-full" />
