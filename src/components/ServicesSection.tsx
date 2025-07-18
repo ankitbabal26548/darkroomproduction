@@ -7,16 +7,16 @@ import {
   Camera, 
   Video, 
   Heart, 
-  Users, 
-  Calendar, 
   MapPin, 
+  Calendar, 
   Star,
   Palette,
   Download,
   Award,
   Settings,
   MessageCircle,
-  Clock
+  Clock,
+  Crown
 } from 'lucide-react';
 
 export const ServicesSection = () => {
@@ -25,103 +25,121 @@ export const ServicesSection = () => {
 
   const serviceCategories = [
     { id: 'all', name: 'All Services' },
-    { id: 'photography', name: 'Photography' },
-    { id: 'video', name: 'Cinematography' },
-    { id: 'special', name: 'Special Events' }
+    { id: 'wedding', name: 'Wedding Coverage' },
+    { id: 'prewedding', name: 'Pre-Wedding Shoots' }
   ];
 
   const services = [
+    // Wedding Coverage Packages
     {
       id: 1,
       icon: Camera,
-      title: "Wedding Photography",
-      category: 'photography',
-      description: "Complete wedding day coverage with artistic vision and professional quality",
+      title: "Silver Package",
+      category: 'wedding',
+      description: "Essential wedding coverage with traditional photography and videography for your special day",
       features: [
-        { name: "Traditional & Candid", premium: false },
-        { name: "High-Resolution Images", premium: false },
-        { name: "Same-Day Editing", premium: true },
-        { name: "Online Gallery", premium: false },
-        { name: "Professional Retouching", premium: true },
-        { name: "USB + Cloud Backup", premium: true }
+        { name: "1 Traditional Photographer", premium: false },
+        { name: "1 Traditional Videographer", premium: false },
+        { name: "1-Hour Ceremony Coverage", premium: false },
+        { name: "Wedding Teaser (1-2 min)", premium: false },
+        { name: "1 Social Media Reel", premium: false },
+        { name: "25 Fully Edited Photos", premium: false }
       ],
-      price: 75000,
-      originalPrice: 90000,
+      price: 35000,
       popular: false,
-      duration: "8-10 hours",
-      deliverables: "500+ edited photos",
-      testimonial: "Absolutely stunning work! Captured every emotion perfectly.",
-      rating: 4.9,
-      completedProjects: 150
+      duration: "1 hour coverage",
+      deliverables: "25 photos + teaser + reel"
     },
     {
       id: 2,
       icon: Video,
-      title: "Wedding Cinematography", 
-      category: 'video',
-      description: "Cinematic wedding films that tell your unique love story beautifully",
+      title: "Gold Package", 
+      category: 'wedding',
+      description: "Enhanced wedding coverage with cinematic videography, candid photography and aerial drone shots",
       features: [
-        { name: "4K Video Quality", premium: false },
-        { name: "Drone Coverage", premium: true },
-        { name: "Highlight Reel (3-5min)", premium: false },
-        { name: "Full Feature Film (45min)", premium: true },
-        { name: "Multi-Camera Setup", premium: true },
-        { name: "Color Grading", premium: true }
+        { name: "1 Traditional Photographer", premium: false },
+        { name: "1 Traditional Videographer", premium: false },
+        { name: "1 Cinematic Videographer", premium: true },
+        { name: "1 Candid Photographer", premium: true },
+        { name: "Aerial Drone Coverage", premium: true },
+        { name: "2-Hour Wedding Video", premium: true },
+        { name: "Highlight Reel (3-5 min)", premium: true },
+        { name: "Wedding Teaser (1 min)", premium: false },
+        { name: "2 Social Media Reels", premium: false },
+        { name: "50 Fully Edited Photos", premium: false }
       ],
-      price: 125000,
-      originalPrice: 150000,
+      price: 65000,
       popular: true,
-      duration: "Full day",
-      deliverables: "Highlight reel + Feature film",
-      testimonial: "Like watching a Hollywood movie of our special day!",
-      rating: 5.0,
-      completedProjects: 85
+      duration: "Extended coverage",
+      deliverables: "50 photos + videos + reels"
     },
     {
       id: 3,
-      icon: Heart,
-      title: "Pre-Wedding Shoot",
-      category: 'photography',
-      description: "Romantic pre-wedding sessions in stunning locations of your choice",
+      icon: Crown,
+      title: "Platinum Package",
+      category: 'wedding',
+      description: "Premium wedding coverage with multiple cinematographers, candid photographers and comprehensive documentation",
       features: [
-        { name: "Location Scouting", premium: false },
-        { name: "2 Outfit Changes", premium: false },
-        { name: "Props & Styling", premium: true },
-        { name: "Digital Album", premium: false },
-        { name: "Social Media Package", premium: true },
-        { name: "Anniversary Prints", premium: true }
+        { name: "1 Traditional Photographer", premium: false },
+        { name: "1 Traditional Videographer", premium: false },
+        { name: "2 Cinematic Videographers", premium: true },
+        { name: "2 Candid Photographers", premium: true },
+        { name: "Aerial Drone Coverage", premium: true },
+        { name: "5-Hour Wedding Video", premium: true },
+        { name: "Cinematic Film (8-15 min)", premium: true },
+        { name: "Highlight Reel (3-5 min)", premium: true },
+        { name: "Wedding Teaser (1 min)", premium: false },
+        { name: "5 Social Media Reels", premium: true },
+        { name: "100 Fully Edited Photos", premium: true }
       ],
-      price: 35000,
-      originalPrice: 45000,
+      price: 100000,
       popular: false,
-      duration: "4-6 hours",
-      deliverables: "150+ edited photos",
-      testimonial: "Made us feel like movie stars in every shot!",
-      rating: 4.8,
-      completedProjects: 200
+      duration: "Full day coverage",
+      deliverables: "100 photos + complete video suite"
     },
+    // Pre-Wedding Shoot Packages
     {
       id: 4,
-      icon: Users,
-      title: "Engagement Photography",
-      category: 'special',
-      description: "Intimate engagement sessions capturing the joy of your special announcement",
+      icon: Heart,
+      title: "Jaipur Pre-Wedding Shoot",
+      category: 'prewedding',
+      description: "Vibrant pre-wedding shoot in the Pink City with iconic locations and professional editing",
       features: [
-        { name: "Indoor/Outdoor Options", premium: false },
-        { name: "Family Portraits", premium: false },
-        { name: "Ring Close-ups", premium: true },
-        { name: "Social Media Ready", premium: false },
-        { name: "Announcement Cards", premium: true },
-        { name: "Quick Turnaround", premium: true }
+        { name: "50 Fully Edited Photos", premium: false },
+        { name: "Highlight Video (3-4 min)", premium: false },
+        { name: "2 Social Media Reels", premium: false },
+        { name: "7 Wedding Countdown Photos", premium: true },
+        { name: "Iconic Jaipur Locations", premium: true },
+        { name: "3-4 Outfit Changes", premium: false },
+        { name: "1-Day Shoot: ₹25,000", premium: false },
+        { name: "2-Day Shoot: ₹35,000", premium: true }
       ],
       price: 25000,
-      originalPrice: 30000,
       popular: false,
-      duration: "2-3 hours",
-      deliverables: "100+ edited photos",
-      testimonial: "Perfect for announcing our engagement to family!",
-      rating: 4.7,
-      completedProjects: 120
+      duration: "1-2 days",
+      deliverables: "50 photos + video + reels",
+      testimonial: "Patrika Gate, Jal Mahal, Hawa Mahal, Toran Dwar coverage included"
+    },
+    {
+      id: 5,
+      icon: MapPin,
+      title: "Udaipur Pre-Wedding Shoot",
+      category: 'prewedding',
+      description: "Capture your love story in the City of Lakes with comprehensive 2-day coverage and raw footage",
+      features: [
+        { name: "50 Professionally Edited Photos", premium: false },
+        { name: "Cinematic Video (3-4 min)", premium: false },
+        { name: "2 Engaging Reels", premium: false },
+        { name: "7 Wedding Countdown Photos", premium: true },
+        { name: "All Raw Footage on 64GB Pendrive", premium: true },
+        { name: "3-4 Outfit Changes", premium: false },
+        { name: "2-Day Comprehensive Coverage", premium: true }
+      ],
+      price: 40000,
+      popular: false,
+      duration: "2 days",
+      deliverables: "50 photos + video + raw footage",
+      testimonial: "City Palace, Lake Pichola, Saheliyon Ki Bari, Jag Mandir locations"
     }
   ];
 
@@ -129,77 +147,77 @@ export const ServicesSection = () => {
     {
       id: 1,
       icon: Calendar,
-      title: "Consultation & Planning",
-      subtitle: "Your Vision, Our Expertise",
-      description: "We start with an in-depth consultation to understand your unique story, style preferences, and vision for your special day.",
+      title: "Booking & Planning",
+      subtitle: "Secure Your Date",
+      description: "Start with a ₹5,000 advance booking to secure your date and begin planning your perfect shoot.",
       details: [
-        "Personalized mood board creation",
-        "Timeline and shot list planning",
-        "Location scouting recommendations",
-        "Equipment and crew planning"
+        "₹5,000 advance booking required",
+        "Date confirmation and scheduling",
+        "Location planning and permissions",
+        "Outfit and styling consultation"
       ],
-      duration: "1-2 hours",
-      timing: "2-4 weeks before event"
+      duration: "Immediate",
+      timing: "At time of booking"
     },
     {
       id: 2,
       icon: MapPin,
       title: "Pre-Production",
-      subtitle: "Setting the Stage",
-      description: "Detailed planning phase where we scout locations, coordinate with vendors, and finalize all creative and technical aspects.",
+      subtitle: "Location & Logistics",
+      description: "Detailed planning including location scouting, equipment setup, and coordination with all stakeholders.",
       details: [
-        "Location permits and permissions",
-        "Vendor coordination meetings",
-        "Equipment testing and backup plans",
-        "Final timeline confirmation"
+        "Location permits and access",
+        "Equipment and crew coordination",
+        "Timeline finalization",
+        "Backup plan preparation"
       ],
       duration: "2-3 days",
-      timing: "1-2 weeks before event"
+      timing: "1 week before event"
     },
     {
       id: 3,
       icon: Camera,
       title: "Production Day",
-      subtitle: "Capturing Magic",
-      description: "The main event where our professional team captures every precious moment with artistic excellence and technical precision.",
+      subtitle: "Capturing Your Moments",
+      description: "Professional coverage on your special day with our experienced team using top-tier equipment.",
       details: [
         "Multi-angle coverage setup",
-        "Candid and posed photography",
-        "Real-time backup and storage",
-        "Continuous quality monitoring"
+        "Traditional and candid photography",
+        "Cinematic videography",
+        "Drone coverage (selected packages)"
       ],
-      duration: "Full day coverage",
-      timing: "Your special day"
+      duration: "As per package",
+      timing: "Your event day"
     },
     {
       id: 4,
       icon: Palette,
       title: "Post-Production",
-      subtitle: "Crafting Perfection",
-      description: "Expert editing, color grading, and enhancement to transform raw captures into stunning visual masterpieces.",
+      subtitle: "Professional Editing",
+      description: "Expert editing, color grading, and enhancement to create stunning final deliverables.",
       details: [
-        "Professional color correction",
-        "Advanced retouching and enhancement",
-        "Cinematic editing and transitions",
-        "Music and audio synchronization"
+        "Professional photo retouching",
+        "Video editing and color grading",
+        "Reel creation for social media",
+        "Quality assurance and review"
       ],
-      duration: "2-3 weeks",
+      duration: "25-45 days",
       timing: "After event completion"
     },
     {
       id: 5,
       icon: Download,
-      title: "Delivery & Beyond",
-      subtitle: "Your Memories, Forever",
-      description: "Final delivery of your beautifully crafted memories in multiple formats, plus ongoing support and additional services.",
+      title: "Delivery",
+      subtitle: "Your Memories Ready",
+      description: "Complete soft-copy delivery on your cloud drive with all edited photos and videos.",
       details: [
-        "High-resolution digital delivery",
-        "Online gallery with sharing options",
-        "Physical prints and albums",
-        "Anniversary and milestone services"
+        "Cloud drive delivery",
+        "High-resolution photo downloads",
+        "Video files in multiple formats",
+        "Social media ready content"
       ],
       duration: "Lifetime access",
-      timing: "3-4 weeks after event"
+      timing: "25-45 days post-event"
     }
   ];
 
@@ -214,13 +232,13 @@ export const ServicesSection = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
             <Award className="w-4 h-4" />
-            Professional Photography Services
+            Darkroom Production Services
           </div>
           <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
-            Our Creative <span className="text-accent">Services</span>
+            Wedding <span className="text-accent">Coverage</span> Packages
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Transform your special moments into timeless masterpieces with our comprehensive photography and cinematography services.
+            Professional wedding photography and cinematography packages, plus stunning pre-wedding shoots in Jaipur and Udaipur.
           </p>
         </div>
 
@@ -244,7 +262,7 @@ export const ServicesSection = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6 mb-20">
+        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-20">
           {filteredServices.map((service, index) => (
             <div
               key={service.id}
@@ -260,18 +278,45 @@ export const ServicesSection = () => {
           ))}
         </div>
 
+        {/* Payment Terms */}
+        <div className="bg-accent/5 rounded-2xl p-8 border border-accent/20 mb-16">
+          <h3 className="font-playfair text-2xl font-bold mb-6 text-center">Payment Structure</h3>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div>
+              <h4 className="font-semibold text-lg mb-4">Wedding Packages</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• ₹5,000 booking fee to secure date</li>
+                <li>• 50% due before the shoot</li>
+                <li>• 25% upon event completion</li>
+                <li>• 25% upon final delivery</li>
+                <li>• All prices for one day coverage only</li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-lg mb-4">Pre-Wedding Shoots</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                <li>• ₹5,000 advance booking</li>
+                <li>• Balance on event day</li>
+                <li>• Additional reels: ₹500 each</li>
+                <li>• Extra photos (Udaipur): ₹1,000 for 10</li>
+                <li>• Travel beyond 30km: ₹1,000 extra</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Creative Process Timeline */}
         <div className="relative">
           <div className="text-center mb-16">
             <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
               <Settings className="w-4 h-4" />
-              Our Creative Process
+              Our Production Process
             </div>
             <h3 className="font-playfair text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
-              From Vision to <span className="text-accent">Reality</span>
+              From Booking to <span className="text-accent">Delivery</span>
             </h3>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up">
-              Our proven 5-step process ensures every project exceeds expectations from initial consultation to final delivery.
+              Our streamlined process ensures professional coverage and timely delivery of your precious memories.
             </p>
           </div>
 
@@ -281,18 +326,18 @@ export const ServicesSection = () => {
         {/* CTA Section */}
         <div className="text-center mt-16 animate-fade-in-up">
           <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-2xl p-8 border border-accent/20">
-            <h4 className="font-playfair text-2xl font-bold mb-4">Ready to Create Something Amazing?</h4>
+            <h4 className="font-playfair text-2xl font-bold mb-4">Ready to Book Your Package?</h4>
             <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Let's discuss your vision and create a customized package that perfectly captures your special moments.
+              Secure your date with just ₹5,000 advance booking. Let's create beautiful memories together.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent hover:bg-accent-darker px-8">
                 <Calendar className="w-5 h-5 mr-2" />
-                Schedule Consultation
+                Book Your Date
               </Button>
               <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent/5 px-8">
                 <MessageCircle className="w-5 h-5 mr-2" />
-                Get Instant Quote
+                Get Custom Quote
               </Button>
             </div>
           </div>

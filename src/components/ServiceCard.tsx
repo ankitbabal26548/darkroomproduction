@@ -16,13 +16,11 @@ interface ServiceCardProps {
   description: string;
   features: ServiceFeature[];
   price: number;
-  originalPrice: number;
+  originalPrice?: number;
   popular: boolean;
   duration: string;
   deliverables: string;
-  testimonial: string;
-  rating: number;
-  completedProjects: number;
+  testimonial?: string;
   isExpanded: boolean;
   onToggleExpand: () => void;
 }
@@ -38,8 +36,6 @@ export const ServiceCard = ({
   duration,
   deliverables,
   testimonial,
-  rating,
-  completedProjects,
   isExpanded,
   onToggleExpand
 }: ServiceCardProps) => {
@@ -64,13 +60,6 @@ export const ServiceCard = ({
         <div className="flex items-start justify-between mb-4">
           <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center">
             <Icon className="w-6 h-6 text-accent" />
-          </div>
-          <div className="text-right">
-            <div className="flex items-center gap-1 text-accent text-sm">
-              <Star className="w-3 h-3 fill-current" />
-              <span className="font-medium">{rating}</span>
-            </div>
-            <div className="text-xs text-muted-foreground">{completedProjects} projects</div>
           </div>
         </div>
 
@@ -114,7 +103,7 @@ export const ServiceCard = ({
         </div>
 
         {/* Testimonial (shown when expanded) */}
-        {isExpanded && (
+        {isExpanded && testimonial && (
           <div className="bg-muted/30 p-4 rounded-lg mb-4">
             <p className="text-sm italic text-muted-foreground">"{testimonial}"</p>
           </div>
@@ -127,16 +116,16 @@ export const ServiceCard = ({
               <span className="font-playfair text-2xl font-bold text-accent">
                 ₹{price.toLocaleString()}
               </span>
-              {originalPrice > price && (
+              {originalPrice && originalPrice > price && (
                 <span className="text-sm text-muted-foreground line-through">
                   ₹{originalPrice.toLocaleString()}
                 </span>
               )}
             </div>
-            <div className="text-xs text-muted-foreground">Starting price</div>
+            <div className="text-xs text-muted-foreground">Package price</div>
           </div>
           
-          {originalPrice > price && (
+          {originalPrice && originalPrice > price && (
             <div className="bg-green-100 text-green-800 px-2 py-1 rounded-full text-xs font-medium">
               Save ₹{(originalPrice - price).toLocaleString()}
             </div>
@@ -145,7 +134,7 @@ export const ServiceCard = ({
 
         {/* Action Button */}
         <Button className="w-full bg-accent hover:bg-accent-darker text-accent-foreground">
-          Get Custom Quote
+          Book This Package
         </Button>
       </CardContent>
     </Card>
