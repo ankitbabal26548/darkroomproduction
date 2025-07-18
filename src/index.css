@@ -773,3 +773,162 @@
     animation: about-section 0.8s ease-out forwards;
   }
 }
+
+@layer components {
+  /* Creative About Section Styles */
+  .creative-bg-pattern {
+    background-image: 
+      radial-gradient(circle at 20% 20%, rgba(var(--accent), 0.1) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(var(--accent), 0.05) 0%, transparent 50%),
+      linear-gradient(135deg, transparent 25%, rgba(var(--accent), 0.02) 50%, transparent 75%);
+    background-size: 600px 600px, 800px 800px, 400px 400px;
+    background-position: 0 0, 100% 100%, 50% 50%;
+  }
+
+  .artistic-gradient-text {
+    background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--accent)) 30%, hsl(var(--foreground)) 60%, hsl(var(--accent)) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    background-size: 300% 300%;
+    animation: artistic-gradient-shift 6s ease-in-out infinite;
+  }
+
+  .artistic-wave-divider {
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Timeline Styles */
+  .timeline-content {
+    position: relative;
+    min-height: 500px;
+  }
+
+  /* Animation Classes */
+  .creative-header-animation {
+    opacity: 0;
+    animation: creative-fade-up 1.2s ease-out 0.3s forwards;
+  }
+
+  .team-card-animation {
+    opacity: 0;
+    transform: translateY(30px) rotateX(10deg);
+    animation: team-card-entrance 0.8s ease-out forwards;
+  }
+
+  .philosophy-card-animation {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: philosophy-entrance 0.9s ease-out forwards;
+  }
+
+  .testimonial-card-animation {
+    opacity: 0;
+    transform: translateY(30px) rotateY(5deg);
+    animation: testimonial-entrance 0.8s ease-out forwards;
+  }
+
+  .star-animation {
+    opacity: 0;
+    transform: scale(0) rotate(-180deg);
+    animation: star-pop 0.6s ease-out forwards;
+  }
+
+  /* Keyframe Animations */
+  @keyframes artistic-gradient-shift {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes creative-fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes team-card-entrance {
+    from {
+      opacity: 0;
+      transform: translateY(30px) rotateX(10deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+  }
+
+  @keyframes philosophy-entrance {
+    from {
+      opacity: 0;
+      transform: translateY(40px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes testimonial-entrance {
+    from {
+      opacity: 0;
+      transform: translateY(30px) rotateY(5deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotateY(0deg);
+    }
+  }
+
+  @keyframes star-pop {
+    from {
+      opacity: 0;
+      transform: scale(0) rotate(-180deg);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1) rotate(0deg);
+    }
+  }
+
+  /* Mobile Responsiveness */
+  @media (max-width: 768px) {
+    .timeline-content {
+      min-height: 400px;
+    }
+    
+    .team-card-animation,
+    .philosophy-card-animation,
+    .testimonial-card-animation {
+      transform: translateY(20px);
+    }
+    
+    .artistic-gradient-text {
+      background-size: 200% 200%;
+    }
+  }
+
+  /* Enhanced Mobile Touch Areas */
+  @media (max-width: 640px) {
+    .team-card-animation {
+      margin-bottom: 1rem;
+    }
+    
+    .philosophy-card-animation {
+      margin-bottom: 1rem;
+    }
+    
+    .testimonial-card-animation {
+      margin-bottom: 2rem;
+    }
+  }
+}

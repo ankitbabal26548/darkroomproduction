@@ -1,96 +1,66 @@
 
-import { Award, Users, Calendar, Star } from 'lucide-react';
-import { AboutStats } from './AboutStats';
-import { AboutStory } from './AboutStory';
-import { AboutValues } from './AboutValues';
-import { AboutTestimonial } from './AboutTestimonial';
+import { CreativeTimeline } from './CreativeTimeline';
+import { ArtisticStats } from './ArtisticStats';
+import { TeamProfiles } from './TeamProfiles';
+import { PhilosophyManifesto } from './PhilosophyManifesto';
+import { CreativeTestimonials } from './CreativeTestimonials';
 
 export const AboutSection = () => {
-  const stats = [
-    { 
-      number: 500, 
-      suffix: "+", 
-      label: "Happy Couples", 
-      icon: Users,
-      progress: 85
-    },
-    { 
-      number: 13, 
-      suffix: "+", 
-      label: "Years Experience", 
-      icon: Calendar,
-      progress: 70
-    },
-    { 
-      number: 50, 
-      suffix: "+", 
-      label: "Awards Won", 
-      icon: Award,
-      progress: 60
-    },
-    { 
-      number: 98, 
-      suffix: "%", 
-      label: "Client Satisfaction", 
-      icon: Star,
-      progress: 98
-    }
-  ];
-
   return (
-    <section id="about" className="relative py-24 overflow-hidden">
-      {/* Modern Geometric Background */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="about-bg-pattern opacity-30"></div>
-        <div className="absolute top-1/4 left-0 w-64 h-64 bg-gradient-to-br from-accent/10 to-accent/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-gradient-to-tl from-accent/10 to-accent/5 rounded-full blur-3xl"></div>
+    <section id="about" className="relative overflow-hidden">
+      {/* Artistic Background */}
+      <div className="absolute inset-0 creative-bg-pattern opacity-20"></div>
+      
+      {/* Hero Header */}
+      <div className="relative py-20 lg:py-32">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 creative-header-animation">
+            <div className="inline-block mb-6">
+              <span className="px-8 py-3 bg-gradient-to-r from-accent/10 via-accent/20 to-accent/10 rounded-full text-accent font-medium border border-accent/30 backdrop-blur-sm">
+                Our Creative Journey
+              </span>
+            </div>
+            <h2 className="font-playfair text-5xl md:text-7xl lg:text-8xl font-bold mb-8 artistic-gradient-text">
+              Crafting Stories<br />
+              <span className="text-accent italic">Through Time</span>
+            </h2>
+            <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed font-light">
+              A decade-long journey of capturing life's most precious moments with artistry, passion, and heart
+            </p>
+          </div>
+        </div>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Modern Header */}
-        <div className="text-center mb-20 animate-about-header">
-          <div className="inline-block mb-4">
-            <span className="px-6 py-2 bg-gradient-to-r from-accent/10 to-accent/20 rounded-full text-accent font-medium text-sm border border-accent/20">
-              Our Story
-            </span>
-          </div>
-          <h2 className="font-playfair text-4xl md:text-6xl lg:text-7xl font-bold mb-6 text-gradient-about">
-            About <span className="text-accent">Darkroom</span>
-          </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Crafting timeless memories through the art of photography and cinematography
-          </p>
-        </div>
+      {/* Interactive Timeline */}
+      <div className="relative py-16 bg-gradient-to-b from-background via-muted/10 to-background">
+        <CreativeTimeline />
+      </div>
 
-        {/* Creative Layout Grid */}
-        <div className="about-creative-layout space-y-32">
-          {/* Statistics Section */}
-          <div className="animate-about-section" style={{ animationDelay: '0.2s' }}>
-            <AboutStats stats={stats} />
-          </div>
+      {/* Artistic Wave Divider */}
+      <div className="artistic-wave-divider">
+        <svg viewBox="0 0 1200 120" className="w-full h-16 text-accent/10">
+          <path d="M0,60 Q300,0 600,60 T1200,60 L1200,120 L0,120 Z" fill="currentColor"/>
+        </svg>
+      </div>
 
-          {/* Curved Divider */}
-          <div className="about-divider">
-            <svg viewBox="0 0 1200 120" className="w-full h-8 text-accent/20">
-              <path d="M0,60 C300,120 900,0 1200,60 L1200,120 L0,120 Z" fill="currentColor"/>
-            </svg>
-          </div>
+      {/* Statistics Infographic */}
+      <div className="relative py-20 bg-muted/20">
+        <ArtisticStats />
+      </div>
 
-          {/* Story Section */}
-          <div className="animate-about-section" style={{ animationDelay: '0.4s' }}>
-            <AboutStory />
-          </div>
+      {/* Team Profiles */}
+      <div className="relative py-20">
+        <TeamProfiles />
+      </div>
 
-          {/* Values Section */}
-          <div className="animate-about-section" style={{ animationDelay: '0.6s' }}>
-            <AboutValues />
-          </div>
+      {/* Philosophy Manifesto */}
+      <div className="relative py-20 bg-gradient-to-br from-accent/5 via-background to-accent/5">
+        <PhilosophyManifesto />
+      </div>
 
-          {/* Testimonial Section */}
-          <div className="animate-about-section" style={{ animationDelay: '0.8s' }}>
-            <AboutTestimonial />
-          </div>
-        </div>
+      {/* Creative Testimonials */}
+      <div className="relative py-20">
+        <CreativeTestimonials />
       </div>
     </section>
   );
