@@ -149,6 +149,98 @@
     @apply opacity-100;
   }
 
+  /* New Magnetic Hover Effect */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  .magnetic-hover:hover {
+    transform: perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1.02);
+  }
+
+  /* Portfolio specific animations */
+  .portfolio-card-hover {
+    @apply transition-all duration-500 hover:shadow-2xl;
+  }
+
+  .portfolio-card-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Aperture animation effect */
+  @keyframes aperture-open {
+    0% {
+      clip-path: circle(0% at 50% 50%);
+    }
+    100% {
+      clip-path: circle(100% at 50% 50%);
+    }
+  }
+
+  .aperture-reveal {
+    animation: aperture-open 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Film strip effect */
+  @keyframes film-strip {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .film-strip::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+    animation: film-strip 2s infinite;
+  }
+
+  /* Enhanced category filter styles */
+  .category-filter-active {
+    @apply bg-gradient-to-r from-accent to-accent-darker text-accent-foreground;
+    box-shadow: 0 10px 25px -5px rgba(var(--accent), 0.4);
+  }
+
+  /* Masonry grid utilities */
+  .masonry-item-small {
+    @apply col-span-1 row-span-1;
+  }
+
+  .masonry-item-medium {
+    @apply col-span-1 row-span-1;
+  }
+
+  .masonry-item-large {
+    @apply col-span-2 row-span-2;
+  }
+
+  .masonry-item-wide {
+    @apply col-span-2 row-span-1;
+  }
+
+  .masonry-item-tall {
+    @apply col-span-1 row-span-2;
+  }
+
+  /* Loading shimmer effect */
+  @keyframes shimmer {
+    0% {
+      background-position: -200px 0;
+    }
+    100% {
+      background-position: calc(200px + 100%) 0;
+    }
+  }
+
+  .shimmer {
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    background-size: 200px 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
   .photo-frame {
     @apply relative overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:scale-105;
   }

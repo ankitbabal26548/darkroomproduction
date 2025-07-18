@@ -1,191 +1,282 @@
-import { useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+
+import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import { Play, Eye, Heart, Share } from 'lucide-react';
+import { PortfolioCard } from '@/components/PortfolioCard';
+import { PortfolioLightbox } from '@/components/PortfolioLightbox';
+import { CategoryFilter } from '@/components/CategoryFilter';
+import { FloatingElements } from '@/components/FloatingElements';
 
 export const PortfolioSection = () => {
   const [activeCategory, setActiveCategory] = useState('all');
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [currentLightboxIndex, setCurrentLightboxIndex] = useState(0);
 
   const categories = [
-    { id: 'all', name: 'All Work' },
-    { id: 'wedding', name: 'Weddings' },
-    { id: 'prewedding', name: 'Pre-Wedding' },
-    { id: 'cinematic', name: 'Cinematic' },
-    { id: 'portraits', name: 'Portraits' }
+    { id: 'all', name: 'All Work', count: 12 },
+    { id: 'wedding', name: 'Weddings', count: 4 },
+    { id: 'prewedding', name: 'Pre-Wedding', count: 3 },
+    { id: 'cinematic', name: 'Cinematic', count: 2 },
+    { id: 'portraits', name: 'Portraits', count: 3 }
   ];
 
-  // Portfolio items with placeholder content
+  // Enhanced Portfolio items with more creative data
   const portfolioItems = [
     {
       id: 1,
       category: 'wedding',
-      type: 'photo',
+      type: 'photo' as const,
       title: 'Elegant Garden Wedding',
-      location: 'Mumbai',
-      image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=600&h=400&fit=crop',
-      likes: 156
+      location: 'Royal Botanical Gardens, Mumbai',
+      image: 'https://images.unsplash.com/photo-1606216794074-735e91aa2c92?w=800&h=600&fit=crop',
+      likes: 342,
+      featured: true,
+      description: 'A breathtaking ceremony surrounded by blooming roses and vintage architecture.',
+      client: 'Priya & Arjun',
+      date: 'March 2024',
+      award: 'Best Wedding Photo 2024'
     },
     {
       id: 2,
       category: 'prewedding',
-      type: 'photo',
+      type: 'photo' as const,
       title: 'Romantic Beach Session',
-      location: 'Goa',
-      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=600&h=400&fit=crop',
-      likes: 243
+      location: 'Arambol Beach, Goa',
+      image: 'https://images.unsplash.com/photo-1583939003579-730e3918a45a?w=800&h=600&fit=crop',
+      likes: 456,
+      description: 'Golden hour magic captured against the serene Goan coastline.',
+      client: 'Meera & Karan',
+      date: 'February 2024'
     },
     {
       id: 3,
       category: 'cinematic',
-      type: 'video',
+      type: 'video' as const,
       title: 'Traditional Wedding Film',
-      location: 'Rajasthan',
-      image: 'https://images.unsplash.com/photo-1594736797933-d0c9b21e1b4c?w=600&h=400&fit=crop',
-      likes: 389
+      location: 'Udaipur Palace, Rajasthan',
+      image: 'https://images.unsplash.com/photo-1594736797933-d0c9b21e1b4c?w=800&h=600&fit=crop',
+      likes: 623,
+      featured: true,
+      description: 'A cinematic journey through royal Rajasthani wedding traditions.',
+      client: 'Aadhya & Vikram',
+      date: 'January 2024'
     },
     {
       id: 4,
       category: 'wedding',
-      type: 'photo',
+      type: 'photo' as const,
       title: 'Destination Wedding',
-      location: 'Kerala',
-      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=600&h=400&fit=crop',
-      likes: 167
+      location: 'Backwaters, Kerala',
+      image: 'https://images.unsplash.com/photo-1519741497674-611481863552?w=800&h=600&fit=crop',
+      likes: 289,
+      description: 'Love floating on the tranquil backwaters of God\'s own country.',
+      client: 'Sanya & Rohit',
+      date: 'December 2023'
     },
     {
       id: 5,
       category: 'portraits',
-      type: 'photo',
+      type: 'photo' as const,
       title: 'Bridal Portraits',
-      location: 'Delhi',
-      image: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=600&h=400&fit=crop',
-      likes: 298
+      location: 'Heritage Studio, Delhi',
+      image: 'https://images.unsplash.com/photo-1595854341625-f33ee10dbf94?w=800&h=600&fit=crop',
+      likes: 534,
+      description: 'Timeless elegance captured in intimate bridal portrait sessions.',
+      client: 'Kavya',
+      date: 'November 2023',
+      award: 'Portrait Excellence'
     },
     {
       id: 6,
       category: 'prewedding',
-      type: 'video',
+      type: 'video' as const,
       title: 'Love Story Film',
-      location: 'Udaipur',
-      image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=600&h=400&fit=crop',
-      likes: 421
+      location: 'City Palace, Udaipur',
+      image: 'https://images.unsplash.com/photo-1591604129939-f1efa4d9f7fa?w=800&h=600&fit=crop',
+      likes: 701,
+      featured: true,
+      description: 'A tale of two hearts against the backdrop of royal architecture.',
+      client: 'Ishita & Aryan',
+      date: 'October 2023'
+    },
+    {
+      id: 7,
+      category: 'wedding',
+      type: 'photo' as const,
+      title: 'Mountain Wedding',
+      location: 'Manali, Himachal Pradesh',
+      image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&h=600&fit=crop',
+      likes: 412,
+      description: 'Love elevated to new heights in the Himalayan foothills.',
+      client: 'Tara & Neel',
+      date: 'September 2023'
+    },
+    {
+      id: 8,
+      category: 'portraits',
+      type: 'photo' as const,
+      title: 'Corporate Headshots',
+      location: 'Modern Studio, Bangalore',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop',
+      likes: 198,
+      description: 'Professional portraits that capture personality and professionalism.',
+      client: 'Tech Startup Team',
+      date: 'August 2023'
+    },
+    {
+      id: 9,
+      category: 'cinematic',
+      type: 'video' as const,
+      title: 'Documentary Wedding',
+      location: 'Jaipur, Rajasthan',
+      image: 'https://images.unsplash.com/photo-1545291730-faff8ca1d4b0?w=800&h=600&fit=crop',
+      likes: 389,
+      description: 'Authentic moments woven into a beautiful narrative.',
+      client: 'Riya & Sameer',
+      date: 'July 2023'
+    },
+    {
+      id: 10,
+      category: 'prewedding',
+      type: 'photo' as const,
+      title: 'Urban Love Story',
+      location: 'Mumbai Skyline',
+      image: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=800&h=600&fit=crop',
+      likes: 267,
+      description: 'Modern romance against the bustling cityscape.',
+      client: 'Anaya & Dev',
+      date: 'June 2023'
+    },
+    {
+      id: 11,
+      category: 'portraits',
+      type: 'photo' as const,
+      title: 'Fashion Editorial',
+      location: 'Fashion District, Delhi',
+      image: 'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=800&h=600&fit=crop',
+      likes: 445,
+      description: 'High-fashion meets artistic vision in stunning editorial portraits.',
+      client: 'Fashion Magazine',
+      date: 'May 2023'
+    },
+    {
+      id: 12,
+      category: 'wedding',
+      type: 'photo' as const,
+      title: 'Beach Wedding Ceremony',
+      location: 'Varca Beach, Goa',
+      image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=800&h=600&fit=crop',
+      likes: 356,
+      description: 'Vows exchanged as the sun sets over the Arabian Sea.',
+      client: 'Deepika & Raj',
+      date: 'April 2023'
     }
   ];
 
-  const filteredItems = activeCategory === 'all' 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
+  const filteredItems = useMemo(() => {
+    return activeCategory === 'all' 
+      ? portfolioItems 
+      : portfolioItems.filter(item => item.category === activeCategory);
+  }, [activeCategory]);
+
+  const getCardSize = (index: number, item: any) => {
+    // Create dynamic sizing pattern for masonry effect
+    if (item.featured) {
+      return index % 5 === 0 ? 'large' : index % 3 === 0 ? 'wide' : 'tall';
+    }
+    
+    const patterns = ['medium', 'small', 'wide', 'medium', 'tall', 'small'];
+    return patterns[index % patterns.length] as 'small' | 'medium' | 'large' | 'wide' | 'tall';
+  };
+
+  const openLightbox = (index: number) => {
+    setCurrentLightboxIndex(index);
+    setLightboxOpen(true);
+  };
+
+  const nextImage = () => {
+    setCurrentLightboxIndex((prev) => 
+      prev < filteredItems.length - 1 ? prev + 1 : 0
+    );
+  };
+
+  const previousImage = () => {
+    setCurrentLightboxIndex((prev) => 
+      prev > 0 ? prev - 1 : filteredItems.length - 1
+    );
+  };
 
   return (
-    <section id="portfolio" className="py-20 bg-muted/30">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="relative py-20 bg-gradient-to-br from-background via-muted/30 to-background overflow-hidden">
+      {/* Floating Background Elements */}
+      <FloatingElements />
+      
+      {/* Background Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_var(--accent)_0%,_transparent_50%),radial-gradient(circle_at_80%_20%,_var(--accent)_0%,_transparent_50%)]" />
+      </div>
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
             Our <span className="text-accent">Portfolio</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Explore our collection of captured moments, each telling a unique story of love, joy, and celebration.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+            Discover our collection of captured moments, each telling a unique story of love, joy, and celebration. 
+            Every frame is crafted with passion and artistic vision.
           </p>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
-              <Button
-                key={category.id}
-                variant={activeCategory === category.id ? "default" : "outline"}
-                onClick={() => setActiveCategory(category.id)}
-                className={`${
-                  activeCategory === category.id 
-                    ? 'bg-accent text-accent-foreground' 
-                    : 'hover:bg-accent/10 hover:text-accent'
-                } transition-all duration-300`}
-              >
-                {category.name}
-              </Button>
-            ))}
-          </div>
+          {/* Enhanced Category Filter */}
+          <CategoryFilter 
+            categories={categories}
+            activeCategory={activeCategory}
+            onCategoryChange={setActiveCategory}
+          />
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Masonry Portfolio Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max">
           {filteredItems.map((item, index) => (
-            <Card 
+            <PortfolioCard
               key={item.id}
-              className="group overflow-hidden hover:shadow-photo transition-all duration-500 lens-effect animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <div className="relative overflow-hidden">
-                <img 
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
-                />
-                
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex space-x-3">
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="bg-white/20 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm"
-                    >
-                      <Eye className="w-4 h-4" />
-                    </Button>
-                    {item.type === 'video' && (
-                      <Button
-                        size="icon"
-                        variant="secondary"
-                        className="bg-white/20 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm"
-                      >
-                        <Play className="w-4 h-4" />
-                      </Button>
-                    )}
-                    <Button
-                      size="icon"
-                      variant="secondary"
-                      className="bg-white/20 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm"
-                    >
-                      <Share className="w-4 h-4" />
-                    </Button>
-                  </div>
-                </div>
-
-                {/* Type Badge */}
-                {item.type === 'video' && (
-                  <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-2 py-1 rounded-full text-xs font-medium">
-                    Video
-                  </div>
-                )}
-              </div>
-
-              <CardContent className="p-4">
-                <h3 className="font-playfair text-lg font-semibold mb-1">{item.title}</h3>
-                <p className="text-muted-foreground text-sm mb-3">{item.location}</p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center space-x-1 text-muted-foreground">
-                    <Heart className="w-4 h-4" />
-                    <span className="text-sm">{item.likes}</span>
-                  </div>
-                  <Button variant="ghost" size="sm" className="text-accent hover:text-accent-foreground hover:bg-accent">
-                    View Details
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+              item={item}
+              size={getCardSize(index, item)}
+              onView={() => openLightbox(index)}
+              className="animate-fade-in-up"
+              style={{ animationDelay: `${index * 100}ms` } as any}
+            />
           ))}
         </div>
 
-        {/* Load More */}
-        <div className="text-center mt-12">
+        {/* Load More Section */}
+        <div className="text-center mt-16">
+          <div className="mb-8">
+            <div className="inline-flex items-center space-x-4 text-muted-foreground">
+              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-20" />
+              <span className="text-sm font-medium">Showing {filteredItems.length} of 50+ projects</span>
+              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-20" />
+            </div>
+          </div>
+          
           <Button 
             size="lg"
-            className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens"
+            className="group bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-3"
           >
-            Load More Portfolio
+            <span className="mr-2">Load More Masterpieces</span>
+            <div className="w-4 h-4 rounded-full bg-accent-foreground/20 group-hover:bg-accent-foreground/30 transition-colors" />
           </Button>
         </div>
       </div>
+
+      {/* Enhanced Lightbox */}
+      <PortfolioLightbox
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        items={filteredItems}
+        currentIndex={currentLightboxIndex}
+        onNext={nextImage}
+        onPrevious={previousImage}
+      />
     </section>
   );
 };
