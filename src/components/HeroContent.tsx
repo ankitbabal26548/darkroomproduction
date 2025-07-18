@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import { Camera, Heart, Star } from 'lucide-react';
 
 interface HeroContentProps {
   currentSlide: number;
@@ -8,85 +7,69 @@ interface HeroContentProps {
 
 const contentSlides = [
   {
-    category: "Wedding Photography",
-    title: "Capturing Love Stories That Last Forever",
-    description: "Every moment of your special day deserves to be preserved with artistic excellence. We blend documentary storytelling with fine art photography to create timeless memories.",
-    highlights: ["Cinematic Style", "Natural Moments", "Timeless Beauty"]
+    subtitle: "Professional Photography",
+    title: "Capturing Life's Most Precious Moments",
+    description: "We transform your special occasions into timeless memories with our artistic vision and professional expertise.",
+    highlight: "Wedding & Event Specialists"
   },
   {
-    category: "Pre-Wedding Sessions",
-    title: "Your Journey Together Begins Here",
-    description: "Celebrate your love story with intimate pre-wedding sessions that capture the essence of your relationship. From romantic landscapes to urban adventures.",
-    highlights: ["Creative Concepts", "Multiple Locations", "Personal Touch"]
+    subtitle: "Creative Storytelling",
+    title: "Every Picture Tells Your Unique Story",
+    description: "From intimate pre-wedding sessions to grand celebrations, we craft visual narratives that speak to the heart.",
+    highlight: "Pre-Wedding Specialists"
   }
 ];
 
 export const HeroContent = ({ currentSlide }: HeroContentProps) => {
   const [displaySlide, setDisplaySlide] = useState(0);
-  const [isTransitioning, setIsTransitioning] = useState(false);
 
   useEffect(() => {
-    if (currentSlide !== displaySlide) {
-      setIsTransitioning(true);
-      const timer = setTimeout(() => {
-        setDisplaySlide(currentSlide);
-        setIsTransitioning(false);
-      }, 300);
-      return () => clearTimeout(timer);
-    }
-  }, [currentSlide, displaySlide]);
+    const timer = setTimeout(() => {
+      setDisplaySlide(currentSlide);
+    }, 150);
+    return () => clearTimeout(timer);
+  }, [currentSlide]);
 
   const content = contentSlides[displaySlide];
 
   return (
     <div className="space-y-6">
-      {/* Category Badge */}
-      <div className={`transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-        <div className="inline-flex items-center space-x-2 bg-accent/10 backdrop-blur-sm px-4 py-2 rounded-full border border-accent/20">
-          {displaySlide === 0 ? (
-            <Heart className="w-4 h-4 text-accent" />
-          ) : (
-            <Camera className="w-4 h-4 text-accent" />
-          )}
-          <span className="text-accent font-medium text-sm tracking-wide">
-            {content.category}
+      {/* Brand */}
+      <div className="space-y-2">
+        <div className="inline-block">
+          <span className="text-accent font-medium text-sm uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full">
+            {content.highlight}
           </span>
         </div>
+        <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+          Darkroom
+          <span className="block text-accent">Production</span>
+        </h1>
       </div>
 
-      {/* Main Content */}
-      <div className={`space-y-4 transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
-        <h2 className="font-playfair text-3xl lg:text-4xl xl:text-5xl font-bold text-foreground leading-tight">
+      {/* Content */}
+      <div className="space-y-4 transition-all duration-500">
+        <p className="text-accent font-medium text-lg tracking-wide">
+          {content.subtitle}
+        </p>
+        <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-foreground/90 leading-relaxed">
           {content.title}
         </h2>
-        
-        <p className="text-muted-foreground text-lg leading-relaxed max-w-2xl">
+        <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
           {content.description}
         </p>
-
-        {/* Feature Highlights */}
-        <div className="flex flex-wrap gap-3 pt-4">
-          {content.highlights.map((highlight, index) => (
-            <div key={index} className="flex items-center space-x-2 bg-secondary/50 px-3 py-2 rounded-lg border border-border/30">
-              <Star className="w-4 h-4 text-accent fill-accent" />
-              <span className="text-sm font-medium text-foreground">{highlight}</span>
-            </div>
-          ))}
-        </div>
       </div>
 
-      {/* Progress Indicators */}
-      <div className="flex space-x-3 pt-6">
-        {contentSlides.map((_, index) => (
-          <div
-            key={index}
-            className={`h-1 rounded-full transition-all duration-500 ${
-              index === displaySlide 
-                ? 'w-12 bg-accent' 
-                : 'w-6 bg-accent/30'
-            }`}
-          />
-        ))}
+      {/* Trust Indicators */}
+      <div className="flex items-center space-x-6 pt-4">
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+          <span className="text-sm font-medium text-muted-foreground">5+ Years Experience</span>
+        </div>
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+          <span className="text-sm font-medium text-muted-foreground">200+ Happy Couples</span>
+        </div>
       </div>
     </div>
   );
