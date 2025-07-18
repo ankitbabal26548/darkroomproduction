@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
@@ -158,11 +159,11 @@
     }
   }
 
-  /* Enhanced About Section Animations */
+  /* Clean Minimal Animations */
   @keyframes fade-in-up {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(20px);
     }
     to {
       opacity: 1;
@@ -182,7 +183,7 @@
   @keyframes scale-in {
     from {
       opacity: 0;
-      transform: scale(0.9);
+      transform: scale(0.95);
     }
     to {
       opacity: 1;
@@ -190,14 +191,14 @@
     }
   }
 
-  @keyframes stagger-fade-in {
+  @keyframes portfolio-item-fade {
     from {
       opacity: 0;
-      transform: translateY(20px) scale(0.95);
+      transform: translateY(30px);
     }
     to {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
   }
 
@@ -219,51 +220,62 @@
     }
   }
 
-  @keyframes shimmer {
+  @keyframes count-up {
     from {
-      transform: translateX(-100%);
+      opacity: 0;
+      transform: translateY(20px);
     }
     to {
-      transform: translateX(100%);
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
-  @keyframes glow-pulse {
-    0%, 100% {
-      box-shadow: 0 0 20px rgba(22, 65, 45, 0.3);
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
     }
-    50% {
-      box-shadow: 0 0 40px rgba(22, 65, 45, 0.6);
+    to {
+      opacity: 1;
+      transform: translateX(0);
     }
   }
 
-  @keyframes rotate-slow {
+  @keyframes slide-up {
     from {
-      transform: rotate(0deg);
+      opacity: 0;
+      transform: translateY(30px);
     }
     to {
-      transform: rotate(360deg);
+      opacity: 1;
+      transform: translateY(0);
     }
   }
 
   /* Enhanced Animation Classes */
   .animate-fade-in-up {
-    animation: fade-in-up 0.8s ease-out forwards;
-    opacity: 0;
+    animation: fade-in-up 0.6s ease-out forwards;
   }
 
   .animate-fade-in {
     animation: fade-in 0.6s ease-out forwards;
-    opacity: 0;
   }
 
   .animate-scale-in {
-    animation: scale-in 0.6s ease-out forwards;
-    opacity: 0;
+    animation: scale-in 0.4s ease-out forwards;
   }
 
-  .animate-stagger-fade-in {
-    animation: stagger-fade-in 0.8s ease-out forwards;
+  .animate-slide-in {
+    animation: slide-in 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
+  }
+
+  .portfolio-item-animate {
+    animation: portfolio-item-fade 0.8s ease-out forwards;
     opacity: 0;
   }
 
@@ -276,21 +288,8 @@
     transform-origin: left;
   }
 
-  .animate-shimmer {
-    animation: shimmer 2s ease-in-out infinite;
-  }
-
-  .animate-glow-pulse {
-    animation: glow-pulse 2s ease-in-out infinite;
-  }
-
-  .animate-rotate-slow {
-    animation: rotate-slow 20s linear infinite;
-  }
-
-  .portfolio-item-animate {
-    animation: portfolio-item-fade 0.8s ease-out forwards;
-    opacity: 0;
+  .animate-count-up {
+    animation: count-up 0.8s ease-out forwards;
   }
 
   .animate-portfolio-hover {
@@ -313,9 +312,9 @@
     animation: glassmorphism-pulse 3s ease-in-out infinite;
   }
 
-  /* Enhanced Shadow Effects */
+  /* Professional Shadow Effects */
   .shadow-professional {
-    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.12), 0 4px 20px -4px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1), 0 4px 20px -4px rgba(0, 0, 0, 0.06);
   }
 
   .shadow-elegant {
@@ -324,10 +323,6 @@
 
   .shadow-portfolio {
     box-shadow: 0 20px 60px -10px rgba(0, 0, 0, 0.15), 0 8px 30px -4px rgba(0, 0, 0, 0.1);
-  }
-
-  .shadow-glow {
-    box-shadow: 0 10px 40px -10px rgba(22, 65, 45, 0.3), 0 4px 20px -4px rgba(22, 65, 45, 0.2);
   }
 
   /* Enhanced Component Styles */
@@ -343,7 +338,7 @@
     transform: translateY(-2px);
   }
 
-  /* Enhanced Glassmorphism Effects */
+  /* Glassmorphism Effects */
   .glass-effect {
     backdrop-filter: blur(20px);
     background: rgba(255, 255, 255, 0.1);
@@ -356,12 +351,6 @@
     border: 1px solid rgba(255, 255, 255, 0.1);
   }
 
-  .glass-card {
-    backdrop-filter: blur(12px);
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-  }
-
   /* Portfolio Specific Styles */
   .portfolio-overlay-permanent {
     background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 60%, transparent 100%);
@@ -371,16 +360,9 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%);
   }
 
-  /* Enhanced Text Effects */
+  /* Professional Text Effects */
   .text-gradient {
     background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-lighter)));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .text-gradient-primary {
-    background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--accent)));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -399,23 +381,39 @@
     @apply hover:scale-105 active:scale-95;
   }
 
-  /* About Section Specific Enhancements */
-  .about-stat-card {
-    @apply relative overflow-hidden backdrop-blur-sm;
-    @apply transition-all duration-500 hover:scale-105;
+  /* Professional Photo Frame */
+  .photo-frame {
+    @apply relative overflow-hidden rounded-xl shadow-lg;
+    @apply transition-all duration-500 hover:shadow-2xl;
   }
 
-  .about-value-card {
-    @apply relative overflow-hidden backdrop-blur-sm;
-    @apply transition-all duration-500 hover:scale-105 hover:shadow-professional;
+  .photo-frame:hover {
+    transform: translateY(-4px) scale(1.02);
   }
 
-  .about-story-card {
-    @apply relative overflow-hidden;
-    @apply transition-all duration-500 hover:shadow-professional;
+  /* Service Cards */
+  .service-card {
+    @apply transition-all duration-300 hover:shadow-xl;
+    @apply border border-border/50 hover:border-accent/30;
   }
 
-  /* Enhanced Navigation */
+  .service-card:hover {
+    transform: translateY(-4px);
+  }
+
+  /* Contact Cards */
+  .contact-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply border border-border/50 hover:border-accent/30;
+  }
+
+  /* Form Enhancement */
+  .form-focus-effect:focus {
+    @apply ring-2 ring-accent/30 border-accent;
+    @apply shadow-lg;
+  }
+
+  /* Navigation Enhancements */
   .nav-link {
     @apply relative font-medium text-foreground/80 hover:text-accent;
     @apply transition-all duration-300;
@@ -439,7 +437,27 @@
     @apply w-full;
   }
 
-  /* Enhanced Portfolio Grid */
+  /* About Section Enhancements */
+  .stat-card {
+    @apply bg-card border border-border rounded-xl p-6;
+    @apply transition-all duration-300 hover:shadow-lg hover:border-accent/30;
+  }
+
+  .value-card {
+    @apply bg-card border border-border rounded-xl p-6;
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+
+  .progress-bar {
+    @apply h-2 bg-muted rounded-full overflow-hidden;
+  }
+
+  .progress-fill {
+    @apply h-full bg-gradient-to-r from-accent to-accent-lighter rounded-full;
+    @apply transform origin-left;
+  }
+
+  /* Portfolio Grid Enhancements */
   .portfolio-grid {
     @apply grid gap-6;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -462,10 +480,23 @@
     @apply transition-transform duration-300;
   }
 
-  /* Enhanced Form Styles */
-  .form-focus-effect:focus {
-    @apply ring-2 ring-accent/30 border-accent;
-    @apply shadow-lg;
+  /* Category Filter */
+  .category-filter {
+    @apply flex flex-wrap justify-center gap-2 mb-8;
+  }
+
+  .category-btn {
+    @apply px-4 py-2 rounded-full text-sm font-medium;
+    @apply transition-all duration-300;
+    @apply border border-border hover:border-accent/50;
+  }
+
+  .category-btn.active {
+    @apply bg-accent text-accent-foreground border-accent;
+  }
+
+  .category-btn:not(.active) {
+    @apply bg-background text-muted-foreground hover:bg-accent/5;
   }
 
   /* Clean Transition Effects */
@@ -484,11 +515,4 @@
   .focus-ring:focus {
     @apply ring-2 ring-accent/30 ring-offset-2;
   }
-
-  /* Stagger Animation Delays */
-  .stagger-1 { animation-delay: 0.1s; }
-  .stagger-2 { animation-delay: 0.2s; }
-  .stagger-3 { animation-delay: 0.3s; }
-  .stagger-4 { animation-delay: 0.4s; }
-  .stagger-5 { animation-delay: 0.5s; }
 }
