@@ -317,4 +317,46 @@
     @apply h-full bg-gradient-to-r from-accent to-accent-lighter rounded-full;
     @apply transform origin-left;
   }
+
+  /* Portfolio Grid Enhancements */
+  .portfolio-grid {
+    @apply grid gap-6;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .portfolio-card {
+    @apply relative overflow-hidden rounded-lg bg-card border border-border;
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply group cursor-pointer;
+  }
+
+  .portfolio-overlay {
+    @apply absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent;
+    @apply opacity-0 group-hover:opacity-100 transition-opacity duration-300;
+  }
+
+  .portfolio-content {
+    @apply absolute bottom-0 left-0 right-0 p-4 text-white;
+    @apply transform translate-y-4 group-hover:translate-y-0;
+    @apply transition-transform duration-300;
+  }
+
+  /* Category Filter */
+  .category-filter {
+    @apply flex flex-wrap justify-center gap-2 mb-8;
+  }
+
+  .category-btn {
+    @apply px-4 py-2 rounded-full text-sm font-medium;
+    @apply transition-all duration-300;
+    @apply border border-border hover:border-accent/50;
+  }
+
+  .category-btn.active {
+    @apply bg-accent text-accent-foreground border-accent;
+  }
+
+  .category-btn:not(.active) {
+    @apply bg-background text-muted-foreground hover:bg-accent/5;
+  }
 }
