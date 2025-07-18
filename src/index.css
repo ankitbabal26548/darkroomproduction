@@ -139,8 +139,7 @@
 
   .lens-effect::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-transparent via-accent/30 to-transparent 
-           opacity-0 transition-all duration-500 pointer-events-none scale-0;
+    @apply absolute inset-0 bg-gradient-to-br from-transparent via-accent/30 to-transparent opacity-0 transition-all duration-500 pointer-events-none scale-0;
     transform-origin: center;
   }
 
@@ -265,8 +264,7 @@
   /* Animated borders */
   .animated-border {
     position: relative;
-    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
-                linear-gradient(45deg, hsl(var(--accent)), hsl(var(--accent) / 0.5), hsl(var(--accent))) border-box;
+    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box, linear-gradient(45deg, hsl(var(--accent)), hsl(var(--accent) / 0.5), hsl(var(--accent))) border-box;
     border: 2px solid transparent;
     border-radius: 12px;
   }
@@ -292,8 +290,7 @@
 
   /* Spotlight effect */
   .spotlight {
-    background: radial-gradient(600px circle at 0px 0px, 
-                hsl(var(--accent) / 0.1), transparent 40%);
+    background: radial-gradient(600px circle at 0px 0px, hsl(var(--accent) / 0.1), transparent 40%);
   }
 
   /* Typewriter effect */
@@ -301,7 +298,6 @@
     overflow: hidden;
     border-right: 3px solid hsl(var(--accent));
     white-space: nowrap;
-    animation: typewriter 4s steps(40) infinite alternate,
-               blink-caret 1s step-end infinite;
+    animation: typewriter 4s steps(40) infinite alternate, blink-caret 1s step-end infinite;
   }
 }
