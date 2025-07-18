@@ -13,25 +13,33 @@ export const MagneticNavItem = ({ href, children, isActive = false }: MagneticNa
   return (
     <a
       href={href}
-      className="relative px-4 py-2 group transition-all duration-300 ease-out"
+      className="relative group transition-all duration-300 ease-out spotlight-effect"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <span className={`relative z-10 font-medium transition-all duration-300 ${
-        isActive ? 'text-accent' : 'text-foreground hover:text-accent'
-      } ${isHovered ? 'scale-105' : ''}`}>
-        {children}
-      </span>
+      <div className={`nav-pill ${isActive ? 'border-accent bg-accent/10' : ''} ${
+        isHovered ? 'scale-105 shadow-professional' : ''
+      }`}>
+        <span className={`relative z-10 font-medium text-sm tracking-wide transition-all duration-300 ${
+          isActive ? 'text-accent' : 'text-foreground group-hover:text-accent'
+        }`}>
+          {children}
+        </span>
+        
+        {/* Enhanced active indicator */}
+        {isActive && (
+          <div className="absolute inset-0 rounded-full bg-gradient-accent opacity-10 animate-glow-pulse" />
+        )}
+      </div>
       
-      {/* Animated underline */}
-      <div className={`absolute bottom-0 left-0 h-0.5 bg-accent transition-all duration-300 ease-out ${
-        isActive || isHovered ? 'w-full' : 'w-0'
-      }`} />
-      
-      {/* Magnetic hover effect */}
-      <div className={`absolute inset-0 rounded-lg bg-accent/5 transition-all duration-300 ${
-        isHovered ? 'scale-110 opacity-100' : 'scale-95 opacity-0'
-      }`} />
+      {/* Magnetic hover effect enhancement */}
+      <div className={`absolute inset-0 rounded-full transition-all duration-500 ${
+        isHovered ? 'scale-110' : 'scale-95'
+      }`}>
+        <div className={`w-full h-full rounded-full bg-accent/5 transition-opacity duration-300 ${
+          isHovered ? 'opacity-100' : 'opacity-0'
+        }`} />
+      </div>
     </a>
   );
 };

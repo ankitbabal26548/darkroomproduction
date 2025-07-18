@@ -1,14 +1,15 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Darkroom Production Design System - B&W Photography Theme with Golden Accent */
+/* Darkroom Production Design System - Enhanced Professional Theme */
 
 @layer base {
   :root {
-    /* Pure B&W with Golden Accent Color Palette */
+    /* Enhanced B&W with Professional Burnt Orange Accent */
     --background: 0 0% 100%;
     --foreground: 0 0% 8%;
 
@@ -27,61 +28,60 @@
     --muted: 0 0% 94%;
     --muted-foreground: 0 0% 45%;
 
-    /* Golden accent color #FFD3AC */
-    --accent: 28 100% 84%;
-    --accent-foreground: 0 0% 8%;
+    /* Enhanced Professional Accent Colors - Darker Burnt Orange */
+    --accent: 22 65% 45%;
+    --accent-foreground: 0 0% 98%;
+    --accent-darker: 22 75% 35%;
+    --accent-darkest: 22 85% 25%;
+    --accent-lighter: 22 55% 55%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 28 100% 84%;
+    --ring: 22 65% 45%;
 
     --radius: 0.75rem;
 
-    /* Photography-specific design tokens */
+    /* Enhanced Photography-specific design tokens */
     --darkroom-red: 0 65% 35%;
     --film-grain: 0 0% 95%;
-    --lens-flare: 28 100% 84%;
+    --lens-flare: 22 65% 45%;
     --aperture-shadow: 0 0% 15%;
     --developer-tray: 0 0% 12%;
 
-    /* Gradients for photography effects */
+    /* Professional gradients */
     --gradient-darkroom: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--aperture-shadow)));
     --gradient-lens: radial-gradient(circle, transparent 40%, hsl(var(--primary) / 0.8));
-    --gradient-golden: linear-gradient(45deg, hsl(var(--accent)), hsl(28 100% 90%));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--accent)), hsl(var(--accent-lighter)));
     --gradient-film: linear-gradient(180deg, hsl(var(--background)), hsl(var(--film-grain)));
 
-    /* Shadows for depth and photography feel */
+    /* Enhanced shadows for professional depth */
     --shadow-lens: 0 20px 40px -10px hsl(var(--primary) / 0.3);
     --shadow-photo: 0 8px 25px -5px hsl(var(--primary) / 0.2);
     --shadow-darkroom: inset 0 2px 4px hsl(var(--primary) / 0.1);
+    --shadow-professional: 0 10px 30px -5px hsl(var(--accent) / 0.3);
+    --shadow-glow: 0 0 20px hsl(var(--accent) / 0.4);
 
-    /* Animation timings */
-    --transition-photo: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Professional animation timings */
+    --transition-professional: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-lens: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
     --transition-smooth: all 0.4s ease-out;
+    --transition-elastic: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
   .dark {
-    /* Darkroom theme for dark mode */
+    /* Enhanced darkroom theme */
     --background: 0 0% 5%;
     --foreground: 0 0% 95%;
 
@@ -100,15 +100,18 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 28 100% 84%;
+    --accent: 22 65% 55%;
     --accent-foreground: 0 0% 8%;
+    --accent-darker: 22 75% 45%;
+    --accent-darkest: 22 85% 35%;
+    --accent-lighter: 22 55% 65%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 28 100% 84%;
+    --ring: 22 65% 55%;
 
     /* Dark mode photography tokens */
     --darkroom-red: 0 70% 45%;
@@ -132,7 +135,7 @@
 }
 
 @layer components {
-  /* Photography-specific component styles */
+  /* Enhanced professional component styles */
   .lens-effect {
     @apply relative overflow-hidden;
   }
@@ -151,41 +154,77 @@
     @apply relative overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:scale-105;
   }
 
-  .darkroom-glow {
+  .professional-glow {
     @apply relative;
   }
 
-  .darkroom-glow::after {
+  .professional-glow::after {
     content: '';
     @apply absolute inset-0 rounded-lg shadow-2xl opacity-0 transition-opacity duration-300;
-    box-shadow: 0 0 30px hsl(var(--accent) / 0.5);
+    box-shadow: var(--shadow-glow);
   }
 
-  .darkroom-glow:hover::after {
+  .professional-glow:hover::after {
     @apply opacity-100;
   }
 
-  .film-grain {
-    background-image: 
-      radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.1) 1px, transparent 0);
-    background-size: 20px 20px;
+  .glassmorphism {
+    @apply bg-background/80 backdrop-blur-xl border border-border/50;
+    box-shadow: var(--shadow-professional);
   }
 
-  .aperture-border {
-    border: 2px solid hsl(var(--accent));
-    border-radius: 50%;
+  .glassmorphism-enhanced {
+    @apply bg-background/90 backdrop-blur-2xl border border-accent/20;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.12),
+      0 2px 6px rgba(0, 0, 0, 0.08),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .nav-pill {
+    @apply px-4 py-2 rounded-full bg-background/60 backdrop-blur-sm border border-accent/20 
+           transition-all duration-300 hover:border-accent/40 hover:bg-accent/5 hover:shadow-lg;
+  }
+
+  .logo-container {
+    @apply relative p-2 rounded-xl bg-background/80 backdrop-blur-sm border border-accent/30 
+           transition-all duration-500 hover:border-accent hover:shadow-xl;
+    box-shadow: var(--shadow-professional);
+  }
+
+  .logo-container:hover {
+    transform: scale(1.05);
+    box-shadow: var(--shadow-glow), var(--shadow-professional);
+  }
+
+  .breathing-animation {
+    animation: breathing 3s ease-in-out infinite;
+  }
+
+  @keyframes breathing {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  .spotlight-effect {
     position: relative;
+    overflow: hidden;
   }
 
-  .aperture-border::before {
+  .spotlight-effect::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 60%;
-    height: 60%;
-    transform: translate(-50%, -50%);
-    border: 1px solid hsl(var(--accent) / 0.5);
-    border-radius: 50%;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, hsl(var(--accent) / 0.1) 0%, transparent 70%);
+    transform: scale(0);
+    transition: transform 0.3s ease;
+    pointer-events: none;
+  }
+
+  .spotlight-effect:hover::before {
+    transform: scale(1);
   }
 }
