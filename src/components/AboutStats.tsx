@@ -38,42 +38,56 @@ export const AboutStats = ({ stats }: AboutStatsProps) => {
   }, []);
 
   return (
-    <div ref={statsRef} className="mb-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <div ref={statsRef} className="stats-container">
+      <div className="stats-grid">
         {stats.map((stat, index) => (
           <div 
             key={index}
-            className="group p-8 bg-card rounded-2xl border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
-            style={{ animationDelay: `${index * 100}ms` }}
+            className="stat-card group"
+            style={{ animationDelay: `${index * 150}ms` }}
           >
-            <div className="text-center space-y-6">
-              {/* Icon */}
-              <div className="w-16 h-16 mx-auto bg-accent/10 rounded-2xl flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                <stat.icon className="w-8 h-8 text-accent" />
-              </div>
+            {/* Modern Glass Card */}
+            <div className="relative p-8 bg-gradient-to-br from-background via-background/95 to-accent/5 rounded-3xl border border-accent/10 backdrop-blur-sm hover:border-accent/20 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2">
+              {/* Animated Background Glow */}
+              <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-accent/10 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
-              {/* Number */}
-              <div className="space-y-2">
-                <div className="font-playfair text-4xl font-bold text-foreground">
-                  {isVisible && (
-                    <AnimatedCounter 
-                      end={stat.number} 
-                      suffix={stat.suffix}
-                      duration={2000}
-                    />
-                  )}
+              <div className="relative text-center space-y-6">
+                {/* Modern Icon */}
+                <div className="stat-icon-container">
+                  <div className="w-20 h-20 mx-auto bg-gradient-to-br from-accent/20 to-accent/30 rounded-2xl flex items-center justify-center group-hover:scale-110 transition-all duration-300 shadow-lg">
+                    <stat.icon className="w-10 h-10 text-accent" />
+                  </div>
                 </div>
-                <h4 className="font-semibold text-foreground/90">
-                  {stat.label}
-                </h4>
-              </div>
+                
+                {/* Animated Number */}
+                <div className="space-y-3">
+                  <div className="stat-number">
+                    {isVisible && (
+                      <AnimatedCounter 
+                        end={stat.number} 
+                        suffix={stat.suffix}
+                        duration={2500}
+                      />
+                    )}
+                  </div>
+                  <h4 className="font-semibold text-lg text-foreground/90">
+                    {stat.label}
+                  </h4>
+                </div>
 
-              {/* Progress Bar */}
-              <div className="space-y-2">
-                <Progress 
-                  value={isVisible ? stat.progress : 0} 
-                  className="h-2 bg-muted"
-                />
+                {/* Modern Progress Bar */}
+                <div className="space-y-3">
+                  <div className="relative">
+                    <Progress 
+                      value={isVisible ? stat.progress : 0} 
+                      className="h-3 bg-muted/50 border border-accent/20 rounded-full overflow-hidden"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full"></div>
+                  </div>
+                  <span className="text-sm text-muted-foreground font-medium">
+                    {stat.progress}% Excellence
+                  </span>
+                </div>
               </div>
             </div>
           </div>

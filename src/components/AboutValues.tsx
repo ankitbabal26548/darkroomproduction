@@ -6,55 +6,70 @@ export const AboutValues = () => {
     {
       icon: Heart,
       title: "Authentic Emotions",
-      description: "We capture genuine moments and real emotions, creating photographs that tell your true story."
+      description: "We capture genuine moments and real emotions, creating photographs that tell your true story.",
+      gradient: "from-red-500/20 to-pink-500/20"
     },
     {
       icon: Eye,
       title: "Artistic Vision",
-      description: "Our creative approach ensures every image is thoughtfully composed and beautifully crafted."
+      description: "Our creative approach ensures every image is thoughtfully composed and beautifully crafted.",
+      gradient: "from-blue-500/20 to-purple-500/20"
     },
     {
       icon: Clock,
       title: "Timely Excellence",
-      description: "Professional delivery and punctual service, because your memories shouldn't wait."
+      description: "Professional delivery and punctual service, because your memories shouldn't wait.",
+      gradient: "from-green-500/20 to-emerald-500/20"
     },
     {
       icon: Shield,
       title: "Trusted Partnership",
-      description: "Fully insured and committed to providing a stress-free, professional experience."
+      description: "Fully insured and committed to providing a stress-free, professional experience.",
+      gradient: "from-orange-500/20 to-amber-500/20"
     }
   ];
 
   return (
-    <div className="mb-24">
-      <div className="text-center mb-16">
-        <h3 className="font-playfair text-3xl md:text-4xl font-bold mb-4 text-foreground">
-          Our Values
+    <div className="values-container">
+      <div className="values-header">
+        <div className="values-badge">
+          <span className="text-sm font-medium text-accent">Core Values</span>
+        </div>
+        <h3 className="values-title">
+          What Drives Us Forward
         </h3>
-        <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+        <p className="values-subtitle">
           The principles that guide everything we do
         </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-8">
+      <div className="values-masonry-grid">
         {values.map((value, index) => (
           <div 
             key={index}
-            className="group p-8 bg-card rounded-2xl border border-border/50 hover:border-accent/30 transition-all duration-300 hover:shadow-lg"
+            className="value-card group"
+            style={{ animationDelay: `${index * 200}ms` }}
           >
-            <div className="flex items-start space-x-6">
-              <div className="flex-shrink-0 w-14 h-14 bg-accent/10 rounded-2xl flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
-                <value.icon className="w-7 h-7 text-accent" />
+            <div className={`value-card-inner bg-gradient-to-br ${value.gradient}`}>
+              {/* Modern Icon Container */}
+              <div className="value-icon-container">
+                <div className="value-icon-bg">
+                  <value.icon className="w-8 h-8 text-accent" />
+                </div>
               </div>
               
-              <div className="space-y-3">
-                <h4 className="font-playfair text-xl font-semibold text-foreground">
+              {/* Content */}
+              <div className="value-content">
+                <h4 className="value-title">
                   {value.title}
                 </h4>
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="value-description">
                   {value.description}
                 </p>
               </div>
+
+              {/* Hover Effect Elements */}
+              <div className="value-hover-effect"></div>
             </div>
           </div>
         ))}
