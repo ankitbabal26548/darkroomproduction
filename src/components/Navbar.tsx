@@ -4,7 +4,6 @@ import { Menu, X, Phone, Mail, Aperture, Focus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { LogoDisplay } from './LogoDisplay';
 import { FilmStripBackground } from './FilmStripBackground';
-import { CameraControls } from './CameraControls';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,7 +28,7 @@ export const Navbar = () => {
           {/* Enhanced Logo */}
           <LogoDisplay />
 
-          {/* Desktop Navigation with Camera Controls */}
+          {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             {navItems.map((item, index) => (
               <div key={item.name} className="relative group">
@@ -66,9 +65,6 @@ export const Navbar = () => {
               </div>
             ))}
           </div>
-
-          {/* Camera Controls */}
-          <CameraControls />
 
           {/* Enhanced Contact Info */}
           <div className="hidden lg:flex items-center space-x-4">
