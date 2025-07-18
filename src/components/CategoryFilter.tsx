@@ -39,27 +39,20 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }:
           key={category.id}
           variant={activeCategory === category.id ? "default" : "outline"}
           onClick={() => onCategoryChange(category.id)}
-          className={`group relative overflow-hidden transition-all duration-500 transform hover:scale-105 ${
+          className={`transition-all duration-300 ${
             activeCategory === category.id 
-              ? 'bg-gradient-to-r from-accent to-accent-darker text-accent-foreground shadow-xl shadow-accent/25' 
-              : 'hover:bg-accent/10 hover:text-accent hover:border-accent/40 hover:shadow-lg'
+              ? 'bg-accent hover:bg-accent-darker text-accent-foreground shadow-lg' 
+              : 'hover:bg-accent/10 hover:text-accent hover:border-accent/40'
           }`}
           style={{ 
             animationDelay: `${index * 100}ms`,
-            transform: activeCategory === category.id ? 'scale(1.05)' : 'scale(1)'
           }}
         >
-          {/* Background Gradient Effect */}
-          <div className={`absolute inset-0 bg-gradient-to-r from-accent/20 to-accent-darker/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${
-            activeCategory === category.id ? 'opacity-100' : ''
-          }`} />
-          
-          {/* Icon and Text */}
-          <div className="relative flex items-center space-x-2 z-10">
+          <div className="flex items-center space-x-2">
             {getCategoryIcon(category.id)}
             <span className="font-medium">{category.name}</span>
             {category.count && (
-              <span className={`text-xs px-1.5 py-0.5 rounded-full ${
+              <span className={`text-xs px-2 py-0.5 rounded-full ${
                 activeCategory === category.id 
                   ? 'bg-accent-foreground/20 text-accent-foreground' 
                   : 'bg-muted text-muted-foreground'
@@ -68,14 +61,6 @@ export const CategoryFilter = ({ categories, activeCategory, onCategoryChange }:
               </span>
             )}
           </div>
-
-          {/* Hover Effect Lines */}
-          <div className="absolute inset-x-0 bottom-0 h-0.5 bg-gradient-to-r from-accent to-accent-darker transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
-          
-          {/* Active Indicator */}
-          {activeCategory === category.id && (
-            <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-accent/10 animate-pulse" />
-          )}
         </Button>
       ))}
     </div>

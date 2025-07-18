@@ -1,9 +1,9 @@
+
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { PortfolioCard } from '@/components/PortfolioCard';
 import { PortfolioLightbox } from '@/components/PortfolioLightbox';
 import { CategoryFilter } from '@/components/CategoryFilter';
-import { FloatingElements } from '@/components/FloatingElements';
 
 export const PortfolioSection = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -176,16 +176,6 @@ export const PortfolioSection = () => {
       : portfolioItems.filter(item => item.category === activeCategory);
   }, [activeCategory]);
 
-  const getCardSize = (index: number, item: any) => {
-    // Create dynamic sizing pattern for masonry effect
-    if (item.featured) {
-      return index % 5 === 0 ? 'large' : index % 3 === 0 ? 'wide' : 'tall';
-    }
-    
-    const patterns = ['medium', 'small', 'wide', 'medium', 'tall', 'small'];
-    return patterns[index % patterns.length] as 'small' | 'medium' | 'large' | 'wide' | 'tall';
-  };
-
   const openLightbox = (index: number) => {
     setCurrentLightboxIndex(index);
     setLightboxOpen(true);
@@ -204,27 +194,19 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="relative py-20 bg-gradient-to-br from-background via-muted/30 to-background overflow-hidden">
-      {/* Floating Background Elements */}
-      <FloatingElements />
-      
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_var(--accent)_0%,_transparent_50%),radial-gradient(circle_at_80%_20%,_var(--accent)_0%,_transparent_50%)]" />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="portfolio" className="py-20 bg-background">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground">
             Our <span className="text-accent">Portfolio</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
             Discover our collection of captured moments, each telling a unique story of love, joy, and celebration. 
             Every frame is crafted with passion and artistic vision.
           </p>
 
-          {/* Enhanced Category Filter */}
+          {/* Category Filter */}
           <CategoryFilter 
             categories={categories}
             activeCategory={activeCategory}
@@ -232,17 +214,16 @@ export const PortfolioSection = () => {
           />
         </div>
 
-        {/* Masonry Portfolio Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max">
+        {/* Portfolio Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className="animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` }}
+              className="portfolio-item-animate"
+              style={{ animationDelay: `${index * 50}ms` }}
             >
               <PortfolioCard
                 item={item}
-                size={getCardSize(index, item)}
                 onView={() => openLightbox(index)}
               />
             </div>
@@ -253,23 +234,22 @@ export const PortfolioSection = () => {
         <div className="text-center mt-16">
           <div className="mb-8">
             <div className="inline-flex items-center space-x-4 text-muted-foreground">
-              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-20" />
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent w-20" />
               <span className="text-sm font-medium">Showing {filteredItems.length} of 50+ projects</span>
-              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-20" />
+              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent w-20" />
             </div>
           </div>
           
           <Button 
             size="lg"
-            className="group bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 px-8 py-3"
+            className="bg-accent hover:bg-accent-darker text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3"
           >
-            <span className="mr-2">Load More Masterpieces</span>
-            <div className="w-4 h-4 rounded-full bg-accent-foreground/20 group-hover:bg-accent-foreground/30 transition-colors" />
+            Load More Projects
           </Button>
         </div>
       </div>
 
-      {/* Enhanced Lightbox */}
+      {/* Lightbox */}
       <PortfolioLightbox
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}
