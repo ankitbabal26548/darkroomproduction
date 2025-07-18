@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -120,6 +121,14 @@ export default {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' }
 				},
+				'rotate-aperture': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'float-particles': {
+					'0%': { transform: 'translateX(-100px)' },
+					'100%': { transform: 'translateX(calc(100vw + 100px))' }
+				},
 				'slide-in-left': {
 					'0%': { transform: 'translateX(-100%)', opacity: '0' },
 					'100%': { transform: 'translateX(0)', opacity: '1' }
@@ -138,6 +147,8 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'lens-focus': 'lens-focus 0.6s ease-in-out',
 				'aperture-spin': 'aperture-spin 2s linear infinite',
+				'rotate-aperture': 'rotate-aperture 10s linear infinite',
+				'float-particles': 'float-particles 20s linear infinite',
 				'slide-in-left': 'slide-in-left 0.6s ease-out',
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
 				'fade-in-up': 'fade-in-up 0.6s ease-out'
