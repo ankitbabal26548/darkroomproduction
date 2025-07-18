@@ -1,10 +1,9 @@
 
-import { Award, Users, Calendar, Sparkles } from 'lucide-react';
-import { AnimatedCounter } from './AnimatedCounter';
-import { AboutTimeline } from './AboutTimeline';
-import { AboutStoryGrid } from './AboutStoryGrid';
-import { AboutFeaturesGrid } from './AboutFeaturesGrid';
+import { Award, Users, Calendar, Star } from 'lucide-react';
 import { AboutStats } from './AboutStats';
+import { AboutStory } from './AboutStory';
+import { AboutValues } from './AboutValues';
+import { AboutTestimonial } from './AboutTestimonial';
 
 export const AboutSection = () => {
   const stats = [
@@ -12,76 +11,56 @@ export const AboutSection = () => {
       number: 500, 
       suffix: "+", 
       label: "Happy Couples", 
-      description: "Weddings beautifully captured",
       icon: Users,
-      color: "from-accent to-accent-darker"
+      progress: 85
     },
     { 
       number: 13, 
       suffix: "+", 
-      label: "Years of Excellence", 
-      description: "Perfecting our craft",
+      label: "Years Experience", 
       icon: Calendar,
-      color: "from-accent-lighter to-accent"
+      progress: 70
     },
     { 
       number: 50, 
       suffix: "+", 
       label: "Awards Won", 
-      description: "Industry recognition",
       icon: Award,
-      color: "from-accent-darker to-accent-darkest"
+      progress: 60
     },
     { 
-      number: 95, 
+      number: 98, 
       suffix: "%", 
       label: "Client Satisfaction", 
-      description: "Five-star ratings",
-      icon: Sparkles,
-      color: "from-accent to-accent-lighter"
+      icon: Star,
+      progress: 98
     }
   ];
 
   return (
-    <section id="about" className="py-24 bg-background relative overflow-hidden">
-      {/* Background Geometric Pattern */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute top-0 left-0 w-full h-full bg-grid-subtle" />
-        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-radial from-accent/5 to-transparent rounded-full" />
-        <div className="absolute bottom-1/3 left-1/3 w-64 h-64 bg-gradient-radial from-accent-lighter/5 to-transparent rounded-full" />
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Modern Header with Layered Typography */}
-        <div className="text-center mb-20 relative">
-          <div className="inline-block relative">
-            <h2 className="font-playfair text-5xl md:text-7xl font-bold mb-6 relative z-10">
-              <span className="block text-foreground/90 transform -translate-y-2">Our</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-accent via-accent-darker to-accent-darkest transform translate-y-2">
-                Story
-              </span>
-            </h2>
-            {/* Geometric accent */}
-            <div className="absolute -top-4 -right-8 w-16 h-16 border-2 border-accent/20 rounded-lg rotate-12 animate-slow-pulse" />
-            <div className="absolute -bottom-6 -left-6 w-12 h-12 bg-gradient-to-br from-accent/20 to-accent-darker/20 rounded-full" />
-          </div>
-          
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed mt-8 opacity-90">
-            Where passion meets artistry, and every moment becomes a timeless memory
+    <section id="about" className="py-24 bg-background">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="text-center mb-20">
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground">
+            About <span className="text-accent">Darkroom</span>
+          </h2>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Crafting timeless memories through the art of photography and cinematography
           </p>
         </div>
 
-        {/* Interactive Statistics Cards */}
+        {/* Statistics */}
         <AboutStats stats={stats} />
 
-        {/* Story Grid with Asymmetric Layout */}
-        <AboutStoryGrid />
+        {/* Story Section */}
+        <AboutStory />
 
-        {/* Interactive Timeline */}
-        <AboutTimeline />
+        {/* Values Section */}
+        <AboutValues />
 
-        {/* Features Masonry Grid */}
-        <AboutFeaturesGrid />
+        {/* Testimonial */}
+        <AboutTestimonial />
       </div>
     </section>
   );
