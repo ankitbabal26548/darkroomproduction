@@ -1,5 +1,5 @@
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { ServiceCard } from '@/components/ServiceCard';
 import { ProcessTimeline } from '@/components/ProcessTimeline';
@@ -10,32 +10,52 @@ import {
   MapPin, 
   Calendar, 
   Star,
-  Palette,
   Download,
   Award,
-  Settings,
   MessageCircle,
-  Clock,
-  Crown
+  Crown,
+  Sparkles,
+  Gift
 } from 'lucide-react';
 
 export const ServicesSection = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
   const [selectedCategory, setSelectedCategory] = useState('all');
+  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const cardId = parseInt(entry.target.getAttribute('data-card-id') || '0');
+            setVisibleCards(prev => [...new Set([...prev, cardId])]);
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    const cards = document.querySelectorAll('[data-card-id]');
+    cards.forEach(card => observer.observe(card));
+
+    return () => observer.disconnect();
+  }, [selectedCategory]);
 
   const serviceCategories = [
-    { id: 'all', name: 'All Services' },
-    { id: 'wedding', name: 'Wedding Coverage' },
-    { id: 'prewedding', name: 'Pre-Wedding Shoots' }
+    { id: 'all', name: 'All Services', icon: Sparkles },
+    { id: 'wedding', name: 'Wedding Coverage', icon: Heart },
+    { id: 'prewedding', name: 'Pre-Wedding Shoots', icon: Camera }
   ];
 
   const services = [
-    // Wedding Coverage Packages
     {
       id: 1,
-      icon: Camera,
+      icon: Gift,
       title: "Silver Package",
       category: 'wedding',
+      tier: 'silver',
       description: "Essential wedding coverage with traditional photography and videography for your special day",
       features: [
         { name: "1 Traditional Photographer", premium: false },
@@ -48,13 +68,15 @@ export const ServicesSection = () => {
       price: 35000,
       popular: false,
       duration: "1 hour coverage",
-      deliverables: "25 photos + teaser + reel"
+      deliverables: "25 photos + teaser + reel",
+      gridSize: "standard"
     },
     {
       id: 2,
-      icon: Video,
+      icon: Award,
       title: "Gold Package", 
       category: 'wedding',
+      tier: 'gold',
       description: "Enhanced wedding coverage with cinematic videography, candid photography and aerial drone shots",
       features: [
         { name: "1 Traditional Photographer", premium: false },
@@ -71,13 +93,15 @@ export const ServicesSection = () => {
       price: 65000,
       popular: true,
       duration: "Extended coverage",
-      deliverables: "50 photos + videos + reels"
+      deliverables: "50 photos + videos + reels",
+      gridSize: "large"
     },
     {
       id: 3,
       icon: Crown,
       title: "Platinum Package",
       category: 'wedding',
+      tier: 'platinum',
       description: "Premium wedding coverage with multiple cinematographers, candid photographers and comprehensive documentation",
       features: [
         { name: "1 Traditional Photographer", premium: false },
@@ -95,14 +119,15 @@ export const ServicesSection = () => {
       price: 100000,
       popular: false,
       duration: "Full day coverage",
-      deliverables: "100 photos + complete video suite"
+      deliverables: "100 photos + complete video suite",
+      gridSize: "standard"
     },
-    // Pre-Wedding Shoot Packages
     {
       id: 4,
       icon: Heart,
       title: "Jaipur Pre-Wedding Shoot",
       category: 'prewedding',
+      tier: 'gold',
       description: "Vibrant pre-wedding shoot in the Pink City with iconic locations and professional editing",
       features: [
         { name: "50 Fully Edited Photos", premium: false },
@@ -118,13 +143,15 @@ export const ServicesSection = () => {
       popular: false,
       duration: "1-2 days",
       deliverables: "50 photos + video + reels",
-      testimonial: "Patrika Gate, Jal Mahal, Hawa Mahal, Toran Dwar coverage included"
+      testimonial: "Patrika Gate, Jal Mahal, Hawa Mahal, Toran Dwar coverage included",
+      gridSize: "standard"
     },
     {
       id: 5,
       icon: MapPin,
       title: "Udaipur Pre-Wedding Shoot",
       category: 'prewedding',
+      tier: 'platinum',
       description: "Capture your love story in the City of Lakes with comprehensive 2-day coverage and raw footage",
       features: [
         { name: "50 Professionally Edited Photos", premium: false },
@@ -139,7 +166,8 @@ export const ServicesSection = () => {
       popular: false,
       duration: "2 days",
       deliverables: "50 photos + video + raw footage",
-      testimonial: "City Palace, Lake Pichola, Saheliyon Ki Bari, Jag Mandir locations"
+      testimonial: "City Palace, Lake Pichola, Saheliyon Ki Bari, Jag Mandir locations",
+      gridSize: "standard"
     }
   ];
 
@@ -150,14 +178,9 @@ export const ServicesSection = () => {
       title: "Booking & Planning",
       subtitle: "Secure Your Date",
       description: "Start with a ₹5,000 advance booking to secure your date and begin planning your perfect shoot.",
-      details: [
-        "₹5,000 advance booking required",
-        "Date confirmation and scheduling",
-        "Location planning and permissions",
-        "Outfit and styling consultation"
-      ],
       duration: "Immediate",
-      timing: "At time of booking"
+      timing: "At time of booking",
+      color: "from-blue-500 to-cyan-500"
     },
     {
       id: 2,
@@ -165,14 +188,9 @@ export const ServicesSection = () => {
       title: "Pre-Production",
       subtitle: "Location & Logistics",
       description: "Detailed planning including location scouting, equipment setup, and coordination with all stakeholders.",
-      details: [
-        "Location permits and access",
-        "Equipment and crew coordination",
-        "Timeline finalization",
-        "Backup plan preparation"
-      ],
       duration: "2-3 days",
-      timing: "1 week before event"
+      timing: "1 week before event",
+      color: "from-purple-500 to-pink-500"
     },
     {
       id: 3,
@@ -180,29 +198,19 @@ export const ServicesSection = () => {
       title: "Production Day",
       subtitle: "Capturing Your Moments",
       description: "Professional coverage on your special day with our experienced team using top-tier equipment.",
-      details: [
-        "Multi-angle coverage setup",
-        "Traditional and candid photography",
-        "Cinematic videography",
-        "Drone coverage (selected packages)"
-      ],
       duration: "As per package",
-      timing: "Your event day"
+      timing: "Your event day",
+      color: "from-accent to-accent-lighter"
     },
     {
       id: 4,
-      icon: Palette,
+      icon: Video,
       title: "Post-Production",
       subtitle: "Professional Editing",
       description: "Expert editing, color grading, and enhancement to create stunning final deliverables.",
-      details: [
-        "Professional photo retouching",
-        "Video editing and color grading",
-        "Reel creation for social media",
-        "Quality assurance and review"
-      ],
       duration: "25-45 days",
-      timing: "After event completion"
+      timing: "After event completion",
+      color: "from-emerald-500 to-teal-500"
     },
     {
       id: 5,
@@ -210,14 +218,9 @@ export const ServicesSection = () => {
       title: "Delivery",
       subtitle: "Your Memories Ready",
       description: "Complete soft-copy delivery on your cloud drive with all edited photos and videos.",
-      details: [
-        "Cloud drive delivery",
-        "High-resolution photo downloads",
-        "Video files in multiple formats",
-        "Social media ready content"
-      ],
       duration: "Lifetime access",
-      timing: "25-45 days post-event"
+      timing: "25-45 days post-event",
+      color: "from-rose-500 to-orange-500"
     }
   ];
 
@@ -226,48 +229,57 @@ export const ServicesSection = () => {
     : services.filter(service => service.category === selectedCategory);
 
   return (
-    <section id="services" className="py-20 bg-gradient-to-br from-background via-muted/30 to-background relative overflow-hidden">
+    <section ref={sectionRef} id="services" className="py-20 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/10 to-accent/20 text-accent px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-creative-entrance border border-accent/20 backdrop-blur-sm">
             <Award className="w-4 h-4" />
             Darkroom Production Services
           </div>
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 animate-creative-entrance bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent" style={{ animationDelay: '0.2s' }}>
             Wedding <span className="text-accent">Coverage</span> Packages
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-creative-entrance" style={{ animationDelay: '0.4s' }}>
             Professional wedding photography and cinematography packages, plus stunning pre-wedding shoots in Jaipur and Udaipur.
           </p>
         </div>
 
-        {/* Category Filter */}
-        <div className="flex flex-wrap justify-center gap-3 mb-12">
+        {/* Creative Category Filter */}
+        <div className="flex flex-wrap justify-center gap-4 mb-16">
           {serviceCategories.map((category, index) => (
             <Button
               key={category.id}
               variant={selectedCategory === category.id ? "default" : "outline"}
-              className={`px-6 py-3 rounded-full transition-all duration-300 animate-fade-in-up ${
+              className={`px-8 py-4 rounded-2xl transition-all duration-500 animate-creative-entrance group relative overflow-hidden ${
                 selectedCategory === category.id 
-                ? 'bg-accent text-accent-foreground shadow-md' 
-                : 'hover:border-accent/50 hover:bg-accent/5'
+                ? 'bg-gradient-to-r from-accent to-accent-darker text-accent-foreground shadow-lg scale-105' 
+                : 'hover:border-accent/50 hover:bg-accent/5 hover:scale-105 border-2'
               }`}
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedCategory(category.id)}
             >
+              <category.icon className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
               {category.name}
+              {selectedCategory === category.id && (
+                <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent-darker/20 animate-pulse" />
+              )}
             </Button>
           ))}
         </div>
 
-        {/* Services Grid */}
-        <div className="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-20">
+        {/* Dynamic Services Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20 auto-rows-max">
           {filteredServices.map((service, index) => (
             <div
               key={service.id}
-              className="animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              data-card-id={service.id}
+              className={`${
+                service.gridSize === 'large' ? 'md:col-span-2 xl:col-span-1' : ''
+              } ${
+                visibleCards.includes(service.id) ? 'animate-creative-card-entrance' : 'opacity-0'
+              }`}
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
               <ServiceCard
                 {...service}
@@ -278,28 +290,60 @@ export const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Payment Terms */}
-        <div className="bg-accent/5 rounded-2xl p-8 border border-accent/20 mb-16">
-          <h3 className="font-playfair text-2xl font-bold mb-6 text-center">Payment Structure</h3>
+        {/* Modern Payment Terms */}
+        <div className="bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 rounded-3xl p-8 border border-border/50 mb-20 backdrop-blur-sm">
+          <h3 className="font-playfair text-3xl font-bold mb-8 text-center bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+            Payment Structure
+          </h3>
           <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Wedding Packages</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• ₹5,000 booking fee to secure date</li>
-                <li>• 50% due before the shoot</li>
-                <li>• 25% upon event completion</li>
-                <li>• 25% upon final delivery</li>
-                <li>• All prices for one day coverage only</li>
+            <div className="bg-card/50 rounded-2xl p-6 border border-border/30 backdrop-blur-sm">
+              <h4 className="font-semibold text-lg mb-4 text-accent">Wedding Packages</h4>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  ₹5,000 booking fee to secure date
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  50% due before the shoot
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  25% upon event completion
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  25% upon final delivery
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  All prices for one day coverage only
+                </li>
               </ul>
             </div>
-            <div>
-              <h4 className="font-semibold text-lg mb-4">Pre-Wedding Shoots</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                <li>• ₹5,000 advance booking</li>
-                <li>• Balance on event day</li>
-                <li>• Additional reels: ₹500 each</li>
-                <li>• Extra photos (Udaipur): ₹1,000 for 10</li>
-                <li>• Travel beyond 30km: ₹1,000 extra</li>
+            <div className="bg-card/50 rounded-2xl p-6 border border-border/30 backdrop-blur-sm">
+              <h4 className="font-semibold text-lg mb-4 text-accent">Pre-Wedding Shoots</h4>
+              <ul className="space-y-3 text-muted-foreground">
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  ₹5,000 advance booking
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  Balance on event day
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  Additional reels: ₹500 each
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  Extra photos (Udaipur): ₹1,000 for 10
+                </li>
+                <li className="flex items-center gap-3">
+                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  Travel beyond 30km: ₹1,000 extra
+                </li>
               </ul>
             </div>
           </div>
@@ -308,14 +352,14 @@ export const ServicesSection = () => {
         {/* Creative Process Timeline */}
         <div className="relative">
           <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-medium mb-6 animate-fade-in">
-              <Settings className="w-4 h-4" />
-              Our Production Process
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/10 to-accent/20 text-accent px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-creative-entrance border border-accent/20 backdrop-blur-sm">
+              <Sparkles className="w-4 h-4" />
+              Our Creative Process
             </div>
-            <h3 className="font-playfair text-4xl md:text-5xl font-bold mb-6 animate-fade-in-up">
+            <h3 className="font-playfair text-4xl md:text-5xl font-bold mb-6 animate-creative-entrance bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
               From Booking to <span className="text-accent">Delivery</span>
             </h3>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-fade-in-up">
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-creative-entrance">
               Our streamlined process ensures professional coverage and timely delivery of your precious memories.
             </p>
           </div>
@@ -323,22 +367,27 @@ export const ServicesSection = () => {
           <ProcessTimeline steps={processSteps} />
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center mt-16 animate-fade-in-up">
-          <div className="bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-2xl p-8 border border-accent/20">
-            <h4 className="font-playfair text-2xl font-bold mb-4">Ready to Book Your Package?</h4>
-            <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-              Secure your date with just ₹5,000 advance booking. Let's create beautiful memories together.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent hover:bg-accent-darker px-8">
-                <Calendar className="w-5 h-5 mr-2" />
-                Book Your Date
-              </Button>
-              <Button size="lg" variant="outline" className="border-accent text-accent hover:bg-accent/5 px-8">
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Get Custom Quote
-              </Button>
+        {/* Enhanced CTA Section */}
+        <div className="text-center mt-20 animate-creative-entrance">
+          <div className="relative bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-12 border border-accent/20 backdrop-blur-sm overflow-hidden">
+            <div className="absolute inset-0 bg-grid-pattern opacity-5" />
+            <div className="relative z-10">
+              <h4 className="font-playfair text-3xl font-bold mb-6 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+                Ready to Book Your Package?
+              </h4>
+              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-lg">
+                Secure your date with just ₹5,000 advance booking. Let's create beautiful memories together.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <Button size="lg" className="bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground px-10 py-6 rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <Calendar className="w-6 h-6 mr-3" />
+                  Book Your Date
+                </Button>
+                <Button size="lg" variant="outline" className="border-2 border-accent text-accent hover:bg-accent/10 px-10 py-6 rounded-2xl text-lg font-semibold transition-all duration-300 hover:scale-105">
+                  <MessageCircle className="w-6 h-6 mr-3" />
+                  Get Custom Quote
+                </Button>
+              </div>
             </div>
           </div>
         </div>
