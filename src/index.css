@@ -1,14 +1,15 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Darkroom Production Design System - B&W Photography Theme with Golden Accent */
+/* Darkroom Production Design System - B&W Photography Theme with Enhanced Peach Accent */
 
 @layer base {
   :root {
-    /* Pure B&W with Golden Accent Color Palette */
+    /* Pure B&W with Enhanced Darker Peach Accent Color Palette */
     --background: 0 0% 100%;
     --foreground: 0 0% 8%;
 
@@ -27,36 +28,39 @@
     --muted: 0 0% 94%;
     --muted-foreground: 0 0% 45%;
 
-    /* Golden accent color #FFD3AC */
-    --accent: 28 100% 84%;
-    --accent-foreground: 0 0% 8%;
+    /* Enhanced darker peach accent colors for better visibility */
+    --accent: 22 65% 45%;
+    --accent-foreground: 0 0% 98%;
+    --accent-hover: 22 75% 35%;
+    --accent-pressed: 22 85% 25%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --border: 0 0% 90%;
     --input: 0 0% 90%;
-    --ring: 28 100% 84%;
+    --ring: 22 65% 45%;
 
     --radius: 0.75rem;
 
     /* Photography-specific design tokens */
     --darkroom-red: 0 65% 35%;
     --film-grain: 0 0% 95%;
-    --lens-flare: 28 100% 84%;
+    --lens-flare: 22 65% 45%;
     --aperture-shadow: 0 0% 15%;
     --developer-tray: 0 0% 12%;
 
-    /* Gradients for photography effects */
+    /* Enhanced gradients for photography effects */
     --gradient-darkroom: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--aperture-shadow)));
     --gradient-lens: radial-gradient(circle, transparent 40%, hsl(var(--primary) / 0.8));
-    --gradient-golden: linear-gradient(45deg, hsl(var(--accent)), hsl(28 100% 90%));
+    --gradient-golden: linear-gradient(45deg, hsl(var(--accent)), hsl(22 55% 55%));
     --gradient-film: linear-gradient(180deg, hsl(var(--background)), hsl(var(--film-grain)));
 
-    /* Shadows for depth and photography feel */
+    /* Enhanced shadows for depth and photography feel */
     --shadow-lens: 0 20px 40px -10px hsl(var(--primary) / 0.3);
     --shadow-photo: 0 8px 25px -5px hsl(var(--primary) / 0.2);
     --shadow-darkroom: inset 0 2px 4px hsl(var(--primary) / 0.1);
+    --shadow-logo: 0 12px 32px -8px hsl(var(--accent) / 0.2);
 
     /* Animation timings */
     --transition-photo: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
@@ -64,19 +68,12 @@
     --transition-smooth: all 0.4s ease-out;
 
     --sidebar-background: 0 0% 98%;
-
     --sidebar-foreground: 240 5.3% 26.1%;
-
     --sidebar-primary: 240 5.9% 10%;
-
     --sidebar-primary-foreground: 0 0% 98%;
-
     --sidebar-accent: 240 4.8% 95.9%;
-
     --sidebar-accent-foreground: 240 5.9% 10%;
-
     --sidebar-border: 220 13% 91%;
-
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
 
@@ -100,15 +97,17 @@
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 60%;
 
-    --accent: 28 100% 84%;
+    --accent: 22 65% 55%;
     --accent-foreground: 0 0% 8%;
+    --accent-hover: 22 75% 45%;
+    --accent-pressed: 22 85% 35%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 95%;
 
     --border: 0 0% 20%;
     --input: 0 0% 20%;
-    --ring: 28 100% 84%;
+    --ring: 22 65% 55%;
 
     /* Dark mode photography tokens */
     --darkroom-red: 0 70% 45%;
@@ -187,5 +186,41 @@
     transform: translate(-50%, -50%);
     border: 1px solid hsl(var(--accent) / 0.5);
     border-radius: 50%;
+  }
+
+  /* New centered logo navbar styles */
+  .logo-breathing {
+    animation: breathe 4s ease-in-out infinite;
+  }
+
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+  }
+
+  .nav-pill {
+    @apply bg-background/80 backdrop-blur-md border border-border/30 rounded-full px-6 py-2 shadow-lg;
+    background: linear-gradient(135deg, hsl(var(--background)/0.9), hsl(var(--background)/0.7));
+  }
+
+  .nav-pill:hover {
+    @apply border-accent/40 shadow-xl;
+    background: linear-gradient(135deg, hsl(var(--background)/0.95), hsl(var(--background)/0.85));
+  }
+
+  .logo-frame {
+    @apply relative p-3 rounded-2xl;
+    background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--muted)));
+    box-shadow: var(--shadow-logo);
+  }
+
+  .logo-frame::before {
+    content: '';
+    @apply absolute inset-0 rounded-2xl opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, hsl(var(--accent)/0.1), hsl(var(--accent)/0.05));
+  }
+
+  .logo-frame:hover::before {
+    @apply opacity-100;
   }
 }

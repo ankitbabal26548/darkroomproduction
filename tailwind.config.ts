@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -46,7 +47,9 @@ export default {
 				},
 				accent: {
 					DEFAULT: 'hsl(var(--accent))',
-					foreground: 'hsl(var(--accent-foreground))'
+					foreground: 'hsl(var(--accent-foreground))',
+					hover: 'hsl(var(--accent-hover))',
+					pressed: 'hsl(var(--accent-pressed))'
 				},
 				popover: {
 					DEFAULT: 'hsl(var(--popover))',
@@ -83,6 +86,7 @@ export default {
 				'lens': 'var(--shadow-lens)',
 				'photo': 'var(--shadow-photo)',
 				'darkroom': 'var(--shadow-darkroom)',
+				'logo': 'var(--shadow-logo)',
 			},
 			transitionTimingFunction: {
 				'photo': 'var(--transition-photo)',
@@ -131,6 +135,14 @@ export default {
 				'fade-in-up': {
 					'0%': { transform: 'translateY(30px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'breathe': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(1.02)' }
+				},
+				'glow-pulse': {
+					'0%, 100%': { boxShadow: '0 0 20px hsl(var(--accent) / 0.3)' },
+					'50%': { boxShadow: '0 0 40px hsl(var(--accent) / 0.6)' }
 				}
 			},
 			animation: {
@@ -140,7 +152,9 @@ export default {
 				'aperture-spin': 'aperture-spin 2s linear infinite',
 				'slide-in-left': 'slide-in-left 0.6s ease-out',
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
-				'fade-in-up': 'fade-in-up 0.6s ease-out'
+				'fade-in-up': 'fade-in-up 0.6s ease-out',
+				'breathe': 'breathe 4s ease-in-out infinite',
+				'glow-pulse': 'glow-pulse 3s ease-in-out infinite'
 			}
 		}
 	},
