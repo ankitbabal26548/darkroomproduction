@@ -66,7 +66,6 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				// Photography-specific colors
 				'darkroom-red': 'hsl(var(--darkroom-red))',
 				'film-grain': 'hsl(var(--film-grain))',
 				'lens-flare': 'hsl(var(--lens-flare))',
@@ -78,6 +77,7 @@ export default {
 				'gradient-lens': 'var(--gradient-lens)',
 				'gradient-golden': 'var(--gradient-golden)',
 				'gradient-film': 'var(--gradient-film)',
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
 			},
 			boxShadow: {
 				'lens': 'var(--shadow-lens)',
@@ -131,6 +131,19 @@ export default {
 				'fade-in-up': {
 					'0%': { transform: 'translateY(30px)', opacity: '0' },
 					'100%': { transform: 'translateY(0)', opacity: '1' }
+				},
+				'spin-slow': {
+					'0%': { transform: 'rotate(0deg)' },
+					'100%': { transform: 'rotate(360deg)' }
+				},
+				'pulse-glow': {
+					'0%': { boxShadow: '0 0 5px hsl(var(--accent) / 0.3)' },
+					'50%': { boxShadow: '0 0 20px hsl(var(--accent) / 0.6)' },
+					'100%': { boxShadow: '0 0 5px hsl(var(--accent) / 0.3)' }
+				},
+				'film-advance': {
+					'0%': { transform: 'translateX(0)' },
+					'100%': { transform: 'translateX(-100%)' }
 				}
 			},
 			animation: {
@@ -140,7 +153,10 @@ export default {
 				'aperture-spin': 'aperture-spin 2s linear infinite',
 				'slide-in-left': 'slide-in-left 0.6s ease-out',
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
-				'fade-in-up': 'fade-in-up 0.6s ease-out'
+				'fade-in-up': 'fade-in-up 0.6s ease-out',
+				'spin-slow': 'spin-slow 3s linear infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'film-advance': 'film-advance 10s linear infinite'
 			}
 		}
 	},
