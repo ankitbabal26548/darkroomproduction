@@ -2,26 +2,26 @@
 import { useEffect, useState } from 'react';
 
 const stats = [
-  { number: 200, suffix: '+', label: 'Happy Couples', icon: '💕' },
-  { number: 5, suffix: '+', label: 'Years Mastery', icon: '🏆' },
-  { number: 1000, suffix: '+', label: 'Moments Captured', icon: '📸' }
+  { number: 200, suffix: '+', label: 'Happy Couples' },
+  { number: 5, suffix: '+', label: 'Years Experience' },
+  { number: 1000, suffix: '+', label: 'Photos Captured' }
 ];
 
-interface HeroStatsProps {
-  isVisible: boolean;
-}
+export const HeroStats = () => {
+  const [inView, setInView] = useState(false);
 
-export const HeroStats = ({ isVisible }: HeroStatsProps) => {
+  useEffect(() => {
+    const timer = setTimeout(() => setInView(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className={`grid grid-cols-3 gap-4 pt-8 border-t border-accent/20 ${isVisible ? 'animate-stats-reveal' : 'opacity-0'}`}>
+    <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border/30">
       {stats.map((stat, index) => (
-        <div key={index} className="text-center space-y-2 group">
-          <div className="text-2xl mb-1 group-hover:scale-110 transition-transform duration-300">
-            {stat.icon}
-          </div>
+        <div key={index} className="text-center space-y-1">
           <div className="font-playfair text-2xl sm:text-3xl font-bold text-accent">
-            {isVisible ? (
-              <EnhancedCountUp end={stat.number} suffix={stat.suffix} delay={index * 200} />
+            {inView ? (
+              <CountUp end={stat.number} suffix={stat.suffix} />
             ) : (
               '0'
             )}
@@ -29,41 +29,21 @@ export const HeroStats = ({ isVisible }: HeroStatsProps) => {
           <div className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">
             {stat.label}
           </div>
-          <div className="w-full h-1 bg-accent/20 rounded-full overflow-hidden">
-            <div 
-              className={`h-full bg-gradient-to-r from-accent to-accent-lighter rounded-full transition-all duration-1000 ${
-                isVisible ? 'w-full' : 'w-0'
-              }`}
-              style={{ transitionDelay: `${index * 200 + 500}ms` }}
-            />
-          </div>
         </div>
       ))}
     </div>
   );
 };
 
-interface EnhancedCountUpProps {
+interface CountUpProps {
   end: number;
   suffix?: string;
-  delay?: number;
 }
 
-const EnhancedCountUp = ({ end, suffix = '', delay = 0 }: EnhancedCountUpProps) => {
+const CountUp = ({ end, suffix = '' }: CountUpProps) => {
   const [count, setCount] = useState(0);
-  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
-    const startTimer = setTimeout(() => {
-      setHasStarted(true);
-    }, delay);
-
-    return () => clearTimeout(startTimer);
-  }, [delay]);
-
-  useEffect(() => {
-    if (!hasStarted) return;
-
     let startTime: number;
     const duration = 2000;
 
@@ -71,9 +51,7 @@ const EnhancedCountUp = ({ end, suffix = '', delay = 0 }: EnhancedCountUpProps) 
       if (!startTime) startTime = currentTime;
       const progress = Math.min((currentTime - startTime) / duration, 1);
       
-      // Easing function for smooth animation
-      const easeOut = 1 - Math.pow(1 - progress, 3);
-      setCount(Math.floor(easeOut * end));
+      setCount(Math.floor(progress * end));
       
       if (progress < 1) {
         requestAnimationFrame(animate);
@@ -81,11 +59,7 @@ const EnhancedCountUp = ({ end, suffix = '', delay = 0 }: EnhancedCountUpProps) 
     };
 
     requestAnimationFrame(animate);
-  }, [end, hasStarted]);
+  }, [end]);
 
-  return (
-    <span className="inline-block animate-counter-glow">
-      {count}{suffix}
-    </span>
-  );
+  return <span>{count}{suffix}</span>;
 };

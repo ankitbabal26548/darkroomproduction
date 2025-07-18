@@ -3,77 +3,72 @@ import { useState, useEffect } from 'react';
 
 interface HeroContentProps {
   currentSlide: number;
-  isLoaded: boolean;
 }
 
 const contentSlides = [
   {
-    subtitle: "Wedding Mastery",
-    title: "Eternal Moments, Captured Forever",
-    description: "We blend artistic vision with cutting-edge techniques to create wedding photography that transcends time.",
-    features: ["Cinematic Storytelling", "4K Video Production", "Drone Photography"]
+    subtitle: "Professional Photography",
+    title: "Capturing Life's Most Precious Moments",
+    description: "We transform your special occasions into timeless memories with our artistic vision and professional expertise.",
+    highlight: "Wedding & Event Specialists"
   },
   {
-    subtitle: "Pre-Wedding Excellence", 
-    title: "Your Love Story, Beautifully Told",
-    description: "From intimate sessions to grand narratives, we craft pre-wedding photography that celebrates your unique journey.",
-    features: ["Location Scouting", "Creative Direction", "Professional Styling"]
+    subtitle: "Creative Storytelling",
+    title: "Every Picture Tells Your Unique Story",
+    description: "From intimate pre-wedding sessions to grand celebrations, we craft visual narratives that speak to the heart.",
+    highlight: "Pre-Wedding Specialists"
   }
 ];
 
-export const HeroContent = ({ currentSlide, isLoaded }: HeroContentProps) => {
+export const HeroContent = ({ currentSlide }: HeroContentProps) => {
   const [displaySlide, setDisplaySlide] = useState(0);
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setDisplaySlide(currentSlide);
-    }, 200);
+    }, 150);
     return () => clearTimeout(timer);
   }, [currentSlide]);
 
   const content = contentSlides[displaySlide];
 
   return (
-    <div className={`space-y-6 ${isLoaded ? 'animate-content-reveal' : 'opacity-0'}`}>
-      {/* Enhanced Content */}
-      <div className="space-y-4 transition-all duration-700">
-        <div className="flex items-center space-x-3">
-          <div className="w-1 h-8 bg-gradient-to-b from-accent to-accent-lighter rounded-full animate-accent-pulse" />
-          <p className="text-accent font-semibold text-lg tracking-wide animate-text-glow">
-            {content.subtitle}
-          </p>
+    <div className="space-y-6">
+      {/* Brand */}
+      <div className="space-y-2">
+        <div className="inline-block">
+          <span className="text-accent font-medium text-sm uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full">
+            {content.highlight}
+          </span>
         </div>
-        
-        <h2 className="font-playfair text-3xl sm:text-4xl font-bold text-foreground leading-tight animate-title-reveal">
+        <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+          Darkroom
+          <span className="block text-accent">Production</span>
+        </h1>
+      </div>
+
+      {/* Content */}
+      <div className="space-y-4 transition-all duration-500">
+        <p className="text-accent font-medium text-lg tracking-wide">
+          {content.subtitle}
+        </p>
+        <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-foreground/90 leading-relaxed">
           {content.title}
         </h2>
-        
-        <p className="text-muted-foreground text-lg leading-relaxed max-w-md animate-description-reveal">
+        <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
           {content.description}
         </p>
       </div>
 
-      {/* Feature Tags */}
-      <div className="flex flex-wrap gap-3 pt-4">
-        {content.features.map((feature, index) => (
-          <span
-            key={feature}
-            className={`text-sm font-medium px-4 py-2 rounded-full bg-accent/10 text-accent border border-accent/20 backdrop-blur-sm animate-tag-float-${index + 1}`}
-          >
-            {feature}
-          </span>
-        ))}
-      </div>
-
-      {/* Enhanced Trust Indicators */}
-      <div className="grid grid-cols-2 gap-4 pt-6">
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-accent to-accent-lighter animate-pulse" />
-          <span className="text-sm font-medium text-muted-foreground">5+ Years Mastery</span>
+      {/* Trust Indicators */}
+      <div className="flex items-center space-x-6 pt-4">
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+          <span className="text-sm font-medium text-muted-foreground">5+ Years Experience</span>
         </div>
-        <div className="flex items-center space-x-3">
-          <div className="w-3 h-3 rounded-full bg-gradient-to-r from-accent-lighter to-accent animate-pulse" />
-          <span className="text-sm font-medium text-muted-foreground">200+ Success Stories</span>
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+          <span className="text-sm font-medium text-muted-foreground">200+ Happy Couples</span>
         </div>
       </div>
     </div>

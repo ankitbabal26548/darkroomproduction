@@ -1,92 +1,69 @@
-
 import { useState, useEffect } from 'react';
-import { ChevronDown } from 'lucide-react';
-import { FuturisticBackground } from './FuturisticBackground';
-import { KineticTypography } from './KineticTypography';
+import { ChevronDown, Play, ArrowRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 import { HeroContent } from './HeroContent';
 import { HeroVisual } from './HeroVisual';
 import { HeroStats } from './HeroStats';
-import { MagneticButton } from './MagneticButton';
-
 export const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [entranceComplete, setEntranceComplete] = useState(false);
-
   useEffect(() => {
-    // Orchestrated entrance sequence
-    const loadTimer = setTimeout(() => setIsLoaded(true), 500);
-    const entranceTimer = setTimeout(() => setEntranceComplete(true), 3000);
-    
-    const slideTimer = setInterval(() => {
+    setIsLoaded(true);
+    const timer = setInterval(() => {
       setCurrentSlide(prev => (prev + 1) % 2);
-    }, 8000);
-
-    return () => {
-      clearTimeout(loadTimer);
-      clearTimeout(entranceTimer);
-      clearInterval(slideTimer);
-    };
+    }, 6000);
+    return () => clearInterval(timer);
   }, []);
+  return <section className="relative min-h-screen bg-background overflow-hidden">
+      {/* Background Grid Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0 bg-grid-pattern" />
+      </div>
 
-  return (
-    <section className="relative min-h-screen bg-background overflow-hidden">
-      {/* Futuristic Background System */}
-      <FuturisticBackground isLoaded={isLoaded} />
-
-      {/* Main Content Grid - 30/70 Split */}
+      {/* Main Content Grid */}
       <div className="relative z-10 min-h-screen grid lg:grid-cols-12 gap-0">
-        {/* Content Section - 30% */}
-        <div className="lg:col-span-4 flex flex-col justify-center px-6 sm:px-8 lg:px-12 py-20 lg:py-0 relative">
-          {/* Glassmorphism Overlay for Mobile */}
-          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm lg:hidden" />
-          
-          <div className={`relative z-10 space-y-8 ${isLoaded ? 'animate-entrance-sequence' : 'opacity-0'}`}>
-            {/* Kinetic Typography */}
-            <KineticTypography isLoaded={isLoaded} entranceComplete={entranceComplete} />
+        {/* Content Section */}
+        <div className="lg:col-span-5 flex flex-col justify-center px-6 sm:px-12 lg:px-16 py-20 lg:py-0">
+          <div className={`space-y-8 ${isLoaded ? 'animate-slide-in-left' : 'opacity-0'}`}>
+            <HeroContent currentSlide={currentSlide} />
             
-            {/* Enhanced Content */}
-            <HeroContent currentSlide={currentSlide} isLoaded={isLoaded} />
-            
-            {/* Magnetic Call to Action */}
-            <div className="flex flex-col sm:flex-row gap-4 pt-6">
-              <MagneticButton variant="primary" size="lg">
+            {/* Call to Action */}
+            <div className="flex flex-col sm:flex-row gap-4 pt-4">
+              <Button size="lg" className="group bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-6 rounded-lg transition-all duration-300 hover:scale-105">
                 View Our Work
-              </MagneticButton>
-              <MagneticButton variant="secondary" size="lg">
+                <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+              </Button>
+              <Button variant="outline" size="lg" className="group border-2 border-foreground/20 hover:border-accent hover:text-accent font-medium px-8 py-6 rounded-lg transition-all duration-300">
+                <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
                 Watch Showreel
-              </MagneticButton>
+              </Button>
             </div>
 
-            {/* Enhanced Statistics */}
-            <HeroStats isVisible={entranceComplete} />
+            {/* Statistics */}
+            <HeroStats />
           </div>
         </div>
 
-        {/* Visual Section - 70% */}
-        <div className="lg:col-span-8 relative">
-          <HeroVisual currentSlide={currentSlide} isLoaded={isLoaded} />
+        {/* Visual Section */}
+        <div className="lg:col-span-7 relative">
+          <HeroVisual currentSlide={currentSlide} />
+          
+          {/* Geometric Overlay */}
+          
+          
         </div>
       </div>
 
-      {/* Futuristic Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20">
-        <div className={`flex flex-col items-center space-y-2 text-muted-foreground ${entranceComplete ? 'animate-gentle-pulse' : 'opacity-0'}`}>
-          <div className="w-1 h-12 bg-gradient-to-b from-accent to-transparent rounded-full animate-scroll-pulse" />
-          <span className="text-xs font-medium tracking-wider uppercase">Scroll</span>
-          <ChevronDown className="w-4 h-4 animate-bounce-subtle" />
+      {/* Scroll Indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
+        <div className="flex flex-col items-center space-y-2 text-muted-foreground">
+          <span className="text-sm font-medium tracking-wider uppercase">Scroll</span>
+          <ChevronDown className="w-5 h-5" />
         </div>
       </div>
 
-      {/* Light Beam Effects */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-0.5 h-full bg-gradient-to-b from-accent/30 via-transparent to-transparent animate-light-sweep" />
-        <div className="absolute top-0 right-1/3 w-0.5 h-full bg-gradient-to-b from-accent/20 via-transparent to-transparent animate-light-sweep-delayed" />
-      </div>
-
-      {/* Depth Gradient Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background/90 via-background/20 to-transparent pointer-events-none lg:from-background/70" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/50 to-transparent pointer-events-none" />
-    </section>
-  );
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/50 pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+    </section>;
 };
