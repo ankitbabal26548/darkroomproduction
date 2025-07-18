@@ -5,7 +5,6 @@ import { Camera, Heart, Film, User, Sparkles } from 'lucide-react';
 interface Category {
   id: string;
   name: string;
-  icon: React.ReactNode;
   count?: number;
 }
 

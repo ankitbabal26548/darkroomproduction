@@ -1,4 +1,3 @@
-
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
 import { PortfolioCard } from '@/components/PortfolioCard';
@@ -19,7 +18,6 @@ export const PortfolioSection = () => {
     { id: 'portraits', name: 'Portraits', count: 3 }
   ];
 
-  // Enhanced Portfolio items with more creative data
   const portfolioItems = [
     {
       id: 1,
@@ -237,14 +235,17 @@ export const PortfolioSection = () => {
         {/* Masonry Portfolio Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-max">
           {filteredItems.map((item, index) => (
-            <PortfolioCard
+            <div
               key={item.id}
-              item={item}
-              size={getCardSize(index, item)}
-              onView={() => openLightbox(index)}
               className="animate-fade-in-up"
-              style={{ animationDelay: `${index * 100}ms` } as any}
-            />
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <PortfolioCard
+                item={item}
+                size={getCardSize(index, item)}
+                onView={() => openLightbox(index)}
+              />
+            </div>
           ))}
         </div>
 
