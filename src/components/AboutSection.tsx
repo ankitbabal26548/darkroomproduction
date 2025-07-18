@@ -30,11 +30,11 @@ export const AboutSection = () => {
   return (
     <section id="about" className="py-20 bg-background">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-gradient">
-            About <span className="text-accent text-shadow-glow">Darkroom Production</span>
+        <div className="text-center mb-16">
+          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
+            About <span className="text-accent">Darkroom Production</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed animate-fade-in-scale" style={{ animationDelay: '0.3s' }}>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
             We are passionate photographers and cinematographers dedicated to capturing 
             the beauty, emotion, and authenticity of your most precious moments.
           </p>
@@ -58,59 +58,56 @@ export const AboutSection = () => {
               is treated as a unique story waiting to be told.
             </p>
             
-            <div className="flex items-center space-x-8 pt-6">
-              <div className="text-center glass-effect p-4 rounded-lg darkroom-glow">
-                <p className="font-playfair text-3xl font-bold text-accent text-shadow-glow animate-bounce-gentle">500+</p>
-                <p className="text-sm text-muted-foreground font-medium">Weddings Captured</p>
+            <div className="flex items-center space-x-8 pt-4">
+              <div className="text-center">
+                <p className="font-playfair text-3xl font-bold text-accent">500+</p>
+                <p className="text-sm text-muted-foreground">Weddings Captured</p>
               </div>
-              <div className="text-center glass-effect p-4 rounded-lg darkroom-glow" style={{ animationDelay: '0.2s' }}>
-                <p className="font-playfair text-3xl font-bold text-accent text-shadow-glow animate-bounce-gentle">13+</p>
-                <p className="text-sm text-muted-foreground font-medium">Years Experience</p>
+              <div className="text-center">
+                <p className="font-playfair text-3xl font-bold text-accent">13+</p>
+                <p className="text-sm text-muted-foreground">Years Experience</p>
               </div>
-              <div className="text-center glass-effect p-4 rounded-lg darkroom-glow" style={{ animationDelay: '0.4s' }}>
-                <p className="font-playfair text-3xl font-bold text-accent text-shadow-glow animate-bounce-gentle">50+</p>
-                <p className="text-sm text-muted-foreground font-medium">Awards Won</p>
+              <div className="text-center">
+                <p className="font-playfair text-3xl font-bold text-accent">50+</p>
+                <p className="text-sm text-muted-foreground">Awards Won</p>
               </div>
             </div>
           </div>
 
-          {/* Enhanced Image Grid */}
-          <div className="grid grid-cols-2 gap-6 animate-slide-in-right">
-            <div className="photo-frame darkroom-glow magnetic-hover floating">
+          {/* Image Grid */}
+          <div className="grid grid-cols-2 gap-4 animate-slide-in-right">
+            <div className="photo-frame darkroom-glow">
               <img 
                 src={cameraLens} 
                 alt="Professional Camera Equipment" 
-                className="w-full h-64 object-cover film-grain"
+                className="w-full h-64 object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
             </div>
-            <div className="photo-frame darkroom-glow magnetic-hover floating mt-8" style={{ animationDelay: '-2s' }}>
+            <div className="photo-frame darkroom-glow mt-8">
               <img 
                 src={darkroomSetup} 
                 alt="Darkroom Setup" 
-                className="w-full h-64 object-cover film-grain"
+                className="w-full h-64 object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-bl from-accent/20 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-500"></div>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Features Grid */}
+        {/* Features Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map((feature, index) => (
             <Card 
               key={index} 
-              className="text-center hover:shadow-photo transition-all duration-500 lens-effect group magnetic-hover animated-border glass-effect"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="text-center hover:shadow-photo transition-all duration-300 lens-effect group"
             >
               <CardContent className="p-6">
-                <div className="w-20 h-20 mx-auto mb-4 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent/30 transition-all duration-500 darkroom-glow floating">
-                  <feature.icon className="w-10 h-10 text-accent group-hover:animate-bounce-gentle" />
+                <div className="w-16 h-16 mx-auto mb-4 bg-accent/10 rounded-full flex items-center justify-center group-hover:bg-accent/20 transition-colors duration-300">
+                  <feature.icon className="w-8 h-8 text-accent" />
                 </div>
-                <h4 className="font-playfair text-xl font-semibold mb-3 text-gradient">
+                <h4 className="font-playfair text-xl font-semibold mb-3">
                   {feature.title}
                 </h4>
-                <p className="text-muted-foreground text-sm leading-relaxed group-hover:text-foreground transition-colors duration-300">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {feature.description}
                 </p>
               </CardContent>
