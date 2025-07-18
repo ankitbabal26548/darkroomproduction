@@ -144,6 +144,28 @@ export default {
 				'film-advance': {
 					'0%': { transform: 'translateX(0)' },
 					'100%': { transform: 'translateX(-100%)' }
+				},
+				'shutter-close': {
+					'0%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' },
+					'50%': { clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)' },
+					'100%': { clipPath: 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' }
+				},
+				'typewriter': {
+					'0%': { width: '0' },
+					'100%': { width: '100%' }
+				},
+				'focus-pull': {
+					'0%': { filter: 'blur(5px)', transform: 'scale(1.05)' },
+					'100%': { filter: 'blur(0px)', transform: 'scale(1)' }
+				},
+				'light-leak': {
+					'0%': { transform: 'translateX(-100%) rotate(-45deg)', opacity: '0' },
+					'50%': { opacity: '0.8' },
+					'100%': { transform: 'translateX(100vw) rotate(-45deg)', opacity: '0' }
+				},
+				'viewfinder-scan': {
+					'0%': { transform: 'translateY(-100%)' },
+					'100%': { transform: 'translateY(100vh)' }
 				}
 			},
 			animation: {
@@ -156,7 +178,12 @@ export default {
 				'fade-in-up': 'fade-in-up 0.6s ease-out',
 				'spin-slow': 'spin-slow 3s linear infinite',
 				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
-				'film-advance': 'film-advance 10s linear infinite'
+				'film-advance': 'film-advance 10s linear infinite',
+				'shutter-close': 'shutter-close 0.6s ease-in-out',
+				'typewriter': 'typewriter 3s steps(40) forwards',
+				'focus-pull': 'focus-pull 0.8s ease-out',
+				'light-leak': 'light-leak 4s ease-in-out infinite',
+				'viewfinder-scan': 'viewfinder-scan 3s ease-in-out infinite'
 			}
 		}
 	},

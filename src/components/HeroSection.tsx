@@ -1,8 +1,15 @@
+
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Camera, Aperture } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Aperture, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { ParallaxBackground } from '@/components/ParallaxBackground';
+import { ViewfinderOverlay } from '@/components/ViewfinderOverlay';
+import { ApertureAnimation } from '@/components/ApertureAnimation';
+import { FilmStripEffects } from '@/components/FilmStripEffects';
+import { TypewriterText } from '@/components/TypewriterText';
 import heroWedding1 from '@/assets/hero-wedding-1.jpg';
 import heroPrewedding1 from '@/assets/hero-prewedding-1.jpg';
+
 const heroImages = [{
   src: heroWedding1,
   title: "Timeless Wedding Moments",
@@ -12,78 +19,221 @@ const heroImages = [{
   title: "Pre-Wedding Chronicles",
   subtitle: "Beautiful beginnings deserve beautiful memories"
 }];
+
 export const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+  const [showTypewriter, setShowTypewriter] = useState(false);
+  const [mouseSpotlight, setMouseSpotlight] = useState({ x: 50, y: 50 });
+
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrentSlide(prev => (prev + 1) % heroImages.length);
-    }, 5000);
+      handleSlideChange((currentSlide + 1) % heroImages.length);
+    }, 6000);
     return () => clearInterval(timer);
+  }, [currentSlide]);
+
+  useEffect(() => {
+    const showTimer = setTimeout(() => setShowTypewriter(true), 1000);
+    return () => clearTimeout(showTimer);
   }, []);
+
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouseSpotlight({
+        x: (e.clientX / window.innerWidth) * 100,
+        y: (e.clientY / window.innerHeight) * 100,
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  const handleSlideChange = (newSlide: number) => {
+    if (newSlide === currentSlide) return;
+    
+    setIsTransitioning(true);
+    
+    setTimeout(() => {
+      setCurrentSlide(newSlide);
+      setIsTransitioning(false);
+    }, 300);
+  };
+
   const nextSlide = () => {
-    setCurrentSlide(prev => (prev + 1) % heroImages.length);
+    handleSlideChange((currentSlide + 1) % heroImages.length);
   };
+
   const prevSlide = () => {
-    setCurrentSlide(prev => (prev - 1 + heroImages.length) % heroImages.length);
+    handleSlideChange((currentSlide - 1 + heroImages.length) % heroImages.length);
   };
-  return <section className="relative h-screen overflow-hidden">
-      {/* Background Images */}
-      {heroImages.map((image, index) => <div key={index} className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? 'opacity-100' : 'opacity-0'}`}>
-          <div className="absolute inset-0 bg-black/40 z-10" />
-          <img src={image.src} alt={image.title} className="w-full h-full object-cover" />
-        </div>)}
 
-      {/* Lens Effect Overlay */}
-      <div className="absolute inset-0 z-20 bg-gradient-lens opacity-30" />
+  return (
+    <section className="relative h-screen overflow-hidden">
+      {/* Parallax Background System */}
+      <ParallaxBackground />
+      
+      {/* Film Strip Effects */}
+      <FilmStripEffects />
 
-      {/* Content */}
+      {/* Background Images with Enhanced Transitions */}
+      {heroImages.map((image, index) => (
+        <div 
+          key={index} 
+          className={`absolute inset-0 transition-all duration-1000 ${
+            index === currentSlide ? 'opacity-100 scale-105' : 'opacity-0 scale-100'
+          }`}
+        >
+          <div className="absolute inset-0 bg-black/50 z-10" />
+          <div 
+            className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-black/30 z-15"
+            style={{
+              backgroundPosition: `${mouseSpotlight.x}% ${mouseSpotlight.y}%`,
+            }}
+          />
+          <img 
+            src={image.src} 
+            alt={image.title} 
+            className="w-full h-full object-cover transition-transform duration-1000 hover:scale-110" 
+          />
+        </div>
+      ))}
+
+      {/* Mouse-following Spotlight Effect */}
+      <div 
+        className="absolute w-96 h-96 z-20 pointer-events-none opacity-20 transition-all duration-300"
+        style={{
+          left: `${mouseSpotlight.x}%`,
+          top: `${mouseSpotlight.y}%`,
+          transform: 'translate(-50%, -50%)',
+          background: `radial-gradient(circle, hsl(var(--accent) / 0.6) 0%, transparent 70%)`,
+        }}
+      />
+
+      {/* Viewfinder Overlay */}
+      <ViewfinderOverlay />
+
+      {/* Aperture Animation */}
+      <ApertureAnimation isTransitioning={isTransitioning} currentSlide={currentSlide} />
+
+      {/* Enhanced Content */}
       <div className="relative z-30 h-full flex items-center justify-center text-center text-white">
-        <div className="max-w-4xl px-4 animate-fade-in-up">
-          {/* Aperture Decoration */}
+        <div className="max-w-4xl px-4">
+          {/* Main Title with Typewriter Effect */}
+          <div className="mb-8">
+            <h1 className="font-playfair text-6xl md:text-8xl font-bold mb-4 tracking-wide">
+              {showTypewriter ? (
+                <TypewriterText 
+                  text="Darkroom Production" 
+                  speed={120}
+                  className="text-transparent bg-clip-text bg-gradient-to-r from-white via-accent to-white"
+                />
+              ) : (
+                <span className="opacity-0">Darkroom Production</span>
+              )}
+            </h1>
+            
+            {/* Decorative Elements */}
+            <div className="flex justify-center items-center space-x-4 mb-6">
+              <div className="w-12 h-px bg-gradient-to-r from-transparent to-accent" />
+              <Aperture className="w-8 h-8 text-accent animate-aperture-spin" />
+              <div className="w-12 h-px bg-gradient-to-l from-transparent to-accent" />
+            </div>
+          </div>
           
-          
-          <h1 className="font-playfair text-5xl md:text-7xl font-bold mb-6 tracking-wide">
-            Darkroom Production
-          </h1>
-          
-          <div className="h-24 mb-8">
-            <h2 className="font-inter text-xl md:text-2xl font-light mb-2 transition-all duration-500">
-              {heroImages[currentSlide].title}
-            </h2>
-            <p className="text-accent font-medium">
-              {heroImages[currentSlide].subtitle}
-            </p>
+          {/* Dynamic Content Area */}
+          <div className="h-32 mb-8">
+            <div className={`transition-all duration-500 ${isTransitioning ? 'opacity-0 translate-y-4' : 'opacity-100 translate-y-0'}`}>
+              <h2 className="font-inter text-2xl md:text-3xl font-light mb-4 animate-fade-in-up">
+                {heroImages[currentSlide].title}
+              </h2>
+              <p className="text-accent font-medium text-lg animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+                {heroImages[currentSlide].subtitle}
+              </p>
+            </div>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-300">
-              <Aperture className="w-5 h-5 mr-2" />
+          {/* Enhanced Buttons */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+            <Button 
+              variant="outline" 
+              size="lg" 
+              className="group bg-white/10 border-accent text-white hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-500 hover:scale-105 hover:shadow-lens"
+            >
+              <Camera className="w-5 h-5 mr-2 group-hover:animate-lens-focus" />
               View Portfolio
             </Button>
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens">
+            <Button 
+              size="lg" 
+              className="group bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens hover:scale-105 transition-all duration-500 hover:shadow-2xl"
+            >
               Contact Us
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:animate-slide-in-right transition-opacity" />
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <button onClick={prevSlide} className="absolute left-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-white/20 text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 lens-effect">
-        <ChevronLeft className="w-6 h-6" />
+      {/* Enhanced Navigation with Camera-style Controls */}
+      <button 
+        onClick={prevSlide} 
+        className="absolute left-8 top-1/2 -translate-y-1/2 z-40 group"
+      >
+        <div className="p-4 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 hover:scale-110 hover:shadow-lens">
+          <ChevronLeft className="w-6 h-6" />
+        </div>
+        <div className="absolute -inset-2 rounded-full border border-accent/30 opacity-0 group-hover:opacity-100 animate-pulse-glow transition-opacity" />
       </button>
       
-      <button onClick={nextSlide} className="absolute right-6 top-1/2 -translate-y-1/2 z-40 p-3 rounded-full bg-white/20 text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 lens-effect">
-        <ChevronRight className="w-6 h-6" />
+      <button 
+        onClick={nextSlide} 
+        className="absolute right-8 top-1/2 -translate-y-1/2 z-40 group"
+      >
+        <div className="p-4 rounded-full bg-black/30 backdrop-blur-sm text-white hover:bg-accent hover:text-accent-foreground transition-all duration-300 hover:scale-110 hover:shadow-lens">
+          <ChevronRight className="w-6 h-6" />
+        </div>
+        <div className="absolute -inset-2 rounded-full border border-accent/30 opacity-0 group-hover:opacity-100 animate-pulse-glow transition-opacity" />
       </button>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-40 flex space-x-3">
-        {heroImages.map((_, index) => <button key={index} onClick={() => setCurrentSlide(index)} className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? 'bg-accent scale-125' : 'bg-white/50 hover:bg-white/75'}`} />)}
+      {/* Professional Slide Indicators */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-40 flex space-x-4">
+        {heroImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => handleSlideChange(index)}
+            className={`group relative w-12 h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide ? 'bg-accent scale-125' : 'bg-white/30 hover:bg-white/60'
+            }`}
+          >
+            <div className={`absolute inset-0 rounded-full transition-all duration-300 ${
+              index === currentSlide ? 'bg-accent animate-pulse-glow' : ''
+            }`} />
+            <span className="absolute -top-8 left-1/2 -translate-x-1/2 text-xs text-accent font-mono opacity-0 group-hover:opacity-100 transition-opacity">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+          </button>
+        ))}
       </div>
 
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-40 animate-bounce">
-        
+      {/* Professional Frame Counter */}
+      <div className="absolute bottom-8 right-8 z-40">
+        <div className="bg-black/50 backdrop-blur-sm px-4 py-2 rounded font-mono text-accent border border-accent/30">
+          <span className="text-xs opacity-70">FRAME </span>
+          <span className="text-lg font-bold">{String(currentSlide + 1).padStart(2, '0')}</span>
+          <span className="text-xs opacity-70">/{heroImages.length.toString().padStart(2, '0')}</span>
+        </div>
       </div>
-    </section>;
+
+      {/* Atmospheric Vignette */}
+      <div className="absolute inset-0 z-25 pointer-events-none">
+        <div 
+          className="absolute inset-0"
+          style={{
+            background: `radial-gradient(ellipse at ${mouseSpotlight.x}% ${mouseSpotlight.y}%, transparent 40%, hsl(var(--background) / 0.3) 100%)`,
+          }}
+        />
+      </div>
+    </section>
+  );
 };
