@@ -40,9 +40,7 @@ export const HeroSection = () => {
       <div className="relative z-30 h-full flex items-center justify-center text-center text-white">
         <div className="max-w-4xl px-4 animate-fade-in-up">
           {/* Aperture Decoration */}
-          <div className="aperture-border w-20 h-20 mx-auto mb-8 flex items-center justify-center animate-aperture-spin">
-            <Camera className="w-8 h-8 text-accent" />
-          </div>
+          
           
           <h1 className="font-playfair text-5xl md:text-7xl font-bold mb-6 tracking-wide">
             Darkroom Production
