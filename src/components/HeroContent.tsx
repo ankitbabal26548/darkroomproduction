@@ -33,60 +33,42 @@ export const HeroContent = ({ currentSlide }: HeroContentProps) => {
   const content = contentSlides[displaySlide];
 
   return (
-    <div className="space-y-8">
-      {/* Enhanced Brand */}
-      <div className="space-y-4">
+    <div className="space-y-6">
+      {/* Brand */}
+      <div className="space-y-2">
         <div className="inline-block">
-          <span className="relative text-accent font-semibold text-sm uppercase tracking-wider bg-accent/10 backdrop-blur-sm px-4 py-2 rounded-full border border-accent/20 animate-glow-pulse">
+          <span className="text-accent font-medium text-sm uppercase tracking-wider bg-accent/10 px-3 py-1 rounded-full">
             {content.highlight}
-            <div className="absolute inset-0 rounded-full bg-accent/5 animate-ping" />
           </span>
         </div>
-        
-        {/* Kinetic Typography */}
-        <div className="relative">
-          <h1 className="font-playfair text-5xl sm:text-6xl lg:text-7xl font-bold leading-tight">
-            <span className="block text-foreground animate-slide-in-left">
-              Darkroom
-            </span>
-            <span className="block text-accent animate-slide-in-right animation-delay-200">
-              Production
-            </span>
-          </h1>
-          
-          {/* Typography Enhancement */}
-          <div className="absolute -top-4 -left-4 w-20 h-20 border border-accent/20 rounded-full animate-spin-slow opacity-30" />
-        </div>
+        <h1 className="font-playfair text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
+          Darkroom
+          <span className="block text-accent">Production</span>
+        </h1>
       </div>
 
-      {/* Enhanced Content */}
-      <div className="space-y-6 transition-all duration-700">
-        <p className="text-accent font-semibold text-xl tracking-wide animate-fade-in-up">
+      {/* Content */}
+      <div className="space-y-4 transition-all duration-500">
+        <p className="text-accent font-medium text-lg tracking-wide">
           {content.subtitle}
         </p>
-        
-        <h2 className="font-playfair text-3xl sm:text-4xl font-semibold text-foreground/90 leading-relaxed animate-fade-in-up animation-delay-100">
+        <h2 className="font-playfair text-2xl sm:text-3xl font-semibold text-foreground/90 leading-relaxed">
           {content.title}
         </h2>
-        
-        <p className="text-muted-foreground text-lg leading-relaxed max-w-xl animate-fade-in-up animation-delay-200">
+        <p className="text-muted-foreground text-lg leading-relaxed max-w-lg">
           {content.description}
         </p>
       </div>
 
-      {/* Enhanced Trust Indicators */}
-      <div className="flex items-center space-x-8 pt-6 animate-fade-in-up animation-delay-300">
-        <div className="flex items-center space-x-3 group">
-          <div className="w-3 h-3 bg-accent rounded-full animate-pulse group-hover:scale-125 transition-transform" />
-          <span className="text-sm font-semibold text-muted-foreground group-hover:text-accent transition-colors">
-            5+ Years Experience
-          </span>
+      {/* Trust Indicators */}
+      <div className="flex items-center space-x-6 pt-4">
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+          <span className="text-sm font-medium text-muted-foreground">5+ Years Experience</span>
         </div>
-        <div className="flex items-center space-x-3 group">
-          <div className="w-3 h-3 bg-accent rounded-full animate-pulse animation-delay-500 group-hover:scale-125 transition-transform" />
-          <span className="text-sm font-semibold text-muted-foreground group-hover:text-accent transition-colors">
-            200+ Happy Couples
-          </span>
+        <div className="flex items-center space-x-2">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+          <span className="text-sm font-medium text-muted-foreground">200+ Happy Couples</span>
         </div>
       </div>
     </div>
