@@ -30,7 +30,7 @@ export const PortfolioCard = ({ item, onView, className = '' }: PortfolioCardPro
 
   return (
     <Card 
-      className={`group overflow-hidden cursor-pointer transition-all duration-300 hover:shadow-xl hover:-translate-y-1 h-80 ${className}`}
+      className={`group relative overflow-hidden cursor-pointer transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 h-80 bg-card border border-border/50 hover:border-accent/30 ${className}`}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={onView}
@@ -40,88 +40,105 @@ export const PortfolioCard = ({ item, onView, className = '' }: PortfolioCardPro
         <img 
           src={item.image}
           alt={item.title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
         />
         
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-        
-        {/* Badges */}
-        <div className="absolute top-4 left-4 flex flex-col gap-2 z-10">
-          {item.featured && (
-            <div className="bg-accent text-accent-foreground px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1">
-              <Award className="w-3 h-3" />
-              Featured
-            </div>
-          )}
-          {item.type === 'video' && (
-            <div className="bg-black/60 text-white px-2 py-1 rounded-full text-xs font-medium backdrop-blur-sm">
-              Video
-            </div>
-          )}
-          {item.award && (
-            <div className="bg-yellow-500/90 text-yellow-900 px-2 py-1 rounded text-xs font-medium">
-              {item.award}
-            </div>
-          )}
-        </div>
-
-        {/* Center Play Button for Videos */}
-        {item.type === 'video' && isHovered && (
-          <div className="absolute inset-0 flex items-center justify-center">
-            <Button
-              size="icon"
-              className="w-16 h-16 rounded-full bg-white/20 hover:bg-white/30 backdrop-blur-sm border-2 border-white/30"
-              onClick={(e) => { e.stopPropagation(); onView(); }}
-            >
-              <Play className="w-8 h-8 text-white ml-1" />
-            </Button>
-          </div>
-        )}
-
-        {/* Content Overlay */}
-        <div className={`absolute bottom-0 left-0 right-0 p-6 text-white transform transition-transform duration-300 ${
-          isHovered ? 'translate-y-0' : 'translate-y-full'
-        }`}>
-          <h3 className="font-playfair text-lg font-semibold mb-1 line-clamp-2">{item.title}</h3>
-          <p className="text-white/80 text-sm mb-2">{item.location}</p>
+        {/* Always Visible Bottom Gradient & Info */}
+        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent h-24 p-4 flex flex-col justify-end">
+          <h3 className="font-playfair text-lg font-bold text-white mb-1 line-clamp-1">
+            {item.title}
+          </h3>
+          <p className="text-white/90 text-sm mb-1 flex items-center gap-1">
+            📍 {item.location}
+          </p>
           {item.client && (
-            <p className="text-white/60 text-xs mb-3">Client: {item.client}</p>
+            <p className="text-white/75 text-xs">
+              Client: {item.client}
+            </p>
           )}
-          
-          <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
-              <div className="flex items-center space-x-1 text-white/70">
-                <Heart className="w-4 h-4" />
-                <span className="text-sm">{item.likes}</span>
-              </div>
-              <Button
-                size="icon"
-                variant="ghost"
-                className="text-white hover:bg-white/20 w-8 h-8"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <Share className="w-4 h-4" />
-              </Button>
-            </div>
-            {item.date && (
-              <span className="text-white/60 text-xs">{item.date}</span>
-            )}
-          </div>
         </div>
 
-        {/* Quick View Button */}
-        <div className={`absolute top-4 right-4 transition-opacity duration-300 ${
+        {/* Enhanced Hover Overlay */}
+        <div className={`absolute inset-0 bg-gradient-to-t from-black/95 via-black/60 to-black/30 transition-all duration-500 ${
           isHovered ? 'opacity-100' : 'opacity-0'
         }`}>
-          <Button
-            size="icon"
-            variant="secondary"
-            className="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/20 w-10 h-10"
-            onClick={(e) => { e.stopPropagation(); onView(); }}
-          >
-            <Eye className="w-4 h-4 text-white" />
-          </Button>
+          {/* Hover Content - positioned to not interfere with bottom info */}
+          <div className="absolute inset-0 p-6 flex flex-col justify-between">
+            {/* Top Section - Badges and Quick View */}
+            <div className="flex justify-between items-start">
+              <div className="flex flex-col gap-2">
+                {item.featured && (
+                  <div className="bg-accent/90 backdrop-blur-sm text-accent-foreground px-3 py-1.5 rounded-lg text-xs font-bold flex items-center gap-1.5 shadow-lg">
+                    <Award className="w-3 h-3" />
+                    Featured Work
+                  </div>
+                )}
+                {item.type === 'video' && (
+                  <div className="bg-white/20 backdrop-blur-md text-white px-3 py-1.5 rounded-lg text-xs font-semibold border border-white/20">
+                    🎬 Video
+                  </div>
+                )}
+                {item.award && (
+                  <div className="bg-gradient-to-r from-yellow-400/90 to-yellow-500/90 backdrop-blur-sm text-yellow-900 px-3 py-1.5 rounded-lg text-xs font-bold shadow-lg">
+                    🏆 {item.award}
+                  </div>
+                )}
+              </div>
+              
+              <Button
+                size="icon"
+                variant="secondary"
+                className="bg-white/10 hover:bg-white/20 backdrop-blur-md border border-white/20 w-11 h-11 transition-all duration-300 hover:scale-110"
+                onClick={(e) => { e.stopPropagation(); onView(); }}
+              >
+                <Eye className="w-5 h-5 text-white" />
+              </Button>
+            </div>
+
+            {/* Center Play Button for Videos */}
+            {item.type === 'video' && (
+              <div className="flex items-center justify-center">
+                <Button
+                  size="icon"
+                  className="w-18 h-18 rounded-full bg-white/15 hover:bg-white/25 backdrop-blur-md border-2 border-white/30 transition-all duration-300 hover:scale-110 shadow-2xl"
+                  onClick={(e) => { e.stopPropagation(); onView(); }}
+                >
+                  <Play className="w-8 h-8 text-white ml-1" />
+                </Button>
+              </div>
+            )}
+
+            {/* Bottom Section - Additional Details */}
+            <div className="space-y-3 mb-16">
+              {item.description && (
+                <p className="text-white/90 text-sm leading-relaxed line-clamp-2 bg-black/20 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                  {item.description}
+                </p>
+              )}
+              
+              <div className="flex items-center justify-between bg-black/20 backdrop-blur-sm rounded-lg p-3 border border-white/10">
+                <div className="flex items-center space-x-4">
+                  <div className="flex items-center space-x-2 text-white/80">
+                    <Heart className="w-4 h-4 text-red-400" />
+                    <span className="text-sm font-medium">{item.likes}</span>
+                  </div>
+                  <Button
+                    size="icon"
+                    variant="ghost"
+                    className="text-white hover:bg-white/20 w-8 h-8 transition-all duration-300"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <Share className="w-4 h-4" />
+                  </Button>
+                </div>
+                {item.date && (
+                  <span className="text-white/70 text-xs bg-white/10 px-2 py-1 rounded-md">
+                    {item.date}
+                  </span>
+                )}
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </Card>
