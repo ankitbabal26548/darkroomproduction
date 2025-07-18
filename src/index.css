@@ -103,7 +103,7 @@
 }
 
 @layer components {
-  /* Clean Professional Animations */
+  /* Enhanced Professional Animations */
   @keyframes fade-in-up {
     from {
       opacity: 0;
@@ -129,7 +129,18 @@
   @keyframes slide-in-left {
     from {
       opacity: 0;
-      transform: translateX(-20px);
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
     }
     to {
       opacity: 1;
@@ -148,38 +159,88 @@
     }
   }
 
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) rotate(45deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(45deg);
+    }
+  }
+
+  @keyframes float-slow {
+    0%, 100% {
+      transform: translateY(0px) rotate(12deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(12deg);
+    }
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.8;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  }
+
   .animate-fade-in-up {
-    animation: fade-in-up 0.5s ease-out forwards;
+    animation: fade-in-up 0.6s ease-out forwards;
   }
 
   .animate-fade-in-down {
-    animation: fade-in-down 0.5s ease-out forwards;
+    animation: fade-in-down 0.6s ease-out forwards;
   }
 
   .animate-slide-in-left {
-    animation: slide-in-left 0.5s ease-out forwards;
+    animation: slide-in-left 0.8s ease-out forwards;
+  }
+
+  .animate-slide-in-right {
+    animation: slide-in-right 0.8s ease-out forwards;
   }
 
   .animate-scale-in {
-    animation: scale-in 0.4s ease-out forwards;
+    animation: scale-in 0.5s ease-out forwards;
   }
 
-  /* Professional Component Styles */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  /* Professional Grid Pattern */
+  .bg-grid-pattern {
+    background-image: radial-gradient(circle, hsl(var(--foreground)) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  /* Enhanced Component Styles */
   .portfolio-card-hover {
-    @apply transition-all duration-300 hover:shadow-lg;
+    @apply transition-all duration-300 hover:shadow-xl;
   }
 
   .portfolio-card-hover:hover {
-    transform: translateY(-4px);
+    transform: translateY(-8px);
   }
 
-  /* Clean Interactive Elements */
   .interactive-hover {
-    transition: all 0.2s ease-in-out;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .interactive-hover:hover {
-    transform: translateY(-1px);
+    transform: translateY(-2px);
   }
 
   /* Professional Text Effects */
@@ -190,25 +251,17 @@
     background-clip: text;
   }
 
-  /* Clean Masonry Grid */
-  .masonry-item-small {
-    @apply col-span-1 row-span-1;
+  /* Enhanced Button Styles */
+  .btn-primary-enhanced {
+    @apply bg-accent text-accent-foreground font-semibold px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+    @apply active:scale-95;
   }
 
-  .masonry-item-medium {
-    @apply col-span-1 row-span-1;
-  }
-
-  .masonry-item-large {
-    @apply col-span-2 row-span-2;
-  }
-
-  .masonry-item-wide {
-    @apply col-span-2 row-span-1;
-  }
-
-  .masonry-item-tall {
-    @apply col-span-1 row-span-2;
+  .btn-secondary-enhanced {
+    @apply border-2 border-accent text-accent font-semibold px-6 py-3 rounded-lg;
+    @apply transition-all duration-300 hover:bg-accent hover:text-accent-foreground;
+    @apply hover:scale-105 active:scale-95;
   }
 
   /* Loading States */
@@ -229,20 +282,51 @@
 
   /* Professional Photo Frame */
   .photo-frame {
-    @apply relative overflow-hidden rounded-lg shadow-md transition-transform duration-300 hover:scale-[1.02];
+    @apply relative overflow-hidden rounded-xl shadow-lg;
+    @apply transition-all duration-500 hover:shadow-2xl;
   }
 
-  /* Clean Service Cards */
+  .photo-frame:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+
+  /* Service Cards */
   .service-card {
-    @apply transition-all duration-300 hover:shadow-lg;
+    @apply transition-all duration-300 hover:shadow-xl;
+    @apply border border-border/50 hover:border-accent/30;
   }
 
   .service-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-4px);
   }
 
-  /* Professional Contact Form */
+  /* Form Enhancement */
   .form-focus-effect:focus {
     @apply ring-2 ring-accent/30 border-accent;
+    @apply shadow-lg;
+  }
+
+  /* Navigation Enhancements */
+  .nav-link {
+    @apply relative font-medium text-foreground/80 hover:text-accent;
+    @apply transition-all duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-accent;
+    @apply transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .nav-link.active {
+    @apply text-accent;
+  }
+
+  .nav-link.active::after {
+    @apply w-full;
   }
 }
