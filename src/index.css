@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
@@ -103,6 +102,45 @@
 }
 
 @layer components {
+  /* Mobile-Optimized Animations */
+  @keyframes mobile-card-entrance {
+    from {
+      opacity: 0;
+      transform: translateY(20px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  .animate-mobile-card-entrance {
+    animation: mobile-card-entrance 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  /* Mobile Touch Optimizations */
+  .mobile-hover-safe {
+    @apply transition-all duration-300;
+  }
+
+  @media (hover: hover) {
+    .mobile-hover-safe:hover {
+      transform: translateY(-4px);
+    }
+  }
+
+  .mobile-touch-target {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Performance Optimized Animations */
+  .animate-performance-optimized {
+    will-change: transform, opacity;
+    transform: translateZ(0);
+  }
+
   /* Enhanced Portfolio Animations */
   @keyframes portfolio-card-hover {
     from {

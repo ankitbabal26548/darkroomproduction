@@ -1,7 +1,7 @@
 
 import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Check, Star, Clock, Eye, Sparkles, Award, Crown } from 'lucide-react';
+import { Check, Star, Clock, Eye, Sparkles } from 'lucide-react';
 import { LucideIcon } from 'lucide-react';
 
 interface ServiceFeature {
@@ -41,121 +41,102 @@ export const ServiceCard = ({
   isExpanded,
   onToggleExpand
 }: ServiceCardProps) => {
-  const getTierConfig = () => {
+  const getTierBorderColor = () => {
     switch (tier) {
       case 'platinum':
-        return {
-          gradient: 'from-slate-100 via-slate-200 to-slate-300',
-          borderGradient: 'from-slate-400 to-slate-600',
-          accent: 'text-slate-700',
-          iconBg: 'bg-gradient-to-br from-slate-400 to-slate-600',
-          badge: <Crown className="w-4 h-4" />
-        };
+        return 'border-slate-300 hover:border-slate-400';
       case 'gold':
-        return {
-          gradient: 'from-yellow-100 via-yellow-200 to-amber-200',
-          borderGradient: 'from-yellow-400 to-amber-500',
-          accent: 'text-yellow-700',
-          iconBg: 'bg-gradient-to-br from-yellow-400 to-amber-500',
-          badge: <Award className="w-4 h-4" />
-        };
+        return 'border-yellow-300 hover:border-yellow-400';
       default:
-        return {
-          gradient: 'from-gray-50 via-gray-100 to-gray-150',
-          borderGradient: 'from-gray-300 to-gray-400',
-          accent: 'text-gray-600',
-          iconBg: 'bg-gradient-to-br from-gray-400 to-gray-500',
-          badge: <Sparkles className="w-4 h-4" />
-        };
+        return 'border-gray-300 hover:border-gray-400';
     }
   };
 
-  const tierConfig = getTierConfig();
+  const getTierAccentColor = () => {
+    switch (tier) {
+      case 'platinum':
+        return 'text-slate-600';
+      case 'gold':
+        return 'text-yellow-600';
+      default:
+        return 'text-gray-600';
+    }
+  };
 
   return (
     <Card 
       className={`group relative overflow-hidden transition-all duration-500 cursor-pointer h-full
         hover:shadow-2xl hover:-translate-y-2 transform-gpu
-        ${popular ? 'ring-2 ring-accent border-accent/50 scale-105' : 'border-border/30 hover:border-accent/40'}
-        ${tier === 'gold' ? 'bg-gradient-to-br from-card via-card to-accent/5' : 'bg-card/80'}
-        backdrop-blur-sm
+        ${popular ? 'ring-2 ring-accent border-accent/50 scale-[1.02]' : `border-2 ${getTierBorderColor()}`}
+        bg-card/90 backdrop-blur-sm mobile-hover-safe
       `}
       onClick={onToggleExpand}
     >
-      {/* Tier Background Overlay */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${tierConfig.gradient} opacity-5 group-hover:opacity-10 transition-opacity duration-500`} />
-      
-      {/* Border Gradient Effect */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${tierConfig.borderGradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg`} />
+      {/* Subtle Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-background/50 via-background/30 to-muted/20 opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
 
       {/* Popular Badge */}
       {popular && (
-        <div className="absolute top-0 right-0 bg-gradient-to-r from-accent to-accent-darker text-accent-foreground px-4 py-2 rounded-bl-2xl text-sm font-bold z-20 shadow-lg">
-          <Star className="w-4 h-4 inline mr-2 animate-pulse" />
+        <div className="absolute top-0 right-0 bg-gradient-to-r from-accent to-accent-darker text-accent-foreground px-3 md:px-4 py-2 rounded-bl-xl md:rounded-bl-2xl text-xs md:text-sm font-bold z-20 shadow-lg">
+          <Star className="w-3 h-3 md:w-4 md:h-4 inline mr-1 md:mr-2 animate-pulse" />
           Most Popular
         </div>
       )}
 
-      {/* Tier Badge */}
-      <div className={`absolute top-4 left-4 ${tierConfig.iconBg} text-white px-3 py-1 rounded-full text-xs font-semibold z-10 flex items-center gap-1 shadow-lg`}>
-        {tierConfig.badge}
-        {tier.charAt(0).toUpperCase() + tier.slice(1)}
-      </div>
-
       {/* Service Header */}
-      <div className="p-8 border-b border-border/20 relative z-10">
-        <div className="flex items-start justify-between mb-6">
-          <div className={`w-16 h-16 rounded-2xl ${tierConfig.iconBg} flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-            <Icon className="w-8 h-8 text-white" />
+      <div className="p-4 md:p-8 border-b border-border/20 relative z-10">
+        <div className="flex items-start justify-between mb-4 md:mb-6">
+          <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl bg-gradient-to-br from-accent/20 to-accent/40 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 ${getTierAccentColor()}`}>
+            <Icon className="w-6 h-6 md:w-8 md:h-8 text-accent" />
           </div>
         </div>
 
-        <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground group-hover:text-accent transition-colors duration-300">
+        <h3 className="font-playfair text-xl md:text-2xl font-bold mb-2 md:mb-3 text-foreground group-hover:text-accent transition-colors duration-300">
           {title}
         </h3>
-        <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
+        <p className="text-muted-foreground text-sm md:text-base mb-4 md:mb-6 leading-relaxed">
           {description}
         </p>
 
         {/* Service Stats */}
-        <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4 text-sm">
           <div className="flex items-center gap-2 text-muted-foreground">
-            <Clock className="w-4 h-4 text-accent" />
-            <span>{duration}</span>
+            <Clock className="w-4 h-4 text-accent flex-shrink-0" />
+            <span className="truncate">{duration}</span>
           </div>
           <div className="flex items-center gap-2 text-muted-foreground">
-            <Eye className="w-4 h-4 text-accent" />
-            <span>{deliverables}</span>
+            <Eye className="w-4 h-4 text-accent flex-shrink-0" />
+            <span className="truncate">{deliverables}</span>
           </div>
         </div>
       </div>
 
-      <CardContent className="p-8 relative z-10">
+      <CardContent className="p-4 md:p-8 relative z-10">
         {/* Features List */}
-        <div className="space-y-3 mb-8">
+        <div className="space-y-2 md:space-y-3 mb-6 md:mb-8">
           {features.slice(0, isExpanded ? features.length : 5).map((feature, idx) => (
             <div 
               key={idx} 
-              className="flex items-center gap-3 text-sm group/feature hover:bg-muted/30 p-2 rounded-lg transition-colors duration-200"
+              className="flex items-start gap-3 text-sm group/feature hover:bg-muted/30 p-2 rounded-lg transition-colors duration-200"
               style={{ animationDelay: `${idx * 0.05}s` }}
             >
-              <div className={`w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200
+              <div className={`w-4 h-4 md:w-5 md:h-5 rounded-full flex items-center justify-center flex-shrink-0 transition-all duration-200 mt-0.5
                 ${feature.premium 
                   ? 'bg-gradient-to-br from-accent to-accent-darker text-accent-foreground shadow-md' 
                   : 'bg-muted border-2 border-border group-hover/feature:border-accent/50'
                 }`}>
-                <Check className="w-3 h-3" />
+                <Check className="w-2 h-2 md:w-3 md:h-3" />
               </div>
-              <span className={`${feature.premium ? 'font-semibold text-foreground' : 'text-muted-foreground'} group-hover/feature:text-foreground transition-colors`}>
+              <span className={`flex-1 ${feature.premium ? 'font-semibold text-foreground' : 'text-muted-foreground'} group-hover/feature:text-foreground transition-colors leading-relaxed`}>
                 {feature.name}
               </span>
               {feature.premium && (
-                <Sparkles className="w-3 h-3 text-accent ml-auto opacity-0 group-hover/feature:opacity-100 transition-opacity" />
+                <Sparkles className="w-3 h-3 text-accent opacity-0 group-hover/feature:opacity-100 transition-opacity flex-shrink-0" />
               )}
             </div>
           ))}
           {features.length > 5 && !isExpanded && (
-            <div className="text-sm text-accent pl-8 font-medium">
+            <div className="text-sm text-accent pl-6 md:pl-8 font-medium">
               +{features.length - 5} more premium features
             </div>
           )}
@@ -163,8 +144,8 @@ export const ServiceCard = ({
 
         {/* Testimonial */}
         {isExpanded && testimonial && (
-          <div className="bg-gradient-to-r from-accent/5 to-accent/10 p-6 rounded-2xl mb-6 border border-accent/20">
-            <p className="text-sm italic text-muted-foreground leading-relaxed">
+          <div className="bg-gradient-to-r from-accent/5 to-accent/10 p-4 md:p-6 rounded-xl md:rounded-2xl mb-4 md:mb-6 border border-accent/20">
+            <p className="text-sm md:text-base italic text-muted-foreground leading-relaxed">
               <span className="text-accent text-lg">"</span>
               {testimonial}
               <span className="text-accent text-lg">"</span>
@@ -173,37 +154,37 @@ export const ServiceCard = ({
         )}
 
         {/* Pricing */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-4 md:mb-6 flex-wrap gap-2">
           <div className="space-y-1">
-            <div className="flex items-baseline gap-3">
-              <span className="font-playfair text-3xl font-bold bg-gradient-to-r from-accent to-accent-darker bg-clip-text text-transparent">
+            <div className="flex items-baseline gap-2 md:gap-3">
+              <span className="font-playfair text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-accent-darker bg-clip-text text-transparent">
                 ₹{price.toLocaleString()}
               </span>
               {originalPrice && originalPrice > price && (
-                <span className="text-lg text-muted-foreground line-through">
+                <span className="text-base md:text-lg text-muted-foreground line-through">
                   ₹{originalPrice.toLocaleString()}
                 </span>
               )}
             </div>
-            <div className="text-sm text-muted-foreground">Package price</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Package price</div>
           </div>
           
           {originalPrice && originalPrice > price && (
-            <div className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 px-3 py-2 rounded-full text-sm font-semibold shadow-sm">
+            <div className="bg-gradient-to-r from-green-100 to-emerald-100 text-green-800 px-2 md:px-3 py-1 md:py-2 rounded-full text-xs md:text-sm font-semibold shadow-sm">
               Save ₹{(originalPrice - price).toLocaleString()}
             </div>
           )}
         </div>
 
         {/* Action Button */}
-        <Button className="w-full bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground py-6 rounded-xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+        <Button className="w-full bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground py-4 md:py-6 rounded-xl text-base md:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 mobile-touch-target">
           Book This Package
         </Button>
 
         {/* Expand/Collapse Indicator */}
-        <div className="text-center mt-4">
-          <div className={`inline-flex items-center gap-2 text-sm text-muted-foreground transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-            <Eye className="w-4 h-4" />
+        <div className="text-center mt-3 md:mt-4">
+          <div className={`inline-flex items-center gap-2 text-xs md:text-sm text-muted-foreground transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
+            <Eye className="w-3 h-3 md:w-4 md:h-4" />
             {isExpanded ? 'Less Details' : 'More Details'}
           </div>
         </div>

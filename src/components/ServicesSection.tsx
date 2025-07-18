@@ -33,7 +33,7 @@ export const ServicesSection = () => {
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     const cards = document.querySelectorAll('[data-card-id]');
@@ -67,8 +67,7 @@ export const ServicesSection = () => {
       price: 35000,
       popular: false,
       duration: "1 hour coverage",
-      deliverables: "25 photos + teaser + reel",
-      gridSize: "standard"
+      deliverables: "25 photos + teaser + reel"
     },
     {
       id: 2,
@@ -92,8 +91,7 @@ export const ServicesSection = () => {
       price: 65000,
       popular: true,
       duration: "Extended coverage",
-      deliverables: "50 photos + videos + reels",
-      gridSize: "large"
+      deliverables: "50 photos + videos + reels"
     },
     {
       id: 3,
@@ -118,8 +116,7 @@ export const ServicesSection = () => {
       price: 100000,
       popular: false,
       duration: "Full day coverage",
-      deliverables: "100 photos + complete video suite",
-      gridSize: "standard"
+      deliverables: "100 photos + complete video suite"
     },
     {
       id: 4,
@@ -142,8 +139,7 @@ export const ServicesSection = () => {
       popular: false,
       duration: "1-2 days",
       deliverables: "50 photos + video + reels",
-      testimonial: "Patrika Gate, Jal Mahal, Hawa Mahal, Toran Dwar coverage included",
-      gridSize: "standard"
+      testimonial: "Patrika Gate, Jal Mahal, Hawa Mahal, Toran Dwar coverage included"
     },
     {
       id: 5,
@@ -165,8 +161,7 @@ export const ServicesSection = () => {
       popular: false,
       duration: "2 days",
       deliverables: "50 photos + video + raw footage",
-      testimonial: "City Palace, Lake Pichola, Saheliyon Ki Bari, Jag Mandir locations",
-      gridSize: "standard"
+      testimonial: "City Palace, Lake Pichola, Saheliyon Ki Bari, Jag Mandir locations"
     }
   ];
 
@@ -228,29 +223,30 @@ export const ServicesSection = () => {
     : services.filter(service => service.category === selectedCategory);
 
   return (
-    <section ref={sectionRef} id="services" className="py-20 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
+    <section ref={sectionRef} id="services" className="py-12 md:py-20 bg-gradient-to-br from-background via-muted/20 to-background relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Enhanced Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/10 to-accent/20 text-accent px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-creative-entrance border border-accent/20 backdrop-blur-sm">
+        <div className="text-center mb-12 md:mb-16">
+          <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/10 to-accent/20 text-accent px-4 md:px-6 py-2 md:py-3 rounded-full text-sm font-semibold mb-6 md:mb-8 animate-creative-entrance border border-accent/20 backdrop-blur-sm">
             <Award className="w-4 h-4" />
             Darkroom Production Services
           </div>
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 animate-creative-entrance bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent" style={{ animationDelay: '0.2s' }}>
+          <h2 className="font-playfair text-3xl md:text-4xl lg:text-6xl font-bold mb-4 md:mb-6 animate-creative-entrance bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent" style={{ animationDelay: '0.2s' }}>
             Wedding <span className="text-accent">Coverage</span> Packages
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-creative-entrance" style={{ animationDelay: '0.4s' }}>
+          <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-creative-entrance px-4" style={{ animationDelay: '0.4s' }}>
             Professional wedding photography and cinematography packages, plus stunning pre-wedding shoots in Jaipur and Udaipur.
           </p>
         </div>
 
-        {/* Creative Category Filter */}
-        <div className="flex flex-wrap justify-center gap-4 mb-16">
+        {/* Mobile-Optimized Category Filter */}
+        <div className="flex flex-wrap justify-center gap-3 md:gap-4 mb-12 md:mb-16 px-2">
           {serviceCategories.map((category, index) => (
             <Button
               key={category.id}
               variant={selectedCategory === category.id ? "default" : "outline"}
-              className={`px-8 py-4 rounded-2xl transition-all duration-500 animate-creative-entrance group relative overflow-hidden ${
+              size="sm"
+              className={`px-4 md:px-8 py-2 md:py-4 rounded-xl md:rounded-2xl transition-all duration-500 animate-creative-entrance group relative overflow-hidden text-sm md:text-base ${
                 selectedCategory === category.id 
                 ? 'bg-gradient-to-r from-accent to-accent-darker text-accent-foreground shadow-lg scale-105' 
                 : 'hover:border-accent/50 hover:bg-accent/5 hover:scale-105 border-2'
@@ -258,7 +254,7 @@ export const ServicesSection = () => {
               style={{ animationDelay: `${index * 0.1}s` }}
               onClick={() => setSelectedCategory(category.id)}
             >
-              <category.icon className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
+              <category.icon className="w-4 h-4 md:w-5 md:h-5 mr-2 group-hover:rotate-12 transition-transform duration-300" />
               {category.name}
               {selectedCategory === category.id && (
                 <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent-darker/20 animate-pulse" />
@@ -267,16 +263,14 @@ export const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Dynamic Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 mb-20 auto-rows-max">
+        {/* Mobile-First Responsive Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 mb-16 md:mb-20">
           {filteredServices.map((service, index) => (
             <div
               key={service.id}
               data-card-id={service.id}
               className={`${
-                service.gridSize === 'large' ? 'md:col-span-2 xl:col-span-1' : ''
-              } ${
-                visibleCards.includes(service.id) ? 'animate-creative-card-entrance' : 'opacity-0'
+                visibleCards.includes(service.id) ? 'animate-mobile-card-entrance' : 'opacity-0'
               }`}
               style={{ animationDelay: `${index * 0.15}s` }}
             >
@@ -289,58 +283,58 @@ export const ServicesSection = () => {
           ))}
         </div>
 
-        {/* Modern Payment Terms */}
-        <div className="bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 rounded-3xl p-8 border border-border/50 mb-20 backdrop-blur-sm">
-          <h3 className="font-playfair text-3xl font-bold mb-8 text-center bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+        {/* Mobile-Optimized Payment Terms */}
+        <div className="bg-gradient-to-r from-muted/50 via-muted/30 to-muted/50 rounded-2xl md:rounded-3xl p-6 md:p-8 border border-border/50 mb-16 md:mb-20 backdrop-blur-sm">
+          <h3 className="font-playfair text-2xl md:text-3xl font-bold mb-6 md:mb-8 text-center bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
             Payment Structure
           </h3>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="bg-card/50 rounded-2xl p-6 border border-border/30 backdrop-blur-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+            <div className="bg-card/50 rounded-xl md:rounded-2xl p-4 md:p-6 border border-border/30 backdrop-blur-sm">
               <h4 className="font-semibold text-lg mb-4 text-accent">Wedding Packages</h4>
-              <ul className="space-y-3 text-muted-foreground">
+              <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-muted-foreground">
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   ₹5,000 booking fee to secure date
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   50% due before the shoot
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   25% upon event completion
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   25% upon final delivery
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   All prices for one day coverage only
                 </li>
               </ul>
             </div>
-            <div className="bg-card/50 rounded-2xl p-6 border border-border/30 backdrop-blur-sm">
+            <div className="bg-card/50 rounded-xl md:rounded-2xl p-4 md:p-6 border border-border/30 backdrop-blur-sm">
               <h4 className="font-semibold text-lg mb-4 text-accent">Pre-Wedding Shoots</h4>
-              <ul className="space-y-3 text-muted-foreground">
+              <ul className="space-y-2 md:space-y-3 text-sm md:text-base text-muted-foreground">
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   ₹5,000 advance booking
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   Balance on event day
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   Additional reels: ₹500 each
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   Extra photos (Udaipur): ₹1,000 for 10
                 </li>
                 <li className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-accent rounded-full" />
+                  <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0" />
                   Travel beyond 30km: ₹1,000 extra
                 </li>
               </ul>
@@ -350,15 +344,15 @@ export const ServicesSection = () => {
 
         {/* Creative Process Timeline */}
         <div className="relative">
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/10 to-accent/20 text-accent px-6 py-3 rounded-full text-sm font-semibold mb-8 animate-creative-entrance border border-accent/20 backdrop-blur-sm">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="inline-flex items-center gap-2 bg-gradient-to-r from-accent/10 to-accent/20 text-accent px-4 md:px-6 py-2 md:py-3 rounded-full text-sm font-semibold mb-6 md:mb-8 animate-creative-entrance border border-accent/20 backdrop-blur-sm">
               <Sparkles className="w-4 h-4" />
               Our Creative Process
             </div>
-            <h3 className="font-playfair text-4xl md:text-5xl font-bold mb-6 animate-creative-entrance bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
+            <h3 className="font-playfair text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6 animate-creative-entrance bg-gradient-to-r from-foreground via-accent to-foreground bg-clip-text text-transparent">
               From Booking to <span className="text-accent">Delivery</span>
             </h3>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto animate-creative-entrance">
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto animate-creative-entrance px-4">
               Our streamlined process ensures professional coverage and timely delivery of your precious memories.
             </p>
           </div>
@@ -366,24 +360,24 @@ export const ServicesSection = () => {
           <ProcessTimeline steps={processSteps} />
         </div>
 
-        {/* Enhanced CTA Section */}
-        <div className="text-center mt-20 animate-creative-entrance">
-          <div className="relative bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-3xl p-12 border border-accent/20 backdrop-blur-sm overflow-hidden">
+        {/* Mobile-Enhanced CTA Section */}
+        <div className="text-center mt-16 md:mt-20 animate-creative-entrance">
+          <div className="relative bg-gradient-to-r from-accent/5 via-accent/10 to-accent/5 rounded-2xl md:rounded-3xl p-8 md:p-12 border border-accent/20 backdrop-blur-sm overflow-hidden">
             <div className="absolute inset-0 bg-grid-pattern opacity-5" />
             <div className="relative z-10">
-              <h4 className="font-playfair text-3xl font-bold mb-6 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
+              <h4 className="font-playfair text-2xl md:text-3xl font-bold mb-4 md:mb-6 bg-gradient-to-r from-foreground to-accent bg-clip-text text-transparent">
                 Ready to Book Your Package?
               </h4>
-              <p className="text-muted-foreground mb-8 max-w-2xl mx-auto text-lg">
+              <p className="text-muted-foreground mb-6 md:mb-8 max-w-2xl mx-auto text-base md:text-lg px-4">
                 Secure your date with just ₹5,000 advance booking. Let's create beautiful memories together.
               </p>
-              <div className="flex flex-col sm:flex-row gap-6 justify-center">
-                <Button size="lg" className="bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground px-10 py-6 rounded-2xl text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
-                  <Calendar className="w-6 h-6 mr-3" />
+              <div className="flex flex-col sm:flex-row gap-4 md:gap-6 justify-center px-4">
+                <Button size="lg" className="bg-gradient-to-r from-accent to-accent-darker hover:from-accent-darker hover:to-accent-darkest text-accent-foreground px-6 md:px-10 py-4 md:py-6 rounded-xl md:rounded-2xl text-base md:text-lg font-semibold shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105">
+                  <Calendar className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3" />
                   Book Your Date
                 </Button>
-                <Button size="lg" variant="outline" className="border-2 border-accent text-accent hover:bg-accent/10 px-10 py-6 rounded-2xl text-lg font-semibold transition-all duration-300 hover:scale-105">
-                  <MessageCircle className="w-6 h-6 mr-3" />
+                <Button size="lg" variant="outline" className="border-2 border-accent text-accent hover:bg-accent/10 px-6 md:px-10 py-4 md:py-6 rounded-xl md:rounded-2xl text-base md:text-lg font-semibold transition-all duration-300 hover:scale-105">
+                  <MessageCircle className="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3" />
                   Get Custom Quote
                 </Button>
               </div>
