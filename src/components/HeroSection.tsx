@@ -36,33 +36,41 @@ export const HeroSection = () => {
       {/* Lens Effect Overlay */}
       <div className="absolute inset-0 z-20 bg-gradient-lens opacity-30" />
 
+      {/* Floating Elements */}
+      <div className="absolute inset-0 z-20 pointer-events-none">
+        <div className="floating absolute top-20 left-10 w-2 h-2 bg-accent/30 rounded-full"></div>
+        <div className="floating absolute top-40 right-20 w-3 h-3 bg-accent/20 rounded-full"></div>
+        <div className="floating absolute bottom-40 left-20 w-4 h-4 bg-accent/25 rounded-full"></div>
+        <div className="floating absolute bottom-20 right-10 w-2 h-2 bg-accent/30 rounded-full"></div>
+      </div>
+
       {/* Content */}
       <div className="relative z-30 h-full flex items-center justify-center text-center text-white">
         <div className="max-w-4xl px-4 animate-fade-in-up">
-          {/* Aperture Decoration */}
-          <div className="aperture-border w-20 h-20 mx-auto mb-8 flex items-center justify-center animate-aperture-spin">
-            <Camera className="w-8 h-8 text-accent" />
+          {/* Enhanced Aperture Decoration */}
+          <div className="aperture-border w-24 h-24 mx-auto mb-8 flex items-center justify-center animate-aperture-spin floating">
+            <Camera className="w-10 h-10 text-accent animate-bounce-gentle" />
           </div>
           
-          <h1 className="font-playfair text-5xl md:text-7xl font-bold mb-6 tracking-wide">
+          <h1 className="font-playfair text-5xl md:text-7xl font-bold mb-6 tracking-wide text-gradient text-shadow-glow">
             Darkroom Production
           </h1>
           
-          <div className="h-24 mb-8">
-            <h2 className="font-inter text-xl md:text-2xl font-light mb-2 transition-all duration-500">
+          <div className="h-32 mb-8 glass-effect rounded-lg p-6 mx-auto max-w-2xl backdrop-blur-sm border border-white/20">
+            <h2 className="font-inter text-xl md:text-2xl font-light mb-3 transition-all duration-500 typewriter">
               {heroImages[currentSlide].title}
             </h2>
-            <p className="text-accent font-medium">
+            <p className="text-accent font-medium text-lg animate-fade-in-scale">
               {heroImages[currentSlide].subtitle}
             </p>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button variant="outline" size="lg" className="bg-white/10 border-white text-white hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-300">
-              <Aperture className="w-5 h-5 mr-2" />
+            <Button variant="outline" size="lg" className="magnetic-hover animated-border bg-white/10 border-white text-white hover:bg-accent hover:text-accent-foreground hover:border-accent transition-all duration-300 group">
+              <Aperture className="w-5 h-5 mr-2 group-hover:animate-aperture-spin" />
               View Portfolio
             </Button>
-            <Button size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens">
+            <Button size="lg" className="magnetic-hover bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens darkroom-glow">
               Contact Us
             </Button>
           </div>

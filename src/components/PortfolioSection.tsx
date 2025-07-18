@@ -79,26 +79,27 @@ export const PortfolioSection = () => {
   return (
     <section id="portfolio" className="py-20 bg-muted/30">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
-            Our <span className="text-accent">Portfolio</span>
+        <div className="text-center mb-16 animate-fade-in-up">
+          <h2 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-gradient">
+            Our <span className="text-accent text-shadow-glow">Portfolio</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed animate-fade-in-scale" style={{ animationDelay: '0.3s' }}>
             Explore our collection of captured moments, each telling a unique story of love, joy, and celebration.
           </p>
 
-          {/* Category Filter */}
-          <div className="flex flex-wrap justify-center gap-2">
-            {categories.map((category) => (
+          {/* Enhanced Category Filter */}
+          <div className="flex flex-wrap justify-center gap-3 animate-slide-up" style={{ animationDelay: '0.5s' }}>
+            {categories.map((category, index) => (
               <Button
                 key={category.id}
                 variant={activeCategory === category.id ? "default" : "outline"}
                 onClick={() => setActiveCategory(category.id)}
                 className={`${
                   activeCategory === category.id 
-                    ? 'bg-accent text-accent-foreground' 
-                    : 'hover:bg-accent/10 hover:text-accent'
-                } transition-all duration-300`}
+                    ? 'bg-accent text-accent-foreground shadow-lens darkroom-glow' 
+                    : 'hover:bg-accent/10 hover:text-accent glass-effect'
+                } transition-all duration-300 magnetic-hover font-medium`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {category.name}
               </Button>
@@ -106,53 +107,53 @@ export const PortfolioSection = () => {
           </div>
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Enhanced Portfolio Grid */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {filteredItems.map((item, index) => (
             <Card 
               key={item.id}
-              className="group overflow-hidden hover:shadow-photo transition-all duration-500 lens-effect animate-fade-in-up"
+              className="group overflow-hidden hover:shadow-photo transition-all duration-700 lens-effect animate-fade-in-up magnetic-hover glass-effect darkroom-glow"
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <div className="relative overflow-hidden">
                 <img 
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-64 object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-64 object-cover transition-all duration-700 group-hover:scale-110 film-grain"
                 />
                 
-                {/* Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  <div className="flex space-x-3">
+                {/* Enhanced Overlay */}
+                <div className="absolute inset-0 bg-gradient-to-br from-black/70 via-accent/20 to-black/70 opacity-0 group-hover:opacity-100 transition-all duration-500 flex items-center justify-center">
+                  <div className="flex space-x-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="bg-white/20 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm"
+                      className="glass-effect hover:bg-accent hover:text-accent-foreground backdrop-blur-sm darkroom-glow magnetic-hover"
                     >
-                      <Eye className="w-4 h-4" />
+                      <Eye className="w-5 h-5" />
                     </Button>
                     {item.type === 'video' && (
                       <Button
                         size="icon"
                         variant="secondary"
-                        className="bg-white/20 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm"
+                        className="glass-effect hover:bg-accent hover:text-accent-foreground backdrop-blur-sm darkroom-glow magnetic-hover"
                       >
-                        <Play className="w-4 h-4" />
+                        <Play className="w-5 h-5" />
                       </Button>
                     )}
                     <Button
                       size="icon"
                       variant="secondary"
-                      className="bg-white/20 hover:bg-accent hover:text-accent-foreground backdrop-blur-sm"
+                      className="glass-effect hover:bg-accent hover:text-accent-foreground backdrop-blur-sm darkroom-glow magnetic-hover"
                     >
-                      <Share className="w-4 h-4" />
+                      <Share className="w-5 h-5" />
                     </Button>
                   </div>
                 </div>
 
-                {/* Type Badge */}
+                {/* Enhanced Type Badge */}
                 {item.type === 'video' && (
-                  <div className="absolute top-3 right-3 bg-accent text-accent-foreground px-2 py-1 rounded-full text-xs font-medium">
+                  <div className="absolute top-3 right-3 glass-effect bg-accent/90 text-accent-foreground px-3 py-1 rounded-full text-xs font-bold backdrop-blur-sm animate-bounce-gentle">
                     Video
                   </div>
                 )}
@@ -176,11 +177,11 @@ export const PortfolioSection = () => {
           ))}
         </div>
 
-        {/* Load More */}
-        <div className="text-center mt-12">
+        {/* Enhanced Load More */}
+        <div className="text-center mt-16">
           <Button 
             size="lg"
-            className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens"
+            className="bg-accent text-accent-foreground hover:bg-accent/90 shadow-lens darkroom-glow magnetic-hover animated-border font-bold px-8 py-4"
           >
             Load More Portfolio
           </Button>

@@ -132,23 +132,34 @@
 }
 
 @layer components {
-  /* Photography-specific component styles */
+  /* Advanced Photography-specific component styles */
   .lens-effect {
     @apply relative overflow-hidden;
   }
 
   .lens-effect::before {
     content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-transparent via-accent/20 to-transparent 
-           opacity-0 transition-opacity duration-300 pointer-events-none;
+    @apply absolute inset-0 bg-gradient-to-br from-transparent via-accent/30 to-transparent 
+           opacity-0 transition-all duration-500 pointer-events-none scale-0;
+    transform-origin: center;
   }
 
   .lens-effect:hover::before {
-    @apply opacity-100;
+    @apply opacity-100 scale-100;
   }
 
   .photo-frame {
-    @apply relative overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:scale-105;
+    @apply relative overflow-hidden rounded-lg shadow-lg transition-all duration-700 hover:scale-105 hover:rotate-1;
+    filter: contrast(1.1) saturate(1.2);
+  }
+
+  .photo-frame::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-tr from-accent/20 to-transparent opacity-0 transition-opacity duration-500;
+  }
+
+  .photo-frame:hover::after {
+    @apply opacity-100;
   }
 
   .darkroom-glow {
@@ -157,8 +168,8 @@
 
   .darkroom-glow::after {
     content: '';
-    @apply absolute inset-0 rounded-lg shadow-2xl opacity-0 transition-opacity duration-300;
-    box-shadow: 0 0 30px hsl(var(--accent) / 0.5);
+    @apply absolute inset-0 rounded-lg shadow-2xl opacity-0 transition-all duration-500;
+    box-shadow: 0 0 40px hsl(var(--accent) / 0.6), 0 0 80px hsl(var(--accent) / 0.3);
   }
 
   .darkroom-glow:hover::after {
@@ -167,14 +178,17 @@
 
   .film-grain {
     background-image: 
-      radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.1) 1px, transparent 0);
-    background-size: 20px 20px;
+      radial-gradient(circle at 1px 1px, hsl(var(--foreground) / 0.15) 1px, transparent 0),
+      radial-gradient(circle at 15px 15px, hsl(var(--accent) / 0.05) 1px, transparent 0);
+    background-size: 20px 20px, 25px 25px;
+    animation: grain 8s steps(10) infinite;
   }
 
   .aperture-border {
-    border: 2px solid hsl(var(--accent));
+    border: 3px solid hsl(var(--accent));
     border-radius: 50%;
     position: relative;
+    background: radial-gradient(circle, hsl(var(--accent) / 0.1), transparent 70%);
   }
 
   .aperture-border::before {
@@ -185,7 +199,109 @@
     width: 60%;
     height: 60%;
     transform: translate(-50%, -50%);
-    border: 1px solid hsl(var(--accent) / 0.5);
+    border: 2px solid hsl(var(--accent) / 0.7);
     border-radius: 50%;
+    animation: aperture-pulse 3s ease-in-out infinite;
+  }
+
+  .aperture-border::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 30%;
+    height: 30%;
+    transform: translate(-50%, -50%);
+    border: 1px solid hsl(var(--accent) / 0.4);
+    border-radius: 50%;
+  }
+
+  /* Creative text effects */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--foreground)), hsl(var(--accent)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-shadow-glow {
+    text-shadow: 0 0 20px hsl(var(--accent) / 0.5);
+  }
+
+  /* Floating elements */
+  .floating {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .floating:nth-child(2n) {
+    animation-delay: -2s;
+    animation-duration: 8s;
+  }
+
+  .floating:nth-child(3n) {
+    animation-delay: -4s;
+    animation-duration: 7s;
+  }
+
+  /* Parallax effect */
+  .parallax {
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+  }
+
+  .parallax-element {
+    transform: translateZ(-1px) scale(2);
+  }
+
+  /* Advanced hover effects */
+  .magnetic-hover {
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  }
+
+  .magnetic-hover:hover {
+    transform: translateY(-8px) scale(1.02);
+  }
+
+  /* Animated borders */
+  .animated-border {
+    position: relative;
+    background: linear-gradient(hsl(var(--background)), hsl(var(--background))) padding-box,
+                linear-gradient(45deg, hsl(var(--accent)), hsl(var(--accent) / 0.5), hsl(var(--accent))) border-box;
+    border: 2px solid transparent;
+    border-radius: 12px;
+  }
+
+  .animated-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(45deg, hsl(var(--accent)), transparent, hsl(var(--accent)));
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+    animation: border-spin 3s linear infinite;
+  }
+
+  /* Glass morphism effect */
+  .glass-effect {
+    background: hsl(var(--background) / 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(var(--border) / 0.5);
+  }
+
+  /* Spotlight effect */
+  .spotlight {
+    background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), 
+                hsl(var(--accent) / 0.1), transparent 40%);
+  }
+
+  /* Typewriter effect */
+  .typewriter {
+    overflow: hidden;
+    border-right: 3px solid hsl(var(--accent));
+    white-space: nowrap;
+    animation: typewriter 4s steps(40) infinite alternate,
+               blink-caret 1s step-end infinite;
   }
 }
