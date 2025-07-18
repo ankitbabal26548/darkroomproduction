@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect, useRef } from 'react';
 import { Button } from '@/components/ui/button';
 import { PortfolioCard } from '@/components/PortfolioCard';
 import { PortfolioLightbox } from '@/components/PortfolioLightbox';
@@ -8,6 +8,26 @@ export const PortfolioSection = () => {
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [currentLightboxIndex, setCurrentLightboxIndex] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Intersection Observer for animations
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (sectionRef.current) {
+      observer.observe(sectionRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const categories = [
     { id: 'all', name: 'All Work', count: 12 },
@@ -192,63 +212,101 @@ export const PortfolioSection = () => {
     );
   };
 
+  // Dynamic grid sizing for masonry effect
+  const getGridItemClass = (index: number, item: any) => {
+    const classes = ['portfolio-grid-item'];
+    
+    // Mobile: All items single column
+    // Tablet and up: Dynamic sizing
+    if (item.featured) {
+      classes.push('sm:col-span-2 sm:row-span-2'); // Large featured items
+    } else if (index % 5 === 2) {
+      classes.push('sm:col-span-2'); // Wide items
+    } else if (index % 7 === 1) {
+      classes.push('sm:row-span-2'); // Tall items
+    }
+    
+    return classes.join(' ');
+  };
+
   return (
-    <section id="portfolio" className="py-20">
+    <section id="portfolio" className="py-12 sm:py-20 overflow-hidden" ref={sectionRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground">
-            Our <span className="text-accent">Portfolio</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
+        {/* Enhanced Header with Mobile-First Design */}
+        <div className="text-center mb-12 sm:mb-16">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/10 via-transparent to-accent/10 transform -skew-y-1 rounded-3xl" />
+            <h2 className={`font-playfair text-3xl sm:text-4xl md:text-6xl font-bold mb-4 sm:mb-6 text-foreground relative z-10 transition-all duration-1000 ${
+              isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-8'
+            }`}>
+              Our <span className="text-gradient bg-gradient-to-r from-accent to-accent-lighter bg-clip-text text-transparent">Portfolio</span>
+            </h2>
+          </div>
+          <p className={`text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto mb-8 sm:mb-12 leading-relaxed transition-all duration-1000 delay-200 ${
+            isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-8'
+          }`}>
             Discover our collection of captured moments, each telling a unique story of love, joy, and celebration. 
             Every frame is crafted with passion and artistic vision.
           </p>
 
-          {/* Category Filter */}
-          <CategoryFilter 
-            categories={categories}
-            activeCategory={activeCategory}
-            onCategoryChange={setActiveCategory}
-          />
+          {/* Enhanced Category Filter */}
+          <div className={`transition-all duration-1000 delay-400 ${
+            isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-8'
+          }`}>
+            <CategoryFilter 
+              categories={categories}
+              activeCategory={activeCategory}
+              onCategoryChange={setActiveCategory}
+            />
+          </div>
         </div>
 
-        {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        {/* Mobile-First Masonry Grid */}
+        <div className="portfolio-masonry-grid">
           {filteredItems.map((item, index) => (
             <div
               key={item.id}
-              className="portfolio-item-animate"
-              style={{ animationDelay: `${index * 50}ms` }}
+              className={`${getGridItemClass(index, item)} transition-all duration-700 ${
+                isVisible ? 'animate-portfolio-stagger opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+              }`}
+              style={{ 
+                animationDelay: `${(index * 100) + 600}ms`,
+                transformOrigin: 'center bottom'
+              }}
             >
               <PortfolioCard
                 item={item}
                 onView={() => openLightbox(index)}
+                className="h-full"
               />
             </div>
           ))}
         </div>
 
-        {/* Load More Section */}
-        <div className="text-center mt-16">
-          <div className="mb-8">
+        {/* Enhanced Load More Section */}
+        <div className={`text-center mt-12 sm:mt-16 transition-all duration-1000 delay-1000 ${
+          isVisible ? 'animate-slide-up opacity-100' : 'opacity-0 translate-y-8'
+        }`}>
+          <div className="mb-6 sm:mb-8">
             <div className="inline-flex items-center space-x-4 text-muted-foreground">
-              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent w-20" />
-              <span className="text-sm font-medium">Showing {filteredItems.length} of 50+ projects</span>
-              <div className="h-px bg-gradient-to-r from-transparent via-border to-transparent w-20" />
+              <div className="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent w-16 sm:w-20" />
+              <span className="text-sm font-medium bg-card px-4 py-2 rounded-full border border-border">
+                Showing {filteredItems.length} of 50+ projects
+              </span>
+              <div className="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent w-16 sm:w-20" />
             </div>
           </div>
           
           <Button 
             size="lg"
-            className="bg-accent hover:bg-accent-darker text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-8 py-3"
+            className="bg-accent hover:bg-accent-darker text-accent-foreground shadow-lg hover:shadow-xl transition-all duration-300 px-6 sm:px-8 py-3 rounded-xl hover:scale-105 active:scale-95 touch-manipulation"
           >
             Load More Projects
           </Button>
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Enhanced Lightbox with Fixed Z-Index */}
       <PortfolioLightbox
         isOpen={lightboxOpen}
         onClose={() => setLightboxOpen(false)}

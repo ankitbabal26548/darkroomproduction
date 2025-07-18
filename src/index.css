@@ -159,6 +159,61 @@
     }
   }
 
+  /* New Mobile-First Portfolio Animations */
+  @keyframes portfolio-stagger {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  @keyframes gentle-pulse {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.05);
+    }
+  }
+
+  @keyframes slide-up-mobile {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes masonry-reveal {
+    from {
+      opacity: 0;
+      transform: translateY(40px) rotateX(15deg);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) rotateX(0deg);
+    }
+  }
+
+  @keyframes mobile-card-tap {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(0.95);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
   /* Clean Minimal Animations */
   @keyframes fade-in-up {
     from {
@@ -310,6 +365,61 @@
 
   .animate-glassmorphism-pulse {
     animation: glassmorphism-pulse 3s ease-in-out infinite;
+  }
+
+  /* New Mobile-First Portfolio Classes */
+  .animate-portfolio-stagger {
+    animation: portfolio-stagger 0.8s ease-out forwards;
+  }
+
+  .animate-gentle-pulse {
+    animation: gentle-pulse 3s ease-in-out infinite;
+  }
+
+  .animate-slide-up-mobile {
+    animation: slide-up-mobile 0.6s ease-out forwards;
+  }
+
+  .animate-masonry-reveal {
+    animation: masonry-reveal 0.8s ease-out forwards;
+  }
+
+  .animate-mobile-tap {
+    animation: mobile-card-tap 0.2s ease-out;
+  }
+
+  /* Mobile-First Portfolio Grid */
+  .portfolio-masonry-grid {
+    @apply grid gap-4 sm:gap-6;
+    grid-template-columns: 1fr;
+  }
+
+  @media (min-width: 640px) {
+    .portfolio-masonry-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .portfolio-masonry-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .portfolio-masonry-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .portfolio-grid-item {
+    @apply transition-all duration-500 ease-out;
+  }
+
+  /* Mobile Touch Optimizations */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
   /* Professional Shadow Effects */
@@ -514,5 +624,24 @@
 
   .focus-ring:focus {
     @apply ring-2 ring-accent/30 ring-offset-2;
+  }
+
+  /* Mobile Optimizations */
+  @media (max-width: 640px) {
+    .portfolio-masonry-grid {
+      gap: 1rem;
+    }
+    
+    .portfolio-grid-item {
+      min-height: 250px;
+    }
+  }
+
+  /* High DPI optimizations */
+  @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .portfolio-card img {
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
   }
 }
