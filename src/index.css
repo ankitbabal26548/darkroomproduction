@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
 
 @tailwind base;
@@ -519,5 +518,255 @@
     .service-card-3d:hover {
       transform: scale(1.02);
     }
+  }
+
+  /* Enhanced Contact Section Animations */
+  .magnetic-contact-card {
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .magnetic-contact-card:hover {
+    transform: perspective(1000px) rotateX(2deg) scale(1.03);
+  }
+
+  /* Lens Focus Effect for Form Inputs */
+  .lens-focus-effect {
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .lens-focus-effect:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 0 3px hsl(var(--accent) / 0.3), 0 0 20px hsl(var(--accent) / 0.2);
+  }
+
+  /* Aperture Reveal Animation */
+  @keyframes aperture-reveal {
+    0% {
+      opacity: 0;
+      transform: scale(0.8);
+      clip-path: circle(0% at 50% 50%);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(0.9);
+      clip-path: circle(50% at 50% 50%);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+      clip-path: circle(100% at 50% 50%);
+    }
+  }
+
+  .animate-aperture-reveal {
+    animation: aperture-reveal 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+
+  /* Floating Particle Animation */
+  @keyframes floating-particle {
+    0%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(0deg); 
+      opacity: 0.7;
+    }
+    25% {
+      transform: translateY(-15px) translateX(5px) rotate(90deg);
+      opacity: 1;
+    }
+    50% { 
+      transform: translateY(-30px) translateX(-5px) rotate(180deg); 
+      opacity: 0.8;
+    }
+    75% {
+      transform: translateY(-15px) translateX(-10px) rotate(270deg);
+      opacity: 0.9;
+    }
+  }
+
+  .animate-floating-particle {
+    animation: floating-particle 8s ease-in-out infinite;
+  }
+
+  /* Film Strip Dots Effect */
+  .film-strip-dots {
+    position: relative;
+  }
+
+  .film-strip-dots::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background-image: repeating-linear-gradient(
+      to right,
+      hsl(var(--accent)) 0px,
+      hsl(var(--accent)) 10px,
+      transparent 10px,
+      transparent 20px
+    );
+    transform: translateY(-50%);
+  }
+
+  /* Lens Flare Hover Effect */
+  .lens-flare-hover {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .lens-flare-hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    transition: left 0.5s ease-in-out;
+  }
+
+  .lens-flare-hover:hover::before {
+    left: 100%;
+  }
+
+  /* Darkroom Atmosphere Effect */
+  .darkroom-atmosphere {
+    background: linear-gradient(135deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--muted)) 50%, 
+      hsl(var(--darkroom-red) / 0.05) 100%
+    );
+    border: 1px solid hsl(var(--accent) / 0.2);
+  }
+
+  /* Shimmer Animation for Premium Card */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%) skewX(-12deg);
+    }
+    100% {
+      transform: translateX(200%) skewX(-12deg);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 3s infinite;
+  }
+
+  /* Enhanced Shadow Glow */
+  .shadow-glow {
+    box-shadow: 
+      0 0 20px hsl(var(--accent) / 0.3),
+      0 0 40px hsl(var(--accent) / 0.2),
+      0 8px 25px hsl(var(--primary) / 0.1);
+  }
+
+  /* Text Gradient Effect */
+  .text-gradient {
+    background: linear-gradient(135deg, hsl(var(--accent)), hsl(var(--accent-lighter)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Professional Glow Animation */
+  @keyframes professional-glow {
+    0%, 100% {
+      box-shadow: 0 0 5px hsl(var(--accent) / 0.3);
+    }
+    50% {
+      box-shadow: 
+        0 0 20px hsl(var(--accent) / 0.4),
+        0 0 30px hsl(var(--accent) / 0.3),
+        0 0 40px hsl(var(--accent) / 0.2);
+    }
+  }
+
+  .animate-professional-glow {
+    animation: professional-glow 3s ease-in-out infinite;
+  }
+
+  /* Film Development Animation */
+  @keyframes film-develop {
+    0% {
+      opacity: 0;
+      filter: brightness(0) contrast(0);
+    }
+    25% {
+      opacity: 0.3;
+      filter: brightness(0.3) contrast(0.3);
+    }
+    50% {
+      opacity: 0.6;
+      filter: brightness(0.6) contrast(0.6);
+    }
+    75% {
+      opacity: 0.8;
+      filter: brightness(0.8) contrast(0.8);
+    }
+    100% {
+      opacity: 1;
+      filter: brightness(1) contrast(1);
+    }
+  }
+
+  .animate-film-develop {
+    animation: film-develop 2s ease-in-out;
+  }
+
+  /* Contact Form Step Transition */
+  .form-step-transition {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced Breathing Animation for Larger Elements */
+  @keyframes breathing-enhanced {
+    0%, 100% { 
+      transform: scale(1) rotate(0deg);
+      opacity: 0.8;
+    }
+    50% { 
+      transform: scale(1.05) rotate(1deg);
+      opacity: 1;
+    }
+  }
+
+  .animate-breathing-enhanced {
+    animation: breathing-enhanced 4s ease-in-out infinite;
+  }
+
+  /* Interactive Social Icons */
+  .social-icon-hover {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .social-icon-hover:hover {
+    transform: translateY(-3px) scale(1.1);
+    filter: drop-shadow(0 10px 15px hsl(var(--accent) / 0.3));
+  }
+
+  /* Camera Aperture Loading */
+  @keyframes aperture-spin {
+    0% {
+      transform: rotate(0deg);
+      clip-path: circle(10% at 50% 50%);
+    }
+    50% {
+      clip-path: circle(50% at 50% 50%);
+    }
+    100% {
+      transform: rotate(360deg);
+      clip-path: circle(10% at 50% 50%);
+    }
+  }
+
+  .animate-aperture-spin {
+    animation: aperture-spin 2s linear infinite;
   }
 }
