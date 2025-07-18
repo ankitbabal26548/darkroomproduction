@@ -175,6 +175,28 @@
     }
   }
 
+  @keyframes slide-in {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slide-up {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
   .animate-fade-in-up {
     animation: fade-in-up 0.6s ease-out forwards;
   }
@@ -185,6 +207,14 @@
 
   .animate-scale-in {
     animation: scale-in 0.4s ease-out forwards;
+  }
+
+  .animate-slide-in {
+    animation: slide-in 0.5s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 0.6s ease-out forwards;
   }
 
   .portfolio-item-animate {
@@ -266,6 +296,12 @@
 
   .service-card:hover {
     transform: translateY(-4px);
+  }
+
+  /* Contact Cards */
+  .contact-card {
+    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+    @apply border border-border/50 hover:border-accent/30;
   }
 
   /* Form Enhancement */
@@ -358,5 +394,22 @@
 
   .category-btn:not(.active) {
     @apply bg-background text-muted-foreground hover:bg-accent/5;
+  }
+
+  /* Clean Transition Effects */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+  }
+
+  .hover-scale:hover {
+    transform: scale(1.02);
+  }
+
+  .focus-ring:focus {
+    @apply ring-2 ring-accent/30 ring-offset-2;
   }
 }
