@@ -151,7 +151,8 @@ export default {
 				'float-particles': 'float-particles 20s linear infinite',
 				'slide-in-left': 'slide-in-left 0.6s ease-out',
 				'slide-in-right': 'slide-in-right 0.6s ease-out',
-				'fade-in-up': 'fade-in-up 0.6s ease-out'
+				'fade-in-up': 'fade-in-up 0.6s ease-out',
+				'spin-slow': 'spin 8s linear infinite'
 			}
 		}
 	},

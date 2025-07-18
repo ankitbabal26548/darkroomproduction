@@ -31,24 +31,45 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-background/95 via-background/90 to-background/85 backdrop-blur-lg border-b border-accent/20">
-      {/* Floating Film Particles */}
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-background/98 via-background/95 to-background/90 backdrop-blur-xl border-b border-accent/30 shadow-[0_8px_32px_rgba(0,0,0,0.1)]">
+      {/* Enhanced Floating Film Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="film-particles"></div>
+        <div className="film-particles opacity-60" style={{ animationDelay: '1s' }}></div>
+        <div className="film-particles opacity-40" style={{ animationDelay: '2s' }}></div>
+        
+        {/* Dynamic Lens Flare Following Mouse */}
         <div 
-          className="lens-flare"
+          className="lens-flare opacity-70"
           style={{
-            left: mousePosition.x - 100,
-            top: mousePosition.y - 100,
+            left: mousePosition.x - 150,
+            top: mousePosition.y - 150,
+            filter: 'blur(1px)',
           }}
         ></div>
+        <div 
+          className="lens-flare opacity-40"
+          style={{
+            left: mousePosition.x - 80,
+            top: mousePosition.y - 80,
+            animationDelay: '0.3s',
+          }}
+        ></div>
+        
+        {/* Floating Light Orbs */}
+        <div className="absolute top-4 left-1/4 w-2 h-2 bg-accent/20 rounded-full animate-pulse"></div>
+        <div className="absolute top-8 right-1/3 w-1 h-1 bg-primary/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute bottom-4 left-1/3 w-1.5 h-1.5 bg-accent/15 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      {/* Aperture Pattern Background */}
-      <div className="absolute inset-0 aperture-pattern opacity-5"></div>
+      {/* Enhanced Aperture Pattern Background */}
+      <div className="absolute inset-0 aperture-pattern opacity-8"></div>
+      
+      {/* Subtle Grid Overlay */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[length:20px_20px] opacity-30"></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-24">{/* Increased height */}
           
           {/* Left Navigation */}
           <div className="hidden lg:flex items-center space-x-8 flex-1">
@@ -68,19 +89,38 @@ export const Navbar = () => {
             ))}
           </div>
 
-          {/* Center Logo */}
-          <div className="flex items-center justify-center flex-shrink-0 mx-8">
-            <div className="logo-container group">
-              <div className="aperture-ring"></div>
-              <div className="logo-wrapper">
+          {/* Enhanced Center Logo */}
+          <div className="flex items-center justify-center flex-shrink-0 mx-8 relative">
+            <div className="logo-container group relative">
+              {/* Outer Ring Effects */}
+              <div className="absolute inset-0 rounded-full bg-gradient-to-r from-accent/20 via-primary/20 to-accent/20 animate-spin-slow opacity-0 group-hover:opacity-100 transition-opacity duration-1000" style={{ width: '120px', height: '120px', left: '-10px', top: '-10px' }}></div>
+              
+              {/* Enhanced Aperture Ring */}
+              <div className="aperture-ring scale-125"></div>
+              <div className="aperture-ring scale-110 opacity-60 animate-pulse"></div>
+              
+              {/* Logo Wrapper with Enhanced Effects */}
+              <div className="logo-wrapper relative z-10">
                 <img 
                   src={darkroomLogo} 
                   alt="Darkroom Production" 
-                  className="w-16 h-16 object-contain darkroom-glow transition-transform duration-700 group-hover:scale-110 group-hover:rotate-12"
+                  className="w-24 h-24 object-contain darkroom-glow transition-all duration-700 group-hover:scale-125 group-hover:rotate-12 drop-shadow-2xl"
                 />
-                <div className="film-grain-overlay"></div>
+                <div className="film-grain-overlay opacity-30"></div>
+                
+                {/* Rotating Border Effect */}
+                <div className="absolute inset-0 rounded-full border-2 border-gradient-to-r from-transparent via-accent/40 to-transparent animate-spin-slow"></div>
               </div>
-              <div className="lens-flare-ring"></div>
+              
+              {/* Enhanced Lens Flare Ring */}
+              <div className="lens-flare-ring opacity-80"></div>
+              <div className="lens-flare-ring scale-125 opacity-40 animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+              
+              {/* Floating Particles Around Logo */}
+              <div className="absolute -top-2 -left-2 w-1 h-1 bg-accent rounded-full animate-bounce opacity-60"></div>
+              <div className="absolute -top-1 -right-3 w-0.5 h-0.5 bg-primary rounded-full animate-pulse"></div>
+              <div className="absolute -bottom-2 -right-1 w-1 h-1 bg-accent/70 rounded-full animate-bounce" style={{ animationDelay: '1s' }}></div>
+              <div className="absolute -bottom-1 -left-3 w-0.5 h-0.5 bg-primary/70 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
             </div>
           </div>
 
