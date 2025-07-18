@@ -279,7 +279,7 @@
     background: linear-gradient(45deg, hsl(var(--accent)), transparent, hsl(var(--accent)));
     border-radius: inherit;
     mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-    mask-composite: exclude;
+    -webkit-mask-composite: exclude;
     animation: border-spin 3s linear infinite;
   }
 
@@ -292,7 +292,7 @@
 
   /* Spotlight effect */
   .spotlight {
-    background: radial-gradient(600px circle at var(--mouse-x, 0) var(--mouse-y, 0), 
+    background: radial-gradient(600px circle at 0px 0px, 
                 hsl(var(--accent) / 0.1), transparent 40%);
   }
 
