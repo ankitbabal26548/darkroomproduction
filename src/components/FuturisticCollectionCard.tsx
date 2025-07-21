@@ -1,5 +1,5 @@
 
-import { Calendar, MapPin, Zap } from 'lucide-react';
+import { Calendar, MapPin, Eye, Zap } from 'lucide-react';
 import { WeddingCollection } from '@/types/portfolio';
 
 interface FuturisticCollectionCardProps {
@@ -55,8 +55,6 @@ export const FuturisticCollectionCard = ({
             <div className="preview-overlay">
               <span className="preview-category">{img.category}</span>
             </div>
-            {/* Rajasthani decorative overlay */}
-            <div className="rajasthani-preview-overlay" />
           </div>
         ))}
         
@@ -70,26 +68,16 @@ export const FuturisticCollectionCard = ({
     );
   };
 
-  // Create vertical text for "ALL IMAGES >"
-  const createVerticalText = (text: string) => {
-    return text.split('').map((char, index) => (
-      <span key={index} className="vertical-text-char">
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ));
-  };
-
   return (
     <div
-      className="futuristic-collection-card-v2 rajasthani-card"
+      className="futuristic-collection-card-v2"
       style={{ animationDelay: `${delay}ms` }}
       onClick={onOpen}
     >
-      {/* Enhanced Holographic Effects with Rajasthani elements */}
+      {/* Enhanced Holographic Effects */}
       <div className="holographic-border-v2" />
       <div className="energy-field" />
       <div className="particle-stream" />
-      <div className="rajasthani-mandala-overlay" />
 
       {/* Featured Section - 65% */}
       <div className="featured-section-v2">
@@ -100,38 +88,30 @@ export const FuturisticCollectionCard = ({
             className="featured-image-v2"
           />
           <div className="featured-overlay-v2">
-            {/* Rajasthani Corner Decorations */}
-            <div className="corner-ui-minimal rajasthani-corners">
-              <div className="corner-element top-left">
-                <div className="rajasthani-corner-pattern" />
-              </div>
-              <div className="corner-element top-right">
-                <div className="rajasthani-corner-pattern" />
-              </div>
-              <div className="corner-element bottom-left">
-                <div className="rajasthani-corner-pattern" />
-              </div>
-              <div className="corner-element bottom-right">
-                <div className="rajasthani-corner-pattern" />
-              </div>
+            {/* Minimal Corner UI */}
+            <div className="corner-ui-minimal">
+              <div className="corner-element top-left" />
+              <div className="corner-element top-right" />
+              <div className="corner-element bottom-left" />
+              <div className="corner-element bottom-right" />
             </div>
             
-            {/* Essential Info with Rajasthani styling */}
+            {/* Essential Info Only */}
             <div className="essential-info">
-              <div className="info-chips rajasthani-chips">
-                <div className="info-chip date-chip rajasthani-chip">
+              <div className="info-chips">
+                <div className="info-chip date-chip">
                   <Calendar className="w-3 h-3" />
                   <span>{collection.weddingDate}</span>
                 </div>
-                <div className="info-chip location-chip rajasthani-chip">
+                <div className="info-chip location-chip">
                   <MapPin className="w-3 h-3" />
                   <span>{collection.location}</span>
                 </div>
               </div>
 
               <div className="title-minimal">
-                <h3 className="couple-name-v2 rajasthani-title">{collection.coupleName}</h3>
-                <span className="collection-category-v2 rajasthani-category">{collection.category}</span>
+                <h3 className="couple-name-v2">{collection.coupleName}</h3>
+                <span className="collection-category-v2">{collection.category}</span>
               </div>
             </div>
           </div>
@@ -143,15 +123,14 @@ export const FuturisticCollectionCard = ({
         {renderSmartPreview()}
       </div>
 
-      {/* Control Tower - 5% with Vertical Text */}
-      <div className="control-tower rajasthani-tower">
+      {/* Control Tower - 5% */}
+      <div className="control-tower">
         {/* Energy Core Display */}
-        <div className="energy-core rajasthani-core">
+        <div className="energy-core">
           <div className="core-ring">
             <div className="pulse-ring" />
             <div className="energy-number">{totalImages}</div>
           </div>
-          <div className="rajasthani-core-pattern" />
         </div>
 
         {/* Particle Stream Effect */}
@@ -161,39 +140,25 @@ export const FuturisticCollectionCard = ({
           <div className="particle" />
         </div>
 
-        {/* Vertical Text Button - "ALL IMAGES >" */}
+        {/* Explore Button */}
         <button 
-          className="vertical-text-button rajasthani-button"
+          className="explore-button"
           onClick={(e) => {
             e.stopPropagation();
             onOpen();
           }}
         >
-          <div className="vertical-text-container">
-            <div className="vertical-text-line">
-              {createVerticalText('ALL')}
-            </div>
-            <div className="vertical-text-line">
-              {createVerticalText('IMAGES')}
-            </div>
-            <div className="vertical-text-arrow">
-              <span className="vertical-text-char">></span>
-            </div>
-            <div className="vertical-text-count">
-              <span className="vertical-text-char">(</span>
-              <span className="vertical-text-char">{totalImages}</span>
-              <span className="vertical-text-char">)</span>
-            </div>
-          </div>
+          <Eye className="w-4 h-4" />
+          <span className="explore-text">EXPLORE</span>
           
-          {/* Rajasthani Holographic Effect */}
-          <div className="button-hologram rajasthani-hologram" />
+          {/* Holographic Effect */}
+          <div className="button-hologram" />
         </button>
 
-        {/* Mini Preview Dots with Rajasthani styling */}
-        <div className="preview-dots rajasthani-dots">
+        {/* Mini Preview Dots */}
+        <div className="preview-dots">
           {previewImages.slice(0, 3).map((_, index) => (
-            <div key={index} className="preview-dot rajasthani-dot" />
+            <div key={index} className="preview-dot" />
           ))}
         </div>
       </div>
