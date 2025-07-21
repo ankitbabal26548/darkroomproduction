@@ -134,10 +134,9 @@ export const FuturisticCollectionCard = ({
 
       {/* Enhanced Control Tower with centered layout */}
       <div className="control-tower-v3">
-        {/* Centered All Images Text and Number */}
+        {/* Single Text with Arrow Inline for Desktop */}
         <div className="all-images-text-v3">
-          <span>ALL IMAGES</span>
-          <span className="arrow-wave">↗</span>
+          ALL IMAGES↗
         </div>
 
         {/* Energy Core Display - Enhanced visibility */}
