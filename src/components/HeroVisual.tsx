@@ -1,53 +1,30 @@
 
-/**
- * HERO VISUAL COMPONENT
- * =====================
- * 
- * This component displays the sliding images on the homepage.
- * 
- * FOR BEGINNERS:
- * - To change images: Edit src/config/images.js (look for "hero" section)
- * - Images automatically rotate every 6 seconds
- * - Don't edit this file unless you're comfortable with code!
- */
-
 import { useState, useEffect } from 'react';
-import { WEBSITE_IMAGES } from '@/config/images';
+import heroWedding1 from '@/assets/hero-wedding-1.jpg';
+import heroPrewedding1 from '@/assets/hero-prewedding-1.jpg';
 
 interface HeroVisualProps {
   currentSlide: number;
 }
 
+const visualSlides = [
+  {
+    image: heroWedding1,
+    alt: "Wedding Photography"
+  },
+  {
+    image: heroPrewedding1,
+    alt: "Pre-Wedding Photography"
+  }
+];
+
 export const HeroVisual = ({ currentSlide }: HeroVisualProps) => {
   const [loadedImages, setLoadedImages] = useState<boolean[]>([false, false]);
-
-  // Get images from config - beginners edit this in config/images.js
-  const { hero } = WEBSITE_IMAGES;
-  
-  const visualSlides = [
-    {
-      image: hero.slide1,
-      alt: hero.slide1Alt
-    },
-    {
-      image: hero.slide2,
-      alt: hero.slide2Alt
-    }
-  ];
 
   useEffect(() => {
     visualSlides.forEach((slide, index) => {
       const img = new Image();
       img.onload = () => {
-        setLoadedImages(prev => {
-          const newState = [...prev];
-          newState[index] = true;
-          return newState;
-        });
-      };
-      img.onerror = () => {
-        console.warn(`Failed to load hero image: ${slide.image}`);
-        // Still mark as loaded to show fallback
         setLoadedImages(prev => {
           const newState = [...prev];
           newState[index] = true;
@@ -76,11 +53,6 @@ export const HeroVisual = ({ currentSlide }: HeroVisualProps) => {
                   src={slide.image} 
                   alt={slide.alt} 
                   className="w-full h-full object-cover object-center" 
-                  onError={(e) => {
-                    // Fallback to placeholder if image fails
-                    const target = e.target as HTMLImageElement;
-                    target.src = WEBSITE_IMAGES.placeholders.defaultGallery;
-                  }}
                 />
                 
                 {/* Gradient Overlays */}
@@ -89,15 +61,10 @@ export const HeroVisual = ({ currentSlide }: HeroVisualProps) => {
               </div>
             </>
           )}
-          
-          {/* Loading placeholder */}
-          {!loadedImages[index] && (
-            <div className="absolute inset-0 bg-muted animate-pulse" />
-          )}
         </div>
       ))}
 
-      {/* Decorative Elements */}
+      {/* Decorative Elements - Positioned to stay within viewport */}
       <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden">
         <div className="absolute top-1/3 right-4 sm:right-8 w-1 h-16 sm:h-24 bg-accent/30 rounded-full hidden sm:block" />
         <div className="absolute bottom-1/4 right-6 sm:right-12 w-6 sm:w-8 h-1 bg-accent/30 rounded-full hidden sm:block" />
@@ -120,28 +87,3 @@ export const HeroVisual = ({ currentSlide }: HeroVisualProps) => {
     </div>
   );
 };
-
-/**
- * EDITING INSTRUCTIONS FOR BEGINNERS:
- * 
- * 1. TO CHANGE HERO IMAGES:
- *    - Open src/config/images.js
- *    - Find: hero.slide1 and hero.slide2
- *    - Replace URLs with your image URLs
- *    - Example: slide1: "https://your-image-url.jpg"
- * 
- * 2. TO CHANGE IMAGE DESCRIPTIONS:
- *    - Open src/config/images.js
- *    - Find: hero.slide1Alt and hero.slide2Alt
- *    - Change text to describe your images
- * 
- * 3. IMAGE REQUIREMENTS:
- *    - Size: 1920x1080px or larger
- *    - Format: JPG or PNG
- *    - File size: Under 2MB for best performance
- * 
- * 4. WHERE TO GET IMAGES:
- *    - Upload your own to src/assets/ folder
- *    - Use free stock photos from unsplash.com
- *    - Use any accessible image URL
- */
