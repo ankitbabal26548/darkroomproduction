@@ -16,6 +16,20 @@ export const ParticleBackground = () => {
   const particlesRef = useRef<Particle[]>([]);
   const animationFrameRef = useRef<number>();
 
+  // Get the accent color from CSS custom properties
+  const getAccentColor = () => {
+    if (typeof window !== 'undefined') {
+      const style = getComputedStyle(document.documentElement);
+      const accentValue = style.getPropertyValue('--accent').trim();
+      // If we get HSL values like "220 100% 50%", convert to proper HSL format
+      if (accentValue && !accentValue.startsWith('hsl')) {
+        return `hsl(${accentValue})`;
+      }
+      return accentValue || 'hsl(220, 100%, 50%)'; // fallback
+    }
+    return 'hsl(220, 100%, 50%)';
+  };
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -69,6 +83,8 @@ export const ParticleBackground = () => {
     const drawParticles = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
+      const baseColor = getAccentColor();
+      
       particlesRef.current.forEach(particle => {
         const opacity = 1 - (particle.life / particle.maxLife);
         
@@ -77,9 +93,15 @@ export const ParticleBackground = () => {
           particle.x, particle.y, 0,
           particle.x, particle.y, particle.size * 3
         );
-        gradient.addColorStop(0, `hsla(var(--accent), ${opacity * 0.8})`);
-        gradient.addColorStop(0.5, `hsla(var(--accent), ${opacity * 0.4})`);
-        gradient.addColorStop(1, `hsla(var(--accent), 0)`);
+        
+        // Convert HSL to HSLA with opacity
+        const centerColor = baseColor.replace('hsl(', 'hsla(').replace(')', `, ${opacity * 0.8})`);
+        const midColor = baseColor.replace('hsl(', 'hsla(').replace(')', `, ${opacity * 0.4})`);
+        const outerColor = baseColor.replace('hsl(', 'hsla(').replace(')', ', 0)');
+        
+        gradient.addColorStop(0, centerColor);
+        gradient.addColorStop(0.5, midColor);
+        gradient.addColorStop(1, outerColor);
 
         ctx.fillStyle = gradient;
         ctx.beginPath();
@@ -96,7 +118,8 @@ export const ParticleBackground = () => {
           
           if (distance < 100) {
             const lineOpacity = (1 - distance / 100) * opacity * 0.2;
-            ctx.strokeStyle = `hsla(var(--accent), ${lineOpacity})`;
+            const lineColor = baseColor.replace('hsl(', 'hsla(').replace(')', `, ${lineOpacity})`);
+            ctx.strokeStyle = lineColor;
             ctx.lineWidth = 0.5;
             ctx.beginPath();
             ctx.moveTo(particle.x, particle.y);
