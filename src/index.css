@@ -932,3 +932,54 @@
     }
   }
 }
+
+@layer components {
+  /* Collection animations */
+  .collection-item-animate {
+    opacity: 0;
+    transform: translateY(30px) scale(0.95);
+    animation: collection-entrance 0.8s ease-out forwards;
+  }
+
+  @keyframes collection-entrance {
+    from {
+      opacity: 0;
+      transform: translateY(30px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+
+  /* Glassmorphism effects for wedding folders */
+  .wedding-folder-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7));
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+
+  /* Collection hover animations */
+  .collection-preview-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .collection-preview-grid.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .collection-preview-image {
+    transform: scale(0.8) translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .collection-preview-image.visible {
+    transform: scale(1) translateY(0);
+  }
+}
