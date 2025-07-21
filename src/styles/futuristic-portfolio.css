@@ -479,22 +479,6 @@
     opacity: 1;
   }
 
-  .collection-category-v3 {
-    display: inline-block;
-    padding: 8px 18px;
-    background: linear-gradient(135deg, 
-      rgba(var(--accent), 0.95), 
-      rgba(var(--accent-darker), 0.95));
-    color: white;
-    border-radius: 18px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 8px 24px rgba(var(--accent), 0.5);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-  }
-
   /* Enhanced Smart Preview Section V3 */
   .smart-preview-section-v3 {
     width: 27%;
@@ -659,7 +643,7 @@
     z-index: 2;
   }
 
-  /* Enhanced All Images Text V3 */
+  /* Enhanced All Images Text V3 - Fixed Visibility */
   .all-images-text-v3 {
     flex: 1;
     display: flex;
@@ -674,7 +658,7 @@
     flex-direction: column;
     align-items: center;
     gap: 2px;
-    color: rgba(var(--accent), 0.9);
+    color: white;
     font-size: 0.7rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -683,33 +667,33 @@
 
   .text-vertical-v3 span {
     transition: all 0.3s ease;
-    text-shadow: 0 0 8px rgba(var(--accent), 0.5);
+    text-shadow: 
+      0 0 8px rgba(var(--accent), 0.8),
+      0 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 20px rgba(255, 255, 255, 0.6);
+    color: white;
   }
 
   .text-vertical-v3 .spacer {
     height: 4px;
   }
 
-  .text-vertical-v3 .arrow {
-    font-size: 0.8rem;
+  .text-vertical-v3 .arrow-breathing {
+    font-size: 0.9rem;
     color: rgba(var(--accent), 1);
-    animation: arrow-pulse 2s ease-in-out infinite;
+    animation: breathing-arrow 2s ease-in-out infinite;
+    text-shadow: 
+      0 0 12px rgba(var(--accent), 1),
+      0 0 24px rgba(var(--accent), 0.6);
   }
 
   .futuristic-collection-card-v3:hover .text-vertical-v3 span {
-    color: rgba(var(--accent), 1);
-    text-shadow: 0 0 16px rgba(var(--accent), 0.8);
-    transform: scale(1.1);
-  }
-
-  .image-count-v3 {
     color: white;
-    font-size: 0.65rem;
-    font-weight: 600;
-    background: rgba(var(--accent), 0.2);
-    padding: 4px 8px;
-    border-radius: 8px;
-    border: 1px solid rgba(var(--accent), 0.4);
+    text-shadow: 
+      0 0 16px rgba(var(--accent), 1),
+      0 2px 4px rgba(0, 0, 0, 0.8),
+      0 0 30px rgba(255, 255, 255, 0.8);
+    transform: scale(1.1);
   }
 
   /* Enhanced Preview Dots V3 */
@@ -738,6 +722,48 @@
     transform: scale(1.3);
   }
 
+  /* Smart Category Display - Desktop Only */
+  .category-badge-desktop {
+    position: absolute;
+    bottom: 16px;
+    left: 24px;
+    right: 24px;
+    z-index: 10;
+  }
+
+  .category-text {
+    display: inline-block;
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(var(--accent), 0.6);
+    border-radius: 20px;
+    color: rgba(var(--accent), 1);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 
+      0 8px 32px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(var(--accent), 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    text-shadow: 0 0 12px rgba(var(--accent), 0.8);
+  }
+
+  .futuristic-collection-card-v3:hover .category-text {
+    background: rgba(var(--accent), 0.1);
+    border-color: rgba(var(--accent), 1);
+    color: white;
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.5),
+      0 0 30px rgba(var(--accent), 0.6),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    text-shadow: 0 0 16px rgba(var(--accent), 1);
+  }
+
   /* Grid Animation */
   .collection-grid-animate {
     opacity: 0;
@@ -754,6 +780,17 @@
     to {
       opacity: 1;
       transform: translateY(0) scale(1) rotateX(0deg);
+    }
+  }
+
+  @keyframes breathing-arrow {
+    0%, 100% { 
+      transform: scale(1);
+      opacity: 0.9;
+    }
+    50% { 
+      transform: scale(1.3);
+      opacity: 1;
     }
   }
 
@@ -828,17 +865,6 @@
         0 0 55px rgba(var(--accent), 0.9),
         0 0 90px rgba(var(--accent), 0.5),
         0 1px 3px rgba(0, 0, 0, 0.8);
-    }
-  }
-
-  @keyframes arrow-pulse {
-    0%, 100% { 
-      transform: scale(1);
-      opacity: 0.9;
-    }
-    50% { 
-      transform: scale(1.2);
-      opacity: 1;
     }
   }
 
@@ -993,6 +1019,10 @@
     .text-vertical-v3 {
       font-size: 0.6rem;
     }
+
+    .category-badge-desktop {
+      display: none !important;
+    }
   }
 
   @media (max-width: 480px) {
@@ -1076,6 +1106,10 @@
     .info-chip {
       font-size: 0.75rem;
       padding: 6px 10px;
+    }
+
+    .category-badge-desktop {
+      display: none !important;
     }
   }
 }

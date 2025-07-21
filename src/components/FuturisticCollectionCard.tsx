@@ -124,7 +124,6 @@ export const FuturisticCollectionCard = ({
               {/* Enhanced couple name prominence */}
               <div className="title-v3">
                 <h3 className="couple-name-v3">{collection.coupleName}</h3>
-                <span className="collection-category-v3">{collection.category}</span>
               </div>
             </div>
           </div>
@@ -146,16 +145,15 @@ export const FuturisticCollectionCard = ({
           </div>
         </div>
 
-        {/* Enhanced All Images Text - Fixed JSX syntax */}
+        {/* Enhanced All Images Text - Fixed visibility and arrow */}
         <div className="all-images-text-v3">
           <div className="text-vertical-v3">
             <span>A</span><span>L</span><span>L</span>
             <span className="spacer"></span>
             <span>I</span><span>M</span><span>A</span><span>G</span><span>E</span><span>S</span>
             <span className="spacer"></span>
-            <span className="arrow">{'>'}</span>
+            <span className="arrow-breathing">↗</span>
           </div>
-          <div className="image-count-v3">({totalImages})</div>
         </div>
 
         {/* Enhanced Preview Dots */}
@@ -164,6 +162,11 @@ export const FuturisticCollectionCard = ({
             <div key={index} className="preview-dot-v3" />
           ))}
         </div>
+      </div>
+
+      {/* Smart Category Display - Desktop Only */}
+      <div className="category-badge-desktop hidden md:block">
+        <span className="category-text">{collection.category}</span>
       </div>
     </div>
   );
