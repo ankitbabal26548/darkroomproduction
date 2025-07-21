@@ -52,9 +52,6 @@ export const FuturisticCollectionCard = ({
         {previewImages.map((img, index) => (
           <div key={index} className="preview-image-container">
             <img src={img.image} alt={img.title} className="preview-image" />
-            <div className="preview-overlay">
-              <span className="preview-category">{img.category}</span>
-            </div>
           </div>
         ))}
         
@@ -135,32 +132,20 @@ export const FuturisticCollectionCard = ({
         {renderSmartPreview()}
       </div>
 
-      {/* Enhanced Control Tower with better mobile experience */}
+      {/* Enhanced Control Tower with centered layout */}
       <div className="control-tower-v3">
-        {/* Enhanced All Images Text - Moved count to end */}
+        {/* Centered All Images Text and Number */}
         <div className="all-images-text-v3">
-          <div className="text-vertical-v3">
-            <span>A</span><span>L</span><span>L</span>
-            <span className="spacer"></span>
-            <span>I</span><span>M</span><span>A</span><span>G</span><span>E</span><span>S</span>
-            <span className="spacer"></span>
-            <span className="arrow-breathing">↗</span>
-          </div>
+          <span>ALL IMAGES</span>
+          <span className="arrow-wave">↗</span>
         </div>
 
-        {/* Energy Core Display - Moved to bottom */}
+        {/* Energy Core Display - Enhanced visibility */}
         <div className="energy-core-v3">
           <div className="core-ring-v3">
             <div className="pulse-ring-v3" />
             <div className="energy-number-v3">{totalImages}</div>
           </div>
-        </div>
-
-        {/* Enhanced Preview Dots */}
-        <div className="preview-dots-v3">
-          {previewImages.slice(0, 3).map((_, index) => (
-            <div key={index} className="preview-dot-v3" />
-          ))}
         </div>
       </div>
     </div>
