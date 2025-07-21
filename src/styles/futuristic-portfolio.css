@@ -569,19 +569,19 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 16px 6px;
+    padding: 16px 4px;
     position: relative;
-    gap: 12px;
+    gap: 8px;
   }
 
-  /* Enhanced All Images Text V3 - Vertical on Desktop */
+  /* Enhanced All Images Text V3 - Vertical on Desktop with inline arrow */
   .all-images-text-v3 {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2px;
     color: white;
-    font-size: 0.6rem;
+    font-size: 0.55rem;
     font-weight: 700;
     letter-spacing: 1px;
     text-transform: uppercase;
@@ -594,17 +594,20 @@
   }
 
   .all-images-text-v3 span:first-child {
-    letter-spacing: 3px;
+    letter-spacing: 2px;
   }
 
   .arrow-wave {
-    font-size: 0.7rem;
+    font-size: 0.6rem;
     color: rgba(var(--accent), 1);
     animation: wave-animation 2s ease-in-out infinite;
     text-shadow: 
       0 0 12px rgba(var(--accent), 1),
       0 0 24px rgba(var(--accent), 0.6);
-    margin-top: 4px;
+    margin-top: 2px;
+    writing-mode: initial;
+    text-orientation: initial;
+    display: inline;
   }
 
   .futuristic-collection-card-v3:hover .all-images-text-v3 {
@@ -615,11 +618,11 @@
       0 0 30px rgba(255, 255, 255, 0.8);
   }
 
-  /* Enhanced Energy Core V3 - Smaller for Desktop */
+  /* Enhanced Energy Core V3 - Smaller for Desktop to fit within bounds */
   .energy-core-v3 {
     position: relative;
-    width: 36px;
-    height: 36px;
+    width: 28px;
+    height: 28px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -644,7 +647,7 @@
 
   .pulse-ring-v3 {
     position: absolute;
-    inset: -4px;
+    inset: -3px;
     border: 1px solid rgba(var(--accent), 0.6);
     border-radius: 50%;
     animation: pulse-expand-enhanced 3s ease-in-out infinite;
@@ -652,7 +655,7 @@
 
   .energy-number-v3 {
     color: white;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: 900;
     text-shadow: 
       0 0 10px rgba(var(--accent), 0.8),
