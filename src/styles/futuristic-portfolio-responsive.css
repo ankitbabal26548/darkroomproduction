@@ -224,7 +224,7 @@
     }
   }
 
-  /* Desktop-specific vertical layout */
+  /* Desktop-specific adjustments - Fixed sizing */
   @media (min-width: 1025px) {
     .control-tower-v3 {
       flex-direction: column;
@@ -248,6 +248,25 @@
     .preview-dots-v3 {
       flex-direction: column;
       gap: 4px;
+    }
+
+    /* Desktop-specific energy core sizing to fit properly */
+    .energy-core-v3 {
+      width: 32px;
+      height: 32px;
+    }
+
+    .core-ring-v3 {
+      border-width: 1.5px;
+    }
+
+    .pulse-ring-v3 {
+      inset: -4px;
+    }
+
+    .energy-number-v3 {
+      font-size: 0.75rem;
+      font-weight: 800;
     }
   }
 }
