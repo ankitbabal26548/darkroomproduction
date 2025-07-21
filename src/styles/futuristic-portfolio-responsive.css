@@ -1,0 +1,253 @@
+
+@layer components {
+  /* Enhanced Mobile Responsive Design */
+  @media (max-width: 1024px) {
+    .futuristic-collections-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 16px;
+    }
+
+    .futuristic-collection-card-v3 {
+      height: auto;
+      min-height: 540px;
+      flex-direction: column;
+    }
+
+    .featured-section-v3 {
+      width: 100%;
+      height: 340px;
+    }
+
+    .featured-image-container-v3 {
+      border-radius: 24px 24px 0 0;
+    }
+
+    .smart-preview-section-v3 {
+      width: 100%;
+      height: 120px;
+      padding: 16px;
+    }
+
+    .smart-preview-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 12px;
+    }
+
+    .preview-image-container {
+      min-width: 90px;
+      border-radius: 12px;
+    }
+
+    .control-tower-v3 {
+      width: 100%;
+      height: 80px;
+      flex-direction: row;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .all-images-text-v3 {
+      flex: none;
+      flex-direction: row;
+      gap: 12px;
+    }
+
+    .text-vertical-v3 {
+      flex-direction: row;
+      gap: 4px;
+      font-size: 0.7rem;
+    }
+
+    .text-vertical-v3 .spacer {
+      width: 6px;
+      height: auto;
+    }
+
+    .energy-core-v3 {
+      flex: none;
+      width: 40px;
+      height: 40px;
+    }
+
+    .preview-dots-v3 {
+      flex-direction: row;
+      gap: 6px;
+      margin: 0;
+    }
+
+    .couple-name-v3 {
+      font-size: clamp(1.4rem, 4.2vw, 1.8rem);
+    }
+
+    .info-chips-v3 {
+      gap: 8px;
+    }
+
+    .info-chip {
+      font-size: 0.75rem;
+      padding: 6px 10px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .futuristic-collections-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 16px;
+    }
+
+    .futuristic-collection-card-v3 {
+      height: 360px;
+    }
+
+    .couple-name-v3 {
+      font-size: clamp(1.3rem, 3.8vw, 1.7rem);
+    }
+
+    .featured-overlay-v3 {
+      padding: 18px;
+    }
+
+    .smart-preview-section-v3 {
+      padding: 12px 8px;
+    }
+
+    .smart-preview-grid {
+      gap: 8px;
+    }
+
+    .control-tower-v3 {
+      padding: 16px 6px;
+      gap: 20px;
+    }
+
+    .energy-core-v3 {
+      width: 30px;
+      height: 30px;
+    }
+
+    .text-vertical-v3 {
+      font-size: 0.6rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .futuristic-collections-grid {
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+
+    .futuristic-collection-card-v3 {
+      height: auto;
+      min-height: 540px;
+      flex-direction: column;
+    }
+
+    .featured-section-v3 {
+      width: 100%;
+      height: 340px;
+    }
+
+    .featured-image-container-v3 {
+      border-radius: 24px 24px 0 0;
+    }
+
+    .smart-preview-section-v3 {
+      width: 100%;
+      height: 120px;
+      padding: 16px;
+    }
+
+    .smart-preview-grid {
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-rows: 1fr;
+      gap: 12px;
+    }
+
+    .preview-image-container {
+      min-width: 90px;
+      border-radius: 12px;
+    }
+
+    .control-tower-v3 {
+      width: 100%;
+      height: 80px;
+      flex-direction: row;
+      padding: 20px;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+    }
+
+    .all-images-text-v3 {
+      flex: none;
+      flex-direction: row;
+      gap: 12px;
+    }
+
+    .text-vertical-v3 {
+      flex-direction: row;
+      gap: 4px;
+      font-size: 0.7rem;
+    }
+
+    .text-vertical-v3 .spacer {
+      width: 6px;
+      height: auto;
+    }
+
+    .energy-core-v3 {
+      flex: none;
+      width: 40px;
+      height: 40px;
+    }
+
+    .preview-dots-v3 {
+      flex-direction: row;
+      gap: 6px;
+      margin: 0;
+    }
+
+    .couple-name-v3 {
+      font-size: clamp(1.4rem, 4.2vw, 1.8rem);
+    }
+
+    .info-chips-v3 {
+      gap: 8px;
+    }
+
+    .info-chip {
+      font-size: 0.75rem;
+      padding: 6px 10px;
+    }
+  }
+
+  /* Desktop-specific vertical layout */
+  @media (min-width: 1025px) {
+    .control-tower-v3 {
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .all-images-text-v3 {
+      flex-direction: column;
+    }
+
+    .text-vertical-v3 {
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .text-vertical-v3 .spacer {
+      height: 6px;
+      width: auto;
+    }
+
+    .preview-dots-v3 {
+      flex-direction: column;
+      gap: 4px;
+    }
+  }
+}
