@@ -1,8 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import { X, ChevronLeft, ChevronRight, ArrowLeft, Heart, Share, Eye, MapPin, Calendar, Images } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { WeddingCollection, WeddingImage } from '@/types/portfolio';
+import { useWeddingCollections } from '@/hooks/useWeddingCollections';
 
 interface CollectionLightboxProps {
   isOpen: boolean;
@@ -14,12 +14,18 @@ interface CollectionLightboxProps {
 export const CollectionLightbox = ({ 
   isOpen, 
   onClose, 
-  collection,
+  collection: initialCollection,
   initialImageIndex = 0
 }: CollectionLightboxProps) => {
+  const { collections } = useWeddingCollections();
   const [currentImageIndex, setCurrentImageIndex] = useState(initialImageIndex);
   const [isLoaded, setIsLoaded] = useState(false);
   const [imageScale, setImageScale] = useState(1);
+
+  // Get the most up-to-date collection data
+  const collection = initialCollection ? 
+    collections.find(c => c.id === initialCollection.id) || initialCollection : 
+    null;
 
   useEffect(() => {
     if (isOpen && collection) {
@@ -85,12 +91,9 @@ export const CollectionLightbox = ({
 
   return (
     <div className={`fixed inset-0 z-50 transition-all duration-500 ${isOpen ? 'opacity-100' : 'opacity-0'}`}>
-      {/* Backdrop */}
       <div className="absolute inset-0 bg-black/95 backdrop-blur-xl" onClick={onClose} />
       
-      {/* Content Container */}
       <div className="relative h-full flex flex-col">
-        {/* Header */}
         <div className="relative z-10 p-6">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
@@ -125,9 +128,7 @@ export const CollectionLightbox = ({
           </div>
         </div>
 
-        {/* Main Content */}
         <div className="flex-1 flex items-center justify-center px-6 pb-6">
-          {/* Navigation Buttons */}
           <Button
             variant="ghost"
             size="icon"
@@ -146,7 +147,6 @@ export const CollectionLightbox = ({
             <ChevronRight className="w-7 h-7" />
           </Button>
 
-          {/* Image Container */}
           <div className="max-w-6xl max-h-[70vh] relative">
             <div 
               className="relative transition-transform duration-300 ease-out"
@@ -161,7 +161,6 @@ export const CollectionLightbox = ({
                 onLoad={() => setIsLoaded(true)}
               />
               
-              {/* Loading Placeholder */}
               {!isLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-white/5 backdrop-blur-sm animate-pulse rounded-xl border border-white/20">
                   <div className="w-12 h-12 border-3 border-accent border-t-transparent rounded-full animate-spin" />
@@ -171,11 +170,9 @@ export const CollectionLightbox = ({
           </div>
         </div>
 
-        {/* Info Panel */}
         <div className="relative z-10 bg-gradient-to-t from-black/90 via-black/70 to-transparent backdrop-blur-xl border-t border-white/10">
           <div className="max-w-7xl mx-auto p-8">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {/* Image Info */}
               <div className="lg:col-span-2 space-y-4">
                 <div>
                   <h3 className="font-playfair text-2xl font-bold text-white mb-2">
@@ -188,7 +185,6 @@ export const CollectionLightbox = ({
                   )}
                 </div>
 
-                {/* Collection Info */}
                 <div className="flex flex-wrap gap-3">
                   <div className="bg-white/10 backdrop-blur-md rounded-lg px-4 py-2 flex items-center gap-2 border border-white/20">
                     <Calendar className="w-4 h-4 text-accent" />
@@ -207,7 +203,6 @@ export const CollectionLightbox = ({
                 </div>
               </div>
               
-              {/* Actions & Navigation */}
               <div className="space-y-6">
                 <div className="flex items-center justify-between lg:justify-start lg:space-x-6">
                   <div className="flex space-x-3">
@@ -223,7 +218,6 @@ export const CollectionLightbox = ({
                   </div>
                 </div>
                 
-                {/* Progress Indicator */}
                 <div className="space-y-3">
                   <div className="flex items-center justify-center space-x-2 overflow-x-auto pb-2">
                     {collection.images.map((_, index) => (

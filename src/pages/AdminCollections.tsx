@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Plus, Search, Star, Edit, Trash2, Eye } from 'lucide-react';
@@ -47,10 +46,17 @@ export const AdminCollections = () => {
 
   const categories = ['all', 'traditional', 'destination', 'beach', 'garden', 'palace', 'modern'];
 
-  const handleDelete = (id: number) => {
-    const updatedCollections = collections.filter(c => c.id !== id);
+  const updateCollectionsAndNotify = (updatedCollections: WeddingCollection[]) => {
     setCollections(updatedCollections);
     localStorage.setItem('weddingCollections', JSON.stringify(updatedCollections));
+    
+    // Dispatch custom event to notify other components
+    window.dispatchEvent(new CustomEvent('collectionsUpdated'));
+  };
+
+  const handleDelete = (id: number) => {
+    const updatedCollections = collections.filter(c => c.id !== id);
+    updateCollectionsAndNotify(updatedCollections);
     
     toast({
       title: "Collection Deleted",
@@ -62,8 +68,7 @@ export const AdminCollections = () => {
     const updatedCollections = collections.map(c => 
       c.id === id ? { ...c, featured: !c.featured } : c
     );
-    setCollections(updatedCollections);
-    localStorage.setItem('weddingCollections', JSON.stringify(updatedCollections));
+    updateCollectionsAndNotify(updatedCollections);
     
     toast({
       title: "Collection Updated",

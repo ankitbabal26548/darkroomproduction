@@ -4,10 +4,11 @@ import { Button } from '@/components/ui/button';
 import { WeddingFolderCard } from '@/components/WeddingFolderCard';
 import { CollectionLightbox } from '@/components/CollectionLightbox';
 import { CollectionFilter } from '@/components/CollectionFilter';
-import { weddingCollections } from '@/data/weddingCollections';
+import { useWeddingCollections } from '@/hooks/useWeddingCollections';
 import { WeddingCollection } from '@/types/portfolio';
 
 export const PortfolioSection = () => {
+  const { collections: weddingCollections, isLoading } = useWeddingCollections();
   const [activeCategory, setActiveCategory] = useState('all');
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedCollection, setSelectedCollection] = useState<WeddingCollection | null>(null);
@@ -25,12 +26,27 @@ export const PortfolioSection = () => {
     return activeCategory === 'all' 
       ? weddingCollections 
       : weddingCollections.filter(collection => collection.category === activeCategory);
-  }, [activeCategory]);
+  }, [activeCategory, weddingCollections]);
 
   const openCollection = (collection: WeddingCollection) => {
     setSelectedCollection(collection);
     setLightboxOpen(true);
   };
+
+  if (isLoading) {
+    return (
+      <section id="portfolio" className="py-20 overflow-x-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <div className="animate-pulse">
+              <div className="h-8 bg-muted rounded w-1/3 mx-auto mb-4"></div>
+              <div className="h-4 bg-muted rounded w-1/2 mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section id="portfolio" className="py-20 overflow-x-hidden">
