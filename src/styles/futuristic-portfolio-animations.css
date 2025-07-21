@@ -12,22 +12,30 @@
     }
   }
 
-  /* IMPROVED WAVE ARROW ANIMATION - Smooth Left-Right Motion */
+  /* ECG-TYPE WAVE ARROW ANIMATION - Heartbeat Pattern */
   @keyframes wave-arrow {
-    0%, 100% { 
-      transform: translateX(0px) rotate(45deg);
-      opacity: 0.9;
+    0%, 70%, 100% { 
+      transform: translateY(0px) translateX(0px) rotate(45deg);
+      opacity: 0.8;
     }
-    25% { 
-      transform: translateX(-4px) rotate(45deg);
+    5% { 
+      transform: translateY(-8px) translateX(-2px) rotate(45deg);
       opacity: 1;
     }
-    50% { 
-      transform: translateX(2px) rotate(45deg);
-      opacity: 0.95;
+    15% { 
+      transform: translateY(6px) translateX(1px) rotate(45deg);
+      opacity: 1;
     }
-    75% { 
-      transform: translateX(-2px) rotate(45deg);
+    25% { 
+      transform: translateY(-12px) translateX(-1px) rotate(45deg);
+      opacity: 1;
+    }
+    35% { 
+      transform: translateY(4px) translateX(2px) rotate(45deg);
+      opacity: 0.9;
+    }
+    45% { 
+      transform: translateY(-6px) translateX(-1px) rotate(45deg);
       opacity: 1;
     }
   }
@@ -106,28 +114,30 @@
     }
   }
 
-  /* Enhanced Ring Breathing Animation */
+  /* Enhanced Ring Breathing Animation - More Dramatic */
   @keyframes ring-breathing {
     0%, 100% { 
       transform: scale(1);
     }
     50% { 
-      transform: scale(1.1);
+      transform: scale(1.2);
     }
   }
 
   @keyframes core-pulse-enhanced {
     0%, 100% { 
-      border-color: rgba(var(--accent), 1);
+      border-color: #00ffff;
       box-shadow: 
-        0 0 30px rgba(var(--accent), 0.9),
-        0 0 50px rgba(var(--accent), 0.6);
+        0 0 40px #00ffff,
+        0 0 80px rgba(0, 255, 255, 0.6),
+        0 0 120px rgba(0, 255, 255, 0.3);
     }
     50% { 
-      border-color: rgba(var(--accent), 1);
+      border-color: #ffffff;
       box-shadow: 
-        0 0 40px rgba(var(--accent), 1),
-        0 0 70px rgba(var(--accent), 0.8);
+        0 0 60px #ffffff,
+        0 0 100px rgba(255, 255, 255, 0.8),
+        0 0 140px rgba(0, 255, 255, 0.5);
     }
   }
 
