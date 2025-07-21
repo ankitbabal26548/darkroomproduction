@@ -175,7 +175,7 @@
 
   /* Energy Field */
   .energy-field {
-    @apply absolute inset-0 pointer-events-none z-5;
+    @apply absolute inset-0 pointer-events-none z-10;
   }
 
   .energy-line {
