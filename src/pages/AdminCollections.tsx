@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Plus, Search, Filter, Star, Edit, Trash2, Eye } from 'lucide-react';
+import { Plus, Search, Star, Edit, Trash2, Eye } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,6 +9,17 @@ import { Badge } from '@/components/ui/badge';
 import { weddingCollections } from '@/data/weddingCollections';
 import { WeddingCollection } from '@/types/portfolio';
 import { useToast } from '@/hooks/use-toast';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog';
 
 export const AdminCollections = () => {
   const [collections, setCollections] = useState<WeddingCollection[]>([]);
@@ -17,7 +28,14 @@ export const AdminCollections = () => {
   const { toast } = useToast();
 
   useEffect(() => {
-    setCollections(weddingCollections);
+    // Load from localStorage or use default data
+    const savedCollections = localStorage.getItem('weddingCollections');
+    if (savedCollections) {
+      setCollections(JSON.parse(savedCollections));
+    } else {
+      setCollections(weddingCollections);
+      localStorage.setItem('weddingCollections', JSON.stringify(weddingCollections));
+    }
   }, []);
 
   const filteredCollections = collections.filter(collection => {
@@ -30,7 +48,10 @@ export const AdminCollections = () => {
   const categories = ['all', 'traditional', 'destination', 'beach', 'garden', 'palace', 'modern'];
 
   const handleDelete = (id: number) => {
-    setCollections(collections.filter(c => c.id !== id));
+    const updatedCollections = collections.filter(c => c.id !== id);
+    setCollections(updatedCollections);
+    localStorage.setItem('weddingCollections', JSON.stringify(updatedCollections));
+    
     toast({
       title: "Collection Deleted",
       description: "The wedding collection has been removed.",
@@ -38,9 +59,12 @@ export const AdminCollections = () => {
   };
 
   const toggleFeatured = (id: number) => {
-    setCollections(collections.map(c => 
+    const updatedCollections = collections.map(c => 
       c.id === id ? { ...c, featured: !c.featured } : c
-    ));
+    );
+    setCollections(updatedCollections);
+    localStorage.setItem('weddingCollections', JSON.stringify(updatedCollections));
+    
     toast({
       title: "Collection Updated",
       description: "Featured status has been updated.",
@@ -129,28 +153,50 @@ export const AdminCollections = () => {
                     variant="outline"
                     size="sm"
                     onClick={() => toggleFeatured(collection.id)}
+                    title="Toggle Featured"
                   >
                     <Star className={`w-4 h-4 ${collection.featured ? 'fill-current text-yellow-500' : ''}`} />
                   </Button>
-                  <Link to={`/admin/collections/${collection.id}`}>
-                    <Button variant="outline" size="sm">
+                  <Link to={`/admin/collections/${collection.id}/edit`}>
+                    <Button variant="outline" size="sm" title="Edit Collection">
                       <Edit className="w-4 h-4" />
                     </Button>
                   </Link>
                   <Link to={`/admin/collections/${collection.id}/images`}>
-                    <Button variant="outline" size="sm">
+                    <Button variant="outline" size="sm" title="Manage Images">
                       <Eye className="w-4 h-4" />
                     </Button>
                   </Link>
                 </div>
-                <Button
-                  variant="outline"
-                  size="sm"
-                  onClick={() => handleDelete(collection.id)}
-                  className="text-destructive hover:text-destructive"
-                >
-                  <Trash2 className="w-4 h-4" />
-                </Button>
+                <AlertDialog>
+                  <AlertDialogTrigger asChild>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="text-destructive hover:text-destructive"
+                      title="Delete Collection"
+                    >
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </AlertDialogTrigger>
+                  <AlertDialogContent>
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Delete Collection</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        Are you sure you want to delete "{collection.coupleName}"? This action cannot be undone and will remove all associated images.
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction 
+                        onClick={() => handleDelete(collection.id)}
+                        className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+                      >
+                        Delete
+                      </AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
               </div>
             </CardContent>
           </Card>

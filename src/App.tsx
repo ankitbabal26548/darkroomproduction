@@ -11,6 +11,9 @@ import { AdminLogin } from "./pages/AdminLogin";
 import { AdminLayout } from "./components/AdminLayout";
 import { AdminDashboard } from "./pages/AdminDashboard";
 import { AdminCollections } from "./pages/AdminCollections";
+import { AdminCollectionNew } from "./pages/AdminCollectionNew";
+import { AdminCollectionEdit } from "./pages/AdminCollectionEdit";
+import { AdminCollectionImages } from "./pages/AdminCollectionImages";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +30,9 @@ const App = () => (
             <Route path="/admin/*" element={<AdminLayout />}>
               <Route path="dashboard" element={<AdminDashboard />} />
               <Route path="collections" element={<AdminCollections />} />
+              <Route path="collections/new" element={<AdminCollectionNew />} />
+              <Route path="collections/:id/edit" element={<AdminCollectionEdit />} />
+              <Route path="collections/:id/images" element={<AdminCollectionImages />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
