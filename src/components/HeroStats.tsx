@@ -16,17 +16,17 @@ export const HeroStats = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-3 gap-6 pt-8 border-t border-border/30">
+    <div className="grid grid-cols-1 xs:grid-cols-3 gap-4 sm:gap-6 pt-6 sm:pt-8 border-t border-border/30 max-w-full">
       {stats.map((stat, index) => (
-        <div key={index} className="text-center space-y-1">
-          <div className="font-playfair text-2xl sm:text-3xl font-bold text-accent">
+        <div key={index} className="text-center space-y-1 min-w-0">
+          <div className="font-playfair text-xl sm:text-2xl md:text-3xl font-bold text-accent">
             {inView ? (
               <CountUp end={stat.number} suffix={stat.suffix} />
             ) : (
               '0'
             )}
           </div>
-          <div className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider">
+          <div className="text-xs sm:text-sm font-medium text-muted-foreground uppercase tracking-wider break-words">
             {stat.label}
           </div>
         </div>
