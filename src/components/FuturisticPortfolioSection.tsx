@@ -1,7 +1,7 @@
 
 import { useState, useMemo } from 'react';
 import { Button } from '@/components/ui/button';
-import { FuturisticCollectionCard } from '@/components/FuturisticCollectionCard';
+import { WeddingAlbumCard } from '@/components/WeddingAlbumCard';
 import { CollectionLightbox } from '@/components/CollectionLightbox';
 import { CollectionFilter } from '@/components/CollectionFilter';
 import { useWeddingCollections } from '@/hooks/useWeddingCollections';
@@ -57,7 +57,7 @@ export const FuturisticPortfolioSection = () => {
             Wedding <span className="text-accent">Collections</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            Explore our curated collection of love stories, each folder containing the complete journey of couples' 
+            Explore our curated collection of love stories, each album containing the complete journey of couples' 
             most precious moments captured with artistic vision and heartfelt passion.
           </p>
 
@@ -88,7 +88,7 @@ export const FuturisticPortfolioSection = () => {
                 data-row={Math.floor(index / 2)}
                 data-col={index % 2}
               >
-                <FuturisticCollectionCard
+                <WeddingAlbumCard
                   collection={collection}
                   onOpen={() => openCollection(collection)}
                   delay={Math.floor(index / 2) * 300 + (index % 2) * 150}
