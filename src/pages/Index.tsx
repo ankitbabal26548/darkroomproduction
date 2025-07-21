@@ -1,6 +1,6 @@
 
 import { Navbar } from '@/components/Navbar';
-import { FuturisticHeroSection } from '@/components/FuturisticHeroSection';
+import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
 import { FuturisticPortfolioSection } from '@/components/FuturisticPortfolioSection';
 import { ServicesSection } from '@/components/ServicesSection';
@@ -13,7 +13,7 @@ const Index = () => {
       <Navbar />
       <main className="max-w-full">
         <div id="home">
-          <FuturisticHeroSection />
+          <HeroSection />
         </div>
         <div className="bg-muted/30">
           <FuturisticPortfolioSection />
