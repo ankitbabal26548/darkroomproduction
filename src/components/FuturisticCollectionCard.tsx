@@ -124,7 +124,10 @@ export const FuturisticCollectionCard = ({
               {/* Enhanced couple name prominence */}
               <div className="title-v3">
                 <h3 className="couple-name-v3">{collection.coupleName}</h3>
-                <span className="collection-category-v3">{collection.category}</span>
+                {/* Category Badge - Only show on desktop */}
+                <div className="category-badge-desktop">
+                  <span className="collection-category-v3">{collection.category}</span>
+                </div>
               </div>
             </div>
           </div>
@@ -136,9 +139,9 @@ export const FuturisticCollectionCard = ({
         {renderSmartPreview()}
       </div>
 
-      {/* Enhanced Control Tower with better mobile experience */}
+      {/* Enhanced Control Tower with creative "ALL IMAGES" display */}
       <div className="control-tower-v3">
-        {/* Energy Core Display */}
+        {/* Energy Core Display - Only shows count */}
         <div className="energy-core-v3">
           <div className="core-ring-v3">
             <div className="pulse-ring-v3" />
@@ -146,7 +149,7 @@ export const FuturisticCollectionCard = ({
           </div>
         </div>
 
-        {/* Enhanced All Images Text - Fixed JSX syntax */}
+        {/* Creative "ALL IMAGES" Text - No count here */}
         <div className="all-images-text-v3">
           <div className="text-vertical-v3">
             <span>A</span><span>L</span><span>L</span>
@@ -155,7 +158,7 @@ export const FuturisticCollectionCard = ({
             <span className="spacer"></span>
             <span className="arrow">{'>'}</span>
           </div>
-          <div className="image-count-v3">({totalImages})</div>
+          {/* Removed duplicate count display */}
         </div>
 
         {/* Enhanced Preview Dots */}
