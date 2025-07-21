@@ -1,0 +1,100 @@
+
+@layer components {
+  /* Holographic Background */
+  .holographic-background {
+    @apply absolute inset-0 overflow-hidden pointer-events-none;
+    z-index: 1;
+  }
+
+  /* Particle Field */
+  .particle-field {
+    @apply absolute inset-0;
+  }
+
+  .particle {
+    @apply absolute w-1 h-1 bg-accent rounded-full;
+    opacity: 0.4;
+    animation: particle-float 20s linear infinite;
+    box-shadow: 0 0 6px rgba(var(--accent), 0.6);
+  }
+
+  .particle:nth-child(odd) {
+    animation-direction: reverse;
+  }
+
+  .particle:nth-child(3n) {
+    @apply w-0.5 h-0.5;
+    animation-duration: 15s;
+  }
+
+  /* Connection Lines */
+  .connection-lines {
+    @apply absolute inset-0;
+  }
+
+  .connection-line {
+    @apply absolute w-20 h-px bg-gradient-to-r from-transparent via-accent to-transparent;
+    opacity: 0.3;
+    animation: connection-pulse 8s ease-in-out infinite;
+  }
+
+  /* Holographic Grid */
+  .holographic-grid {
+    @apply absolute inset-0;
+    opacity: 0.1;
+  }
+
+  .grid-lines {
+    @apply absolute inset-0;
+  }
+
+  .grid-line {
+    @apply absolute bg-accent;
+    opacity: 0.2;
+  }
+
+  .grid-lines.horizontal .grid-line {
+    @apply w-full h-px;
+    animation: grid-scan 10s linear infinite;
+  }
+
+  .grid-lines.vertical .grid-line {
+    @apply h-full w-px;
+    animation: grid-scan 12s linear infinite reverse;
+  }
+
+  .grid-lines.horizontal .grid-line:nth-child(even) {
+    animation-delay: 2s;
+  }
+
+  .grid-lines.vertical .grid-line:nth-child(odd) {
+    animation-delay: 3s;
+  }
+
+  /* Scanning Laser */
+  .scanning-laser {
+    @apply absolute w-px h-full bg-gradient-to-b from-transparent via-accent to-transparent;
+    opacity: 0.6;
+    animation: laser-sweep 6s ease-in-out infinite;
+    transition: transform 0.1s ease-out;
+  }
+
+  /* Energy Waves */
+  .energy-waves {
+    @apply absolute inset-0 flex items-center justify-center;
+  }
+
+  .energy-wave {
+    @apply absolute w-32 h-32 border border-accent rounded-full;
+    opacity: 0.3;
+    animation: energy-wave 4s ease-out infinite;
+  }
+
+  .energy-wave.wave-2 {
+    animation-delay: 1.3s;
+  }
+
+  .energy-wave.wave-3 {
+    animation-delay: 2.6s;
+  }
+}

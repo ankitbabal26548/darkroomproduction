@@ -1,0 +1,216 @@
+
+@layer components {
+  /* 3D Photo Carousel */
+  .photo-carousel-3d {
+    @apply relative w-full h-96 lg:h-[500px];
+    perspective: 1200px;
+    transform-style: preserve-3d;
+  }
+
+  /* Holographic Frame */
+  .holographic-frame {
+    @apply absolute inset-0 z-10 pointer-events-none;
+    border: 2px solid rgba(var(--accent), 0.4);
+    border-radius: 12px;
+  }
+
+  .frame-corner {
+    @apply absolute w-6 h-6 border-accent;
+    animation: corner-glow 3s ease-in-out infinite;
+  }
+
+  .frame-corner.top-left {
+    @apply top-0 left-0 border-t-2 border-l-2;
+  }
+
+  .frame-corner.top-right {
+    @apply top-0 right-0 border-t-2 border-r-2;
+  }
+
+  .frame-corner.bottom-left {
+    @apply bottom-0 left-0 border-b-2 border-l-2;
+  }
+
+  .frame-corner.bottom-right {
+    @apply bottom-0 right-0 border-b-2 border-r-2;
+  }
+
+  .frame-scanner {
+    @apply absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-accent to-transparent;
+    animation: frame-scanner 4s linear infinite;
+  }
+
+  /* Image Display 3D */
+  .image-display-3d {
+    @apply relative w-full h-full;
+    transform-style: preserve-3d;
+  }
+
+  .image-layer {
+    @apply absolute inset-4 rounded-lg overflow-hidden;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    transform-style: preserve-3d;
+  }
+
+  .image-layer.transitioning {
+    transition-duration: 0.3s;
+  }
+
+  .carousel-image {
+    @apply w-full h-full object-cover;
+    filter: contrast(1.1) saturate(1.2);
+  }
+
+  /* Particle Burst Effect */
+  .particle-burst {
+    @apply absolute inset-0 pointer-events-none;
+  }
+
+  .burst-particle {
+    @apply absolute top-1/2 left-1/2 w-1 h-1 bg-accent rounded-full;
+    animation: particle-burst 1.5s ease-out infinite;
+  }
+
+  /* Holographic Overlay */
+  .holographic-overlay {
+    @apply absolute inset-0 pointer-events-none;
+  }
+
+  .scan-line {
+    @apply absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-accent to-transparent;
+    opacity: 0.6;
+    animation: holographic-scan 3s linear infinite;
+  }
+
+  .data-stream {
+    @apply absolute top-4 right-4 flex flex-col space-y-2;
+  }
+
+  .data-point {
+    @apply w-2 h-2 bg-accent rounded-full;
+    opacity: 0.8;
+    animation: data-stream 2s ease-in-out infinite;
+  }
+
+  .data-point:nth-child(2) {
+    animation-delay: 0.5s;
+  }
+
+  .data-point:nth-child(3) {
+    animation-delay: 1s;
+  }
+
+  /* Metadata Display */
+  .metadata-display {
+    @apply absolute bottom-4 left-4 z-20;
+  }
+
+  .metadata-panel {
+    @apply p-3 rounded-lg;
+    background: rgba(var(--background), 0.9);
+    border: 1px solid rgba(var(--accent), 0.3);
+    backdrop-filter: blur(10px);
+  }
+
+  .panel-title {
+    @apply font-mono text-sm font-bold text-accent mb-2;
+    text-shadow: 0 0 8px rgba(var(--accent), 0.4);
+  }
+
+  .metadata-grid {
+    @apply grid grid-cols-2 gap-2 text-xs;
+  }
+
+  .metadata-item {
+    @apply flex justify-between;
+  }
+
+  .metadata-key {
+    @apply text-muted-foreground font-mono uppercase;
+  }
+
+  .metadata-value {
+    @apply text-accent font-mono;
+  }
+
+  /* Navigation Orbs */
+  .navigation-orbs {
+    @apply absolute bottom-4 right-4 flex space-x-3 z-20;
+  }
+
+  .nav-orb {
+    @apply relative w-4 h-4 bg-transparent border-0 cursor-pointer;
+    transition: all 0.3s ease;
+  }
+
+  .orb-core {
+    @apply absolute inset-1 bg-muted rounded-full;
+    transition: all 0.3s ease;
+  }
+
+  .nav-orb.active .orb-core {
+    @apply bg-accent;
+    box-shadow: 0 0 12px rgba(var(--accent), 0.8);
+  }
+
+  .orb-ring {
+    @apply absolute inset-0 border border-accent rounded-full;
+    opacity: 0.5;
+    transition: all 0.3s ease;
+  }
+
+  .nav-orb.active .orb-ring {
+    opacity: 1;
+    animation: orb-ring 2s ease-out infinite;
+  }
+
+  .orb-pulse {
+    @apply absolute inset-0 bg-accent rounded-full;
+    opacity: 0;
+  }
+
+  .nav-orb.active .orb-pulse {
+    animation: orb-pulse 2s ease-in-out infinite;
+  }
+
+  /* Energy Field */
+  .energy-field {
+    @apply absolute inset-0 pointer-events-none z-5;
+  }
+
+  .energy-line {
+    @apply absolute bg-gradient-to-r from-transparent via-accent to-transparent;
+    opacity: 0.3;
+  }
+
+  .energy-line.horizontal {
+    @apply w-full h-px top-1/2 left-0;
+    animation: connection-pulse 6s ease-in-out infinite;
+  }
+
+  .energy-line.vertical {
+    @apply h-full w-px top-0 left-1/2;
+    animation: connection-pulse 6s ease-in-out infinite reverse;
+  }
+
+  .energy-node {
+    @apply absolute w-2 h-2 bg-accent rounded-full;
+    box-shadow: 0 0 8px rgba(var(--accent), 0.6);
+  }
+
+  .energy-node.top-left {
+    @apply top-0 left-0;
+  }
+
+  .energy-node.top-right {
+    @apply top-0 right-0;
+  }
+
+  .energy-node.bottom-left {
+    @apply bottom-0 left-0;
+  }
+
+  .energy-node.bottom-right {
+    @apply bottom-0 right-0;
+  }
+}
