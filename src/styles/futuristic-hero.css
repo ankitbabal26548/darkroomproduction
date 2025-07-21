@@ -66,27 +66,6 @@
     background-size: 40px 40px;
   }
 
-  /* Scanning Lines */
-  .scanning-line-1 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(var(--accent))/30%, transparent);
-    animation: scan-horizontal 8s linear infinite;
-  }
-
-  .scanning-line-2 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 2px;
-    height: 100%;
-    background: linear-gradient(180deg, transparent, hsl(var(--accent))/30%, transparent);
-    animation: scan-vertical 6s linear infinite;
-  }
-
   /* 3D Carousel */
   .photo-carousel-3d {
     transform-style: preserve-3d;
@@ -167,19 +146,5 @@
     .holographic-frame {
       filter: drop-shadow(0 0 10px hsl(var(--accent))/20%);
     }
-  }
-
-  /* Remove any potential social media hover effects */
-  .energy-button:hover svg,
-  .energy-button-secondary:hover svg,
-  .stat-card:hover svg {
-    transform: none !important;
-  }
-
-  /* Ensure no Instagram or social icons appear */
-  .energy-button::after,
-  .energy-button-secondary::after,
-  .glass-panel::after {
-    display: none !important;
   }
 }

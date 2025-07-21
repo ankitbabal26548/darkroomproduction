@@ -23,7 +23,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
         <div className={`flex items-center space-x-2 mb-6 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            <span className="text-sm font-mono text-accent uppercase tracking-wider">Online</span>
+            <span className="text-sm font-mono text-accent uppercase tracking-wider">Creating Timeless Memories</span>
           </div>
           <Zap className="w-4 h-4 text-accent animate-pulse" />
         </div>

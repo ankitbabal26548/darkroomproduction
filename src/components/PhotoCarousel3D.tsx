@@ -85,13 +85,13 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
     } else if (absIndex === 1) {
       return {
         transform: `translateX(${diff > 0 ? '50%' : '-50%'}) rotateY(${diff > 0 ? '-15deg' : '15deg'}) scale(0.85)`,
-        opacity: 0.7,
+        opacity: 0.4,
         zIndex: 5
       };
     } else {
       return {
         transform: `translateX(${diff > 0 ? '100%' : '-100%'}) rotateY(${diff > 0 ? '-30deg' : '30deg'}) scale(0.7)`,
-        opacity: 0.3,
+        opacity: 0.2,
         zIndex: 1
       };
     }
@@ -128,18 +128,6 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
                 className="w-full h-full object-cover rounded-lg"
                 loading="lazy"
               />
-              
-              {/* Overlay Info */}
-              {index === currentIndex && (
-                <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 bg-gradient-to-t from-background/90 via-background/50 to-transparent rounded-b-lg">
-                  <h3 className="text-lg sm:text-xl font-playfair font-bold text-foreground mb-2">
-                    {image.title}
-                  </h3>
-                  <p className="text-sm text-muted-foreground">
-                    {image.description}
-                  </p>
-                </div>
-              )}
               
               {/* Holographic Shimmer */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/10 to-transparent -skew-x-12 animate-shimmer" />

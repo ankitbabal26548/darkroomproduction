@@ -1,5 +1,5 @@
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { ArrowRight, Play, Camera, Users, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HolographicBackground } from './HolographicBackground';
@@ -15,22 +15,22 @@ export const FuturisticHeroSection = () => {
 
   const heroImages = [
     {
-      src: "https://images.unsplash.com/photo-1606216794074-735e91aa2c92?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
+      src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       alt: "Beautiful wedding ceremony",
       title: "Wedding Photography",
       description: "Capturing your special day with artistic vision"
     },
     {
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
-      alt: "Romantic couple portrait",
-      title: "Pre-Wedding Sessions",
-      description: "Beautiful engagement and couple photography"
-    },
-    {
-      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2787&q=80",
+      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       alt: "Professional photography equipment",
       title: "Professional Excellence",
       description: "High-quality equipment for perfect results"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      alt: "Romantic couple portrait",
+      title: "Pre-Wedding Sessions",
+      description: "Beautiful engagement and couple photography"
     }
   ];
 
@@ -93,10 +93,6 @@ export const FuturisticHeroSection = () => {
           </div>
         </div>
       </div>
-
-      {/* Energy Overlays */}
-      <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/80 pointer-events-none z-5" />
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background to-transparent pointer-events-none z-5" />
     </section>
   );
 };
