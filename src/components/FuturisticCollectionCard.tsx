@@ -1,4 +1,3 @@
-
 import { Calendar, MapPin, Zap } from 'lucide-react';
 import { WeddingCollection } from '@/types/portfolio';
 
@@ -136,8 +135,7 @@ export const FuturisticCollectionCard = ({
       <div className="control-tower-v3">
         {/* Centered All Images Text and Number */}
         <div className="all-images-text-v3">
-          <span>ALL IMAGES</span>
-          <span className="arrow-wave">↗</span>
+          <span>ALL IMAGES</span><span className="arrow-wave">↗</span>
         </div>
 
         {/* Energy Core Display - Enhanced visibility */}

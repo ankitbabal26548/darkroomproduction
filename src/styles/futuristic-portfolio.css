@@ -604,9 +604,8 @@
     text-shadow: 
       0 0 12px rgba(var(--accent), 1),
       0 0 24px rgba(var(--accent), 0.6);
-    margin-top: 2px;
-    writing-mode: initial;
-    text-orientation: initial;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
     display: inline;
   }
 
