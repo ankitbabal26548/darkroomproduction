@@ -1,3 +1,4 @@
+
 @layer components {
   /* Futuristic Portfolio Section */
   .futuristic-portfolio-section {
@@ -132,11 +133,11 @@
 
   /* Enhanced Card Sections for Grid */
   .collection-grid-item .featured-section-v2 {
-    width: 70%;
+    width: 65%;
   }
 
   .collection-grid-item .smart-preview-section {
-    width: 25%;
+    width: 30%;
   }
 
   .collection-grid-item .control-tower {
@@ -152,7 +153,7 @@
       0 0 30px rgba(var(--accent), 0.2);
   }
 
-  /* Enhanced Ultra-Futuristic Collection Card V2 */
+  /* Enhanced Ultra-Futuristic Collection Card V2 with Rajasthani Elements */
   .futuristic-collection-card-v2 {
     background: linear-gradient(135deg, 
       rgba(0, 0, 0, 0.95) 0%, 
@@ -173,6 +174,41 @@
       0 0 0 1px rgba(var(--accent), 0.1);
   }
 
+  /* Rajasthani Cultural Enhancements */
+  .rajasthani-card {
+    border-radius: 28px; /* Slightly more rounded like Mughal arches */
+  }
+
+  .rajasthani-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 20% 30%, rgba(255, 140, 105, 0.03) 0%, transparent 50%),
+      radial-gradient(circle at 80% 70%, rgba(255, 105, 180, 0.02) 0%, transparent 50%);
+    border-radius: inherit;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .rajasthani-mandala-overlay {
+    position: absolute;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle at 10% 10%, transparent 30%, rgba(255, 215, 0, 0.02) 40%, transparent 50%),
+      radial-gradient(circle at 90% 90%, transparent 30%, rgba(205, 133, 63, 0.02) 40%, transparent 50%);
+    background-size: 100px 100px, 120px 120px;
+    animation: mandala-rotate 30s linear infinite;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .rajasthani-card:hover .rajasthani-mandala-overlay {
+    opacity: 1;
+  }
+
   /* Enhanced Holographic Effects */
   .holographic-border-v2 {
     position: absolute;
@@ -181,8 +217,8 @@
     background: linear-gradient(60deg, 
       transparent 20%, 
       rgba(var(--accent), 0.8) 25%, 
-      rgba(255, 0, 255, 0.6) 30%,
-      rgba(0, 255, 255, 0.6) 35%,
+      rgba(255, 140, 105, 0.6) 30%,
+      rgba(255, 215, 0, 0.6) 35%,
       rgba(var(--accent), 0.8) 40%,
       transparent 45%);
     background-size: 300% 300%;
@@ -211,8 +247,8 @@
     inset: 0;
     background-image: 
       radial-gradient(1px 1px at 15% 20%, rgba(var(--accent), 0.9), transparent),
-      radial-gradient(1px 1px at 85% 30%, rgba(255, 0, 255, 0.7), transparent),
-      radial-gradient(1px 1px at 40% 80%, rgba(0, 255, 255, 0.6), transparent),
+      radial-gradient(1px 1px at 85% 30%, rgba(255, 140, 105, 0.7), transparent),
+      radial-gradient(1px 1px at 40% 80%, rgba(255, 215, 0, 0.6), transparent),
       radial-gradient(1px 1px at 70% 15%, rgba(var(--accent), 0.8), transparent);
     background-size: 120px 120px, 180px 180px, 140px 140px, 100px 100px;
     animation: particle-dance 12s ease-in-out infinite;
@@ -238,9 +274,9 @@
       0 0 0 1px rgba(var(--accent), 0.3);
   }
 
-  /* Featured Section V2 - 70% for grid */
+  /* Featured Section V2 - 65% for grid */
   .featured-section-v2 {
-    width: 70%;
+    width: 65%;
     height: 100%;
     position: relative;
     overflow: hidden;
@@ -263,7 +299,7 @@
 
   .futuristic-collection-card-v2:hover .featured-image-v2 {
     transform: scale(1.08) rotate(0.5deg);
-    filter: contrast(1.25) saturate(1.5) brightness(1.15);
+    filter: contrast(1.1) saturate(1.2) brightness(1.1); /* Reduced brightness */
   }
 
   .featured-overlay-v2 {
@@ -283,19 +319,28 @@
     z-index: 3;
   }
 
-  /* Minimal Corner UI */
-  .corner-ui-minimal {
+  /* Rajasthani Corner UI */
+  .corner-ui-minimal.rajasthani-corners {
     position: absolute;
     inset: 20px;
     pointer-events: none;
   }
 
-  .corner-element {
+  .rajasthani-corners .corner-element {
     position: absolute;
-    width: 12px;
-    height: 12px;
-    border: 2px solid rgba(var(--accent), 0.9);
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 215, 0, 0.9);
     transition: all 0.4s ease;
+    border-radius: 2px;
+  }
+
+  .rajasthani-corner-pattern {
+    position: absolute;
+    inset: -2px;
+    background: radial-gradient(circle, rgba(255, 140, 105, 0.3), transparent 60%);
+    border-radius: 4px;
+    animation: rajasthani-glow 3s ease-in-out infinite;
   }
 
   .corner-element.top-left {
@@ -330,25 +375,25 @@
     animation: corner-pulse 4s ease-in-out infinite 3s;
   }
 
-  /* Essential Info */
+  /* Essential Info with Rajasthani styling */
   .essential-info {
     display: flex;
     flex-direction: column;
     gap: 12px;
   }
 
-  .info-chips {
+  .info-chips.rajasthani-chips {
     display: flex;
     gap: 6px;
     flex-wrap: wrap;
   }
 
-  .info-chip {
+  .info-chip.rajasthani-chip {
     display: flex;
     align-items: center;
     gap: 3px;
     padding: 4px 8px;
-    background: rgba(var(--accent), 0.9);
+    background: linear-gradient(135deg, rgba(255, 140, 105, 0.9), rgba(255, 215, 0, 0.8));
     backdrop-filter: blur(12px);
     border-radius: 8px;
     color: white;
@@ -356,8 +401,9 @@
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.5px;
-    box-shadow: 0 4px 16px rgba(var(--accent), 0.4);
+    box-shadow: 0 4px 16px rgba(255, 140, 105, 0.4);
     animation: chip-float 5s ease-in-out infinite;
+    border: 1px solid rgba(255, 215, 0, 0.3);
   }
 
   .date-chip { animation-delay: 0s; }
@@ -367,34 +413,35 @@
     margin-top: auto;
   }
 
-  .couple-name-v2 {
+  .couple-name-v2.rajasthani-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
     font-weight: 700;
     color: white;
     margin-bottom: 6px;
-    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
+    text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 215, 0, 0.3);
     animation: text-shimmer 4s ease-in-out infinite;
   }
 
-  .collection-category-v2 {
+  .collection-category-v2.rajasthani-category {
     display: inline-block;
     padding: 6px 16px;
     background: linear-gradient(135deg, 
-      rgba(var(--accent), 0.95), 
-      rgba(var(--accent-darker), 0.95));
+      rgba(255, 140, 105, 0.95), 
+      rgba(205, 133, 63, 0.95));
     color: white;
     border-radius: 16px;
     font-size: 0.7rem;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    box-shadow: 0 6px 20px rgba(var(--accent), 0.5);
+    box-shadow: 0 6px 20px rgba(255, 140, 105, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.3);
   }
 
-  /* Smart Preview Section - 25% for grid */
+  /* Smart Preview Section - 30% for grid */
   .smart-preview-section {
-    width: 25%;
+    width: 30%;
     height: 100%;
     position: relative;
     padding: 12px;
@@ -414,14 +461,14 @@
     overflow: hidden;
     border-radius: 12px;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 2px solid rgba(var(--accent), 0.3);
+    border: 2px solid rgba(255, 215, 0, 0.3);
     background: rgba(var(--background), 0.5);
   }
 
   .preview-image-container:hover {
     transform: scale(1.05) rotate(1deg);
-    border-color: rgba(var(--accent), 0.7);
-    box-shadow: 0 8px 24px rgba(var(--accent), 0.4);
+    border-color: rgba(255, 140, 105, 0.7);
+    box-shadow: 0 8px 24px rgba(255, 140, 105, 0.4);
     z-index: 10;
   }
 
@@ -433,7 +480,20 @@
   }
 
   .preview-image-container:hover .preview-image {
-    filter: brightness(1.3) contrast(1.2) saturate(1.4);
+    filter: brightness(1.1) contrast(1.1) saturate(1.2); /* Reduced brightness */
+  }
+
+  .rajasthani-preview-overlay {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 60%, rgba(255, 215, 0, 0.1) 80%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    border-radius: inherit;
+  }
+
+  .preview-image-container:hover .rajasthani-preview-overlay {
+    opacity: 1;
   }
 
   .preview-overlay {
@@ -441,7 +501,7 @@
     inset: 0;
     background: linear-gradient(45deg, 
       transparent 50%, 
-      rgba(var(--accent), 0.4) 100%);
+      rgba(255, 140, 105, 0.4) 100%);
     opacity: 0;
     transition: opacity 0.3s ease;
     display: flex;
@@ -465,7 +525,7 @@
   /* Preview Placeholder */
   .preview-placeholder {
     border-radius: 12px;
-    border: 2px dashed rgba(var(--accent), 0.4);
+    border: 2px dashed rgba(255, 215, 0, 0.4);
     background: rgba(var(--muted), 0.2);
     position: relative;
     overflow: hidden;
@@ -476,7 +536,7 @@
     inset: 0;
     background: linear-gradient(45deg, 
       transparent 40%, 
-      rgba(var(--accent), 0.3) 50%, 
+      rgba(255, 140, 105, 0.3) 50%, 
       transparent 60%);
     background-size: 200% 200%;
     animation: placeholder-shimmer 3s ease-in-out infinite;
@@ -490,7 +550,7 @@
     justify-content: center;
     background: rgba(var(--muted), 0.3);
     border-radius: 12px;
-    border: 2px dashed rgba(var(--accent), 0.3);
+    border: 2px dashed rgba(255, 215, 0, 0.3);
   }
 
   .empty-preview-content {
@@ -501,8 +561,8 @@
     text-align: center;
   }
 
-  /* Control Tower - 5% */
-  .control-tower {
+  /* Control Tower - 5% with Rajasthani elements */
+  .control-tower.rajasthani-tower {
     width: 5%;
     height: 100%;
     display: flex;
@@ -511,10 +571,13 @@
     justify-content: space-between;
     padding: 16px 6px;
     position: relative;
+    background: linear-gradient(180deg, 
+      rgba(255, 140, 105, 0.05) 0%, 
+      rgba(205, 133, 63, 0.05) 100%);
   }
 
-  /* Energy Core with Count Display */
-  .energy-core {
+  /* Energy Core with Rajasthani design */
+  .energy-core.rajasthani-core {
     position: relative;
     width: 32px;
     height: 32px;
@@ -523,34 +586,42 @@
     justify-content: center;
   }
 
-  .core-ring {
+  .rajasthani-core .core-ring {
     position: relative;
     width: 100%;
     height: 100%;
-    border: 2px solid rgba(var(--accent), 0.8);
+    border: 2px solid rgba(255, 215, 0, 0.8);
     border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
     background: radial-gradient(circle, 
-      rgba(var(--accent), 0.3) 0%, 
+      rgba(255, 140, 105, 0.3) 0%, 
       transparent 70%);
     animation: core-pulse 3s ease-in-out infinite;
   }
 
-  .pulse-ring {
+  .rajasthani-core-pattern {
+    position: absolute;
+    inset: -4px;
+    border: 1px solid rgba(255, 140, 105, 0.4);
+    border-radius: 50%;
+    animation: rajasthani-rotate 8s linear infinite;
+  }
+
+  .rajasthani-core .pulse-ring {
     position: absolute;
     inset: -3px;
-    border: 2px solid rgba(var(--accent), 0.5);
+    border: 2px solid rgba(255, 140, 105, 0.5);
     border-radius: 50%;
     animation: pulse-expand 3s ease-in-out infinite;
   }
 
-  .energy-number {
+  .rajasthani-core .energy-number {
     color: white;
     font-size: 0.65rem;
     font-weight: 700;
-    text-shadow: 0 0 8px rgba(var(--accent), 0.8);
+    text-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
     z-index: 2;
   }
 
@@ -570,7 +641,7 @@
     height: 6px;
     background: linear-gradient(to top, 
       transparent, 
-      rgba(var(--accent), 0.8), 
+      rgba(255, 140, 105, 0.8), 
       transparent);
     border-radius: 1px;
     animation: particle-flow 4s ease-in-out infinite;
@@ -580,18 +651,16 @@
   .particle:nth-child(2) { animation-delay: 1.3s; }
   .particle:nth-child(3) { animation-delay: 2.6s; }
 
-  /* Explore Button */
-  .explore-button {
-    writing-mode: vertical-lr;
-    text-orientation: mixed;
+  /* Vertical Text Button - Rajasthani Style */
+  .vertical-text-button.rajasthani-button {
     background: linear-gradient(135deg, 
-      rgba(var(--accent), 0.95) 0%, 
-      rgba(var(--accent-darker), 1) 100%);
-    border: 2px solid rgba(var(--accent), 0.8);
+      rgba(255, 140, 105, 0.95) 0%, 
+      rgba(205, 133, 63, 1) 100%);
+    border: 2px solid rgba(255, 215, 0, 0.8);
     border-radius: 20px;
     color: white;
     padding: 20px 4px;
-    height: 120px;
+    height: 140px;
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -599,74 +668,132 @@
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(12px);
     box-shadow: 
-      0 6px 20px rgba(var(--accent), 0.4),
+      0 6px 20px rgba(255, 140, 105, 0.4),
       inset 0 1px 0 rgba(255, 255, 255, 0.3);
   }
 
-  .explore-button:hover {
+  .vertical-text-button.rajasthani-button:hover {
     transform: scale(1.05);
     box-shadow: 
-      0 12px 40px rgba(var(--accent), 0.6),
+      0 12px 40px rgba(255, 140, 105, 0.6),
       inset 0 1px 0 rgba(255, 255, 255, 0.4);
-    border-color: rgba(var(--accent), 1);
+    border-color: rgba(255, 215, 0, 1);
   }
 
-  .button-hologram {
+  .vertical-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 2px;
+  }
+
+  .vertical-text-line {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1px;
+  }
+
+  .vertical-text-char {
+    display: block;
+    font-size: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    line-height: 1;
+    text-shadow: 0 0 4px rgba(255, 215, 0, 0.6);
+    animation: vertical-char-glow 2s ease-in-out infinite;
+  }
+
+  .vertical-text-arrow .vertical-text-char {
+    font-size: 0.6rem;
+    font-weight: 900;
+    animation-delay: 0.5s;
+  }
+
+  .vertical-text-count {
+    margin-top: 4px;
+  }
+
+  .vertical-text-count .vertical-text-char {
+    font-size: 0.45rem;
+    opacity: 0.9;
+  }
+
+  .button-hologram.rajasthani-hologram {
     position: absolute;
     inset: 0;
     background: linear-gradient(45deg, 
       transparent 30%, 
-      rgba(255, 255, 255, 0.2) 50%, 
+      rgba(255, 215, 0, 0.3) 50%, 
       transparent 70%);
     transform: translateX(-100%) rotate(45deg);
     transition: transform 0.6s ease;
   }
 
-  .explore-button:hover .button-hologram {
+  .vertical-text-button.rajasthani-button:hover .button-hologram.rajasthani-hologram {
     transform: translateX(100%) rotate(45deg);
   }
 
-  .explore-text {
-    display: block;
-    font-size: 0.6rem;
-    font-weight: 700;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    line-height: 1.2;
-    margin: 6px 0;
-  }
-
-  .explore-button .w-4 {
-    margin: 6px 0;
-    width: 12px;
-    height: 12px;
-  }
-
-  /* Preview Dots */
-  .preview-dots {
+  /* Preview Dots - Rajasthani Style */
+  .preview-dots.rajasthani-dots {
     display: flex;
     flex-direction: column;
     gap: 3px;
     margin-top: 6px;
   }
 
-  .preview-dot {
+  .preview-dot.rajasthani-dot {
     width: 4px;
     height: 4px;
     border-radius: 50%;
-    background: rgba(var(--accent), 0.6);
+    background: rgba(255, 215, 0, 0.6);
     animation: dot-pulse 2s ease-in-out infinite;
+    box-shadow: 0 0 4px rgba(255, 140, 105, 0.4);
   }
 
-  .preview-dot:nth-child(1) { animation-delay: 0s; }
-  .preview-dot:nth-child(2) { animation-delay: 0.7s; }
-  .preview-dot:nth-child(3) { animation-delay: 1.4s; }
+  .preview-dot.rajasthani-dot:nth-child(1) { animation-delay: 0s; }
+  .preview-dot.rajasthani-dot:nth-child(2) { animation-delay: 0.7s; }
+  .preview-dot.rajasthani-dot:nth-child(3) { animation-delay: 1.4s; }
 
   /* Grid Animation */
   .collection-grid-animate {
     opacity: 0;
     transform: translateY(40px) scale(0.95) rotateX(10deg);
     animation: grid-entrance 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  }
+
+  /* Rajasthani Keyframe Animations */
+  @keyframes mandala-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes rajasthani-glow {
+    0%, 100% { 
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% { 
+      opacity: 0.8;
+      transform: scale(1.1);
+    }
+  }
+
+  @keyframes rajasthani-rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes vertical-char-glow {
+    0%, 100% { 
+      text-shadow: 0 0 4px rgba(255, 215, 0, 0.6);
+    }
+    50% { 
+      text-shadow: 0 0 8px rgba(255, 215, 0, 1), 0 0 12px rgba(255, 140, 105, 0.8);
+    }
   }
 
   /* Enhanced Keyframe Animations for Grid */
@@ -746,12 +873,12 @@
 
   @keyframes corner-pulse {
     0%, 100% { 
-      border-color: rgba(var(--accent), 0.9);
-      box-shadow: 0 0 6px rgba(var(--accent), 0.6);
+      border-color: rgba(255, 215, 0, 0.9);
+      box-shadow: 0 0 6px rgba(255, 215, 0, 0.6);
     }
     50% { 
-      border-color: rgba(var(--accent), 1);
-      box-shadow: 0 0 20px rgba(var(--accent), 1);
+      border-color: rgba(255, 215, 0, 1);
+      box-shadow: 0 0 20px rgba(255, 215, 0, 1);
     }
   }
 
@@ -761,8 +888,12 @@
   }
 
   @keyframes text-shimmer {
-    0%, 100% { text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9); }
-    50% { text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9), 0 0 24px rgba(var(--accent), 0.4); }
+    0%, 100% { 
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9), 0 0 12px rgba(255, 215, 0, 0.3); 
+    }
+    50% { 
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9), 0 0 24px rgba(255, 215, 0, 0.6); 
+    }
   }
 
   @keyframes placeholder-shimmer {
@@ -772,12 +903,12 @@
 
   @keyframes core-pulse {
     0%, 100% { 
-      border-color: rgba(var(--accent), 0.8);
-      box-shadow: 0 0 10px rgba(var(--accent), 0.6);
+      border-color: rgba(255, 215, 0, 0.8);
+      box-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
     }
     50% { 
-      border-color: rgba(var(--accent), 1);
-      box-shadow: 0 0 25px rgba(var(--accent), 1);
+      border-color: rgba(255, 215, 0, 1);
+      box-shadow: 0 0 25px rgba(255, 215, 0, 1);
     }
   }
 
@@ -811,11 +942,11 @@
 
   @keyframes dot-pulse {
     0%, 100% { 
-      background: rgba(var(--accent), 0.6);
+      background: rgba(255, 215, 0, 0.6);
       transform: scale(1);
     }
     50% { 
-      background: rgba(var(--accent), 1);
+      background: rgba(255, 215, 0, 1);
       transform: scale(1.2);
     }
   }
@@ -828,37 +959,41 @@
     }
 
     .futuristic-collection-card-v2 {
-      height: 320px;
+      height: 280px; /* Reduced height for tablets */
     }
 
     .couple-name-v2 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
     }
 
     .featured-overlay-v2 {
-      padding: 16px;
+      padding: 14px;
     }
 
     .smart-preview-section {
-      padding: 10px;
+      padding: 8px;
     }
 
     .smart-preview-grid {
-      gap: 6px;
+      gap: 4px;
     }
 
     .control-tower {
-      padding: 12px 4px;
+      padding: 10px 3px;
     }
 
     .energy-core {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
     }
 
-    .explore-button {
+    .vertical-text-button {
       height: 100px;
-      padding: 16px 3px;
+      padding: 14px 3px;
+    }
+
+    .vertical-text-char {
+      font-size: 0.45rem;
     }
   }
 
@@ -870,45 +1005,45 @@
 
     .futuristic-collection-card-v2 {
       height: auto;
-      min-height: 500px;
+      min-height: 400px; /* Reduced from 500px */
       flex-direction: column;
     }
 
     .collection-grid-item .featured-section-v2 {
       width: 100%;
-      height: 300px;
+      height: 240px; /* Reduced height */
     }
 
     .collection-grid-item .smart-preview-section {
       width: 100%;
-      height: 120px;
-      padding: 12px 16px;
+      height: 100px; /* Reduced height */
+      padding: 10px 12px;
     }
 
     .smart-preview-grid {
       grid-template-columns: 1fr 1fr 1fr;
       grid-template-rows: 1fr;
-      gap: 8px;
+      gap: 6px;
       overflow-x: auto;
     }
 
     .preview-image-container {
-      min-width: 80px;
-      border-radius: 12px;
+      min-width: 70px;
+      border-radius: 8px;
     }
 
     .collection-grid-item .control-tower {
       width: 100%;
-      height: 60px;
+      height: 50px; /* Reduced height */
       flex-direction: row;
-      padding: 16px;
+      padding: 12px;
       justify-content: space-between;
       align-items: center;
     }
 
     .tower-particles {
       position: static;
-      width: 60px;
+      width: 50px;
       height: 2px;
       transform: none;
       display: flex;
@@ -918,47 +1053,79 @@
 
     .particle {
       position: static;
-      width: 8px;
+      width: 6px;
       height: 2px;
       animation: particle-flow-horizontal 4s ease-in-out infinite;
     }
 
-    .explore-button {
+    .vertical-text-button {
       writing-mode: initial;
       text-orientation: initial;
       height: auto;
-      width: 120px;
-      padding: 12px 16px;
+      width: 100px; /* Reduced width */
+      padding: 8px 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
-      border-radius: 16px;
+      border-radius: 12px;
     }
 
-    .explore-text {
+    .vertical-text-container {
+      flex-direction: row;
+      gap: 4px;
+      height: auto;
+    }
+
+    .vertical-text-line {
+      flex-direction: row;
+      gap: 2px;
+    }
+
+    .vertical-text-char {
       display: inline;
+      font-size: 0.5rem;
+    }
+
+    .vertical-text-arrow {
+      margin: 0 2px;
+    }
+
+    .vertical-text-count {
       margin: 0;
-      font-size: 0.65rem;
     }
 
     .preview-dots {
       flex-direction: row;
-      gap: 6px;
+      gap: 4px;
       margin: 0;
     }
 
     .couple-name-v2 {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
     }
 
     .info-chips {
-      gap: 6px;
+      gap: 4px;
     }
 
     .info-chip {
-      font-size: 0.7rem;
-      padding: 4px 8px;
+      font-size: 0.6rem;
+      padding: 3px 6px;
+    }
+
+    /* Mobile-specific Rajasthani adjustments */
+    .rajasthani-corners .corner-element {
+      width: 12px;
+      height: 12px;
+    }
+
+    .energy-core.rajasthani-core {
+      width: 20px;
+      height: 20px;
+    }
+
+    .rajasthani-core .energy-number {
+      font-size: 0.55rem;
     }
   }
 }
