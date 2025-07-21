@@ -137,15 +137,7 @@ export const FuturisticCollectionCard = ({
 
       {/* Enhanced Control Tower with better mobile experience */}
       <div className="control-tower-v3">
-        {/* Energy Core Display */}
-        <div className="energy-core-v3">
-          <div className="core-ring-v3">
-            <div className="pulse-ring-v3" />
-            <div className="energy-number-v3">{totalImages}</div>
-          </div>
-        </div>
-
-        {/* Enhanced All Images Text - Fixed visibility and arrow */}
+        {/* Enhanced All Images Text - Moved count to end */}
         <div className="all-images-text-v3">
           <div className="text-vertical-v3">
             <span>A</span><span>L</span><span>L</span>
@@ -156,17 +148,20 @@ export const FuturisticCollectionCard = ({
           </div>
         </div>
 
+        {/* Energy Core Display - Moved to bottom */}
+        <div className="energy-core-v3">
+          <div className="core-ring-v3">
+            <div className="pulse-ring-v3" />
+            <div className="energy-number-v3">{totalImages}</div>
+          </div>
+        </div>
+
         {/* Enhanced Preview Dots */}
         <div className="preview-dots-v3">
           {previewImages.slice(0, 3).map((_, index) => (
             <div key={index} className="preview-dot-v3" />
           ))}
         </div>
-      </div>
-
-      {/* Smart Category Display - Desktop Only */}
-      <div className="category-badge-desktop hidden md:block">
-        <span className="category-text">{collection.category}</span>
       </div>
     </div>
   );
