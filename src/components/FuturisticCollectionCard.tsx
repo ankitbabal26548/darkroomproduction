@@ -135,20 +135,20 @@ export const FuturisticCollectionCard = ({
         {renderSmartPreview()}
       </div>
 
-      {/* Enhanced Control Tower with better mobile experience */}
+      {/* Enhanced Control Tower with centered layout */}
       <div className="control-tower-v3">
-        {/* Enhanced All Images Text - Moved count to end */}
+        {/* Enhanced All Images Text - Centered */}
         <div className="all-images-text-v3">
           <div className="text-vertical-v3">
             <span>A</span><span>L</span><span>L</span>
             <span className="spacer"></span>
             <span>I</span><span>M</span><span>A</span><span>G</span><span>E</span><span>S</span>
             <span className="spacer"></span>
-            <span className="arrow-breathing">↗</span>
+            <span className="arrow-wave">↗</span>
           </div>
         </div>
 
-        {/* Energy Core Display - Moved to bottom */}
+        {/* Energy Core Display - Centered with enhanced visibility */}
         <div className="energy-core-v3">
           <div className="core-ring-v3">
             <div className="pulse-ring-v3" />
