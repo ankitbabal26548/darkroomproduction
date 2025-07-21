@@ -1,5 +1,5 @@
 
-import { Calendar, MapPin, Images, Eye } from 'lucide-react';
+import { Calendar, MapPin, Eye, Zap } from 'lucide-react';
 import { WeddingCollection } from '@/types/portfolio';
 
 interface FuturisticCollectionCardProps {
@@ -14,217 +14,153 @@ export const FuturisticCollectionCard = ({
   delay = 0 
 }: FuturisticCollectionCardProps) => {
   const remainingImages = collection.images.slice(1); // Exclude the first image (cover)
-  const remainingCount = remainingImages.length;
+  const totalImages = collection.images.length;
 
-  const renderImageGrid = () => {
-    if (remainingCount === 0) {
+  // Smart image selection - always show exactly 3 preview images
+  const getSmartPreviewImages = () => {
+    if (remainingImages.length === 0) return [];
+    if (remainingImages.length <= 3) return remainingImages;
+    
+    // Smart selection algorithm - pick diverse images
+    const selected = [];
+    const step = Math.floor(remainingImages.length / 3);
+    
+    for (let i = 0; i < 3; i++) {
+      const index = Math.min(i * step, remainingImages.length - 1);
+      selected.push(remainingImages[index]);
+    }
+    
+    return selected;
+  };
+
+  const previewImages = getSmartPreviewImages();
+
+  const renderSmartPreview = () => {
+    if (previewImages.length === 0) {
       return (
-        <div className="grid-placeholder">
-          <div className="placeholder-content">
-            <Images className="w-8 h-8 text-accent/50" />
-            <span className="text-sm text-muted-foreground">No additional images</span>
+        <div className="smart-preview-empty">
+          <div className="empty-preview-content">
+            <Zap className="w-8 h-8 text-accent/60" />
+            <span className="text-sm text-muted-foreground">Featured Only</span>
           </div>
         </div>
       );
     }
 
-    if (remainingCount === 1) {
-      return (
-        <div className="image-grid grid-1">
-          <div className="grid-image-container">
-            <img src={remainingImages[0].image} alt={remainingImages[0].title} className="grid-image" />
-            <div className="grid-overlay" />
-          </div>
-        </div>
-      );
-    }
-
-    if (remainingCount === 2) {
-      return (
-        <div className="image-grid grid-2">
-          {remainingImages.slice(0, 2).map((img, index) => (
-            <div key={index} className="grid-image-container">
-              <img src={img.image} alt={img.title} className="grid-image" />
-              <div className="grid-overlay" />
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    if (remainingCount === 3) {
-      return (
-        <div className="image-grid grid-3">
-          <div className="grid-image-container grid-top">
-            <img src={remainingImages[0].image} alt={remainingImages[0].title} className="grid-image" />
-            <div className="grid-overlay" />
-          </div>
-          <div className="grid-bottom">
-            {remainingImages.slice(1, 3).map((img, index) => (
-              <div key={index} className="grid-image-container">
-                <img src={img.image} alt={img.title} className="grid-image" />
-                <div className="grid-overlay" />
-              </div>
-            ))}
-          </div>
-        </div>
-      );
-    }
-
-    if (remainingCount === 4) {
-      return (
-        <div className="image-grid grid-4">
-          {remainingImages.slice(0, 4).map((img, index) => (
-            <div key={index} className="grid-image-container">
-              <img src={img.image} alt={img.title} className="grid-image" />
-              <div className="grid-overlay" />
-            </div>
-          ))}
-        </div>
-      );
-    }
-
-    if (remainingCount === 5) {
-      return (
-        <div className="image-grid grid-5">
-          <div className="grid-main">
-            {remainingImages.slice(0, 4).map((img, index) => (
-              <div key={index} className="grid-image-container">
-                <img src={img.image} alt={img.title} className="grid-image" />
-                <div className="grid-overlay" />
-              </div>
-            ))}
-          </div>
-          <div className="grid-bottom-strip">
-            <div className="grid-image-container">
-              <img src={remainingImages[4].image} alt={remainingImages[4].title} className="grid-image" />
-              <div className="grid-overlay" />
-            </div>
-          </div>
-        </div>
-      );
-    }
-
-    // 6+ images
     return (
-      <div className="image-grid grid-6-plus">
-        {remainingImages.slice(0, 5).map((img, index) => (
-          <div key={index} className="grid-image-container">
-            <img src={img.image} alt={img.title} className="grid-image" />
-            <div className="grid-overlay" />
+      <div className="smart-preview-grid">
+        {previewImages.map((img, index) => (
+          <div key={index} className="preview-image-container">
+            <img src={img.image} alt={img.title} className="preview-image" />
+            <div className="preview-overlay">
+              <span className="preview-category">{img.category}</span>
+            </div>
           </div>
         ))}
-        <div className="grid-image-container more-images">
-          <img src={remainingImages[5].image} alt={remainingImages[5].title} className="grid-image" />
-          <div className="grid-overlay more-overlay">
-            <span className="more-count">+{remainingCount - 5}</span>
+        
+        {/* Fill remaining slots with placeholder if less than 3 */}
+        {Array.from({ length: 3 - previewImages.length }).map((_, index) => (
+          <div key={`placeholder-${index}`} className="preview-placeholder">
+            <div className="placeholder-glow" />
           </div>
-        </div>
+        ))}
       </div>
     );
   };
 
   return (
     <div
-      className="futuristic-collection-card"
+      className="futuristic-collection-card-v2"
       style={{ animationDelay: `${delay}ms` }}
       onClick={onOpen}
     >
-      {/* Holographic Border Effects */}
-      <div className="holographic-border" />
-      <div className="scan-lines" />
-      <div className="particle-effects" />
+      {/* Enhanced Holographic Effects */}
+      <div className="holographic-border-v2" />
+      <div className="energy-field" />
+      <div className="particle-stream" />
 
-      {/* Featured Image Area - 55% */}
-      <div className="featured-section">
-        <div className="featured-image-container">
+      {/* Featured Section - 65% */}
+      <div className="featured-section-v2">
+        <div className="featured-image-container-v2">
           <img
             src={collection.coverImage}
             alt={collection.coupleName}
-            className="featured-image"
+            className="featured-image-v2"
           />
-          <div className="featured-overlay">
-            {/* Floating UI Elements */}
-            <div className="ui-corners">
-              <div className="corner-tl" />
-              <div className="corner-tr" />
-              <div className="corner-bl" />
-              <div className="corner-br" />
+          <div className="featured-overlay-v2">
+            {/* Minimal Corner UI */}
+            <div className="corner-ui-minimal">
+              <div className="corner-element top-left" />
+              <div className="corner-element top-right" />
+              <div className="corner-element bottom-left" />
+              <div className="corner-element bottom-right" />
             </div>
             
-            {/* Info Badges */}
-            <div className="info-badges">
-              <div className="badge date-badge">
-                <Calendar className="w-3 h-3" />
-                <span>{collection.weddingDate}</span>
+            {/* Essential Info Only */}
+            <div className="essential-info">
+              <div className="info-chips">
+                <div className="info-chip date-chip">
+                  <Calendar className="w-3 h-3" />
+                  <span>{collection.weddingDate}</span>
+                </div>
+                <div className="info-chip location-chip">
+                  <MapPin className="w-3 h-3" />
+                  <span>{collection.location}</span>
+                </div>
               </div>
-              <div className="badge location-badge">
-                <MapPin className="w-3 h-3" />
-                <span>{collection.location}</span>
-              </div>
-            </div>
 
-            {/* Main Title */}
-            <div className="title-section">
-              <h3 className="couple-name">{collection.coupleName}</h3>
-              <span className="collection-category">{collection.category}</span>
+              <div className="title-minimal">
+                <h3 className="couple-name-v2">{collection.coupleName}</h3>
+                <span className="collection-category-v2">{collection.category}</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Dynamic Image Grid - 40% */}
-      <div className="grid-section">
-        {renderImageGrid()}
-        
-        {/* Grid Info Overlay */}
-        <div className="grid-info">
-          <div className="image-count">
-            <Images className="w-4 h-4" />
-            <span>{collection.images.length} Images</span>
-          </div>
-        </div>
+      {/* Smart Preview Section - 30% */}
+      <div className="smart-preview-section">
+        {renderSmartPreview()}
       </div>
 
-      {/* Control Panel - 5% */}
-      <div className="control-panel">
+      {/* Control Tower - 5% */}
+      <div className="control-tower">
+        {/* Energy Core Display */}
+        <div className="energy-core">
+          <div className="core-ring">
+            <div className="pulse-ring" />
+            <div className="energy-number">{totalImages}</div>
+          </div>
+        </div>
+
+        {/* Particle Stream Effect */}
+        <div className="tower-particles">
+          <div className="particle" />
+          <div className="particle" />
+          <div className="particle" />
+        </div>
+
+        {/* Explore Button */}
         <button 
-          className="view-button"
+          className="explore-button"
           onClick={(e) => {
             e.stopPropagation();
             onOpen();
           }}
         >
           <Eye className="w-4 h-4" />
-          <span className="button-text">VIEW</span>
-          <span className="button-text">IMAGES</span>
+          <span className="explore-text">EXPLORE</span>
           
-          {/* Progress Ring */}
-          <div className="progress-ring">
-            <svg className="progress-svg" viewBox="0 0 36 36">
-              <circle
-                className="progress-bg"
-                cx="18"
-                cy="18"
-                r="16"
-                fill="transparent"
-                stroke="currentColor"
-                strokeWidth="2"
-              />
-              <circle
-                className="progress-bar"
-                cx="18"
-                cy="18"
-                r="16"
-                fill="transparent"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeDasharray="100"
-                strokeDashoffset="25"
-              />
-            </svg>
-          </div>
+          {/* Holographic Effect */}
+          <div className="button-hologram" />
         </button>
+
+        {/* Mini Preview Dots */}
+        <div className="preview-dots">
+          {previewImages.slice(0, 3).map((_, index) => (
+            <div key={index} className="preview-dot" />
+          ))}
+        </div>
       </div>
     </div>
   );
