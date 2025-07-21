@@ -1,15 +1,12 @@
-
 import { useState, useEffect } from 'react';
 import { ChevronDown, Play, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HeroContent } from './HeroContent';
 import { HeroVisual } from './HeroVisual';
 import { HeroStats } from './HeroStats';
-
 export const HeroSection = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isLoaded, setIsLoaded] = useState(false);
-
   useEffect(() => {
     setIsLoaded(true);
     const timer = setInterval(() => {
@@ -17,9 +14,7 @@ export const HeroSection = () => {
     }, 6000);
     return () => clearInterval(timer);
   }, []);
-
-  return (
-    <section className="relative min-h-screen bg-background overflow-hidden">
+  return <section className="relative min-h-screen bg-background overflow-hidden">
       {/* Background Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0 bg-grid-pattern" />
@@ -28,7 +23,7 @@ export const HeroSection = () => {
       {/* Main Content Grid */}
       <div className="relative z-10 min-h-screen grid lg:grid-cols-12 gap-0 max-w-full">
         {/* Content Section */}
-        <div className="lg:col-span-5 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-16 lg:py-0">
+        <div className="lg:col-span-5 flex flex-col justify-center px-4 sm:px-6 lg:px-12 xl:px-16 py-16 lg:py-0 my-[30px]">
           <div className={`space-y-6 lg:space-y-8 max-w-full ${isLoaded ? 'animate-slide-in-left' : 'opacity-0'}`}>
             <HeroContent currentSlide={currentSlide} />
             
@@ -66,6 +61,5 @@ export const HeroSection = () => {
       {/* Gradient Overlays */}
       <div className="absolute inset-0 bg-gradient-to-r from-background via-transparent to-background/50 pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-background to-transparent pointer-events-none" />
-    </section>
-  );
+    </section>;
 };
