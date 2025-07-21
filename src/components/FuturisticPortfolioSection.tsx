@@ -1,14 +1,13 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { CinematicCollectionCard } from '@/components/CinematicCollectionCard';
+import { CompactFuturisticCollectionCard } from '@/components/CompactFuturisticCollectionCard';
 import { EnergyFieldBackground } from '@/components/EnergyFieldBackground';
-import { DramaticSeparator } from '@/components/DramaticSeparator';
 import { CollectionLightbox } from '@/components/CollectionLightbox';
 import { CollectionFilter } from '@/components/CollectionFilter';
 import { useWeddingCollections } from '@/hooks/useWeddingCollections';
 import { WeddingCollection } from '@/types/portfolio';
-import { Sparkles, Heart } from 'lucide-react';
+import { Sparkles, Heart, ArrowRight } from 'lucide-react';
 
 export const FuturisticPortfolioSection = () => {
   const { collections: weddingCollections, isLoading } = useWeddingCollections();
@@ -47,10 +46,10 @@ export const FuturisticPortfolioSection = () => {
           }
         });
       },
-      { threshold: 0.1, rootMargin: '100px' }
+      { threshold: 0.2, rootMargin: '50px' }
     );
 
-    const cards = document.querySelectorAll('.cinematic-card-observer');
+    const cards = document.querySelectorAll('.compact-card-observer');
     cards.forEach(card => observer.observe(card));
 
     return () => observer.disconnect();
@@ -73,13 +72,13 @@ export const FuturisticPortfolioSection = () => {
   }
 
   return (
-    <section id="portfolio" className="relative overflow-hidden cinematic-portfolio-section">
-      <EnergyFieldBackground variant="primary" intensity="medium" />
+    <section id="portfolio" className="relative overflow-hidden futuristic-portfolio-section">
+      <EnergyFieldBackground variant="primary" intensity="low" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Cinematic Header */}
-        <div className="text-center py-20 mb-12">
-          <div className="luxury-badge mb-8">
+        {/* Header */}
+        <div className="text-center py-16 mb-8">
+          <div className="luxury-badge mb-6">
             <Sparkles className="w-5 h-5 text-accent" />
             <span className="text-base font-medium">Wedding Portfolio</span>
           </div>
@@ -89,12 +88,12 @@ export const FuturisticPortfolioSection = () => {
           </h2>
           
           <p className="cinematic-subtitle">
-            Every couple has a unique story. We capture the magic, the emotions, and the unforgettable moments 
-            that make your wedding day extraordinary. Explore our collection of beautiful love stories.
+            Every couple has a unique story. Explore our collection of beautiful love stories 
+            captured in stunning detail.
           </p>
 
-          {/* Enhanced Filter */}
-          <div className="luxury-filter-container mt-12">
+          {/* Filter */}
+          <div className="luxury-filter-container mt-10">
             <CollectionFilter 
               categories={categories}
               activeCategory={activeCategory}
@@ -103,39 +102,27 @@ export const FuturisticPortfolioSection = () => {
           </div>
         </div>
 
-        {/* Cinematic Collections */}
-        <div className="cinematic-collections-timeline">
+        {/* Compact Collections */}
+        <div className="compact-collections-container">
           {filteredCollections.map((collection, index) => (
-            <div key={collection.id}>
-              <div
-                className="cinematic-card-observer"
-                data-card-index={index}
-              >
-                <CinematicCollectionCard
-                  collection={collection}
-                  onOpen={() => openCollection(collection)}
-                  index={index}
-                  isVisible={visibleCards.includes(index)}
-                  isAlternate={index % 2 === 1}
-                />
-              </div>
-              
-              {/* Dramatic Separator between collections */}
-              {index < filteredCollections.length - 1 && (
-                <div className="my-24 md:my-32">
-                  <DramaticSeparator 
-                    variant={index % 3 === 0 ? 'wave' : index % 3 === 1 ? 'geometric' : 'energy'}
-                    height="large"
-                  />
-                </div>
-              )}
+            <div
+              key={collection.id}
+              className="compact-card-observer"
+              data-card-index={index}
+            >
+              <CompactFuturisticCollectionCard
+                collection={collection}
+                onOpen={() => openCollection(collection)}
+                index={index}
+                isVisible={visibleCards.includes(index)}
+              />
             </div>
           ))}
         </div>
 
-        {/* Elegant Call to Action */}
-        <div className="text-center mt-32 py-20">
-          <div className="mb-12">
+        {/* CTA Section */}
+        <div className="text-center mt-20 py-16">
+          <div className="mb-8">
             <div className="inline-flex items-center space-x-6 text-muted-foreground">
               <div className="luxury-line" />
               <div className="flex items-center space-x-2">
@@ -152,7 +139,10 @@ export const FuturisticPortfolioSection = () => {
             size="lg"
             className="luxury-cta-main group relative overflow-hidden"
           >
-            <span className="relative z-10 text-lg px-8 py-2">Ready to Tell Your Story?</span>
+            <span className="relative z-10 flex items-center gap-2 text-lg px-6 py-2">
+              Ready to Tell Your Story?
+              <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+            </span>
             <div className="luxury-button-shimmer" />
           </Button>
         </div>
