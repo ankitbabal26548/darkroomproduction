@@ -69,21 +69,33 @@ export const FuturisticPortfolioSection = () => {
           />
         </div>
 
-        {/* Collections Grid - Single Row Layout */}
-        <div className="space-y-8 mb-16">
-          {filteredCollections.map((collection, index) => (
-            <div
-              key={collection.id}
-              className="collection-item-animate"
-              style={{ animationDelay: `${index * 200}ms` }}
-            >
-              <FuturisticCollectionCard
-                collection={collection}
-                onOpen={() => openCollection(collection)}
-                delay={index * 200}
-              />
-            </div>
-          ))}
+        {/* Collections Grid - 2 Column Layout */}
+        <div className="futuristic-grid-container mb-16">
+          <div className="grid-energy-overlay" />
+          <div className="grid-particles-system">
+            <div className="particle-stream-horizontal" />
+            <div className="particle-stream-vertical" />
+          </div>
+          
+          <div className="futuristic-collections-grid">
+            {filteredCollections.map((collection, index) => (
+              <div
+                key={collection.id}
+                className={`collection-grid-item collection-grid-animate`}
+                style={{ 
+                  animationDelay: `${Math.floor(index / 2) * 300 + (index % 2) * 150}ms` 
+                }}
+                data-row={Math.floor(index / 2)}
+                data-col={index % 2}
+              >
+                <FuturisticCollectionCard
+                  collection={collection}
+                  onOpen={() => openCollection(collection)}
+                  delay={Math.floor(index / 2) * 300 + (index % 2) * 150}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Load More Section */}
