@@ -1,12 +1,12 @@
-
 interface FuturisticLogoProps {
   className?: string;
   scrolled?: boolean;
 }
-
-export const FuturisticLogo = ({ className = "", scrolled = false }: FuturisticLogoProps) => {
-  return (
-    <div className={`flex items-center space-x-4 group cursor-pointer ${className}`}>
+export const FuturisticLogo = ({
+  className = "",
+  scrolled = false
+}: FuturisticLogoProps) => {
+  return <div className={`flex items-center space-x-4 group cursor-pointer ${className}`}>
       {/* Enhanced logo container with futuristic effects */}
       <div className="relative">
         {/* Animated glow rings */}
@@ -14,16 +14,10 @@ export const FuturisticLogo = ({ className = "", scrolled = false }: FuturisticL
         <div className="absolute inset-0 futuristic-logo-ring animate-aperture-spin" />
         
         {/* Main logo container */}
-        <div className={`futuristic-logo-container transition-all duration-500 ${
-          scrolled ? 'scale-90' : 'scale-100'
-        }`}>
+        <div className={`futuristic-logo-container transition-all duration-500 ${scrolled ? 'scale-90' : 'scale-100'}`}>
           <div className="relative w-12 h-12 rounded-xl overflow-hidden">
-            <img 
-              src="https://i.ibb.co/MDCLRNBK/drm-02.png" 
-              alt="Darkroom Production Logo"
-              className="w-full h-full object-contain transition-all duration-500 
-                         group-hover:scale-110 group-hover:brightness-110"
-            />
+            <img src="https://i.ibb.co/MDCLRNBK/drm-02.png" alt="Darkroom Production Logo" className="w-full h-full object-contain transition-all duration-500 
+                         group-hover:scale-110 group-hover:brightness-110" />
             
             {/* Holographic overlay */}
             <div className="absolute inset-0 futuristic-hologram-overlay" />
@@ -43,17 +37,10 @@ export const FuturisticLogo = ({ className = "", scrolled = false }: FuturisticL
       
       {/* Enhanced brand text with futuristic typography */}
       <div className="hidden sm:block">
-        <h1 className={`futuristic-brand-title transition-all duration-500 ${
-          scrolled ? 'text-xl' : 'text-2xl'
-        }`}>
-          <span className="futuristic-text-gradient">Darkroom</span>
+        <h1 className={`futuristic-brand-title transition-all duration-500 ${scrolled ? 'text-xl' : 'text-2xl'}`}>
+          
         </h1>
-        <p className={`futuristic-brand-subtitle transition-all duration-500 ${
-          scrolled ? 'text-xs -mt-0.5' : 'text-sm -mt-1'
-        }`}>
-          Production
-        </p>
+        
       </div>
-    </div>
-  );
+    </div>;
 };
