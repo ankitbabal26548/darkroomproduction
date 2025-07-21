@@ -3,163 +3,125 @@
  * CONFIGURATION HELPER UTILITIES
  * ================================
  * 
- * This file contains utility functions to help beginners work with the config files.
- * These functions provide safe ways to access config data and helpful error messages.
+ * This file contains utility functions to help work with the configuration files.
+ * These functions make it safer for beginners to use the config files.
  * 
  * BEGINNERS: You don't need to edit this file!
  */
 
-import { WEBSITE_CONTENT } from '@/config/content';
-import { WEBSITE_IMAGES } from '@/config/images';
-import { WEBSITE_STYLING } from '@/config/styling';
-
 /**
- * Safely gets a value from any config object using dot notation
- * Example: getConfigValue('hero.mainTitle', WEBSITE_CONTENT)
+ * Safely gets a value from a nested object using dot notation
+ * Example: getValue(config, "hero.title") gets config.hero.title
  */
-export const getConfigValue = (path, config, fallback = '') => {
+export const getValue = (obj, path, fallback = '') => {
   try {
     const keys = path.split('.');
-    let value = config;
+    let value = obj;
     
     for (const key of keys) {
       if (value && typeof value === 'object' && key in value) {
         value = value[key];
       } else {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`Config Helper: Could not find "${path}" in config`);
-        }
         return fallback;
       }
     }
     
-    return value !== null && value !== undefined ? value : fallback;
+    return value || fallback;
   } catch (error) {
-    if (process.env.NODE_ENV === 'development') {
-      console.error(`Config Helper Error: ${error.message}`);
-    }
+    console.warn(`ConfigHelper: Could not find value for path "${path}"`);
     return fallback;
   }
 };
 
 /**
- * Gets text content from the content config
- * Usage: getText('hero.mainTitle', 'Default Title')
+ * Validates if an image URL is accessible
+ * Returns a promise that resolves to true if image loads, false otherwise
  */
-export const getText = (path, fallback = 'Add text in config/content.js') => {
-  return getConfigValue(path, WEBSITE_CONTENT, fallback);
+export const validateImageUrl = (url) => {
+  return new Promise((resolve) => {
+    if (!url) {
+      resolve(false);
+      return;
+    }
+    
+    const img = new Image();
+    img.onload = () => resolve(true);
+    img.onerror = () => resolve(false);
+    img.src = url;
+  });
 };
 
 /**
- * Gets image URL from the images config
- * Usage: getImage('hero.slide1', '/default-image.jpg')
+ * Formats text for display, handling special cases
  */
-export const getImage = (path, fallback = '/placeholder-image.jpg') => {
-  return getConfigValue(path, WEBSITE_IMAGES, fallback);
-};
-
-/**
- * Gets styling value from the styling config
- * Usage: getStyle('spacing.sectionPadding', 'py-20')
- */
-export const getStyle = (path, fallback = '') => {
-  return getConfigValue(path, WEBSITE_STYLING, fallback);
-};
-
-/**
- * Validates that all required config values are present
- * This helps beginners identify missing configuration
- */
-export const validateConfig = () => {
-  const errors = [];
+export const formatText = (text, replacements = {}) => {
+  if (!text) return '';
   
-  // Check required content fields
-  const requiredContent = [
-    'companyName',
-    'hero.mainTitle',
-    'contact.phone',
-    'contact.email'
-  ];
+  let formattedText = text;
   
-  requiredContent.forEach(path => {
-    if (!getText(path)) {
-      errors.push(`Missing required content: ${path}`);
+  // Replace placeholders like {count} with actual values
+  Object.keys(replacements).forEach(key => {
+    const placeholder = `{${key}}`;
+    formattedText = formattedText.replace(new RegExp(placeholder, 'g'), replacements[key]);
+  });
+  
+  return formattedText;
+};
+
+/**
+ * Validates styling values to prevent CSS errors
+ */
+export const validateStyleValue = (value, allowedValues = []) => {
+  if (!value) return false;
+  
+  // If allowed values are specified, check against them
+  if (allowedValues.length > 0) {
+    return allowedValues.includes(value);
+  }
+  
+  // Basic validation for Tailwind classes
+  return typeof value === 'string' && value.length > 0;
+};
+
+/**
+ * Gets responsive image URL based on screen size
+ * Helps optimize images for different devices
+ */
+export const getResponsiveImageUrl = (baseUrl, size = 'medium') => {
+  if (!baseUrl) return '';
+  
+  // If it's an Unsplash URL, we can add size parameters
+  if (baseUrl.includes('unsplash.com')) {
+    const sizeParams = {
+      small: 'w=600&h=400',
+      medium: 'w=1200&h=800',
+      large: 'w=1920&h=1080'
+    };
+    
+    const separator = baseUrl.includes('?') ? '&' : '?';
+    return `${baseUrl}${separator}${sizeParams[size] || sizeParams.medium}`;
+  }
+  
+  return baseUrl;
+};
+
+/**
+ * Debug helper to check if all required config values are present
+ * Use this in development to ensure your config is complete
+ */
+export const validateConfig = (config, requiredPaths = []) => {
+  const missing = [];
+  
+  requiredPaths.forEach(path => {
+    const value = getValue(config, path);
+    if (!value) {
+      missing.push(path);
     }
   });
   
-  // Check required image fields
-  const requiredImages = [
-    'hero.slide1',
-    'hero.slide2'
-  ];
-  
-  requiredImages.forEach(path => {
-    if (!getImage(path)) {
-      errors.push(`Missing required image: ${path}`);
-    }
-  });
-  
-  if (errors.length > 0 && process.env.NODE_ENV === 'development') {
-    console.group('⚠️ Configuration Validation Errors');
-    errors.forEach(error => console.warn(error));
-    console.log('💡 Edit the files in src/config/ to fix these issues');
-    console.groupEnd();
+  if (missing.length > 0) {
+    console.warn('Missing config values:', missing);
   }
   
-  return errors;
+  return missing.length === 0;
 };
-
-/**
- * Provides helpful development tools for beginners
- */
-export const devTools = {
-  // Lists all available content paths
-  listContentPaths: () => {
-    const paths = [];
-    const findPaths = (obj, prefix = '') => {
-      Object.keys(obj).forEach(key => {
-        const path = prefix ? `${prefix}.${key}` : key;
-        if (typeof obj[key] === 'string') {
-          paths.push(path);
-        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-          findPaths(obj[key], path);
-        }
-      });
-    };
-    findPaths(WEBSITE_CONTENT);
-    return paths;
-  },
-  
-  // Lists all available image paths
-  listImagePaths: () => {
-    const paths = [];
-    const findPaths = (obj, prefix = '') => {
-      Object.keys(obj).forEach(key => {
-        const path = prefix ? `${prefix}.${key}` : key;
-        if (typeof obj[key] === 'string') {
-          paths.push(path);
-        } else if (typeof obj[key] === 'object' && obj[key] !== null) {
-          findPaths(obj[key], path);
-        }
-      });
-    };
-    findPaths(WEBSITE_IMAGES);
-    return paths;
-  },
-  
-  // Shows example usage
-  showExamples: () => {
-    console.group('📚 Configuration Examples');
-    console.log('Text: getText("hero.mainTitle")');
-    console.log('Image: getImage("hero.slide1")');
-    console.log('Style: getStyle("spacing.sectionPadding")');
-    console.log('Available content paths:', devTools.listContentPaths());
-    console.log('Available image paths:', devTools.listImagePaths());
-    console.groupEnd();
-  }
-};
-
-// Run validation in development mode
-if (process.env.NODE_ENV === 'development') {
-  validateConfig();
-}
