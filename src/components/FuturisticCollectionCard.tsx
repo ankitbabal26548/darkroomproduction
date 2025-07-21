@@ -70,32 +70,38 @@ export const FuturisticCollectionCard = ({
 
   return (
     <div
-      className="futuristic-collection-card-v2"
+      className="futuristic-collection-card-v3"
       style={{ animationDelay: `${delay}ms` }}
       onClick={onOpen}
     >
       {/* Enhanced Creative Effects */}
-      <div className="holographic-border-v2" />
-      <div className="energy-field" />
-      <div className="particle-stream" />
-      <div className="magnetic-glow" />
-      <div className="floating-particles">
+      <div className="holographic-border-v3" />
+      <div className="energy-field-v3" />
+      <div className="particle-stream-v3" />
+      <div className="magnetic-glow-v3" />
+      <div className="floating-particles-v3">
         <div className="particle-dot particle-1" />
         <div className="particle-dot particle-2" />
         <div className="particle-dot particle-3" />
+        <div className="particle-dot particle-4" />
+        <div className="particle-dot particle-5" />
       </div>
 
+      {/* Organic Shape Overlays */}
+      <div className="organic-overlay organic-1" />
+      <div className="organic-overlay organic-2" />
+
       {/* Featured Section - Enhanced with better proportions */}
-      <div className="featured-section-v2">
-        <div className="featured-image-container-v2">
+      <div className="featured-section-v3">
+        <div className="featured-image-container-v3">
           <img
             src={collection.coverImage}
             alt={collection.coupleName}
-            className="featured-image-v2"
+            className="featured-image-v3"
           />
-          <div className="featured-overlay-v2">
+          <div className="featured-overlay-v3">
             {/* Enhanced Corner UI with organic curves */}
-            <div className="corner-ui-enhanced">
+            <div className="corner-ui-v3">
               <div className="corner-element top-left" />
               <div className="corner-element top-right" />
               <div className="corner-element bottom-left" />
@@ -103,8 +109,8 @@ export const FuturisticCollectionCard = ({
             </div>
             
             {/* Essential Info with improved spacing */}
-            <div className="essential-info-enhanced">
-              <div className="info-chips-enhanced">
+            <div className="essential-info-v3">
+              <div className="info-chips-v3">
                 <div className="info-chip date-chip">
                   <Calendar className="w-3 h-3" />
                   <span>{collection.weddingDate}</span>
@@ -116,9 +122,9 @@ export const FuturisticCollectionCard = ({
               </div>
 
               {/* Enhanced couple name prominence */}
-              <div className="title-enhanced">
-                <h3 className="couple-name-enhanced">{collection.coupleName}</h3>
-                <span className="collection-category-enhanced">{collection.category}</span>
+              <div className="title-v3">
+                <h3 className="couple-name-v3">{collection.coupleName}</h3>
+                <span className="collection-category-v3">{collection.category}</span>
               </div>
             </div>
           </div>
@@ -126,36 +132,36 @@ export const FuturisticCollectionCard = ({
       </div>
 
       {/* Smart Preview Section with improved mobile handling */}
-      <div className="smart-preview-section-enhanced">
+      <div className="smart-preview-section-v3">
         {renderSmartPreview()}
       </div>
 
       {/* Enhanced Control Tower with better mobile experience */}
-      <div className="control-tower-enhanced">
+      <div className="control-tower-v3">
         {/* Energy Core Display */}
-        <div className="energy-core-enhanced">
-          <div className="core-ring-enhanced">
-            <div className="pulse-ring-enhanced" />
-            <div className="energy-number-enhanced">{totalImages}</div>
+        <div className="energy-core-v3">
+          <div className="core-ring-v3">
+            <div className="pulse-ring-v3" />
+            <div className="energy-number-v3">{totalImages}</div>
           </div>
         </div>
 
-        {/* Enhanced All Images Text */}
-        <div className="all-images-text">
-          <div className="text-vertical">
+        {/* Enhanced All Images Text - Fixed JSX syntax */}
+        <div className="all-images-text-v3">
+          <div className="text-vertical-v3">
             <span>A</span><span>L</span><span>L</span>
             <span className="spacer"></span>
             <span>I</span><span>M</span><span>A</span><span>G</span><span>E</span><span>S</span>
             <span className="spacer"></span>
-            <span className="arrow">></span>
+            <span className="arrow">{'>'}</span>
           </div>
-          <div className="image-count">({totalImages})</div>
+          <div className="image-count-v3">({totalImages})</div>
         </div>
 
         {/* Enhanced Preview Dots */}
-        <div className="preview-dots-enhanced">
+        <div className="preview-dots-v3">
           {previewImages.slice(0, 3).map((_, index) => (
-            <div key={index} className="preview-dot-enhanced" />
+            <div key={index} className="preview-dot-v3" />
           ))}
         </div>
       </div>
