@@ -37,66 +37,53 @@ export const HeroVisual = ({ currentSlide }: HeroVisualProps) => {
 
   return (
     <div className="relative h-full min-h-[400px] sm:min-h-[500px] lg:min-h-screen max-w-full overflow-hidden">
-      {/* Main Images with 3D Effects */}
+      {/* Main Images */}
       {visualSlides.map((slide, index) => (
         <div 
           key={index} 
-          className={`absolute inset-0 transition-all duration-1000 hero-image-container ${
+          className={`absolute inset-0 transition-all duration-1000 ${
             index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
           }`}
         >
           {loadedImages[index] && (
             <>
-              {/* Enhanced Image Container */}
-              <div className="relative h-full w-full overflow-hidden hero-image-wrapper">
+              {/* Image Container */}
+              <div className="relative h-full w-full overflow-hidden">
                 <img 
                   src={slide.image} 
                   alt={slide.alt} 
-                  className="w-full h-full object-cover object-center hero-main-image" 
+                  className="w-full h-full object-cover object-center" 
                 />
                 
-                {/* Advanced Gradient Overlays */}
-                <div className="absolute inset-0 hero-image-gradient-primary" />
-                <div className="absolute inset-0 hero-image-gradient-secondary" />
-                
-                {/* Parallax Overlay Elements */}
-                <div className="absolute inset-0 hero-parallax-overlay">
-                  <div className="parallax-element-1"></div>
-                  <div className="parallax-element-2"></div>
-                </div>
+                {/* Gradient Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-transparent to-transparent lg:from-background/60" />
+                <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
               </div>
             </>
           )}
         </div>
       ))}
 
-      {/* Enhanced Decorative Elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="hero-decoration-line-1"></div>
-        <div className="hero-decoration-line-2"></div>
-        <div className="hero-decoration-circle-1"></div>
-        <div className="hero-decoration-circle-2"></div>
+      {/* Decorative Elements - Positioned to stay within viewport */}
+      <div className="absolute top-0 right-0 w-full h-full pointer-events-none overflow-hidden">
+        <div className="absolute top-1/3 right-4 sm:right-8 w-1 h-16 sm:h-24 bg-accent/30 rounded-full hidden sm:block" />
+        <div className="absolute bottom-1/4 right-6 sm:right-12 w-6 sm:w-8 h-1 bg-accent/30 rounded-full hidden sm:block" />
       </div>
 
-      {/* Futuristic Slide Indicators */}
-      <div className="absolute bottom-8 right-8 flex flex-col space-y-3 z-30">
+      {/* Slide Indicators */}
+      <div className="absolute bottom-6 sm:bottom-8 right-4 sm:right-8 flex space-x-2 sm:space-x-3 z-20">
         {visualSlides.map((_, index) => (
           <button 
             key={index}
-            className={`hero-slide-indicator ${
-              index === currentSlide ? 'active' : ''
+            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+              index === currentSlide 
+                ? 'bg-accent scale-125 shadow-lg' 
+                : 'bg-white/40 hover:bg-white/60'
             }`}
             aria-label={`Go to slide ${index + 1}`}
-          >
-            <div className="indicator-line"></div>
-            <div className="indicator-dot"></div>
-          </button>
+          />
         ))}
       </div>
-
-      {/* 3D Floating Elements */}
-      <div className="absolute top-1/4 right-12 hero-3d-element element-1"></div>
-      <div className="absolute bottom-1/3 right-20 hero-3d-element element-2"></div>
     </div>
   );
 };
