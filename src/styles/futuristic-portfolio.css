@@ -1,6 +1,6 @@
 
 @layer components {
-  /* Enhanced Futuristic Portfolio Section */
+  /* ... keep existing code (enhanced futuristic portfolio section) */
   .futuristic-portfolio-section {
     background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
     position: relative;
@@ -20,7 +20,7 @@
     pointer-events: none;
   }
 
-  /* Enhanced Grid Container */
+  /* ... keep existing code (grid container and enhanced creative effects) */
   .futuristic-grid-container {
     position: relative;
     padding: 24px 0;
@@ -142,7 +142,7 @@
     z-index: 1;
   }
 
-  /* ... keep existing code (enhanced creative effects) */
+  /* ... keep existing code (all creative effects like holographic-border-v3, energy-field-v3, etc.) */
   .holographic-border-v3 {
     position: absolute;
     inset: -1px;
@@ -299,7 +299,7 @@
       0 0 0 1px rgba(var(--accent), 0.3);
   }
 
-  /* Enhanced Featured Section V3 */
+  /* ... keep existing code (featured section and corner UI) */
   .featured-section-v3 {
     width: 68%;
     height: 100%;
@@ -345,7 +345,6 @@
     z-index: 3;
   }
 
-  /* ... keep existing code (corner UI and essential info) */
   .corner-ui-v3 {
     position: absolute;
     inset: 20px;
@@ -477,7 +476,7 @@
     opacity: 1;
   }
 
-  /* Enhanced Smart Preview Section V3 */
+  /* ... keep existing code (smart preview section) */
   .smart-preview-section-v3 {
     width: 27%;
     height: 100%;
@@ -562,7 +561,7 @@
     animation: placeholder-shimmer 2s ease-in-out infinite;
   }
 
-  /* Enhanced Control Tower V3 - Centered Layout */
+  /* Enhanced Control Tower V3 - Desktop-Specific Fixes */
   .control-tower-v3 {
     width: 5%;
     height: 100%;
@@ -572,33 +571,93 @@
     justify-content: center;
     padding: 20px 8px;
     position: relative;
-    gap: 16px;
+    gap: 12px; /* Reduced from 16px for desktop */
   }
 
-  /* Enhanced All Images Text V3 - Centered with gap */
-  .all-images-text-v3 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 6px;
-    color: white;
-    font-size: 0.65rem;
-    font-weight: 700;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    text-shadow: 
-      0 0 8px rgba(var(--accent), 0.8),
-      0 2px 4px rgba(0, 0, 0, 0.8),
-      0 0 20px rgba(255, 255, 255, 0.6);
+  /* Desktop-Specific: Vertical Text Layout */
+  @media (min-width: 1025px) {
+    .all-images-text-v3 {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      color: white;
+      font-size: 0.6rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 
+        0 0 8px rgba(var(--accent), 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    .all-images-label {
+      writing-mode: vertical-lr;
+      text-orientation: mixed;
+    }
+
+    .arrow-wave {
+      writing-mode: horizontal-tb;
+      font-size: 0.8rem;
+      color: rgba(var(--accent), 1);
+      animation: wave-animation 2s ease-in-out infinite;
+      text-shadow: 
+        0 0 12px rgba(var(--accent), 1),
+        0 0 24px rgba(var(--accent), 0.6);
+    }
+
+    /* Desktop Energy Core - Reduced Size */
+    .energy-core-v3 {
+      width: 36px; /* Reduced from 42px */
+      height: 36px; /* Reduced from 42px */
+    }
+
+    .core-ring-v3 {
+      border-width: 2px; /* Reduced from 3px */
+    }
+
+    .pulse-ring-v3 {
+      inset: -4px; /* Reduced from -6px */
+    }
+
+    .energy-number-v3 {
+      font-size: 0.8rem; /* Reduced from 0.9rem */
+    }
+
+    .control-tower-v3 {
+      gap: 12px; /* Reduced spacing for desktop */
+    }
   }
 
-  .arrow-wave {
-    font-size: 0.8rem;
-    color: rgba(var(--accent), 1);
-    animation: wave-animation 2s ease-in-out infinite;
-    text-shadow: 
-      0 0 12px rgba(var(--accent), 1),
-      0 0 24px rgba(var(--accent), 0.6);
+  /* Mobile/Tablet: Horizontal Text Layout (unchanged) */
+  @media (max-width: 1024px) {
+    .all-images-text-v3 {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      text-shadow: 
+        0 0 8px rgba(var(--accent), 0.8),
+        0 2px 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 255, 255, 0.6);
+    }
+
+    .arrow-wave {
+      font-size: 0.8rem;
+      color: rgba(var(--accent), 1);
+      animation: wave-animation 2s ease-in-out infinite;
+      text-shadow: 
+        0 0 12px rgba(var(--accent), 1),
+        0 0 24px rgba(var(--accent), 0.6);
+    }
   }
 
   .futuristic-collection-card-v3:hover .all-images-text-v3 {
@@ -609,7 +668,7 @@
       0 0 30px rgba(255, 255, 255, 0.8);
   }
 
-  /* Enhanced Energy Core V3 - Fixed visibility */
+  /* Enhanced Energy Core V3 - Default for mobile/tablet */
   .energy-core-v3 {
     position: relative;
     width: 42px;
@@ -662,7 +721,7 @@
     animation: grid-entrance-enhanced 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
   }
 
-  /* Enhanced Keyframe Animations */
+  /* ... keep existing code (all keyframe animations) */
   @keyframes grid-entrance-enhanced {
     from {
       opacity: 0;
@@ -693,7 +752,6 @@
     }
   }
 
-  /* ... keep existing code (other keyframes) */
   @keyframes float-drift {
     0%, 100% { 
       transform: translateY(0px) translateX(0px) rotate(0deg);
@@ -875,7 +933,7 @@
     50% { transform: translateY(-3px); }
   }
 
-  /* Enhanced Mobile Responsive Design */
+  /* Enhanced Mobile Responsive Design - Keep all existing mobile styles unchanged */
   @media (max-width: 1024px) {
     .futuristic-collections-grid {
       grid-template-columns: 1fr 1fr;
