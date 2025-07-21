@@ -102,12 +102,12 @@
 }
 
 @layer components {
-  /* Clean Navbar Styles */
+  /* Clean Navbar Styles - Enhanced for Dynamic Sizing */
   .clean-navbar-top {
     background: linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.95) 0%, 
-      rgba(255, 255, 255, 0.9) 100%);
-    backdrop-filter: blur(20px);
+      rgba(255, 255, 255, 0.7) 0%, 
+      rgba(255, 255, 255, 0.6) 100%);
+    backdrop-filter: blur(25px);
     border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   }
 
@@ -120,7 +120,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
-  /* Clean Logo Styles */
+  /* Clean Logo Styles - Enhanced for Dynamic Sizing */
   .clean-logo-glow {
     background: radial-gradient(circle, rgba(var(--accent), 0.2) 0%, transparent 70%);
     border-radius: 50%;
@@ -136,7 +136,7 @@
     backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
-    transition: all 0.3s ease;
+    transition: all 0.5s ease;
   }
 
   .clean-logo-container:hover {
@@ -156,7 +156,7 @@
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
   }
 
-  /* Clean Navigation Items */
+  /* Clean Navigation Items - Enhanced with Icons */
   .clean-nav-item {
     position: relative;
     display: flex;

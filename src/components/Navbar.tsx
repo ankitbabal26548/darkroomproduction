@@ -11,11 +11,11 @@ export const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Portfolio', href: '#portfolio' },
-    { name: 'Services', href: '#services' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '#home', icon: 'Home' },
+    { name: 'About', href: '#about', icon: 'Users' },
+    { name: 'Portfolio', href: '#portfolio', icon: 'Camera' },
+    { name: 'Services', href: '#services', icon: 'Briefcase' },
+    { name: 'Contact', href: '#contact', icon: 'Mail' },
   ];
 
   useEffect(() => {
@@ -31,13 +31,13 @@ export const Navbar = () => {
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
       scrolled 
-        ? 'clean-navbar-scrolled' 
-        : 'clean-navbar-top'
+        ? 'clean-navbar-scrolled h-16' 
+        : 'clean-navbar-top h-20 lg:h-20'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Clean Logo - Logo Only */}
-          <CleanLogo />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex justify-between items-center h-full">
+          {/* Dynamic Logo */}
+          <CleanLogo scrolled={scrolled} />
 
           {/* Desktop Navigation - Floating Container */}
           <div className="hidden md:flex items-center">
@@ -46,12 +46,12 @@ export const Navbar = () => {
             </div>
           </div>
 
-          {/* Clean Contact */}
+          {/* Desktop Contact with Phone */}
           <div className="hidden lg:block">
             <CleanContact />
           </div>
 
-          {/* Clean Mobile menu button */}
+          {/* Mobile menu button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
@@ -71,7 +71,7 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Clean Mobile Navigation */}
+      {/* Mobile Navigation */}
       <div className={`md:hidden transition-all duration-300 ease-out overflow-hidden ${
         isOpen 
           ? 'max-h-96 opacity-100' 
@@ -91,7 +91,7 @@ export const Navbar = () => {
               </a>
             ))}
             
-            {/* Mobile Contact */}
+            {/* Mobile Contact with Phone */}
             <div className="pt-4 mt-4 border-t border-border/30">
               <CleanContact mobile />
             </div>
