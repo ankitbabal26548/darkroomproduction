@@ -1,5 +1,5 @@
 
-import { Calendar, MapPin, Eye, Zap } from 'lucide-react';
+import { Calendar, MapPin, Zap } from 'lucide-react';
 import { WeddingCollection } from '@/types/portfolio';
 
 interface FuturisticCollectionCardProps {
@@ -74,12 +74,18 @@ export const FuturisticCollectionCard = ({
       style={{ animationDelay: `${delay}ms` }}
       onClick={onOpen}
     >
-      {/* Enhanced Holographic Effects */}
+      {/* Enhanced Creative Effects */}
       <div className="holographic-border-v2" />
       <div className="energy-field" />
       <div className="particle-stream" />
+      <div className="magnetic-glow" />
+      <div className="floating-particles">
+        <div className="particle-dot particle-1" />
+        <div className="particle-dot particle-2" />
+        <div className="particle-dot particle-3" />
+      </div>
 
-      {/* Featured Section - 65% */}
+      {/* Featured Section - Enhanced with better proportions */}
       <div className="featured-section-v2">
         <div className="featured-image-container-v2">
           <img
@@ -88,17 +94,17 @@ export const FuturisticCollectionCard = ({
             className="featured-image-v2"
           />
           <div className="featured-overlay-v2">
-            {/* Minimal Corner UI */}
-            <div className="corner-ui-minimal">
+            {/* Enhanced Corner UI with organic curves */}
+            <div className="corner-ui-enhanced">
               <div className="corner-element top-left" />
               <div className="corner-element top-right" />
               <div className="corner-element bottom-left" />
               <div className="corner-element bottom-right" />
             </div>
             
-            {/* Essential Info Only */}
-            <div className="essential-info">
-              <div className="info-chips">
+            {/* Essential Info with improved spacing */}
+            <div className="essential-info-enhanced">
+              <div className="info-chips-enhanced">
                 <div className="info-chip date-chip">
                   <Calendar className="w-3 h-3" />
                   <span>{collection.weddingDate}</span>
@@ -109,56 +115,47 @@ export const FuturisticCollectionCard = ({
                 </div>
               </div>
 
-              <div className="title-minimal">
-                <h3 className="couple-name-v2">{collection.coupleName}</h3>
-                <span className="collection-category-v2">{collection.category}</span>
+              {/* Enhanced couple name prominence */}
+              <div className="title-enhanced">
+                <h3 className="couple-name-enhanced">{collection.coupleName}</h3>
+                <span className="collection-category-enhanced">{collection.category}</span>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Smart Preview Section - 30% */}
-      <div className="smart-preview-section">
+      {/* Smart Preview Section with improved mobile handling */}
+      <div className="smart-preview-section-enhanced">
         {renderSmartPreview()}
       </div>
 
-      {/* Control Tower - 5% */}
-      <div className="control-tower">
+      {/* Enhanced Control Tower with better mobile experience */}
+      <div className="control-tower-enhanced">
         {/* Energy Core Display */}
-        <div className="energy-core">
-          <div className="core-ring">
-            <div className="pulse-ring" />
-            <div className="energy-number">{totalImages}</div>
+        <div className="energy-core-enhanced">
+          <div className="core-ring-enhanced">
+            <div className="pulse-ring-enhanced" />
+            <div className="energy-number-enhanced">{totalImages}</div>
           </div>
         </div>
 
-        {/* Particle Stream Effect */}
-        <div className="tower-particles">
-          <div className="particle" />
-          <div className="particle" />
-          <div className="particle" />
+        {/* Enhanced All Images Text */}
+        <div className="all-images-text">
+          <div className="text-vertical">
+            <span>A</span><span>L</span><span>L</span>
+            <span className="spacer"></span>
+            <span>I</span><span>M</span><span>A</span><span>G</span><span>E</span><span>S</span>
+            <span className="spacer"></span>
+            <span className="arrow">></span>
+          </div>
+          <div className="image-count">({totalImages})</div>
         </div>
 
-        {/* Explore Button */}
-        <button 
-          className="explore-button"
-          onClick={(e) => {
-            e.stopPropagation();
-            onOpen();
-          }}
-        >
-          <Eye className="w-4 h-4" />
-          <span className="explore-text">EXPLORE</span>
-          
-          {/* Holographic Effect */}
-          <div className="button-hologram" />
-        </button>
-
-        {/* Mini Preview Dots */}
-        <div className="preview-dots">
+        {/* Enhanced Preview Dots */}
+        <div className="preview-dots-enhanced">
           {previewImages.slice(0, 3).map((_, index) => (
-            <div key={index} className="preview-dot" />
+            <div key={index} className="preview-dot-enhanced" />
           ))}
         </div>
       </div>
