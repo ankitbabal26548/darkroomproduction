@@ -574,12 +574,16 @@
     gap: 8px;
   }
 
-  /* Enhanced All Images Text V3 - Vertical on Desktop with inline arrow and breathing */
+  /* Enhanced All Images Text V3 - Vertical on Desktop with inline arrow */
   .all-images-text-v3 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
     color: white;
     font-size: 0.55rem;
     font-weight: 700;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     text-transform: uppercase;
     text-shadow: 
       0 0 8px rgba(var(--accent), 0.8),
@@ -587,7 +591,23 @@
       0 0 20px rgba(255, 255, 255, 0.6);
     writing-mode: vertical-rl;
     text-orientation: mixed;
-    animation: text-breathing 3s ease-in-out infinite;
+  }
+
+  .all-images-text-v3 span:first-child {
+    letter-spacing: 2px;
+  }
+
+  .arrow-wave {
+    font-size: 0.6rem;
+    color: rgba(var(--accent), 1);
+    animation: wave-animation 2s ease-in-out infinite;
+    text-shadow: 
+      0 0 12px rgba(var(--accent), 1),
+      0 0 24px rgba(var(--accent), 0.6);
+    margin-top: 2px;
+    writing-mode: initial;
+    text-orientation: initial;
+    display: inline;
   }
 
   .futuristic-collection-card-v3:hover .all-images-text-v3 {
@@ -660,23 +680,6 @@
     to {
       opacity: 1;
       transform: translateY(0) scale(1) rotateX(0deg);
-    }
-  }
-
-  @keyframes text-breathing {
-    0%, 100% { 
-      text-shadow: 
-        0 0 8px rgba(var(--accent), 0.8),
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 0 20px rgba(255, 255, 255, 0.6);
-      opacity: 0.9;
-    }
-    50% { 
-      text-shadow: 
-        0 0 16px rgba(var(--accent), 1),
-        0 2px 4px rgba(0, 0, 0, 0.8),
-        0 0 35px rgba(255, 255, 255, 0.8);
-      opacity: 1;
     }
   }
 
@@ -930,10 +933,19 @@
     }
 
     .all-images-text-v3 {
+      flex-direction: row;
+      gap: 8px;
       font-size: 0.7rem;
       writing-mode: initial;
       text-orientation: initial;
+    }
+
+    .all-images-text-v3 span:first-child {
       letter-spacing: 1px;
+    }
+
+    .arrow-wave {
+      margin-top: 0;
     }
 
     .energy-core-v3 {
@@ -1062,10 +1074,19 @@
     }
 
     .all-images-text-v3 {
+      flex-direction: row;
+      gap: 8px;
       font-size: 0.7rem;
       writing-mode: initial;
       text-orientation: initial;
+    }
+
+    .all-images-text-v3 span:first-child {
       letter-spacing: 1px;
+    }
+
+    .arrow-wave {
+      margin-top: 0;
     }
 
     .energy-core-v3 {
