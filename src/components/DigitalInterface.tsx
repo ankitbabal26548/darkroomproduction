@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { AnimatedCounter } from './AnimatedCounter';
-import { Zap, Camera, Users, Award } from 'lucide-react';
+import { Zap } from 'lucide-react';
 
 interface DigitalInterfaceProps {
   isLoaded: boolean;
@@ -14,48 +14,16 @@ interface DigitalInterfaceProps {
 }
 
 export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => {
-  const [textIndex, setTextIndex] = useState(0);
-  const [displayText, setDisplayText] = useState('');
-  const [isTyping, setIsTyping] = useState(false);
-
-  const messages = [
-    "Capturing timeless moments...",
-    "Creating artistic vision...",
-    "Professional excellence...",
-    "Digital mastery..."
-  ];
-
-  useEffect(() => {
-    if (!isLoaded) return;
-
-    const typeMessage = async () => {
-      setIsTyping(true);
-      const message = messages[textIndex];
-      
-      for (let i = 0; i <= message.length; i++) {
-        setDisplayText(message.substring(0, i));
-        await new Promise(resolve => setTimeout(resolve, 100));
-      }
-      
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setIsTyping(false);
-      setTextIndex((prev) => (prev + 1) % messages.length);
-    };
-
-    const timer = setTimeout(typeMessage, 500);
-    return () => clearTimeout(timer);
-  }, [textIndex, isLoaded]);
-
   return (
     <div className="digital-interface-panel relative">
       {/* Glassmorphism Panel */}
-      <div className="glass-panel relative backdrop-blur-xl bg-background/10 border border-accent/20 rounded-2xl p-8 shadow-2xl">
+      <div className="glass-panel relative backdrop-blur-xl bg-background/10 border border-accent/20 rounded-2xl p-6 sm:p-8 shadow-2xl">
         
         {/* Status Indicator */}
         <div className={`flex items-center space-x-2 mb-6 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
           <div className="flex items-center space-x-2">
             <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
-            <span className="text-sm font-mono text-accent uppercase tracking-wider">System Active</span>
+            <span className="text-sm font-mono text-accent uppercase tracking-wider">Online</span>
           </div>
           <Zap className="w-4 h-4 text-accent animate-pulse" />
         </div>
@@ -63,30 +31,29 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
         {/* Main Heading */}
         <div className={`space-y-4 mb-8 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
              style={{ animationDelay: '0.3s' }}>
-          <h1 className="text-4xl md:text-6xl font-playfair font-bold text-foreground leading-tight">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-playfair font-bold text-foreground leading-tight">
             <span className="block">Darkroom</span>
             <span className="block text-accent">Production</span>
           </h1>
           <p className="text-lg md:text-xl text-muted-foreground leading-relaxed max-w-lg">
-            Where artistry meets technology. Professional wedding photography 
-            and cinematography with a futuristic vision.
+            Professional wedding photography and cinematography. 
+            Capturing life's most precious moments with artistic vision.
           </p>
         </div>
 
-        {/* Typewriter Effect */}
+        {/* Simple Status Message */}
         <div className={`mb-8 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
              style={{ animationDelay: '0.6s' }}>
           <div className="flex items-center space-x-2">
-            <span className="text-sm font-mono text-accent">$</span>
-            <span className="text-sm font-mono text-accent min-h-[20px]">
-              {displayText}
-              {isTyping && <span className="animate-pulse">|</span>}
+            <span className="text-sm font-mono text-accent">●</span>
+            <span className="text-sm font-mono text-accent">
+              Ready to capture your special day
             </span>
           </div>
         </div>
 
         {/* Stats Grid */}
-        <div className={`grid grid-cols-1 sm:grid-cols-3 gap-6 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+        <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
              style={{ animationDelay: '0.9s' }}>
           {stats.map((stat, index) => (
             <div key={index} className="stat-card relative group">
@@ -94,15 +61,15 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
                 <div className="flex-shrink-0">
                   <stat.icon className="w-6 h-6 text-accent" />
                 </div>
-                <div>
-                  <div className="text-2xl font-bold text-foreground">
+                <div className="min-w-0 flex-1">
+                  <div className="text-xl sm:text-2xl font-bold text-foreground">
                     <AnimatedCounter 
                       end={stat.value} 
                       duration={2000}
                       suffix={stat.suffix}
                     />
                   </div>
-                  <div className="text-sm text-muted-foreground font-medium">
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium">
                     {stat.label}
                   </div>
                 </div>

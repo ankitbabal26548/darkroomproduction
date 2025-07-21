@@ -149,4 +149,37 @@
   .animate-pulse-medium {
     animation: pulse-medium 2s ease-in-out infinite;
   }
+
+  /* Mobile Responsive Adjustments */
+  @media (max-width: 768px) {
+    .futuristic-hero-container {
+      min-height: 100vh;
+    }
+
+    .glass-panel {
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-card:hover {
+      transform: none;
+    }
+
+    .holographic-frame {
+      filter: drop-shadow(0 0 10px hsl(var(--accent))/20%);
+    }
+  }
+
+  /* Remove any potential social media hover effects */
+  .energy-button:hover svg,
+  .energy-button-secondary:hover svg,
+  .stat-card:hover svg {
+    transform: none !important;
+  }
+
+  /* Ensure no Instagram or social icons appear */
+  .energy-button::after,
+  .energy-button-secondary::after,
+  .glass-panel::after {
+    display: none !important;
+  }
 }
