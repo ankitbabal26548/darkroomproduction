@@ -2,13 +2,14 @@
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { CleanLogo } from './CleanLogo';
-import { CleanNavigation } from './CleanNavigation';
-import { ProfessionalContact } from './ProfessionalContact';
+import { FuturisticLogo } from './FuturisticLogo';
+import { FuturisticNavigation } from './FuturisticNavigation';
+import { FuturisticContact } from './FuturisticContact';
 
 export const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
 
   const navItems = [
     { name: 'Home', href: '#home' },
@@ -21,7 +22,10 @@ export const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      setScrolled(scrollY > 20);
+      setScrollProgress(Math.min(scrollY / windowHeight, 1));
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -29,66 +33,82 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
       scrolled 
-        ? 'bg-background/95 backdrop-blur-sm shadow-sm border-b border-border' 
-        : 'bg-background/80'
+        ? 'futuristic-navbar-scrolled' 
+        : 'futuristic-navbar-top'
     }`}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Clean Logo */}
-          <CleanLogo />
+      {/* Animated background layers */}
+      <div className="absolute inset-0 futuristic-bg-layer-1" />
+      <div className="absolute inset-0 futuristic-bg-layer-2" 
+           style={{ opacity: scrollProgress * 0.3 }} />
+      
+      {/* Progress indicator */}
+      <div className="absolute bottom-0 left-0 h-0.5 bg-gradient-to-r from-accent via-accent-lighter to-accent 
+                      transition-all duration-300"
+           style={{ width: `${scrollProgress * 100}%` }} />
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            <CleanNavigation items={navItems} />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="flex justify-between items-center h-20">
+          {/* Futuristic Logo */}
+          <FuturisticLogo scrolled={scrolled} />
+
+          {/* Desktop Navigation - Floating Container */}
+          <div className="hidden md:flex items-center">
+            <div className="futuristic-nav-container">
+              <FuturisticNavigation items={navItems} />
+            </div>
           </div>
 
-          {/* Professional Contact */}
+          {/* Futuristic Contact */}
           <div className="hidden lg:block">
-            <ProfessionalContact />
+            <FuturisticContact />
           </div>
 
-          {/* Mobile menu button */}
+          {/* Enhanced Mobile menu button */}
           <div className="md:hidden">
             <Button
               variant="ghost"
               size="icon"
               onClick={() => setIsOpen(!isOpen)}
-              className="hover:bg-accent/10 transition-colors"
+              className="futuristic-mobile-trigger"
             >
-              {isOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
+              <div className={`w-6 h-6 relative transition-all duration-300 ${isOpen ? 'rotate-180' : ''}`}>
+                {isOpen ? (
+                  <X className="w-6 h-6 absolute inset-0 animate-scale-in" />
+                ) : (
+                  <Menu className="w-6 h-6 absolute inset-0 animate-scale-in" />
+                )}
+              </div>
             </Button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      <div 
-        className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="px-4 py-6 bg-background border-t border-border">
-          <div className="space-y-4">
-            {navItems.map((item) => (
+      {/* Enhanced Mobile Navigation */}
+      <div className={`md:hidden transition-all duration-500 ease-out overflow-hidden ${
+        isOpen 
+          ? 'max-h-screen opacity-100 translate-y-0' 
+          : 'max-h-0 opacity-0 -translate-y-4'
+      }`}>
+        <div className="futuristic-mobile-menu">
+          <div className="space-y-2 p-6">
+            {navItems.map((item, index) => (
               <a
                 key={item.name}
                 href={item.href}
-                className="block px-4 py-2 text-foreground hover:text-accent hover:bg-accent/5 rounded-md transition-colors duration-200 font-medium"
+                className="futuristic-mobile-link"
+                style={{ animationDelay: `${index * 100}ms` }}
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                <span className="relative z-10">{item.name}</span>
+                <div className="futuristic-mobile-link-bg" />
               </a>
             ))}
             
             {/* Mobile Contact */}
-            <div className="pt-4 mt-4 border-t border-border">
-              <ProfessionalContact mobile />
+            <div className="pt-6 mt-6 border-t border-accent/20">
+              <FuturisticContact mobile />
             </div>
           </div>
         </div>
