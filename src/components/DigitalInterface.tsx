@@ -97,11 +97,10 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
                 <div>
                   <div className="text-2xl font-bold text-foreground">
                     <AnimatedCounter 
-                      value={stat.value} 
+                      end={stat.value} 
                       duration={2000}
-                      delay={index * 200}
+                      suffix={stat.suffix}
                     />
-                    {stat.suffix && <span>{stat.suffix}</span>}
                   </div>
                   <div className="text-sm text-muted-foreground font-medium">
                     {stat.label}
