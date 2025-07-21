@@ -1,12 +1,14 @@
 
 import { useState, useMemo, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
-import { HolographicCollectionCard } from '@/components/HolographicCollectionCard';
-import { ParticleBackground } from '@/components/ParticleBackground';
+import { CinematicCollectionCard } from '@/components/CinematicCollectionCard';
+import { EnergyFieldBackground } from '@/components/EnergyFieldBackground';
+import { DramaticSeparator } from '@/components/DramaticSeparator';
 import { CollectionLightbox } from '@/components/CollectionLightbox';
 import { CollectionFilter } from '@/components/CollectionFilter';
 import { useWeddingCollections } from '@/hooks/useWeddingCollections';
 import { WeddingCollection } from '@/types/portfolio';
+import { Sparkles, Heart } from 'lucide-react';
 
 export const FuturisticPortfolioSection = () => {
   const { collections: weddingCollections, isLoading } = useWeddingCollections();
@@ -16,12 +18,12 @@ export const FuturisticPortfolioSection = () => {
   const [visibleCards, setVisibleCards] = useState<number[]>([]);
 
   const categories = [
-    { id: 'all', name: 'All Weddings', count: weddingCollections.length },
-    { id: 'traditional', name: 'Traditional', count: weddingCollections.filter(c => c.category === 'traditional').length },
-    { id: 'destination', name: 'Destination', count: weddingCollections.filter(c => c.category === 'destination').length },
-    { id: 'beach', name: 'Beach', count: weddingCollections.filter(c => c.category === 'beach').length },
-    { id: 'garden', name: 'Garden', count: weddingCollections.filter(c => c.category === 'garden').length },
-    { id: 'palace', name: 'Palace', count: weddingCollections.filter(c => c.category === 'palace').length }
+    { id: 'all', name: 'All Stories', count: weddingCollections.length },
+    { id: 'traditional', name: 'Classic Romance', count: weddingCollections.filter(c => c.category === 'traditional').length },
+    { id: 'destination', name: 'Adventure Love', count: weddingCollections.filter(c => c.category === 'destination').length },
+    { id: 'beach', name: 'Seaside Dreams', count: weddingCollections.filter(c => c.category === 'beach').length },
+    { id: 'garden', name: 'Garden Paradise', count: weddingCollections.filter(c => c.category === 'garden').length },
+    { id: 'palace', name: 'Royal Elegance', count: weddingCollections.filter(c => c.category === 'palace').length }
   ];
 
   const filteredCollections = useMemo(() => {
@@ -45,10 +47,10 @@ export const FuturisticPortfolioSection = () => {
           }
         });
       },
-      { threshold: 0.2, rootMargin: '50px' }
+      { threshold: 0.1, rootMargin: '100px' }
     );
 
-    const cards = document.querySelectorAll('.holographic-card-observer');
+    const cards = document.querySelectorAll('.cinematic-card-observer');
     cards.forEach(card => observer.observe(card));
 
     return () => observer.disconnect();
@@ -57,7 +59,7 @@ export const FuturisticPortfolioSection = () => {
   if (isLoading) {
     return (
       <section id="portfolio" className="relative py-20 overflow-hidden">
-        <ParticleBackground />
+        <EnergyFieldBackground />
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="animate-pulse">
@@ -71,30 +73,28 @@ export const FuturisticPortfolioSection = () => {
   }
 
   return (
-    <section id="portfolio" className="relative py-20 overflow-hidden futuristic-portfolio-section">
-      <ParticleBackground />
-      
-      {/* Holographic Grid Overlay */}
-      <div className="absolute inset-0 holographic-grid-overlay pointer-events-none" />
+    <section id="portfolio" className="relative overflow-hidden cinematic-portfolio-section">
+      <EnergyFieldBackground variant="primary" intensity="medium" />
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="text-center mb-20">
-          <div className="holographic-header-badge inline-block mb-6">
-            <span className="text-sm font-mono uppercase tracking-wider">Digital Portfolio</span>
+        {/* Cinematic Header */}
+        <div className="text-center py-20 mb-12">
+          <div className="luxury-badge mb-8">
+            <Sparkles className="w-5 h-5 text-accent" />
+            <span className="text-base font-medium">Wedding Portfolio</span>
           </div>
           
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground futuristic-title">
-            Wedding <span className="text-accent holographic-text">Collections</span>
+          <h2 className="cinematic-title">
+            Love Stories <span className="accent-gradient">Beautifully Told</span>
           </h2>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-12 leading-relaxed">
-            Explore our curated collection of love stories, each folder containing the complete journey of couples' 
-            most precious moments captured with artistic vision and heartfelt passion.
+          <p className="cinematic-subtitle">
+            Every couple has a unique story. We capture the magic, the emotions, and the unforgettable moments 
+            that make your wedding day extraordinary. Explore our collection of beautiful love stories.
           </p>
 
-          {/* Category Filter */}
-          <div className="holographic-filter-container">
+          {/* Enhanced Filter */}
+          <div className="luxury-filter-container mt-12">
             <CollectionFilter 
               categories={categories}
               activeCategory={activeCategory}
@@ -103,43 +103,57 @@ export const FuturisticPortfolioSection = () => {
           </div>
         </div>
 
-        {/* Collections Timeline */}
-        <div className="futuristic-collections-timeline space-y-32">
+        {/* Cinematic Collections */}
+        <div className="cinematic-collections-timeline">
           {filteredCollections.map((collection, index) => (
-            <div
-              key={collection.id}
-              className="holographic-card-observer"
-              data-card-index={index}
-            >
-              <HolographicCollectionCard
-                collection={collection}
-                onOpen={() => openCollection(collection)}
-                index={index}
-                isVisible={visibleCards.includes(index)}
-                isAlternate={index % 2 === 1}
-              />
+            <div key={collection.id}>
+              <div
+                className="cinematic-card-observer"
+                data-card-index={index}
+              >
+                <CinematicCollectionCard
+                  collection={collection}
+                  onOpen={() => openCollection(collection)}
+                  index={index}
+                  isVisible={visibleCards.includes(index)}
+                  isAlternate={index % 2 === 1}
+                />
+              </div>
+              
+              {/* Dramatic Separator between collections */}
+              {index < filteredCollections.length - 1 && (
+                <div className="my-24 md:my-32">
+                  <DramaticSeparator 
+                    variant={index % 3 === 0 ? 'wave' : index % 3 === 1 ? 'geometric' : 'energy'}
+                    height="large"
+                  />
+                </div>
+              )}
             </div>
           ))}
         </div>
 
-        {/* Load More Section */}
-        <div className="text-center mt-32">
-          <div className="mb-8">
-            <div className="inline-flex items-center space-x-4 text-muted-foreground">
-              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-20 holographic-line" />
-              <span className="text-sm font-mono uppercase tracking-wider holographic-text-glow">
-                {filteredCollections.length} Collections Loaded
-              </span>
-              <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent w-20 holographic-line" />
+        {/* Elegant Call to Action */}
+        <div className="text-center mt-32 py-20">
+          <div className="mb-12">
+            <div className="inline-flex items-center space-x-6 text-muted-foreground">
+              <div className="luxury-line" />
+              <div className="flex items-center space-x-2">
+                <Heart className="w-5 h-5 text-accent" />
+                <span className="text-lg font-medium">
+                  {filteredCollections.length} Beautiful Stories Shared
+                </span>
+              </div>
+              <div className="luxury-line" />
             </div>
           </div>
           
           <Button 
             size="lg"
-            className="holographic-cta-button relative overflow-hidden"
+            className="luxury-cta-main group relative overflow-hidden"
           >
-            <span className="relative z-10">Access More Archives</span>
-            <div className="holographic-button-overlay" />
+            <span className="relative z-10 text-lg px-8 py-2">Ready to Tell Your Story?</span>
+            <div className="luxury-button-shimmer" />
           </Button>
         </div>
       </div>
