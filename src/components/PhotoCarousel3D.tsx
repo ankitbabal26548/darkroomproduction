@@ -47,8 +47,10 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     }, 300);
   };
 
-  const handleCenterImageClick = () => {
-    console.log('Center image clicked:', currentIndex);
+  const handleCenterImageClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    console.log('Center image clicked - event fired:', currentIndex);
     onImageClick(currentIndex);
   };
 
@@ -90,25 +92,25 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       const scale = isHovered ? 1.05 : 1;
       transform = `translateX(0) translateZ(0) rotateY(0deg) scale(${scale})`;
       opacity = 1;
-      zIndex = 100;
+      zIndex = 200;
     }
     // Adjacent images (±1)
     else if (absIndex === 1) {
       transform = `translateX(${normalizedDiff > 0 ? '70%' : '-70%'}) translateZ(-100px) rotateY(${normalizedDiff > 0 ? '-25deg' : '25deg'}) scale(0.8)`;
       opacity = 0.6;
-      zIndex = 80;
+      zIndex = 150;
     }
     // Outer images (±2)
     else if (absIndex === 2) {
       transform = `translateX(${normalizedDiff > 0 ? '130%' : '-130%'}) translateZ(-200px) rotateY(${normalizedDiff > 0 ? '-45deg' : '45deg'}) scale(0.6)`;
       opacity = 0.3;
-      zIndex = 60;
+      zIndex = 100;
     }
     // Far images (hidden but positioned)
     else {
       transform = `translateX(${normalizedDiff > 0 ? '200%' : '-200%'}) translateZ(-300px) rotateY(${normalizedDiff > 0 ? '-60deg' : '60deg'}) scale(0.4)`;
       opacity = 0.1;
-      zIndex = 40;
+      zIndex = 50;
     }
     
     return {
@@ -116,12 +118,12 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       opacity,
       zIndex,
       cursor: isCenterImage ? 'pointer' : 'default',
-      pointerEvents: isCenterImage ? 'auto' : 'none'
+      pointerEvents: isCenterImage ? 'auto' : 'none' as const
     };
   };
 
   return (
-    <div className={`relative w-full h-[600px] sm:h-[700px] lg:h-[800px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+    <div className={`photo-carousel-3d relative w-full h-[600px] sm:h-[700px] lg:h-[800px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
          style={{ 
            animationDelay: '0.6s',
            perspective: '1000px'
@@ -139,7 +141,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
               key={index}
               className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out ${
                 isTransitioning ? 'transition-duration-300' : ''
-              }`}
+              } ${isCenterImage ? 'carousel-image-center' : 'carousel-image-side'}`}
               style={imageStyle}
               onMouseEnter={() => handleImageMouseEnter(index)}
               onMouseLeave={() => handleImageMouseLeave(index)}
@@ -175,7 +177,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       <button
         onClick={handlePrev}
         disabled={isTransitioning}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[110] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[250] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
       </button>
@@ -183,13 +185,13 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       <button
         onClick={handleNext}
         disabled={isTransitioning}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[110] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[250] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-[110]">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-[250]">
         {images.map((_, index) => (
           <button
             key={index}
@@ -212,27 +214,12 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       </div>
 
       {/* Mobile Swipe Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 sm:hidden z-[110]">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 sm:hidden z-[250]">
         <div className="flex items-center space-x-2 text-muted-foreground/70 text-xs">
           <div className="w-4 h-0.5 bg-accent/30 rounded-full"></div>
           <span>Swipe</span>
           <div className="w-4 h-0.5 bg-accent/30 rounded-full"></div>
         </div>
-      </div>
-
-      {/* Particle Effects */}
-      <div className="absolute inset-0 pointer-events-none z-[10]">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className={`absolute w-1 h-1 bg-accent/40 rounded-full animate-float-${(i % 3) + 1}`}
-            style={{
-              left: `${15 + i * 15}%`,
-              top: `${25 + (i % 3) * 25}%`,
-              animationDelay: `${i * 0.4}s`
-            }}
-          />
-        ))}
       </div>
     </div>
   );

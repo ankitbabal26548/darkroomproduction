@@ -35,12 +35,39 @@
     contain: layout style;
   }
 
+  /* Carousel specific overrides */
+  .photo-carousel-3d {
+    position: relative;
+    z-index: 100;
+    isolation: isolate;
+  }
+
+  .photo-carousel-3d .carousel-image-center {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+  }
+
+  .photo-carousel-3d .carousel-image-side {
+    pointer-events: none !important;
+    cursor: default !important;
+  }
+
   /* Prevent any Instagram-related content in hero */
   .hero-section-container *[href*="instagram"],
-  .hero-section-container .instagram-icon,
+  .hero-section-container .instagram-icon {
+    display: none !important;
+  }
+
+  /* Remove conflicting pseudo-elements from hero */
   .hero-section-container *::before,
   .hero-section-container *::after {
-    display: none !important;
+    content: none !important;
+  }
+
+  /* But allow carousel overlays */
+  .photo-carousel-3d *::before,
+  .photo-carousel-3d *::after {
+    content: "";
   }
 
   /* Glassmorphism Panel */

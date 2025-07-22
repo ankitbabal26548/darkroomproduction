@@ -115,12 +115,27 @@ body {
   z-index: 20;
 }
 
-/* Prevent any global hover effects from affecting non-footer elements */
-*:not(.footer-container *):not(.footer-container) {
+/* Fix global pointer-events override that was breaking carousel interactions */
+*:not(.footer-container *):not(.footer-container):not(.photo-carousel-3d *):not(.photo-carousel-3d) {
   pointer-events: auto;
 }
 
-/* Ensure no Instagram icons appear outside of footer */
+/* Ensure carousel has proper pointer events */
+.photo-carousel-3d {
+  pointer-events: auto;
+}
+
+.photo-carousel-3d .carousel-image-center {
+  pointer-events: auto !important;
+  cursor: pointer !important;
+}
+
+.photo-carousel-3d .carousel-image-side {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Prevent any Instagram icons appear outside of footer */
 *:not(.footer-container) .instagram-icon,
 *:not(.footer-container) [href*="instagram"] {
   display: none !important;
@@ -135,9 +150,9 @@ body {
   display: none !important;
 }
 
-/* Prevent any overlay effects outside of footer */
-*:not(.footer-container) *::before,
-*:not(.footer-container) *::after {
+/* Prevent any overlay effects outside of footer except for carousel */
+*:not(.footer-container) *:not(.photo-carousel-3d *):not(.photo-carousel-3d)::before,
+*:not(.footer-container) *:not(.photo-carousel-3d *):not(.photo-carousel-3d)::after {
   content: none !important;
 }
 
