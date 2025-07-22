@@ -16,22 +16,16 @@ interface PhotoCarousel3DProps {
 export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarousel3DProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
-  const [touchStart, setTouchStart] = useState<number | null>(null);
-  const [touchEnd, setTouchEnd] = useState<number | null>(null);
-  const [isSwiping, setIsSwiping] = useState(false);
-
-  // Minimum swipe distance
-  const minSwipeDistance = 50;
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (!isTransitioning && !isSwiping) {
+      if (!isTransitioning) {
         handleNext();
       }
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [currentIndex, isTransitioning, isSwiping]);
+  }, [currentIndex, isTransitioning]);
 
   const handleNext = () => {
     if (isTransitioning) return;
@@ -51,41 +45,9 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     }, 300);
   };
 
-  const handleImageClick = (index: number) => {
-    if (isSwiping) return;
-    console.log('Image clicked:', index);
-    onImageClick(index);
-  };
-
-  const handleTouchStart = (e: React.TouchEvent) => {
-    setTouchEnd(null);
-    setTouchStart(e.targetTouches[0].clientX);
-    setIsSwiping(false);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    setTouchEnd(e.targetTouches[0].clientX);
-  };
-
-  const handleTouchEnd = () => {
-    if (!touchStart || !touchEnd) return;
-    
-    const distance = touchStart - touchEnd;
-    const isLeftSwipe = distance > minSwipeDistance;
-    const isRightSwipe = distance < -minSwipeDistance;
-
-    if (isLeftSwipe || isRightSwipe) {
-      setIsSwiping(true);
-      
-      if (isLeftSwipe) {
-        handleNext();
-      } else if (isRightSwipe) {
-        handlePrev();
-      }
-      
-      // Reset swiping state after transition
-      setTimeout(() => setIsSwiping(false), 500);
-    }
+  const handleCenterImageClick = () => {
+    console.log('Center image clicked:', currentIndex);
+    onImageClick(currentIndex);
   };
 
   const getImageStyle = (index: number) => {
@@ -134,45 +96,48 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     }
   };
 
+  const isCenterImage = (index: number) => index === currentIndex;
+
   return (
     <div className={`photo-carousel-3d relative w-full h-[600px] sm:h-[700px] lg:h-[800px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
          style={{ animationDelay: '0.6s' }}>
       
       {/* Main Carousel Container */}
-      <div 
-        className="relative w-full h-full flex items-center justify-center perspective-1000"
-        onTouchStart={handleTouchStart}
-        onTouchMove={handleTouchMove}
-        onTouchEnd={handleTouchEnd}
-      >
+      <div className="relative w-full h-full flex items-center justify-center perspective-1000">
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out cursor-pointer ${
-              isTransitioning ? 'transition-duration-300' : ''
-            }`}
+            className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out ${
+              isCenterImage(index) ? 'cursor-pointer' : 'cursor-default'
+            } ${isTransitioning ? 'transition-duration-300' : ''}`}
             style={{
               ...getImageStyle(index),
-              pointerEvents: 'auto'
+              pointerEvents: isCenterImage(index) ? 'auto' : 'none'
             }}
-            onClick={() => handleImageClick(index)}
+            onClick={isCenterImage(index) ? handleCenterImageClick : undefined}
           >
             {/* Holographic Frame */}
-            <div className="holographic-frame relative w-full h-full group">
+            <div className={`holographic-frame relative w-full h-full group ${
+              isCenterImage(index) ? 'hover:scale-105' : ''
+            }`}>
               <div className="absolute inset-0 bg-gradient-to-br from-accent/20 via-transparent to-accent/30 rounded-lg" />
               <div className="absolute inset-0 border-2 border-accent/30 rounded-lg shadow-2xl" />
               
-              {/* Image with enhanced hover effect */}
+              {/* Image with enhanced hover effect for center only */}
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover rounded-lg transition-all duration-500 ease-out group-hover:scale-105"
+                className={`w-full h-full object-cover rounded-lg transition-all duration-500 ease-out ${
+                  isCenterImage(index) ? 'group-hover:scale-105' : ''
+                }`}
                 loading="lazy"
-                style={{ pointerEvents: 'auto' }}
+                style={{ pointerEvents: isCenterImage(index) ? 'auto' : 'none' }}
               />
               
-              {/* Hover overlay */}
-              <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none" />
+              {/* Hover overlay for center image only */}
+              {isCenterImage(index) && (
+                <div className="absolute inset-0 bg-accent/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-lg pointer-events-none" />
+              )}
             </div>
           </div>
         ))}
@@ -228,7 +193,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       </div>
 
       {/* Particle Effects - Positioned behind images */}
-      <div className="absolute inset-0 pointer-events-none z-10">
+      <div className="absolute inset-0 pointer-events-none z-5">
         {[...Array(6)].map((_, i) => (
           <div
             key={i}

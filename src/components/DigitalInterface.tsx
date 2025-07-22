@@ -18,7 +18,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
   return (
     <div className="digital-interface-panel relative min-h-[700px] lg:min-h-[900px] flex flex-col justify-center">
       {/* Glassmorphism Panel */}
-      <div className="glass-panel relative backdrop-blur-xl bg-background/10 border border-accent/20 rounded-2xl p-6 sm:p-8 shadow-2xl">
+      <div className="glass-panel relative backdrop-blur-xl bg-background/10 border border-accent/20 rounded-2xl py-8 px-6 sm:py-10 sm:px-8 shadow-2xl">
         
         {/* Status Indicator */}
         <div className={`flex items-center space-x-2 mb-6 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}>
@@ -58,7 +58,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
              style={{ animationDelay: '0.9s' }}>
           {stats.map((stat, index) => (
             <div key={index} className="stat-card relative group">
-              <div className="flex items-center space-x-3 p-5 sm:p-6 rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all duration-300 overflow-hidden min-h-[90px]">
+              <div className="flex items-center space-x-3 p-3 sm:p-4 rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all duration-300 overflow-hidden min-h-[110px]">
                 <div className="flex-shrink-0">
                   <stat.icon className="w-6 h-6 text-accent" />
                 </div>
@@ -70,7 +70,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
                       suffix={stat.suffix}
                     />
                   </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground font-medium whitespace-normal break-words leading-tight">
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium leading-tight stats-label">
                     {stat.label}
                   </div>
                 </div>

@@ -117,6 +117,7 @@
     filter: drop-shadow(0 0 20px hsl(var(--accent))/30%);
     position: relative;
     z-index: 30;
+    transition: transform 0.3s ease-out;
   }
 
   .holographic-frame:before {
@@ -131,7 +132,7 @@
     z-index: -1;
   }
 
-  /* Enhanced hover effects for images */
+  /* Enhanced hover effects for center images only */
   .holographic-frame:hover {
     filter: drop-shadow(0 0 30px hsl(var(--accent))/50%);
   }
@@ -149,6 +150,13 @@
 
   .stat-card:hover {
     transform: translateZ(10px);
+  }
+
+  /* Stats label formatting - one word per line */
+  .stats-label {
+    white-space: pre-line;
+    word-break: break-word;
+    line-height: 1.2;
   }
 
   /* Perspective Utilities */
@@ -182,13 +190,13 @@
     max-width: 88rem; /* 1408px */
   }
 
-  /* Improved clickable areas */
+  /* Improved clickable areas for center image only */
   .photo-carousel-3d .holographic-frame {
-    cursor: pointer;
     user-select: none;
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Active state for center image */
   .photo-carousel-3d .holographic-frame:active {
     transform: scale(0.98);
   }
@@ -218,6 +226,10 @@
     /* Mobile-specific spacing */
     .photo-carousel-3d {
       padding: 0 1rem;
+    }
+
+    .stats-label {
+      font-size: 0.75rem;
     }
   }
 
