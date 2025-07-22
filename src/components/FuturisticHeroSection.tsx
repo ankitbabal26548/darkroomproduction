@@ -5,9 +5,12 @@ import { Button } from '@/components/ui/button';
 import { HolographicBackground } from './HolographicBackground';
 import { DigitalInterface } from './DigitalInterface';
 import { PhotoCarousel3D } from './PhotoCarousel3D';
+import { HeroImageLightbox } from './HeroImageLightbox';
 
 export const FuturisticHeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -52,8 +55,13 @@ export const FuturisticHeroSection = () => {
     { value: 98, label: "Happy Couples", icon: Users, suffix: "%" }
   ];
 
+  const handleImageClick = (index: number) => {
+    setSelectedImageIndex(index);
+    setLightboxOpen(true);
+  };
+
   return (
-    <section className="hero-section-container futuristic-hero-container relative min-h-screen bg-background overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-20">
+    <section className="hero-section-container futuristic-hero-container relative min-h-screen bg-background overflow-hidden pt-32 sm:pt-32 md:pt-28 lg:pt-12">
       {/* Holographic Background */}
       <HolographicBackground />
 
@@ -63,7 +71,7 @@ export const FuturisticHeroSection = () => {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 min-h-screen items-center">
             
             {/* Left Side - Digital Interface */}
-            <div className="lg:col-span-6 space-y-8 relative z-40 flex flex-col justify-center min-h-[600px] lg:min-h-[700px]">
+            <div className="lg:col-span-5 space-y-8 relative z-40 flex flex-col justify-center min-h-[600px] lg:min-h-[800px]">
               <DigitalInterface 
                 isLoaded={isLoaded}
                 stats={stats}
@@ -96,15 +104,25 @@ export const FuturisticHeroSection = () => {
             </div>
 
             {/* Right Side - 3D Photo Showcase */}
-            <div className="lg:col-span-6 relative z-30 flex items-center justify-center min-h-[600px] lg:min-h-[700px]">
+            <div className="lg:col-span-7 relative z-30 flex items-center justify-center min-h-[600px] lg:min-h-[800px]">
               <PhotoCarousel3D 
                 images={heroImages}
                 isLoaded={isLoaded}
+                onImageClick={handleImageClick}
               />
             </div>
           </div>
         </div>
       </div>
+
+      {/* Image Lightbox */}
+      <HeroImageLightbox 
+        images={heroImages}
+        isOpen={lightboxOpen}
+        onClose={() => setLightboxOpen(false)}
+        selectedIndex={selectedImageIndex}
+        onImageChange={setSelectedImageIndex}
+      />
     </section>
   );
 };

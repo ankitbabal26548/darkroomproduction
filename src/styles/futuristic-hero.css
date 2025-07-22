@@ -147,6 +147,27 @@
     perspective: 1000px;
   }
 
+  /* Custom height classes for larger images */
+  .h-90 {
+    height: 22.5rem; /* 360px */
+  }
+
+  .h-108 {
+    height: 27rem; /* 432px */
+  }
+
+  .h-120 {
+    height: 30rem; /* 480px */
+  }
+
+  .w-60 {
+    width: 15rem; /* 240px */
+  }
+
+  .w-80 {
+    width: 20rem; /* 320px */
+  }
+
   /* Mobile Responsive Adjustments */
   @media (max-width: 768px) {
     .futuristic-hero-container {

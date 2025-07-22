@@ -15,7 +15,7 @@ interface DigitalInterfaceProps {
 
 export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => {
   return (
-    <div className="digital-interface-panel relative min-h-[500px] lg:min-h-[600px] flex flex-col justify-center">
+    <div className="digital-interface-panel relative min-h-[600px] lg:min-h-[800px] flex flex-col justify-center">
       {/* Glassmorphism Panel */}
       <div className="glass-panel relative backdrop-blur-xl bg-background/10 border border-accent/20 rounded-2xl p-6 sm:p-8 shadow-2xl">
         

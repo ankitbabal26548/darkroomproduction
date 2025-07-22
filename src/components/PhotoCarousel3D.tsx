@@ -10,9 +10,10 @@ interface PhotoCarousel3DProps {
     description: string;
   }>;
   isLoaded: boolean;
+  onImageClick: (index: number) => void;
 }
 
-export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
+export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarousel3DProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [touchStart, setTouchStart] = useState<number | null>(null);
@@ -119,7 +120,7 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
   };
 
   return (
-    <div className={`photo-carousel-3d relative w-full h-[500px] sm:h-[600px] lg:h-[700px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+    <div className={`photo-carousel-3d relative w-full h-[600px] sm:h-[700px] lg:h-[800px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
          style={{ animationDelay: '0.6s' }}>
       
       {/* Main Carousel Container */}
@@ -132,10 +133,11 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-48 h-72 sm:w-56 sm:h-84 lg:w-64 lg:h-96 transition-all duration-700 ease-out ${
+            className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out hover:scale-110 cursor-pointer ${
               isTransitioning ? 'transition-duration-300' : ''
             }`}
             style={getImageStyle(index)}
+            onClick={() => onImageClick(index)}
           >
             {/* Holographic Frame */}
             <div className="holographic-frame relative w-full h-full">
@@ -149,9 +151,6 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
                 className="w-full h-full object-cover rounded-lg"
                 loading="lazy"
               />
-              
-              {/* Holographic Shimmer */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent/10 to-transparent -skew-x-12 animate-shimmer" />
             </div>
           </div>
         ))}
