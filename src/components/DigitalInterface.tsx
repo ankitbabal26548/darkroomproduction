@@ -84,10 +84,6 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
         {/* Panel Glow Effect */}
         <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-accent/5 via-transparent to-accent/10 pointer-events-none" />
       </div>
-
-      {/* Floating Elements */}
-      <div className="absolute -top-4 -right-4 w-8 h-8 border-2 border-accent/30 rounded-full animate-pulse-slow" />
-      <div className="absolute -bottom-2 -left-2 w-4 h-4 bg-accent/20 rounded-full animate-pulse-medium" />
     </div>
   );
 };

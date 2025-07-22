@@ -6,6 +6,7 @@
     background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)) 60%, hsl(var(--accent))/5%);
     min-height: 100vh;
     perspective: 1000px;
+    isolation: isolate;
   }
 
   /* Glassmorphism Panel */
@@ -62,7 +63,7 @@
   /* Grid Pattern */
   .bg-grid-pattern {
     background-image: 
-      radial-gradient(circle at 1px 1px, hsl(var(--accent))/15% 1px, transparent 0);
+      radial-gradient(circle at 1px 1px, hsl(var(--accent))/10% 1px, transparent 0);
     background-size: 40px 40px;
   }
 
@@ -100,33 +101,6 @@
   /* Perspective Utilities */
   .perspective-1000 {
     perspective: 1000px;
-  }
-
-  /* Shimmer Effect */
-  .animate-shimmer {
-    animation: shimmer 2s infinite;
-  }
-
-  /* Float Animations */
-  .animate-float-1 {
-    animation: float-1 3s ease-in-out infinite;
-  }
-
-  .animate-float-2 {
-    animation: float-2 4s ease-in-out infinite;
-  }
-
-  .animate-float-3 {
-    animation: float-3 5s ease-in-out infinite;
-  }
-
-  /* Pulse Variations */
-  .animate-pulse-slow {
-    animation: pulse-slow 3s ease-in-out infinite;
-  }
-
-  .animate-pulse-medium {
-    animation: pulse-medium 2s ease-in-out infinite;
   }
 
   /* Mobile Responsive Adjustments */

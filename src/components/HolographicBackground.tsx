@@ -24,16 +24,16 @@ export const HolographicBackground = () => {
     // Create particles
     const createParticles = () => {
       const particles = [];
-      const particleCount = window.innerWidth < 768 ? 30 : 80;
+      const particleCount = window.innerWidth < 768 ? 20 : 40;
       
       for (let i = 0; i < particleCount; i++) {
         particles.push({
           x: Math.random() * canvas.width,
           y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
+          vx: (Math.random() - 0.5) * 0.3,
+          vy: (Math.random() - 0.5) * 0.3,
           life: Math.random() * 100,
-          opacity: Math.random() * 0.5 + 0.2
+          opacity: Math.random() * 0.3 + 0.1
         });
       }
       return particles;
@@ -69,11 +69,11 @@ export const HolographicBackground = () => {
             const dy = particle.y - otherParticle.y;
             const distance = Math.sqrt(dx * dx + dy * dy);
             
-            if (distance < 100) {
+            if (distance < 80) {
               ctx.beginPath();
               ctx.moveTo(particle.x, particle.y);
               ctx.lineTo(otherParticle.x, otherParticle.y);
-              ctx.strokeStyle = `hsla(22, 65%, 45%, ${0.1 * (1 - distance / 100)})`;
+              ctx.strokeStyle = `hsla(22, 65%, 45%, ${0.05 * (1 - distance / 80)})`;
               ctx.lineWidth = 0.5;
               ctx.stroke();
             }
@@ -99,24 +99,13 @@ export const HolographicBackground = () => {
       {/* Animated Canvas */}
       <canvas 
         ref={canvasRef}
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-20"
       />
       
       {/* Grid Pattern */}
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute inset-0 bg-grid-pattern animate-pulse" />
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 bg-grid-pattern" />
       </div>
-      
-      {/* Scanning Lines */}
-      <div className="absolute inset-0 overflow-hidden">
-        <div className="scanning-line-1" />
-        <div className="scanning-line-2" />
-      </div>
-      
-      {/* Energy Pulses */}
-      <div className="absolute top-1/4 left-1/4 w-2 h-2 bg-accent/50 rounded-full animate-pulse-slow" />
-      <div className="absolute top-3/4 right-1/3 w-1 h-1 bg-accent/40 rounded-full animate-pulse-medium" />
-      <div className="absolute bottom-1/4 left-1/5 w-3 h-3 border border-accent/30 rounded-full animate-pulse-slow" />
     </div>
   );
 };

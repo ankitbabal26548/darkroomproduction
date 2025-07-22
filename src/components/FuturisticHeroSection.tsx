@@ -41,7 +41,7 @@ export const FuturisticHeroSection = () => {
   ];
 
   return (
-    <section className="futuristic-hero-container relative min-h-screen bg-background overflow-hidden">
+    <section className="futuristic-hero-container relative min-h-screen bg-background overflow-hidden isolate">
       {/* Holographic Background */}
       <HolographicBackground />
 
@@ -51,7 +51,7 @@ export const FuturisticHeroSection = () => {
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 min-h-screen items-center">
             
             {/* Left Side - Digital Interface */}
-            <div className="lg:col-span-6 space-y-8">
+            <div className="lg:col-span-6 space-y-8 relative z-20">
               <DigitalInterface 
                 isLoaded={isLoaded}
                 stats={stats}
@@ -84,7 +84,7 @@ export const FuturisticHeroSection = () => {
             </div>
 
             {/* Right Side - 3D Photo Showcase */}
-            <div className="lg:col-span-6">
+            <div className="lg:col-span-6 relative z-10">
               <PhotoCarousel3D 
                 images={heroImages}
                 isLoaded={isLoaded}
