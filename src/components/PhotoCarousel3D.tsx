@@ -16,6 +16,7 @@ interface PhotoCarousel3DProps {
 export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarousel3DProps) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,6 +51,20 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     onImageClick(currentIndex);
   };
 
+  const handleImageMouseEnter = (index: number) => {
+    if (index === currentIndex) {
+      console.log('Mouse entered center image:', index);
+      setHoveredIndex(index);
+    }
+  };
+
+  const handleImageMouseLeave = (index: number) => {
+    if (index === currentIndex) {
+      console.log('Mouse left center image:', index);
+      setHoveredIndex(null);
+    }
+  };
+
   const getImageStyle = (index: number) => {
     const diff = index - currentIndex;
     const totalImages = images.length;
@@ -62,54 +77,45 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     
     const absIndex = Math.abs(normalizedDiff);
     const isCenterImage = absIndex === 0;
+    const isHovered = hoveredIndex === index;
     
     // Base transform
     let transform = '';
     let opacity = 1;
-    let zIndex = 30;
+    let zIndex = 20;
     
     // Center image (current)
     if (absIndex === 0) {
-      transform = 'translateX(0) translateZ(0) rotateY(0deg) scale(1)';
+      const scale = isHovered ? 1.05 : 1;
+      transform = `translateX(0) translateZ(0) rotateY(0deg) scale(${scale})`;
       opacity = 1;
-      zIndex = 50;
+      zIndex = 100;
     }
     // Adjacent images (±1)
     else if (absIndex === 1) {
       transform = `translateX(${normalizedDiff > 0 ? '70%' : '-70%'}) translateZ(-100px) rotateY(${normalizedDiff > 0 ? '-25deg' : '25deg'}) scale(0.8)`;
       opacity = 0.6;
-      zIndex = 40;
+      zIndex = 80;
     }
     // Outer images (±2)
     else if (absIndex === 2) {
       transform = `translateX(${normalizedDiff > 0 ? '130%' : '-130%'}) translateZ(-200px) rotateY(${normalizedDiff > 0 ? '-45deg' : '45deg'}) scale(0.6)`;
       opacity = 0.3;
-      zIndex = 30;
+      zIndex = 60;
     }
     // Far images (hidden but positioned)
     else {
       transform = `translateX(${normalizedDiff > 0 ? '200%' : '-200%'}) translateZ(-300px) rotateY(${normalizedDiff > 0 ? '-60deg' : '60deg'}) scale(0.4)`;
       opacity = 0.1;
-      zIndex = 20;
+      zIndex = 40;
     }
     
     return {
       transform,
       opacity,
       zIndex,
-      pointerEvents: isCenterImage ? 'auto' : 'none',
-      cursor: isCenterImage ? 'pointer' : 'default'
-    };
-  };
-
-  const getHoverStyle = (index: number, isHovered: boolean) => {
-    const isCenterImage = index === currentIndex;
-    if (!isCenterImage || !isHovered) return {};
-    
-    const baseStyle = getImageStyle(index);
-    return {
-      ...baseStyle,
-      transform: baseStyle.transform.replace('scale(1)', 'scale(1.05)')
+      cursor: isCenterImage ? 'pointer' : 'default',
+      pointerEvents: isCenterImage ? 'auto' : 'none'
     };
   };
 
@@ -125,7 +131,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
            style={{ transformStyle: 'preserve-3d' }}>
         {images.map((image, index) => {
           const isCenterImage = index === currentIndex;
-          const [isHovered, setIsHovered] = useState(false);
+          const imageStyle = getImageStyle(index);
           
           return (
             <div
@@ -133,9 +139,9 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
               className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out ${
                 isTransitioning ? 'transition-duration-300' : ''
               }`}
-              style={isHovered ? getHoverStyle(index, isHovered) : getImageStyle(index)}
-              onMouseEnter={() => isCenterImage && setIsHovered(true)}
-              onMouseLeave={() => isCenterImage && setIsHovered(false)}
+              style={imageStyle}
+              onMouseEnter={() => handleImageMouseEnter(index)}
+              onMouseLeave={() => handleImageMouseLeave(index)}
               onClick={isCenterImage ? handleCenterImageClick : undefined}
             >
               {/* Holographic Frame */}
@@ -147,7 +153,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-full object-cover rounded-lg"
+                  className="w-full h-full object-cover rounded-lg select-none"
                   loading="lazy"
                   draggable={false}
                 />
@@ -155,7 +161,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
                 {/* Hover overlay for center image only */}
                 {isCenterImage && (
                   <div className={`absolute inset-0 bg-accent/10 rounded-lg transition-opacity duration-300 ${
-                    isHovered ? 'opacity-100' : 'opacity-0'
+                    hoveredIndex === index ? 'opacity-100' : 'opacity-0'
                   }`} />
                 )}
               </div>
@@ -168,7 +174,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       <button
         onClick={handlePrev}
         disabled={isTransitioning}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[110] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
       </button>
@@ -176,13 +182,13 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       <button
         onClick={handleNext}
         disabled={isTransitioning}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[60] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[110] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-[60]">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-[110]">
         {images.map((_, index) => (
           <button
             key={index}
@@ -205,7 +211,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       </div>
 
       {/* Mobile Swipe Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 sm:hidden z-[60]">
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 sm:hidden z-[110]">
         <div className="flex items-center space-x-2 text-muted-foreground/70 text-xs">
           <div className="w-4 h-0.5 bg-accent/30 rounded-full"></div>
           <span>Swipe</span>
