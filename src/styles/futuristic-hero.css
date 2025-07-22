@@ -1,12 +1,46 @@
 
 @layer components {
-  /* Main Container */
+  /* Main Container with proper isolation */
+  .hero-section-container {
+    contain: layout style;
+    isolation: isolate;
+    position: relative;
+    z-index: 20;
+  }
+
   .futuristic-hero-container {
     position: relative;
     background: linear-gradient(135deg, hsl(var(--background)), hsl(var(--background)) 60%, hsl(var(--accent))/5%);
     min-height: 100vh;
     perspective: 1000px;
     isolation: isolate;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 30;
+    contain: layout style;
+  }
+
+  .hero-buttons {
+    position: relative;
+    z-index: 40;
+    contain: layout style;
+  }
+
+  .hero-primary-button,
+  .hero-secondary-button {
+    position: relative;
+    z-index: 50;
+    contain: layout style;
+  }
+
+  /* Prevent any Instagram-related content in hero */
+  .hero-section-container *[href*="instagram"],
+  .hero-section-container .instagram-icon,
+  .hero-section-container *::before,
+  .hero-section-container *::after {
+    display: none !important;
   }
 
   /* Glassmorphism Panel */
@@ -17,12 +51,15 @@
     box-shadow: 
       0 8px 32px rgba(0, 0, 0, 0.1),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 10;
   }
 
   /* Energy Buttons */
   .energy-button {
     position: relative;
     overflow: hidden;
+    z-index: 50;
   }
 
   .energy-button:before {
@@ -43,6 +80,7 @@
   .energy-button-secondary {
     position: relative;
     overflow: hidden;
+    z-index: 50;
   }
 
   .energy-button-secondary:before {
@@ -70,11 +108,15 @@
   /* 3D Carousel */
   .photo-carousel-3d {
     transform-style: preserve-3d;
+    position: relative;
+    z-index: 30;
   }
 
   .holographic-frame {
     transform-style: preserve-3d;
     filter: drop-shadow(0 0 20px hsl(var(--accent))/30%);
+    position: relative;
+    z-index: 30;
   }
 
   .holographic-frame:before {
@@ -92,6 +134,8 @@
   /* Stat Cards */
   .stat-card {
     transform-style: preserve-3d;
+    position: relative;
+    z-index: 40;
   }
 
   .stat-card:hover {

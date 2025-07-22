@@ -1,3 +1,4 @@
+
 import { Camera, Heart, Instagram, Facebook, Youtube, Mail, Phone, MapPin } from 'lucide-react';
 
 export const Footer = () => {
@@ -31,7 +32,7 @@ export const Footer = () => {
   ];
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="footer-container bg-primary text-primary-foreground relative z-10">
       {/* Instagram Gallery Section */}
       <div className="border-b border-white/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
@@ -49,7 +50,7 @@ export const Footer = () => {
                 href="https://instagram.com/darkroomproduction.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="aspect-square overflow-hidden rounded-lg group lens-effect"
+                className="instagram-gallery-item aspect-square overflow-hidden rounded-lg group relative"
               >
                 <img
                   src={image}
@@ -71,7 +72,7 @@ export const Footer = () => {
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-3 mb-6">
-              <div className="aperture-border w-12 h-12 flex items-center justify-center">
+              <div className="footer-logo-container w-12 h-12 flex items-center justify-center rounded-full border-2 border-accent">
                 <Camera className="w-6 h-6 text-accent" />
               </div>
               <div>
@@ -92,7 +93,7 @@ export const Footer = () => {
                 href="https://instagram.com/darkroomproduction.in"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300 darkroom-glow"
+                className="footer-social-link w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               >
                 <Instagram className="w-5 h-5" />
               </a>
@@ -100,7 +101,7 @@ export const Footer = () => {
                 href="https://facebook.com/darkroomproduction"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300 darkroom-glow"
+                className="footer-social-link w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               >
                 <Facebook className="w-5 h-5" />
               </a>
@@ -108,7 +109,7 @@ export const Footer = () => {
                 href="https://youtube.com/darkroomproduction"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300 darkroom-glow"
+                className="footer-social-link w-10 h-10 bg-white/10 rounded-full flex items-center justify-center hover:bg-accent hover:text-accent-foreground transition-all duration-300"
               >
                 <Youtube className="w-5 h-5" />
               </a>

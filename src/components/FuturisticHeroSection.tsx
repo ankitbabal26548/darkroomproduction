@@ -41,28 +41,28 @@ export const FuturisticHeroSection = () => {
   ];
 
   return (
-    <section className="futuristic-hero-container relative min-h-screen bg-background overflow-hidden isolate">
+    <section className="hero-section-container futuristic-hero-container relative min-h-screen bg-background overflow-hidden">
       {/* Holographic Background */}
       <HolographicBackground />
 
       {/* Main Content Grid */}
-      <div className="relative z-10 min-h-screen">
+      <div className="hero-content relative z-30 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-24">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 min-h-screen items-center">
             
             {/* Left Side - Digital Interface */}
-            <div className="lg:col-span-6 space-y-8 relative z-20">
+            <div className="lg:col-span-6 space-y-8 relative z-40">
               <DigitalInterface 
                 isLoaded={isLoaded}
                 stats={stats}
               />
               
               {/* Action Buttons */}
-              <div className={`flex flex-col sm:flex-row gap-4 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+              <div className={`hero-buttons flex flex-col sm:flex-row gap-4 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
                    style={{ animationDelay: '1.2s' }}>
                 <Button 
                   size="lg" 
-                  className="energy-button group relative overflow-hidden bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-6 rounded-lg transition-all duration-300"
+                  className="hero-primary-button energy-button group relative overflow-hidden bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-6 rounded-lg transition-all duration-300"
                 >
                   <span className="relative z-10 flex items-center">
                     View Portfolio
@@ -73,7 +73,7 @@ export const FuturisticHeroSection = () => {
                 <Button 
                   variant="outline" 
                   size="lg" 
-                  className="energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 font-medium px-8 py-6 rounded-lg transition-all duration-300"
+                  className="hero-secondary-button energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 font-medium px-8 py-6 rounded-lg transition-all duration-300"
                 >
                   <span className="relative z-10 flex items-center">
                     <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
@@ -84,7 +84,7 @@ export const FuturisticHeroSection = () => {
             </div>
 
             {/* Right Side - 3D Photo Showcase */}
-            <div className="lg:col-span-6 relative z-10">
+            <div className="lg:col-span-6 relative z-30">
               <PhotoCarousel3D 
                 images={heroImages}
                 isLoaded={isLoaded}
