@@ -70,8 +70,13 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
                       suffix={stat.suffix}
                     />
                   </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground font-medium leading-tight stats-label">
-                    {stat.label}
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium leading-tight">
+                    {/* Split label into words and ensure minimum one word per line */}
+                    {stat.label.split(' ').map((word, wordIndex) => (
+                      <div key={wordIndex} className="overflow-hidden text-ellipsis whitespace-nowrap">
+                        {word}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -98,7 +103,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
           <Button 
             variant="outline" 
             size="lg" 
-            className="hero-secondary-button energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 font-medium px-8 py-6 rounded-lg transition-all duration-300"
+            className="hero-secondary-button energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 hover:text-accent font-medium px-8 py-6 rounded-lg transition-all duration-300"
           >
             <span className="relative z-10 flex items-center">
               <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />

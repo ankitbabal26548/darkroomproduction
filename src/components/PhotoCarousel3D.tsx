@@ -18,16 +18,18 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const timer = setInterval(() => {
-      if (!isTransitioning) {
+      // Only auto-advance if not transitioning and not hovered
+      if (!isTransitioning && !isHovered) {
         handleNext();
       }
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [currentIndex, isTransitioning]);
+  }, [currentIndex, isTransitioning, isHovered]);
 
   const handleNext = () => {
     if (isTransitioning) return;
@@ -58,6 +60,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     if (index === currentIndex) {
       console.log('Mouse entered center image:', index);
       setHoveredIndex(index);
+      setIsHovered(true);
     }
   };
 
@@ -65,6 +68,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     if (index === currentIndex) {
       console.log('Mouse left center image:', index);
       setHoveredIndex(null);
+      setIsHovered(false);
     }
   };
 
