@@ -1,6 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { CSSProperties } from 'react';
 
 interface PhotoCarousel3DProps {
   images: Array<{
@@ -65,7 +66,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     }
   };
 
-  const getImageStyle = (index: number) => {
+  const getImageStyle = (index: number): CSSProperties => {
     const diff = index - currentIndex;
     const totalImages = images.length;
     
