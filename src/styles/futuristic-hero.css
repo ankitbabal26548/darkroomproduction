@@ -35,13 +35,130 @@
     contain: layout style;
   }
 
-  /* Lightbox specific styles */
+  /* Lightbox specific styles - Completely redesigned */
+  .lightbox-open {
+    overflow: hidden !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+  }
+
   .lightbox-open nav {
     display: none !important;
   }
 
-  .lightbox-open {
+  .lightbox-container {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 100 !important;
+    background: rgba(0, 0, 0, 0.98) !important;
+    backdrop-filter: blur(4px) !important;
+    isolation: isolate;
+  }
+
+  .lightbox-main {
+    width: 100% !important;
+    height: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    position: relative !important;
     overflow: hidden !important;
+    display: flex !important;
+    flex-direction: column !important;
+  }
+
+  .lightbox-header {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 20 !important;
+    height: 48px !important; /* Fixed height for mobile */
+    flex-shrink: 0 !important;
+  }
+
+  .lightbox-footer {
+    position: absolute !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    z-index: 20 !important;
+    height: 80px !important; /* Fixed height for mobile */
+    flex-shrink: 0 !important;
+  }
+
+  .lightbox-image-container {
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    z-index: 10 !important;
+    padding: 48px 0 80px !important; /* Account for header and footer */
+    overflow: hidden !important;
+  }
+
+  .lightbox-image {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    max-width: 100% !important;
+    max-height: 100% !important;
+    display: block !important;
+  }
+
+  /* Tablet optimizations */
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .lightbox-header {
+      height: 56px !important;
+    }
+    
+    .lightbox-footer {
+      height: 100px !important;
+    }
+    
+    .lightbox-image-container {
+      padding: 56px 0 100px !important;
+    }
+  }
+
+  /* Desktop optimizations */
+  @media (min-width: 1025px) {
+    .lightbox-header {
+      height: 64px !important;
+    }
+    
+    .lightbox-footer {
+      height: 120px !important;
+    }
+    
+    .lightbox-image-container {
+      padding: 64px 0 120px !important;
+    }
+  }
+
+  /* Mobile safe area handling */
+  @media (max-width: 640px) {
+    .lightbox-main {
+      height: 100vh !important;
+      height: 100dvh !important;
+      padding: env(safe-area-inset-top, 0) env(safe-area-inset-right, 0) env(safe-area-inset-bottom, 0) env(safe-area-inset-left, 0) !important;
+    }
+    
+    .lightbox-header {
+      top: env(safe-area-inset-top, 0) !important;
+      height: 40px !important;
+    }
+    
+    .lightbox-footer {
+      bottom: env(safe-area-inset-bottom, 0) !important;
+      height: 72px !important;
+    }
+    
+    .lightbox-image-container {
+      top: env(safe-area-inset-top, 0) !important;
+      bottom: env(safe-area-inset-bottom, 0) !important;
+      padding: 40px 0 72px !important;
+    }
   }
 
   /* Carousel specific overrides */
@@ -229,12 +346,6 @@
     .stats-label {
       font-size: 0.75rem;
     }
-
-    /* Lightbox mobile optimizations */
-    .lightbox-open {
-      height: 100vh;
-      height: 100dvh; /* Dynamic viewport height for mobile */
-    }
   }
 
   /* Tablet Responsive Adjustments */
@@ -245,26 +356,6 @@
 
     .glass-panel {
       backdrop-filter: blur(15px);
-    }
-  }
-
-  /* Lightbox responsive image sizing */
-  @media (max-width: 640px) {
-    .lightbox-open img {
-      max-height: 90vh !important;
-      max-height: 90dvh !important;
-    }
-  }
-
-  @media (min-width: 641px) and (max-width: 1024px) {
-    .lightbox-open img {
-      max-height: 85vh !important;
-    }
-  }
-
-  @media (min-width: 1025px) {
-    .lightbox-open img {
-      max-height: 80vh !important;
     }
   }
 }
