@@ -133,7 +133,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out hover:scale-110 cursor-pointer ${
+            className={`absolute w-60 h-90 sm:w-72 sm:h-108 lg:w-80 lg:h-120 transition-all duration-700 ease-out hover:scale-105 cursor-pointer ${
               isTransitioning ? 'transition-duration-300' : ''
             }`}
             style={getImageStyle(index)}
@@ -148,7 +148,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover rounded-lg"
+                className="w-full h-full object-cover rounded-lg transition-transform duration-500 ease-out"
                 loading="lazy"
               />
             </div>

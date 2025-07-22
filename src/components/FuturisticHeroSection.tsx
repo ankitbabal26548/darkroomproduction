@@ -67,40 +67,15 @@ export const FuturisticHeroSection = () => {
 
       {/* Main Content Grid */}
       <div className="hero-content relative z-30 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 min-h-screen items-center">
             
             {/* Left Side - Digital Interface */}
-            <div className="lg:col-span-5 space-y-8 relative z-40 flex flex-col justify-center min-h-[600px] lg:min-h-[800px]">
+            <div className="lg:col-span-5 space-y-8 relative z-40 flex flex-col justify-center min-h-[700px] lg:min-h-[900px]">
               <DigitalInterface 
                 isLoaded={isLoaded}
                 stats={stats}
               />
-              
-              {/* Action Buttons */}
-              <div className={`hero-buttons flex flex-col sm:flex-row gap-4 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
-                   style={{ animationDelay: '1.2s' }}>
-                <Button 
-                  size="lg" 
-                  className="hero-primary-button energy-button group relative overflow-hidden bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-6 rounded-lg transition-all duration-300"
-                >
-                  <span className="relative z-10 flex items-center">
-                    View Portfolio
-                    <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
-                  </span>
-                </Button>
-                
-                <Button 
-                  variant="outline" 
-                  size="lg" 
-                  className="hero-secondary-button energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 font-medium px-8 py-6 rounded-lg transition-all duration-300"
-                >
-                  <span className="relative z-10 flex items-center">
-                    <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
-                    Watch Our Work
-                  </span>
-                </Button>
-              </div>
             </div>
 
             {/* Right Side - 3D Photo Showcase */}

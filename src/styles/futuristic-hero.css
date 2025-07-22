@@ -168,6 +168,11 @@
     width: 20rem; /* 320px */
   }
 
+  /* Width utility for wider container */
+  .max-w-8xl {
+    max-width: 88rem; /* 1408px */
+  }
+
   /* Mobile Responsive Adjustments */
   @media (max-width: 768px) {
     .futuristic-hero-container {

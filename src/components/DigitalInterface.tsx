@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { AnimatedCounter } from './AnimatedCounter';
-import { Zap } from 'lucide-react';
+import { Zap, ArrowRight, Play } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 interface DigitalInterfaceProps {
   isLoaded: boolean;
@@ -15,7 +16,7 @@ interface DigitalInterfaceProps {
 
 export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => {
   return (
-    <div className="digital-interface-panel relative min-h-[600px] lg:min-h-[800px] flex flex-col justify-center">
+    <div className="digital-interface-panel relative min-h-[700px] lg:min-h-[900px] flex flex-col justify-center">
       {/* Glassmorphism Panel */}
       <div className="glass-panel relative backdrop-blur-xl bg-background/10 border border-accent/20 rounded-2xl p-6 sm:p-8 shadow-2xl">
         
@@ -53,11 +54,11 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
         </div>
 
         {/* Stats Grid */}
-        <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+        <div className={`grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-8 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
              style={{ animationDelay: '0.9s' }}>
           {stats.map((stat, index) => (
             <div key={index} className="stat-card relative group">
-              <div className="flex items-center space-x-3 p-4 rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all duration-300">
+              <div className="flex items-center space-x-3 p-5 rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all duration-300 overflow-hidden">
                 <div className="flex-shrink-0">
                   <stat.icon className="w-6 h-6 text-accent" />
                 </div>
@@ -69,7 +70,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
                       suffix={stat.suffix}
                     />
                   </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground font-medium">
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium truncate">
                     {stat.label}
                   </div>
                 </div>
@@ -79,6 +80,31 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-accent/10 to-accent/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>
           ))}
+        </div>
+
+        {/* Action Buttons */}
+        <div className={`hero-buttons flex flex-col sm:flex-row gap-4 ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+             style={{ animationDelay: '1.2s' }}>
+          <Button 
+            size="lg" 
+            className="hero-primary-button energy-button group relative overflow-hidden bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-6 rounded-lg transition-all duration-300"
+          >
+            <span className="relative z-10 flex items-center">
+              View Portfolio
+              <ArrowRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
+            </span>
+          </Button>
+          
+          <Button 
+            variant="outline" 
+            size="lg" 
+            className="hero-secondary-button energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 font-medium px-8 py-6 rounded-lg transition-all duration-300"
+          >
+            <span className="relative z-10 flex items-center">
+              <Play className="w-5 h-5 mr-2 group-hover:scale-110 transition-transform" />
+              Watch Our Work
+            </span>
+          </Button>
         </div>
 
         {/* Panel Glow Effect */}
