@@ -18,31 +18,31 @@ export const FuturisticHeroSection = () => {
 
   const heroImages = [
     {
-      src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      src: "https://i.ibb.co/W45vDkcK/batch-DSC02691.jpg",
       alt: "Beautiful wedding ceremony",
       title: "Wedding Photography",
       description: "Capturing your special day with artistic vision and professional excellence"
     },
     {
-      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      src: "https://i.ibb.co/kVLyjLtM/batch-0-J3-A4454.jpg",
       alt: "Professional photography equipment",
       title: "Professional Excellence",
       description: "High-quality equipment and techniques for perfect results every time"
     },
     {
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      src: "https://i.ibb.co/0pvPWR07/Darkroom-Production-at-18-06-32.jpg",
       alt: "Romantic couple portrait",
       title: "Pre-Wedding Sessions",
       description: "Beautiful engagement and couple photography to celebrate your love story"
     },
     {
-      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      src: "https://i.ibb.co/3mbh7T1W/batch-268-A9520.jpg",
       alt: "Elegant bridal portrait",
       title: "Bridal Photography",
       description: "Elegant and timeless bridal portraits that capture your natural beauty"
     },
     {
-      src: "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      src: "https://i.ibb.co/v6pyM6NN/batch-0-J3-A1898.jpg",
       alt: "Wedding reception celebration",
       title: "Reception Photography",
       description: "Capturing the joy, celebration, and precious moments of your reception"
