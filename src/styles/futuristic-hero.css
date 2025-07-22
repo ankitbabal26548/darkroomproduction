@@ -131,6 +131,15 @@
     z-index: -1;
   }
 
+  /* Enhanced hover effects for images */
+  .holographic-frame:hover {
+    filter: drop-shadow(0 0 30px hsl(var(--accent))/50%);
+  }
+
+  .holographic-frame:hover:before {
+    background: linear-gradient(45deg, hsl(var(--accent))/30%, transparent 50%, hsl(var(--accent))/30%);
+  }
+
   /* Stat Cards */
   .stat-card {
     transform-style: preserve-3d;
@@ -173,6 +182,17 @@
     max-width: 88rem; /* 1408px */
   }
 
+  /* Improved clickable areas */
+  .photo-carousel-3d .holographic-frame {
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .photo-carousel-3d .holographic-frame:active {
+    transform: scale(0.98);
+  }
+
   /* Mobile Responsive Adjustments */
   @media (max-width: 768px) {
     .futuristic-hero-container {
@@ -189,6 +209,10 @@
 
     .holographic-frame {
       filter: drop-shadow(0 0 10px hsl(var(--accent))/20%);
+    }
+
+    .holographic-frame:hover {
+      filter: drop-shadow(0 0 20px hsl(var(--accent))/40%);
     }
 
     /* Mobile-specific spacing */

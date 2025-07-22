@@ -58,7 +58,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
              style={{ animationDelay: '0.9s' }}>
           {stats.map((stat, index) => (
             <div key={index} className="stat-card relative group">
-              <div className="flex items-center space-x-3 p-5 rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all duration-300 overflow-hidden">
+              <div className="flex items-center space-x-3 p-5 sm:p-6 rounded-xl bg-accent/5 border border-accent/10 hover:border-accent/30 transition-all duration-300 overflow-hidden min-h-[90px]">
                 <div className="flex-shrink-0">
                   <stat.icon className="w-6 h-6 text-accent" />
                 </div>
@@ -70,7 +70,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
                       suffix={stat.suffix}
                     />
                   </div>
-                  <div className="text-xs sm:text-sm text-muted-foreground font-medium truncate">
+                  <div className="text-xs sm:text-sm text-muted-foreground font-medium whitespace-normal break-words leading-tight">
                     {stat.label}
                   </div>
                 </div>
