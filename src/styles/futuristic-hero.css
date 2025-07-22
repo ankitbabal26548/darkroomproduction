@@ -164,5 +164,21 @@
     .holographic-frame {
       filter: drop-shadow(0 0 10px hsl(var(--accent))/20%);
     }
+
+    /* Mobile-specific spacing */
+    .photo-carousel-3d {
+      padding: 0 1rem;
+    }
+  }
+
+  /* Tablet Responsive Adjustments */
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .futuristic-hero-container {
+      min-height: 100vh;
+    }
+
+    .glass-panel {
+      backdrop-filter: blur(15px);
+    }
   }
 }

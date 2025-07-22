@@ -15,22 +15,34 @@ export const FuturisticHeroSection = () => {
 
   const heroImages = [
     {
-      src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       alt: "Beautiful wedding ceremony",
       title: "Wedding Photography",
       description: "Capturing your special day with artistic vision"
     },
     {
-      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://images.unsplash.com/photo-1537633552985-df8429e8048b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       alt: "Professional photography equipment",
       title: "Professional Excellence",
       description: "High-quality equipment for perfect results"
     },
     {
-      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+      src: "https://images.unsplash.com/photo-1583939003579-730e3918a45a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
       alt: "Romantic couple portrait",
       title: "Pre-Wedding Sessions",
       description: "Beautiful engagement and couple photography"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      alt: "Elegant bridal portrait",
+      title: "Bridal Photography",
+      description: "Elegant and timeless bridal portraits"
+    },
+    {
+      src: "https://images.unsplash.com/photo-1465495976277-4387d4b0e4a6?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1400&q=80",
+      alt: "Wedding reception celebration",
+      title: "Reception Photography",
+      description: "Capturing the joy and celebration"
     }
   ];
 
@@ -41,17 +53,17 @@ export const FuturisticHeroSection = () => {
   ];
 
   return (
-    <section className="hero-section-container futuristic-hero-container relative min-h-screen bg-background overflow-hidden">
+    <section className="hero-section-container futuristic-hero-container relative min-h-screen bg-background overflow-hidden pt-20 sm:pt-24 md:pt-28 lg:pt-20">
       {/* Holographic Background */}
       <HolographicBackground />
 
       {/* Main Content Grid */}
       <div className="hero-content relative z-30 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 lg:pt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 min-h-screen items-center">
             
             {/* Left Side - Digital Interface */}
-            <div className="lg:col-span-6 space-y-8 relative z-40">
+            <div className="lg:col-span-6 space-y-8 relative z-40 flex flex-col justify-center min-h-[600px] lg:min-h-[700px]">
               <DigitalInterface 
                 isLoaded={isLoaded}
                 stats={stats}
@@ -84,7 +96,7 @@ export const FuturisticHeroSection = () => {
             </div>
 
             {/* Right Side - 3D Photo Showcase */}
-            <div className="lg:col-span-6 relative z-30">
+            <div className="lg:col-span-6 relative z-30 flex items-center justify-center min-h-[600px] lg:min-h-[700px]">
               <PhotoCarousel3D 
                 images={heroImages}
                 isLoaded={isLoaded}

@@ -26,7 +26,7 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
       if (!isTransitioning) {
         handleNext();
       }
-    }, 5000);
+    }, 4000);
 
     return () => clearInterval(timer);
   }, [currentIndex, isTransitioning]);
@@ -74,31 +74,52 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
 
   const getImageStyle = (index: number) => {
     const diff = index - currentIndex;
-    const absIndex = Math.abs(diff);
+    const totalImages = images.length;
     
+    // Normalize the difference to handle circular array
+    let normalizedDiff = diff;
+    if (Math.abs(diff) > totalImages / 2) {
+      normalizedDiff = diff > 0 ? diff - totalImages : diff + totalImages;
+    }
+    
+    const absIndex = Math.abs(normalizedDiff);
+    
+    // Center image (current)
     if (absIndex === 0) {
       return {
-        transform: 'translateX(0) rotateY(0deg) scale(1)',
+        transform: 'translateX(0) translateZ(0) rotateY(0deg) scale(1)',
         opacity: 1,
+        zIndex: 20
+      };
+    }
+    // Adjacent images (±1)
+    else if (absIndex === 1) {
+      return {
+        transform: `translateX(${normalizedDiff > 0 ? '70%' : '-70%'}) translateZ(-100px) rotateY(${normalizedDiff > 0 ? '-25deg' : '25deg'}) scale(0.8)`,
+        opacity: 0.6,
+        zIndex: 15
+      };
+    }
+    // Outer images (±2)
+    else if (absIndex === 2) {
+      return {
+        transform: `translateX(${normalizedDiff > 0 ? '130%' : '-130%'}) translateZ(-200px) rotateY(${normalizedDiff > 0 ? '-45deg' : '45deg'}) scale(0.6)`,
+        opacity: 0.3,
         zIndex: 10
       };
-    } else if (absIndex === 1) {
+    }
+    // Far images (hidden but positioned)
+    else {
       return {
-        transform: `translateX(${diff > 0 ? '50%' : '-50%'}) rotateY(${diff > 0 ? '-15deg' : '15deg'}) scale(0.85)`,
-        opacity: 0.4,
+        transform: `translateX(${normalizedDiff > 0 ? '200%' : '-200%'}) translateZ(-300px) rotateY(${normalizedDiff > 0 ? '-60deg' : '60deg'}) scale(0.4)`,
+        opacity: 0.1,
         zIndex: 5
-      };
-    } else {
-      return {
-        transform: `translateX(${diff > 0 ? '100%' : '-100%'}) rotateY(${diff > 0 ? '-30deg' : '30deg'}) scale(0.7)`,
-        opacity: 0.2,
-        zIndex: 1
       };
     }
   };
 
   return (
-    <div className={`photo-carousel-3d relative w-full h-80 sm:h-96 lg:h-[500px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
+    <div className={`photo-carousel-3d relative w-full h-[500px] sm:h-[600px] lg:h-[700px] ${isLoaded ? 'animate-fade-in' : 'opacity-0'}`}
          style={{ animationDelay: '0.6s' }}>
       
       {/* Main Carousel Container */}
@@ -111,7 +132,7 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
         {images.map((image, index) => (
           <div
             key={index}
-            className={`absolute w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 transition-all duration-700 ease-out ${
+            className={`absolute w-48 h-72 sm:w-56 sm:h-84 lg:w-64 lg:h-96 transition-all duration-700 ease-out ${
               isTransitioning ? 'transition-duration-300' : ''
             }`}
             style={getImageStyle(index)}
@@ -140,7 +161,7 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
       <button
         onClick={handlePrev}
         disabled={isTransitioning}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
       </button>
@@ -148,13 +169,13 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
       <button
         onClick={handleNext}
         disabled={isTransitioning}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-20 p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
       </button>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-30">
         {images.map((_, index) => (
           <button
             key={index}
@@ -187,14 +208,14 @@ export const PhotoCarousel3D = ({ images, isLoaded }: PhotoCarousel3DProps) => {
 
       {/* Particle Effects */}
       <div className="absolute inset-0 pointer-events-none">
-        {[...Array(4)].map((_, i) => (
+        {[...Array(6)].map((_, i) => (
           <div
             key={i}
-            className={`absolute w-1 h-1 bg-accent/40 rounded-full animate-float-${i % 3 + 1}`}
+            className={`absolute w-1 h-1 bg-accent/40 rounded-full animate-float-${(i % 3) + 1}`}
             style={{
-              left: `${20 + i * 20}%`,
-              top: `${30 + (i % 2) * 40}%`,
-              animationDelay: `${i * 0.5}s`
+              left: `${15 + i * 15}%`,
+              top: `${25 + (i % 3) * 25}%`,
+              animationDelay: `${i * 0.4}s`
             }}
           />
         ))}
