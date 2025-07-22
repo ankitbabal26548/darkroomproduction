@@ -35,6 +35,15 @@
     contain: layout style;
   }
 
+  /* Lightbox specific styles */
+  .lightbox-open nav {
+    display: none !important;
+  }
+
+  .lightbox-open {
+    overflow: hidden !important;
+  }
+
   /* Carousel specific overrides */
   .photo-carousel-3d {
     position: relative;
@@ -220,6 +229,12 @@
     .stats-label {
       font-size: 0.75rem;
     }
+
+    /* Lightbox mobile optimizations */
+    .lightbox-open {
+      height: 100vh;
+      height: 100dvh; /* Dynamic viewport height for mobile */
+    }
   }
 
   /* Tablet Responsive Adjustments */
@@ -230,6 +245,26 @@
 
     .glass-panel {
       backdrop-filter: blur(15px);
+    }
+  }
+
+  /* Lightbox responsive image sizing */
+  @media (max-width: 640px) {
+    .lightbox-open img {
+      max-height: 90vh !important;
+      max-height: 90dvh !important;
+    }
+  }
+
+  @media (min-width: 641px) and (max-width: 1024px) {
+    .lightbox-open img {
+      max-height: 85vh !important;
+    }
+  }
+
+  @media (min-width: 1025px) {
+    .lightbox-open img {
+      max-height: 80vh !important;
     }
   }
 }
