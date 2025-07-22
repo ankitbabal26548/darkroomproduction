@@ -20,19 +20,25 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
 
+  // Touch handling for swipe gestures
+  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
+  const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const minSwipeDistance = 50;
+
   useEffect(() => {
     const timer = setInterval(() => {
-      // Only auto-advance if not transitioning and not hovered
-      if (!isTransitioning && !isHovered) {
+      // Only auto-advance if not transitioning, not hovered, and not dragging
+      if (!isTransitioning && !isHovered && !isDragging) {
         handleNext();
       }
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [currentIndex, isTransitioning, isHovered]);
+  }, [currentIndex, isTransitioning, isHovered, isDragging]);
 
   const handleNext = () => {
-    if (isTransitioning) return;
+    if (isTransitioning || isDragging) return;
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -41,7 +47,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
   };
 
   const handlePrev = () => {
-    if (isTransitioning) return;
+    if (isTransitioning || isDragging) return;
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -70,6 +76,56 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       setHoveredIndex(null);
       setIsHovered(false);
     }
+  };
+
+  // Touch event handlers
+  const handleTouchStart = (e: React.TouchEvent) => {
+    const touch = e.touches[0];
+    setTouchStart({ x: touch.clientX, y: touch.clientY });
+    setTouchEnd(null);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStart) return;
+    
+    const touch = e.touches[0];
+    setTouchEnd({ x: touch.clientX, y: touch.clientY });
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!touchStart || !touchEnd) {
+      setIsDragging(false);
+      return;
+    }
+
+    const distanceX = touchStart.x - touchEnd.x;
+    const distanceY = touchStart.y - touchEnd.y;
+    
+    // Check if it's a horizontal swipe (more horizontal than vertical)
+    if (Math.abs(distanceX) > Math.abs(distanceY)) {
+      const isLeftSwipe = distanceX > minSwipeDistance;
+      const isRightSwipe = distanceX < -minSwipeDistance;
+
+      if (isLeftSwipe) {
+        handleNext();
+      } else if (isRightSwipe) {
+        handlePrev();
+      }
+    }
+
+    setTouchStart(null);
+    setTouchEnd(null);
+    setIsDragging(false);
+  };
+
+  const handleSlideClick = (index: number) => {
+    if (isTransitioning || isDragging) return;
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentIndex(index);
+      setIsTransitioning(false);
+    }, 300);
   };
 
   const getImageStyle = (index: number): CSSProperties => {
@@ -131,7 +187,10 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
          style={{ 
            animationDelay: '0.6s',
            perspective: '1000px'
-         }}>
+         }}
+         onTouchStart={handleTouchStart}
+         onTouchMove={handleTouchMove}
+         onTouchEnd={handleTouchEnd}>
       
       {/* Main Carousel Container */}
       <div className="relative w-full h-full flex items-center justify-center"
@@ -180,7 +239,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       {/* Navigation Controls */}
       <button
         onClick={handlePrev}
-        disabled={isTransitioning}
+        disabled={isTransitioning || isDragging}
         className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[250] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
@@ -188,7 +247,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
       
       <button
         onClick={handleNext}
-        disabled={isTransitioning}
+        disabled={isTransitioning || isDragging}
         className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[250] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
       >
         <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
@@ -199,15 +258,8 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
         {images.map((_, index) => (
           <button
             key={index}
-            onClick={() => {
-              if (isTransitioning) return;
-              setIsTransitioning(true);
-              setTimeout(() => {
-                setCurrentIndex(index);
-                setIsTransitioning(false);
-              }, 300);
-            }}
-            disabled={isTransitioning}
+            onClick={() => handleSlideClick(index)}
+            disabled={isTransitioning || isDragging}
             className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
               index === currentIndex 
                 ? 'bg-accent shadow-lg shadow-accent/50' 

@@ -82,7 +82,7 @@
     left: 0 !important;
     right: 0 !important;
     z-index: 20 !important;
-    height: 80px !important; /* Fixed height for mobile */
+    height: 100px !important; /* Increased for mobile */
     flex-shrink: 0 !important;
   }
 
@@ -93,7 +93,7 @@
     right: 0 !important;
     bottom: 0 !important;
     z-index: 10 !important;
-    padding: 48px 0 80px !important; /* Account for header and footer */
+    padding: 48px 0 100px !important; /* Account for header and footer */
     overflow: hidden !important;
   }
 
@@ -113,11 +113,11 @@
     }
     
     .lightbox-footer {
-      height: 100px !important;
+      height: 120px !important;
     }
     
     .lightbox-image-container {
-      padding: 56px 0 100px !important;
+      padding: 56px 0 120px !important;
     }
   }
 
@@ -128,11 +128,11 @@
     }
     
     .lightbox-footer {
-      height: 120px !important;
+      height: 140px !important;
     }
     
     .lightbox-image-container {
-      padding: 64px 0 120px !important;
+      padding: 64px 0 140px !important;
     }
   }
 
@@ -146,18 +146,18 @@
     
     .lightbox-header {
       top: env(safe-area-inset-top, 0) !important;
-      height: 40px !important;
+      height: 48px !important;
     }
     
     .lightbox-footer {
       bottom: env(safe-area-inset-bottom, 0) !important;
-      height: 72px !important;
+      height: 100px !important;
     }
     
     .lightbox-image-container {
       top: env(safe-area-inset-top, 0) !important;
       bottom: env(safe-area-inset-bottom, 0) !important;
-      padding: 40px 0 72px !important;
+      padding: 48px 0 100px !important;
     }
   }
 

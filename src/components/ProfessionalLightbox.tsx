@@ -208,6 +208,11 @@ export const ProfessionalLightbox = ({
     }
   };
 
+  const handleCloseClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClose();
+  };
+
   if (!isOpen) return null;
 
   const currentImage = images[selectedIndex];
@@ -277,25 +282,48 @@ export const ProfessionalLightbox = ({
                   </Button>
                 </div>
                 
+                {/* Mobile Zoom Controls */}
+                <div className="flex md:hidden items-center space-x-1">
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleZoomOut}
+                    disabled={zoom <= 0.5}
+                    className="text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-9 h-9"
+                  >
+                    <ZoomOut className="w-4 h-4" />
+                  </Button>
+                  
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={handleZoomIn}
+                    disabled={zoom >= 4}
+                    className="text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-9 h-9"
+                  >
+                    <ZoomIn className="w-4 h-4" />
+                  </Button>
+                </div>
+                
                 <Button
                   variant="ghost"
                   size="icon"
-                  onClick={onClose}
-                  className="text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-8 h-8 sm:w-10 sm:h-10"
+                  onClick={handleCloseClick}
+                  className="text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-9 h-9 sm:w-10 sm:h-10"
                 >
-                  <X className="w-4 h-4 sm:w-5 sm:h-5" />
+                  <X className="w-5 h-5 sm:w-6 sm:h-6" />
                 </Button>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Navigation Buttons */}
+        {/* Navigation Buttons - Higher z-index */}
         <Button
           variant="ghost"
           size="icon"
           onClick={handlePrev}
-          className={`absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 ${
+          className={`absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 ${
             uiVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -306,7 +334,7 @@ export const ProfessionalLightbox = ({
           variant="ghost"
           size="icon"
           onClick={handleNext}
-          className={`absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-10 text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 ${
+          className={`absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-30 text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-10 h-10 sm:w-12 sm:h-12 transition-all duration-300 ${
             uiVisible ? 'opacity-100' : 'opacity-0'
           }`}
         >
@@ -348,62 +376,48 @@ export const ProfessionalLightbox = ({
         }`}>
           <div className="bg-gradient-to-t from-black/80 to-transparent backdrop-blur-sm">
             <div className="p-2 sm:p-3 md:p-4">
-              <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
-                <div className="flex-1 min-w-0">
-                  <h3 className="font-playfair text-sm sm:text-base md:text-lg font-bold text-white mb-1 truncate">
-                    {currentImage.title}
-                  </h3>
-                  <p className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-2">
-                    {currentImage.description}
+              <div className="flex flex-col space-y-3">
+                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
+                  <div className="flex-1 min-w-0">
+                    <h3 className="font-playfair text-sm sm:text-base md:text-lg font-bold text-white mb-1 truncate">
+                      {currentImage.title}
+                    </h3>
+                    <p className="text-white/80 text-xs sm:text-sm leading-relaxed line-clamp-2">
+                      {currentImage.description}
+                    </p>
+                  </div>
+                  
+                  <div className="flex items-center justify-center space-x-2 sm:space-x-3">
+                    {/* Thumbnail Dots */}
+                    <div className="flex items-center space-x-1 sm:space-x-1.5">
+                      {images.map((_, index) => (
+                        <button
+                          key={index}
+                          onClick={() => onImageChange(index)}
+                          className={`transition-all duration-300 rounded-full ${
+                            index === selectedIndex 
+                              ? 'bg-accent w-4 h-2 sm:w-5 sm:h-2.5' 
+                              : 'bg-white/30 hover:bg-white/50 w-2 h-2 sm:w-2.5 sm:h-2.5'
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Keyboard Shortcuts Hint - Desktop only */}
+                <div className="hidden md:block pt-2 border-t border-white/10">
+                  <p className="text-center text-white/40 text-xs">
+                    Use ← → arrow keys to navigate • +/- to zoom • Double-tap to zoom • ESC to close
                   </p>
                 </div>
                 
-                <div className="flex items-center justify-center space-x-2 sm:space-x-3">
-                  {/* Mobile/Tablet Zoom Controls */}
-                  <div className="flex md:hidden items-center space-x-1">
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={handleZoomOut}
-                      disabled={zoom <= 0.5}
-                      className="text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-8 h-8"
-                    >
-                      <ZoomOut className="w-3 h-3" />
-                    </Button>
-                    
-                    <Button
-                      variant="ghost"
-                      size="icon"
-                      onClick={handleZoomIn}
-                      disabled={zoom >= 4}
-                      className="text-white hover:bg-white/10 bg-white/5 backdrop-blur-md border border-white/20 w-8 h-8"
-                    >
-                      <ZoomIn className="w-3 h-3" />
-                    </Button>
-                  </div>
-                  
-                  {/* Thumbnail Dots */}
-                  <div className="flex items-center space-x-1 sm:space-x-1.5">
-                    {images.map((_, index) => (
-                      <button
-                        key={index}
-                        onClick={() => onImageChange(index)}
-                        className={`transition-all duration-300 rounded-full ${
-                          index === selectedIndex 
-                            ? 'bg-accent w-4 h-2 sm:w-5 sm:h-2.5' 
-                            : 'bg-white/30 hover:bg-white/50 w-2 h-2 sm:w-2.5 sm:h-2.5'
-                        }`}
-                      />
-                    ))}
-                  </div>
+                {/* Mobile Instructions */}
+                <div className="block md:hidden pt-2 border-t border-white/10">
+                  <p className="text-center text-white/40 text-xs">
+                    Swipe left/right to navigate • Double-tap to zoom • Pinch to zoom
+                  </p>
                 </div>
-              </div>
-              
-              {/* Keyboard Shortcuts Hint - Desktop only */}
-              <div className="hidden md:block mt-2 pt-2 border-t border-white/10">
-                <p className="text-center text-white/40 text-xs">
-                  Use ← → arrow keys to navigate • +/- to zoom • Double-tap to zoom • ESC to close
-                </p>
               </div>
             </div>
           </div>
