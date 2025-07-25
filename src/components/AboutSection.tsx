@@ -40,9 +40,8 @@ export const AboutSection = () => {
           <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <span className="relative">
               Capturing Your{' '}
-              <span className="text-gradient bg-gradient-to-r from-accent via-accent-lighter to-accent bg-clip-text text-transparent italic relative">
+              <span className="relative text-accent">
                 Perfect Moments
-                <div className="absolute -inset-1 bg-gradient-to-r from-accent/5 to-accent/2 blur-lg opacity-50 animate-pulse"></div>
               </span>
             </span>
           </h2>
@@ -57,21 +56,21 @@ export const AboutSection = () => {
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
                 <Star className="w-4 h-4 text-accent fill-accent" />
-                <span className="text-accent font-semibold">5 Team Members</span>
+                <span className="text-foreground font-semibold">5 Team Members</span>
               </div>
             </div>
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
                 <Camera className="w-4 h-4 text-accent" />
-                <span className="text-accent font-semibold">100+ Happy Couples</span>
+                <span className="text-foreground font-semibold">100+ Happy Couples</span>
               </div>
             </div>
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
                 <Heart className="w-4 h-4 text-accent" />
-                <span className="text-accent font-semibold">3 Years Experience</span>
+                <span className="text-foreground font-semibold">3 Years Experience</span>
               </div>
             </div>
           </div>
@@ -86,7 +85,7 @@ export const AboutSection = () => {
                     <Camera className="w-6 h-6 text-accent" />
                   </div>
                 </div>
-                <p className="text-lg text-muted-foreground italic font-light leading-relaxed">
+                <p className="text-lg text-foreground/80 italic font-light leading-relaxed">
                   "Photography is the art of frozen time... the ability to store emotion and feelings within a frame."
                 </p>
                 <div className="mt-4 w-16 h-0.5 bg-gradient-to-r from-accent/50 to-accent mx-auto rounded-full"></div>
@@ -143,7 +142,7 @@ export const AboutSection = () => {
             <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-xl opacity-75 animate-pulse"></div>
             <div className="relative inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm">
               <Heart className="w-6 h-6 text-accent" />
-              <span className="text-accent font-semibold text-lg">Ready to capture your story together?</span>
+              <span className="text-foreground font-semibold text-lg">Ready to capture your story together?</span>
               <Sparkles className="w-6 h-6 text-accent animate-pulse" style={{ animationDelay: '1s' }} />
             </div>
           </div>

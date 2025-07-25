@@ -1,133 +1,133 @@
 
-import { MessageCircle, Camera, Gift, CheckCircle, ArrowRight } from 'lucide-react';
+import { MessageSquare, Calendar, Camera, Sparkles, ArrowRight, CheckCircle } from 'lucide-react';
 
 export const SimpleProcess = () => {
   const steps = [
     {
-      step: "01",
-      title: "Let's Chat",
-      description: "We start with a friendly conversation to understand your vision and preferences.",
-      icon: MessageCircle,
-      color: "from-blue-500/20 to-blue-500/10",
+      number: "01",
+      icon: MessageSquare,
+      title: "Initial Consultation",
+      description: "We start with a friendly chat about your vision, preferences, and special requirements for your big day.",
+      duration: "30 min",
+      color: "from-blue-500/15 to-blue-500/8",
       accentColor: "text-blue-600",
-      bgColor: "bg-blue-500/10",
-      details: "Free consultation • 30 minutes • No commitment"
+      bgColor: "bg-blue-500/8"
     },
     {
-      step: "02",
-      title: "Capture Magic",
-      description: "On the day, we'll create beautiful photos while keeping things relaxed and fun.",
-      icon: Camera,
-      color: "from-purple-500/20 to-purple-500/10",
+      number: "02",
+      icon: Calendar,
+      title: "Planning & Booking",
+      description: "We'll discuss timeline, locations, and finalize all details. Then secure your date with our booking process.",
+      duration: "1 hour",
+      color: "from-purple-500/15 to-purple-500/8",
       accentColor: "text-purple-600",
-      bgColor: "bg-purple-500/10",
-      details: "Professional equipment • Creative direction • Comfortable atmosphere"
+      bgColor: "bg-purple-500/8"
     },
     {
-      step: "03",
-      title: "Deliver Joy",
-      description: "Within 2-3 weeks, you'll receive your edited photos in a beautiful online gallery.",
-      icon: Gift,
-      color: "from-green-500/20 to-green-500/10",
+      number: "03",
+      icon: Camera,
+      title: "Photography Session",
+      description: "On your special day, we capture every precious moment with our professional equipment and creative vision.",
+      duration: "Full day",
+      color: "from-green-500/15 to-green-500/8",
       accentColor: "text-green-600",
-      bgColor: "bg-green-500/10",
-      details: "Online gallery • High-resolution files • Print-ready quality"
+      bgColor: "bg-green-500/8"
+    },
+    {
+      number: "04",
+      icon: Sparkles,
+      title: "Editing & Delivery",
+      description: "We carefully edit your photos and deliver a beautiful gallery within 2-3 weeks of your event.",
+      duration: "2-3 weeks",
+      color: "from-orange-500/15 to-orange-500/8",
+      accentColor: "text-orange-600",
+      bgColor: "bg-orange-500/8"
     }
   ];
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      {/* Creative Header */}
+      {/* Clean Header */}
       <div className="text-center mb-16">
         <div className="relative inline-block">
           <h3 className="font-playfair text-4xl md:text-5xl font-bold mb-4 text-foreground">
             Our Simple{' '}
-            <span className="text-gradient bg-gradient-to-r from-accent via-accent-lighter to-accent bg-clip-text text-transparent italic">
+            <span className="relative text-accent">
               Process
             </span>
           </h3>
-          <div className="absolute -top-3 -right-3 w-8 h-8 bg-accent/20 rounded-full animate-pulse"></div>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Working with us is easy and stress-free. Here's how we bring your vision to life
+          From our first conversation to delivering your beautiful photos, we make the entire process smooth and enjoyable
         </p>
       </div>
 
-      {/* Interactive Timeline */}
+      {/* Enhanced Process Steps */}
       <div className="relative">
-        {/* Timeline Line */}
-        <div className="hidden md:block absolute top-20 left-1/2 transform -translate-x-1/2 w-0.5 h-64 bg-gradient-to-b from-accent/50 to-accent/20"></div>
+        {/* Connection Line */}
+        <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-accent/30 via-accent/20 to-accent/30 transform -translate-y-1/2 z-0"></div>
         
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
           {steps.map((step, index) => (
             <div 
-              key={index} 
-              className="group relative text-center"
-              style={{ animationDelay: `${index * 300}ms` }}
+              key={index}
+              className="group relative"
+              style={{ animationDelay: `${index * 200}ms` }}
             >
-              {/* Step Connection Arrow (for mobile) */}
-              {index < steps.length - 1 && (
-                <div className="md:hidden absolute -bottom-4 left-1/2 transform -translate-x-1/2 z-10">
-                  <ArrowRight className="w-6 h-6 text-accent/60 animate-pulse" />
-                </div>
-              )}
+              {/* Subtle Background Glow */}
+              <div className={`absolute inset-0 bg-gradient-to-br ${step.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500`}></div>
               
-              {/* Background Glow */}
-              <div className={`absolute inset-0 bg-gradient-to-br ${step.color} rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
-              
-              {/* Main Card */}
-              <div className="relative bg-background/80 backdrop-blur-sm rounded-3xl p-8 border border-accent/20 hover:border-accent/40 transition-all duration-500 hover:shadow-xl hover:transform hover:scale-105 h-full">
+              {/* Clean Main Card */}
+              <div className="relative bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-sm rounded-2xl p-6 border border-accent/15 hover:border-accent/25 transition-all duration-500 hover:shadow-lg hover:transform hover:scale-105 h-full">
                 
-                {/* Step Icon & Number */}
-                <div className="relative mb-6">
-                  <div className={`w-24 h-24 ${step.bgColor} rounded-full flex items-center justify-center mx-auto group-hover:scale-110 transition-transform duration-300`}>
-                    <step.icon className={`w-12 h-12 ${step.accentColor} group-hover:animate-pulse`} />
-                  </div>
-                  
-                  {/* Step Number Badge */}
-                  <div className="absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-accent to-accent-darker text-accent-foreground rounded-full flex items-center justify-center text-sm font-bold shadow-lg">
-                    {step.step}
-                  </div>
-                  
-                  {/* Completion Check (appears on hover) */}
-                  <div className="absolute -bottom-1 -left-1 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <CheckCircle className="w-4 h-4 text-white" />
-                  </div>
+                {/* Step Number */}
+                <div className="absolute -top-3 -right-3 w-8 h-8 bg-accent/15 rounded-full flex items-center justify-center">
+                  <span className="text-xs font-bold text-accent">{step.number}</span>
                 </div>
                 
+                {/* Icon */}
+                <div className="relative mb-4">
+                  <div className={`w-12 h-12 ${step.bgColor} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                    <step.icon className={`w-6 h-6 ${step.accentColor}`} />
+                  </div>
+                </div>
+
                 {/* Content */}
-                <div className="space-y-4">
+                <div className="space-y-3">
                   <h4 className="font-playfair text-xl font-bold text-foreground group-hover:text-accent transition-colors">
                     {step.title}
                   </h4>
-                  <p className="text-muted-foreground leading-relaxed group-hover:text-foreground transition-colors">
+                  <p className="text-foreground/80 leading-relaxed">
                     {step.description}
                   </p>
                   
-                  {/* Details (appear on hover) */}
-                  <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <div className="pt-3 border-t border-accent/20">
-                      <p className="text-sm text-accent font-medium">
-                        {step.details}
-                      </p>
-                    </div>
+                  {/* Duration Badge */}
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-accent/8 rounded-full mt-4">
+                    <CheckCircle className="w-3 h-3 text-accent" />
+                    <span className="text-xs text-accent font-semibold">{step.duration}</span>
                   </div>
                 </div>
-                
-                {/* Decorative Elements */}
-                <div className="absolute top-4 right-4 w-3 h-3 bg-accent/20 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-bounce"></div>
-                <div className="absolute bottom-4 left-4 w-2 h-2 bg-accent/30 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-bounce" style={{ animationDelay: '0.5s' }}></div>
               </div>
+              
+              {/* Arrow for large screens */}
+              {index < steps.length - 1 && (
+                <div className="hidden lg:block absolute top-1/2 -right-4 transform -translate-y-1/2 z-20">
+                  <ArrowRight className="w-6 h-6 text-accent/60" />
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
 
-      {/* Call-to-Action */}
+      {/* Clean Call-to-Action */}
       <div className="mt-16 text-center">
-        <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent/10 to-accent/5 rounded-full border border-accent/20 backdrop-blur-sm">
-          <MessageCircle className="w-5 h-5 text-accent" />
-          <span className="text-accent font-medium">Ready to start your journey?</span>
+        <div className="relative inline-block">
+          <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md"></div>
+          <div className="relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm">
+            <Calendar className="w-5 h-5 text-accent" />
+            <span className="text-foreground font-semibold">Ready to get started?</span>
+          </div>
         </div>
       </div>
     </div>

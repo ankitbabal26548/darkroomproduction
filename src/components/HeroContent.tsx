@@ -58,7 +58,7 @@ export const HeroContent = ({ currentSlide }: HeroContentProps) => {
         <p className="text-accent font-medium text-base sm:text-lg tracking-wide animate-fade-in-up">
           {content.subtitle}
         </p>
-        <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl font-semibold text-foreground/90 leading-relaxed max-w-full animate-fade-in-up">
+        <h2 className="font-playfair text-xl sm:text-2xl md:text-3xl font-semibold text-foreground leading-relaxed max-w-full animate-fade-in-up">
           {content.title}
         </h2>
         <p className="text-muted-foreground text-base sm:text-lg leading-relaxed max-w-lg animate-fade-in-up">
@@ -70,11 +70,11 @@ export const HeroContent = ({ currentSlide }: HeroContentProps) => {
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-4 max-w-full">
         <div className="flex items-center space-x-2 group">
           <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-          <span className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-accent transition-colors">5+ Years Experience</span>
+          <span className="text-xs sm:text-sm font-medium text-foreground group-hover:text-accent transition-colors">5+ Years Experience</span>
         </div>
         <div className="flex items-center space-x-2 group">
           <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-          <span className="text-xs sm:text-sm font-medium text-muted-foreground group-hover:text-accent transition-colors">200+ Happy Couples</span>
+          <span className="text-xs sm:text-sm font-medium text-foreground group-hover:text-accent transition-colors">200+ Happy Couples</span>
         </div>
       </div>
     </div>
