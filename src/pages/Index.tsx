@@ -1,3 +1,4 @@
+
 import { Navbar } from '@/components/Navbar';
 import { FuturisticHeroSection } from '@/components/FuturisticHeroSection';
 import { AboutSection } from '@/components/AboutSection';
@@ -5,7 +6,6 @@ import { FuturisticPortfolioSection } from '@/components/FuturisticPortfolioSect
 import { ServicesSection } from '@/components/ServicesSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
-import { GoToTopButton } from '@/components/GoToTopButton';
 
 const Index = () => {
   return (
@@ -29,7 +29,6 @@ const Index = () => {
         </div>
       </main>
       <Footer />
-      <GoToTopButton />
     </div>
   );
 };
