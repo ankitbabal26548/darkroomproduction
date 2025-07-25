@@ -4,12 +4,12 @@ import { OurApproach } from './OurApproach';
 import { SimpleProcess } from './SimpleProcess';
 import { HappyClients } from './HappyClients';
 import { PhotographyPassion } from './PhotographyPassion';
-import { Camera, Aperture, Focus } from 'lucide-react';
+import { Camera, Aperture, Focus, Sparkles, Heart } from 'lucide-react';
 
 export const AboutSection = () => {
   return (
     <section id="about" className="relative overflow-hidden">
-      {/* Dynamic Background Elements */}
+      {/* Enhanced Dynamic Background Elements */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-accent/20 to-accent/5 rounded-full animate-floating-slow">
           <Camera className="w-8 h-8 text-accent/60 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
@@ -20,67 +20,143 @@ export const AboutSection = () => {
         <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-to-r from-accent/10 to-accent/5 rounded-full animate-floating-fast">
           <Focus className="w-4 h-4 text-accent/30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
+        <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-gradient-to-tr from-accent/15 to-accent/5 rounded-3xl rotate-45 animate-floating-slow" style={{ animationDelay: '2s' }}>
+          <Sparkles className="w-5 h-5 text-accent/50 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 -rotate-45" />
+        </div>
+        <div className="absolute bottom-1/4 left-1/3 w-12 h-12 bg-gradient-to-bl from-accent/20 to-transparent rounded-full animate-floating-medium" style={{ animationDelay: '1.5s' }}>
+          <Heart className="w-3 h-3 text-accent/40 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+        </div>
       </div>
 
-      {/* Enhanced Hero Introduction */}
+      {/* Enhanced Hero Introduction with Creative Elements */}
       <div className="relative py-20 lg:py-32">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <div className="mb-8 animate-fade-in-up">
-            <span className="px-6 py-3 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full text-accent font-medium border border-accent/30 shadow-lg backdrop-blur-sm">
-              About Our Team
-            </span>
+            <div className="relative inline-block">
+              <span className="px-6 py-3 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full text-accent font-medium border border-accent/30 shadow-lg backdrop-blur-sm">
+                About Our Creative Team
+              </span>
+              <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-accent to-accent-lighter rounded-full animate-pulse"></div>
+            </div>
           </div>
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
-            Capturing Your{' '}
-            <span className="text-gradient bg-gradient-to-r from-accent via-accent-lighter to-accent bg-clip-text text-transparent italic animate-gradient-shift">
-              Perfect Moments
+
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground animate-fade-in-up relative" style={{ animationDelay: '0.2s' }}>
+            <span className="relative">
+              Capturing Your{' '}
+              <span className="text-gradient bg-gradient-to-r from-accent via-accent-lighter to-accent bg-clip-text text-transparent italic animate-gradient-shift relative">
+                Perfect Moments
+                <div className="absolute -inset-1 bg-gradient-to-r from-accent/10 to-accent/5 blur-lg opacity-75 animate-pulse"></div>
+              </span>
             </span>
           </h2>
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto animate-fade-in-up" style={{ animationDelay: '0.4s' }}>
+
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto animate-fade-in-up mb-8" style={{ animationDelay: '0.4s' }}>
             We're a passionate team of photographers dedicated to telling your unique story through beautiful, timeless images that you'll treasure forever.
           </p>
           
-          {/* Floating Stats */}
+          {/* Enhanced Floating Stats with Visual Improvements */}
           <div className="flex flex-wrap justify-center items-center gap-6 mt-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
-            <div className="flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm">
-              <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
-              <span className="text-accent font-medium">5 Team Members</span>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex items-center space-x-2 px-6 py-3 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/40 transition-all duration-300">
+                <div className="w-3 h-3 bg-accent rounded-full animate-pulse"></div>
+                <span className="text-accent font-medium">5 Team Members</span>
+              </div>
             </div>
-            <div className="flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm">
-              <div className="w-3 h-3 bg-accent rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
-              <span className="text-accent font-medium">100+ Happy Couples</span>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex items-center space-x-2 px-6 py-3 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/40 transition-all duration-300">
+                <div className="w-3 h-3 bg-accent rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+                <span className="text-accent font-medium">100+ Happy Couples</span>
+              </div>
             </div>
-            <div className="flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm">
-              <div className="w-3 h-3 bg-accent rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
-              <span className="text-accent font-medium">3 Years Experience</span>
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex items-center space-x-2 px-6 py-3 bg-accent/10 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/40 transition-all duration-300">
+                <div className="w-3 h-3 bg-accent rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+                <span className="text-accent font-medium">3 Years Experience</span>
+              </div>
+            </div>
+          </div>
+
+          {/* New Creative Element - Photography Quote */}
+          <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
+            <div className="relative max-w-2xl mx-auto">
+              <div className="absolute inset-0 bg-gradient-to-r from-accent/5 to-accent/10 rounded-2xl blur-xl"></div>
+              <div className="relative p-8 bg-background/80 backdrop-blur-sm rounded-2xl border border-accent/20">
+                <div className="flex items-center justify-center mb-4">
+                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                    <Camera className="w-6 h-6 text-accent" />
+                  </div>
+                </div>
+                <p className="text-lg text-muted-foreground italic font-light leading-relaxed">
+                  "Photography is the art of frozen time... the ability to store emotion and feelings within a frame."
+                </p>
+                <div className="mt-4 w-16 h-0.5 bg-gradient-to-r from-accent to-accent-lighter mx-auto"></div>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Team Showcase */}
-      <div className="relative py-16 bg-gradient-to-br from-muted/30 to-muted/10">
-        <TeamShowcase />
-      </div>
-
-      {/* Enhanced Our Approach */}
+      {/* Enhanced Team Showcase with Creative Background */}
       <div className="relative py-16">
-        <OurApproach />
+        <div className="absolute inset-0 bg-gradient-to-br from-muted/30 via-muted/10 to-background opacity-50"></div>
+        <div className="absolute top-10 left-10 w-32 h-32 bg-gradient-to-br from-accent/10 to-transparent rounded-full animate-pulse"></div>
+        <div className="absolute bottom-10 right-10 w-24 h-24 bg-gradient-to-bl from-accent/15 to-transparent rounded-2xl rotate-12 animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="relative">
+          <TeamShowcase />
+        </div>
       </div>
 
-      {/* Interactive Simple Process */}
-      <div className="relative py-16 bg-gradient-to-br from-muted/20 to-background">
-        <SimpleProcess />
-      </div>
-
-      {/* Dynamic Happy Clients */}
+      {/* Enhanced Our Approach with Creative Spacing */}
       <div className="relative py-16">
-        <HappyClients />
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-muted/5 to-background"></div>
+        <div className="relative">
+          <OurApproach />
+        </div>
       </div>
 
-      {/* Creative Photography Passion */}
-      <div className="relative py-16 bg-gradient-to-br from-accent/5 to-background">
-        <PhotographyPassion />
+      {/* Enhanced Interactive Simple Process */}
+      <div className="relative py-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-muted/20 via-muted/5 to-background"></div>
+        <div className="absolute top-20 right-20 w-16 h-16 bg-gradient-to-r from-accent/10 to-accent/5 rounded-full animate-floating-fast"></div>
+        <div className="absolute bottom-20 left-20 w-20 h-20 bg-gradient-to-bl from-accent/15 to-transparent rounded-3xl -rotate-12 animate-floating-medium"></div>
+        <div className="relative">
+          <SimpleProcess />
+        </div>
+      </div>
+
+      {/* Enhanced Dynamic Happy Clients */}
+      <div className="relative py-16">
+        <div className="absolute inset-0 bg-gradient-to-r from-background via-accent/5 to-background opacity-30"></div>
+        <div className="relative">
+          <HappyClients />
+        </div>
+      </div>
+
+      {/* Enhanced Creative Photography Passion */}
+      <div className="relative py-16">
+        <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-accent/2 to-background"></div>
+        <div className="absolute top-16 left-16 w-8 h-8 bg-accent/20 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-16 right-16 w-6 h-6 bg-accent/30 rounded-full animate-pulse" style={{ animationDelay: '1.5s' }}></div>
+        <div className="relative">
+          <PhotographyPassion />
+        </div>
+      </div>
+
+      {/* New Creative Footer Element */}
+      <div className="relative py-12">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative inline-block">
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/20 to-accent/10 rounded-full blur-xl opacity-75 animate-pulse"></div>
+            <div className="relative inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-accent/10 to-accent/5 rounded-full border border-accent/20 backdrop-blur-sm">
+              <Heart className="w-6 h-6 text-accent animate-pulse" />
+              <span className="text-accent font-medium text-lg">Ready to capture your story together?</span>
+              <Sparkles className="w-6 h-6 text-accent animate-pulse" style={{ animationDelay: '1s' }} />
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
