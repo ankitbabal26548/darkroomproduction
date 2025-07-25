@@ -8,10 +8,10 @@ export const ArtisticStats = () => {
   const statsRef = useRef<HTMLDivElement>(null);
 
   const stats = [
-    { number: 500, suffix: "+", label: "Love Stories Captured", icon: Heart, color: "from-pink-500/20 to-red-500/20" },
-    { number: 13, suffix: "+", label: "Years of Excellence", icon: Calendar, color: "from-blue-500/20 to-cyan-500/20" },
-    { number: 50, suffix: "+", label: "Awards & Recognition", icon: Award, color: "from-yellow-500/20 to-orange-500/20" },
-    { number: 98, suffix: "%", label: "Happy Couples", icon: Star, color: "from-green-500/20 to-emerald-500/20" }
+    { number: 500, suffix: "+", label: "Wedding Sessions Completed", icon: Heart, color: "from-pink-500/20 to-red-500/20" },
+    { number: 8, suffix: "+", label: "Years of Experience", icon: Calendar, color: "from-blue-500/20 to-cyan-500/20" },
+    { number: 15, suffix: "+", label: "Photography Awards Won", icon: Award, color: "from-yellow-500/20 to-orange-500/20" },
+    { number: 99, suffix: "%", label: "Client Satisfaction Rate", icon: Star, color: "from-green-500/20 to-emerald-500/20" }
   ];
 
   useEffect(() => {
@@ -35,10 +35,10 @@ export const ArtisticStats = () => {
     <div ref={statsRef} className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div className="text-center mb-16">
         <h3 className="font-playfair text-4xl md:text-5xl font-bold mb-4">
-          By the <span className="text-accent italic">Numbers</span>
+          Excellence in <span className="text-accent italic">Numbers</span>
         </h3>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          Every statistic tells a story of dedication, growth, and the trust our clients place in us
+          Every statistic reflects our commitment to delivering exceptional photography experiences
         </p>
       </div>
 
@@ -106,7 +106,7 @@ export const ArtisticStats = () => {
       <div className="mt-16 text-center">
         <div className="inline-flex items-center gap-2 px-6 py-3 bg-accent/10 rounded-full border border-accent/20">
           <Heart className="w-5 h-5 text-accent" />
-          <span className="text-accent font-medium">Built on passion, driven by excellence</span>
+          <span className="text-accent font-medium">Trusted by couples worldwide</span>
         </div>
       </div>
     </div>
