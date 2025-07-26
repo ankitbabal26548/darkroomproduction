@@ -157,19 +157,16 @@ export const ServiceCard = ({
         <div className="flex items-center justify-between mb-4 md:mb-6 flex-wrap gap-2">
           <div className="space-y-1">
             <div className="flex items-baseline gap-2 md:gap-3">
-              <div className="flex flex-col">
-                <span className="text-sm text-muted-foreground">Starting from</span>
-                <span className="font-playfair text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-accent-darker bg-clip-text text-transparent">
-                  ₹{price.toLocaleString()}
-                </span>
-              </div>
+              <span className="font-playfair text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-accent-darker bg-clip-text text-transparent">
+                ₹{price.toLocaleString()}
+              </span>
               {originalPrice && originalPrice > price && (
                 <span className="text-base md:text-lg text-muted-foreground line-through">
                   ₹{originalPrice.toLocaleString()}
                 </span>
               )}
             </div>
-            <div className="text-xs md:text-sm text-muted-foreground">Package starting price</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Package price</div>
           </div>
           
           {originalPrice && originalPrice > price && (

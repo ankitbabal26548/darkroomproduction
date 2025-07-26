@@ -55,7 +55,6 @@ export const PackageSelectionStep = ({ data, eventType, packageOptions, onChange
                   )}
                 </div>
                 <div className="text-right">
-                  <div className="text-sm text-muted-foreground">Starting from</div>
                   <div className="text-2xl font-bold text-accent">₹{pkg.price.toLocaleString()}</div>
                 </div>
               </div>
@@ -80,13 +79,6 @@ export const PackageSelectionStep = ({ data, eventType, packageOptions, onChange
             </CardContent>
           </Card>
         ))}
-      </div>
-
-      <div className="text-center mt-6 p-4 bg-accent/5 rounded-lg border border-accent/20">
-        <p className="text-sm text-muted-foreground">
-          <span className="text-accent font-semibold">Note:</span> All prices are starting amounts. 
-          Final cost may vary based on specific requirements, duration, and additional services.
-        </p>
       </div>
     </div>
   );
