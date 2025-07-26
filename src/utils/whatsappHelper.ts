@@ -17,8 +17,8 @@ export const generateWhatsAppMessage = (formData: QuoteFormData) => {
   message += `• Type: ${eventDetails.eventType}\n`;
   message += `• Date: ${eventDetails.eventDate}\n`;
   message += `• Location: ${eventDetails.location}\n`;
-  if (eventDetails.guestCount) {
-    message += `• Guest Count: ${eventDetails.guestCount}\n`;
+  if (eventDetails.customLocation) {
+    message += `• Custom Location: ${eventDetails.customLocation}\n`;
   }
   message += `\n`;
   
@@ -37,10 +37,13 @@ export const generateWhatsAppMessage = (formData: QuoteFormData) => {
   }
   
   // Requirements
-  if (requirements.specialRequests) {
+  if (requirements.message) {
     message += `📝 *Special Requirements:*\n`;
-    message += `${requirements.specialRequests}\n\n`;
+    message += `${requirements.message}\n\n`;
   }
+  
+  // Budget Range
+  message += `💰 *Budget Range:* ₹${requirements.budgetRange[0].toLocaleString()} - ₹${requirements.budgetRange[1].toLocaleString()}\n\n`;
   
   // Estimated Total
   let total = packageSelection.basePrice || 0;
@@ -48,8 +51,8 @@ export const generateWhatsAppMessage = (formData: QuoteFormData) => {
   if (addOns.additionalPhotos) total += 3000;
   if (addOns.travelCharges) total += 2000;
   
-  message += `💰 *Estimated Total:* ₹${total.toLocaleString()}\n`;
-  message += `*(Starting from - Final price may vary based on specific requirements)*\n\n`;
+  message += `💰 *Estimated Total:* Starting from ₹${total.toLocaleString()}\n`;
+  message += `*(Final price may vary based on specific requirements)*\n\n`;
   
   message += `Please provide a detailed quote for the above requirements. Thank you! 🙏`;
   
