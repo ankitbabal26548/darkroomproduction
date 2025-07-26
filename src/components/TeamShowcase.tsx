@@ -1,14 +1,13 @@
-
 import { Camera, Award, Heart, Star, Edit3, Video, Plane } from 'lucide-react';
 
 export const TeamShowcase = () => {
   const owner = {
     name: "Sachin Singh",
-    role: "Owner & Lead Photographer",
+    role: "Owner & Lead Photographer", 
     experience: "10 Years",
     specialty: "All Types Photography",
     description: "Founded Darkroom Production in 2015 with a passion for capturing love stories. Has photographed 300+ weddings with 5-star rating and specializes in creating timeless memories.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format",
+    image: "https://i.ibb.co/jvc4TBzz/Whats-App-Image-2025-07-26-at-6-29-09-PM.jpg",
     stats: { weddings: "300+", rating: "5.0" },
     gradient: "from-accent/15 to-accent/8"
   };
@@ -17,10 +16,10 @@ export const TeamShowcase = () => {
     {
       name: "Mohan Saini",
       role: "Cinematographer",
-      experience: "6 Years",
+      experience: "6 Years", 
       specialty: "Wedding Cinematography",
       description: "Expert cinematographer specializing in wedding films and storytelling through moving images.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&auto=format",
+      image: "https://i.ibb.co/mF0GLX41/Whats-App-Image-2025-07-26-at-6-25-14-PM.jpg",
       icon: Video,
       gradient: "from-blue-500/15 to-blue-500/8"
     },
@@ -28,9 +27,9 @@ export const TeamShowcase = () => {
       name: "Vikas",
       role: "Candid Photographer",
       experience: "7 Years",
-      specialty: "Candid Photography",
+      specialty: "Candid Photography", 
       description: "Specializes in capturing natural, unposed moments and genuine emotions during weddings.",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&auto=format",
+      image: "https://i.ibb.co/0pjGgtMR/Whats-App-Image-2025-07-26-at-6-24-36-PM.jpg",
       icon: Camera,
       gradient: "from-purple-500/15 to-purple-500/8"
     },
@@ -40,7 +39,7 @@ export const TeamShowcase = () => {
       experience: "6 Years",
       specialty: "Photo Editor",
       description: "Master of digital artistry and photo editing, bringing out the best in every photograph through post-production.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&auto=format",
+      image: "https://i.ibb.co/Kp8kvtJ1/Whats-App-Image-2025-07-26-at-6-31-59-PM.jpg",
       icon: Edit3,
       gradient: "from-green-500/15 to-green-500/8"
     },
@@ -50,7 +49,7 @@ export const TeamShowcase = () => {
       experience: "8 Years",
       specialty: "Aerial Photography",
       description: "Expert drone operator capturing stunning aerial shots and unique perspectives for weddings and events.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&auto=format",
+      image: "https://i.ibb.co/MxbN4wkx/Whats-App-Image-2025-07-26-at-6-24-09-PM.jpg",
       icon: Plane,
       gradient: "from-pink-500/15 to-pink-500/8"
     }

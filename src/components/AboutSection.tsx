@@ -1,8 +1,7 @@
+
 import { TeamShowcase } from './TeamShowcase';
 import { OurApproach } from './OurApproach';
-import { SimpleProcess } from './SimpleProcess';
 import { HappyClients } from './HappyClients';
-import { PhotographyPassion } from './PhotographyPassion';
 import { Camera, Aperture, Focus, Sparkles, Heart, Star } from 'lucide-react';
 
 export const AboutSection = () => {
@@ -110,27 +109,11 @@ export const AboutSection = () => {
         </div>
       </div>
 
-      {/* Enhanced Simple Process */}
-      <div className="relative py-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-muted/15 via-muted/3 to-background"></div>
-        <div className="relative">
-          <SimpleProcess />
-        </div>
-      </div>
-
       {/* Enhanced Happy Clients */}
       <div className="relative py-16">
         <div className="absolute inset-0 bg-gradient-to-r from-background via-accent/2 to-background opacity-50"></div>
         <div className="relative">
           <HappyClients />
-        </div>
-      </div>
-
-      {/* Enhanced Photography Passion */}
-      <div className="relative py-16">
-        <div className="absolute inset-0 bg-gradient-to-br from-accent/3 via-accent/1 to-background"></div>
-        <div className="relative">
-          <PhotographyPassion />
         </div>
       </div>
 
