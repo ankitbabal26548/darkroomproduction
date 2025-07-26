@@ -12,17 +12,20 @@ interface YouTubePlayerProps {
 export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const [showPlayButton, setShowPlayButton] = useState(true);
+  const [showPlayButton, setShowPlayButton] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       setIsLoading(true);
       setIsVideoReady(false);
-      setShowPlayButton(true);
-      // Simulate loading time for better UX
+      setShowPlayButton(false);
+      
+      // Load video immediately for autoplay
       const timer = setTimeout(() => {
         setIsLoading(false);
+        setIsVideoReady(true); // Load video directly for autoplay
       }, 1200);
+      
       return () => clearTimeout(timer);
     }
   }, [isOpen]);
@@ -33,7 +36,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     }
   };
 
-  const handleKeyDown = (e: KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === 'Escape') {
       onClose();
     }
@@ -45,8 +48,14 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
   };
 
   useEffect(() => {
+    const keyboardHandler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        onClose();
+      }
+    };
+
     if (isOpen) {
-      document.addEventListener('keydown', handleKeyDown);
+      document.addEventListener('keydown', keyboardHandler);
       document.body.style.overflow = 'hidden';
       document.body.classList.add('lightbox-open');
     } else {
@@ -55,11 +64,11 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     }
 
     return () => {
-      document.removeEventListener('keydown', handleKeyDown);
+      document.removeEventListener('keydown', keyboardHandler);
       document.body.style.overflow = 'unset';
       document.body.classList.remove('lightbox-open');
     };
-  }, [isOpen]);
+  }, [isOpen, onClose]);
 
   if (!isOpen) return null;
 
@@ -67,6 +76,8 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     <div
       className="fixed inset-0 z-[9999] bg-black/98 backdrop-blur-lg flex items-center justify-center p-4"
       onClick={handleBackdropClick}
+      onKeyDown={handleKeyDown}
+      tabIndex={-1}
     >
       {/* Animated background elements */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
@@ -149,10 +160,10 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
               </div>
             )}
             
-            {/* Video iframe */}
+            {/* Video iframe with autoplay */}
             {isVideoReady && (
               <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1`}
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1&mute=1`}
                 title="Darkroom Production Professional Showreel"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -160,7 +171,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
               />
             )}
 
-            {/* Enhanced play button overlay */}
+            {/* Enhanced play button overlay - only shown if autoplay fails */}
             {!isVideoReady && !isLoading && showPlayButton && (
               <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/70 via-black/50 to-black/70 backdrop-blur-sm">
                 <div className="text-center space-y-6">
