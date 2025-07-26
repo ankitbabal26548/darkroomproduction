@@ -110,7 +110,7 @@ export const FuturisticHeroSection = () => {
       <YouTubePlayer 
         isOpen={videoPlayerOpen}
         onClose={() => setVideoPlayerOpen(false)}
-        videoId="Mvfbh3ILFck"
+        videoId="-JAgfpIghJ8"
       />
     </section>
   );

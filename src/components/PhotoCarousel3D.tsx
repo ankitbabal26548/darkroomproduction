@@ -205,19 +205,19 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
         <ChevronRight className="w-6 h-6 text-accent" />
       </button>
 
-      {/* Enhanced Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3 z-[250]">
+      {/* Smaller Slide Indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-[250]">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => handleSlideClick(index)}
             disabled={isTransitioning}
-            className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 touch-manipulation ${
+            className={`w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full transition-all duration-300 touch-manipulation ${
               index === currentIndex 
                 ? 'bg-accent shadow-lg shadow-accent/50 scale-125' 
                 : 'bg-accent/30 hover:bg-accent/50 active:bg-accent/70'
             }`}
-            style={{ minWidth: '24px', minHeight: '24px' }}
+            style={{ minWidth: '20px', minHeight: '20px' }}
           />
         ))}
       </div>

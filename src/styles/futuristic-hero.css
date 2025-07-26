@@ -345,6 +345,34 @@
     -webkit-tap-highlight-color: transparent;
   }
 
+  /* Floating animations for YouTube player */
+  .animate-float-1 {
+    animation: float-1 6s ease-in-out infinite;
+  }
+
+  .animate-float-2 {
+    animation: float-2 8s ease-in-out infinite;
+  }
+
+  /* Keyframes for floating animations */
+  @keyframes float-1 {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-10px) rotate(5deg);
+    }
+  }
+
+  @keyframes float-2 {
+    0%, 100% {
+      transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+      transform: translateY(-15px) rotate(-3deg);
+    }
+  }
+
   /* Mobile Responsive Adjustments */
   @media (max-width: 768px) {
     .futuristic-hero-container {
