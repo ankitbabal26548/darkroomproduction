@@ -20,25 +20,19 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const [isHovered, setIsHovered] = useState(false);
 
-  // Touch handling for swipe gestures
-  const [touchStart, setTouchStart] = useState<{ x: number; y: number } | null>(null);
-  const [touchEnd, setTouchEnd] = useState<{ x: number; y: number } | null>(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const minSwipeDistance = 50;
-
   useEffect(() => {
     const timer = setInterval(() => {
-      // Only auto-advance if not transitioning, not hovered, and not dragging
-      if (!isTransitioning && !isHovered && !isDragging) {
+      // Only auto-advance if not transitioning and not hovered
+      if (!isTransitioning && !isHovered) {
         handleNext();
       }
     }, 4000);
 
     return () => clearInterval(timer);
-  }, [currentIndex, isTransitioning, isHovered, isDragging]);
+  }, [currentIndex, isTransitioning, isHovered]);
 
   const handleNext = () => {
-    if (isTransitioning || isDragging) return;
+    if (isTransitioning) return;
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -47,7 +41,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
   };
 
   const handlePrev = () => {
-    if (isTransitioning || isDragging) return;
+    if (isTransitioning) return;
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
@@ -78,49 +72,8 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
     }
   };
 
-  // Touch event handlers
-  const handleTouchStart = (e: React.TouchEvent) => {
-    const touch = e.touches[0];
-    setTouchStart({ x: touch.clientX, y: touch.clientY });
-    setTouchEnd(null);
-    setIsDragging(true);
-  };
-
-  const handleTouchMove = (e: React.TouchEvent) => {
-    if (!touchStart) return;
-    
-    const touch = e.touches[0];
-    setTouchEnd({ x: touch.clientX, y: touch.clientY });
-  };
-
-  const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!touchStart || !touchEnd) {
-      setIsDragging(false);
-      return;
-    }
-
-    const distanceX = touchStart.x - touchEnd.x;
-    const distanceY = touchStart.y - touchEnd.y;
-    
-    // Check if it's a horizontal swipe (more horizontal than vertical)
-    if (Math.abs(distanceX) > Math.abs(distanceY)) {
-      const isLeftSwipe = distanceX > minSwipeDistance;
-      const isRightSwipe = distanceX < -minSwipeDistance;
-
-      if (isLeftSwipe) {
-        handleNext();
-      } else if (isRightSwipe) {
-        handlePrev();
-      }
-    }
-
-    setTouchStart(null);
-    setTouchEnd(null);
-    setIsDragging(false);
-  };
-
   const handleSlideClick = (index: number) => {
-    if (isTransitioning || isDragging) return;
+    if (isTransitioning) return;
     setIsTransitioning(true);
     setTimeout(() => {
       setCurrentIndex(index);
@@ -187,10 +140,7 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
          style={{ 
            animationDelay: '0.6s',
            perspective: '1000px'
-         }}
-         onTouchStart={handleTouchStart}
-         onTouchMove={handleTouchMove}
-         onTouchEnd={handleTouchEnd}>
+         }}>
       
       {/* Main Carousel Container */}
       <div className="relative w-full h-full flex items-center justify-center"
@@ -236,44 +186,47 @@ export const PhotoCarousel3D = ({ images, isLoaded, onImageClick }: PhotoCarouse
         })}
       </div>
 
-      {/* Navigation Controls */}
+      {/* Enhanced Navigation Controls */}
       <button
         onClick={handlePrev}
-        disabled={isTransitioning || isDragging}
-        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[250] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        disabled={isTransitioning}
+        className="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 z-[250] p-3 sm:p-4 bg-background/80 hover:bg-background/90 disabled:opacity-50 disabled:cursor-not-allowed border-2 border-accent/40 hover:border-accent/60 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110 active:scale-95"
+        aria-label="Previous image"
       >
-        <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+        <ChevronLeft className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
       </button>
       
       <button
         onClick={handleNext}
-        disabled={isTransitioning || isDragging}
-        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[250] p-2 sm:p-3 bg-background/20 hover:bg-background/40 disabled:opacity-50 disabled:cursor-not-allowed border border-accent/30 rounded-full backdrop-blur-sm transition-all duration-300"
+        disabled={isTransitioning}
+        className="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 z-[250] p-3 sm:p-4 bg-background/80 hover:bg-background/90 disabled:opacity-50 disabled:cursor-not-allowed border-2 border-accent/40 hover:border-accent/60 rounded-full backdrop-blur-sm transition-all duration-300 hover:scale-110 active:scale-95"
+        aria-label="Next image"
       >
-        <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+        <ChevronRight className="w-6 h-6 sm:w-7 sm:h-7 text-accent" />
       </button>
 
-      {/* Slide Indicators */}
-      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-[250]">
+      {/* Enhanced Slide Indicators */}
+      <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-3 z-[250]">
         {images.map((_, index) => (
           <button
             key={index}
             onClick={() => handleSlideClick(index)}
-            disabled={isTransitioning || isDragging}
-            className={`w-2 h-2 sm:w-3 sm:h-3 rounded-full transition-all duration-300 ${
+            disabled={isTransitioning}
+            className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full transition-all duration-300 hover:scale-125 ${
               index === currentIndex 
-                ? 'bg-accent shadow-lg shadow-accent/50' 
-                : 'bg-accent/30 hover:bg-accent/50'
+                ? 'bg-accent shadow-lg shadow-accent/50 scale-125' 
+                : 'bg-accent/40 hover:bg-accent/60'
             }`}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
 
-      {/* Mobile Swipe Indicator */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 sm:hidden z-[250]">
-        <div className="flex items-center space-x-2 text-muted-foreground/70 text-xs">
+      {/* Click to expand hint */}
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 z-[250]">
+        <div className="flex items-center space-x-2 text-muted-foreground/70 text-xs animate-pulse">
           <div className="w-4 h-0.5 bg-accent/30 rounded-full"></div>
-          <span>Swipe</span>
+          <span>Click center image to expand</span>
           <div className="w-4 h-0.5 bg-accent/30 rounded-full"></div>
         </div>
       </div>

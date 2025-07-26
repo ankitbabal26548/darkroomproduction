@@ -1,16 +1,18 @@
 
 import { useState, useEffect } from 'react';
-import { ArrowRight, Play, Camera, Users, Award } from 'lucide-react';
+import { ArrowRight, Play, Camera, Users, Award, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { HolographicBackground } from './HolographicBackground';
 import { DigitalInterface } from './DigitalInterface';
 import { PhotoCarousel3D } from './PhotoCarousel3D';
 import { ProfessionalLightbox } from './ProfessionalLightbox';
+import { YouTubePlayer } from './YouTubePlayer';
 
 export const FuturisticHeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+  const [videoPlayerOpen, setVideoPlayerOpen] = useState(false);
 
   useEffect(() => {
     setIsLoaded(true);
@@ -60,6 +62,17 @@ export const FuturisticHeroSection = () => {
     setLightboxOpen(true);
   };
 
+  const handleViewPortfolio = () => {
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleWatchShowreel = () => {
+    setVideoPlayerOpen(true);
+  };
+
   return (
     <section className="hero-section-container futuristic-hero-container relative min-h-screen bg-background overflow-hidden pt-32 sm:pt-32 md:pt-28 lg:pt-12">
       {/* Holographic Background */}
@@ -75,6 +88,8 @@ export const FuturisticHeroSection = () => {
               <DigitalInterface 
                 isLoaded={isLoaded}
                 stats={stats}
+                onViewPortfolio={handleViewPortfolio}
+                onWatchShowreel={handleWatchShowreel}
               />
             </div>
 
@@ -97,6 +112,13 @@ export const FuturisticHeroSection = () => {
         onClose={() => setLightboxOpen(false)}
         selectedIndex={selectedImageIndex}
         onImageChange={setSelectedImageIndex}
+      />
+
+      {/* YouTube Video Player */}
+      <YouTubePlayer 
+        isOpen={videoPlayerOpen}
+        onClose={() => setVideoPlayerOpen(false)}
+        videoId="Mvfbh3ILFck"
       />
     </section>
   );
