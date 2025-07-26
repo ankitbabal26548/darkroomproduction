@@ -1,9 +1,12 @@
+
 import { TeamShowcase } from './TeamShowcase';
 import { OurApproach } from './OurApproach';
 import { HappyClients } from './HappyClients';
 import { Camera, Aperture, Focus, Sparkles, Heart, Star } from 'lucide-react';
+
 export const AboutSection = () => {
-  return <section id="about" className="relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/10">
+  return (
+    <section id="about" className="relative overflow-hidden bg-gradient-to-br from-background via-background/95 to-muted/10">
       {/* Refined Background Elements */}
       <div className="absolute inset-0 opacity-20">
         <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-to-br from-accent/15 to-accent/5 rounded-full animate-floating-slow">
@@ -15,9 +18,7 @@ export const AboutSection = () => {
         <div className="absolute top-1/2 left-1/4 w-12 h-12 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full animate-floating-fast">
           <Focus className="w-3 h-3 text-accent/30 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
-        <div className="absolute bottom-1/4 left-1/3 w-10 h-10 bg-gradient-to-bl from-accent/12 to-transparent rounded-full animate-floating-medium" style={{
-        animationDelay: '1.5s'
-      }}>
+        <div className="absolute bottom-1/4 left-1/3 w-10 h-10 bg-gradient-to-bl from-accent/12 to-transparent rounded-full animate-floating-medium" style={{ animationDelay: '1.5s' }}>
           <Heart className="w-2.5 h-2.5 text-accent/35 absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
         </div>
       </div>
@@ -34,9 +35,7 @@ export const AboutSection = () => {
             </div>
           </div>
 
-          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground animate-fade-in-up" style={{
-          animationDelay: '0.2s'
-        }}>
+          <h2 className="font-playfair text-4xl md:text-6xl font-bold mb-6 text-foreground animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
             <span className="relative">
               Capturing Your{' '}
               <span className="relative text-accent">
@@ -45,16 +44,12 @@ export const AboutSection = () => {
             </span>
           </h2>
 
-          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto animate-fade-in-up mb-8" style={{
-          animationDelay: '0.4s'
-        }}>
+          <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed max-w-3xl mx-auto animate-fade-in-up mb-8" style={{ animationDelay: '0.4s' }}>
             We're a passionate team of photographers dedicated to telling your unique story through beautiful, timeless images that you'll treasure forever.
           </p>
           
           {/* Enhanced Stats with Correct Numbers */}
-          <div className="flex flex-wrap justify-center items-center gap-6 mt-8 animate-fade-in-up" style={{
-          animationDelay: '0.6s'
-        }}>
+          <div className="flex flex-wrap justify-center items-center gap-6 mt-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
@@ -79,9 +74,7 @@ export const AboutSection = () => {
           </div>
 
           {/* Enhanced Creative Quote */}
-          <div className="mt-12 animate-fade-in-up" style={{
-          animationDelay: '0.8s'
-        }}>
+          <div className="mt-12 animate-fade-in-up" style={{ animationDelay: '0.8s' }}>
             <div className="relative max-w-2xl mx-auto">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/3 to-accent/6 rounded-2xl blur-xl"></div>
               <div className="relative p-8 bg-gradient-to-br from-background/90 to-background/70 backdrop-blur-sm rounded-2xl border border-accent/15">
@@ -126,7 +119,17 @@ export const AboutSection = () => {
 
       {/* Enhanced Footer Element */}
       <div className="relative py-12">
-        
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <div className="relative inline-block">
+            <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-xl opacity-75 animate-pulse"></div>
+            <div className="relative inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm">
+              <Heart className="w-6 h-6 text-accent" />
+              <span className="text-foreground font-semibold text-lg">Ready to capture your story together?</span>
+              <Sparkles className="w-6 h-6 text-accent animate-pulse" style={{ animationDelay: '1s' }} />
+            </div>
+          </div>
+        </div>
       </div>
-    </section>;
+    </section>
+  );
 };
