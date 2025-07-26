@@ -1,4 +1,3 @@
-
 import { Navbar } from '@/components/Navbar';
 import { FuturisticHeroSection } from '@/components/FuturisticHeroSection';
 import { AboutSection } from '@/components/AboutSection';
@@ -16,7 +15,7 @@ const Index = () => {
         <div id="home">
           <FuturisticHeroSection />
         </div>
-        <div id="portfolio" className="bg-muted/30">
+        <div className="bg-muted/30">
           <FuturisticPortfolioSection />
         </div>
         <div className="bg-background">
