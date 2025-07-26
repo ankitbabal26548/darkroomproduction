@@ -1,6 +1,6 @@
 
 import { useState, useEffect } from 'react';
-import { X, Play, Loader2, Volume2, Maximize2, RotateCcw } from 'lucide-react';
+import { X, Play, Loader2, RotateCcw } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 interface YouTubePlayerProps {
@@ -12,7 +12,6 @@ interface YouTubePlayerProps {
 export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const [showPlayButton, setShowPlayButton] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [isPortrait, setIsPortrait] = useState(false);
   const [showRotationPrompt, setShowRotationPrompt] = useState(false);
@@ -55,12 +54,12 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     };
   }, [isMobile, isOpen]);
 
-  // Hide rotation prompt after 5 seconds
+  // Hide rotation prompt after 3 seconds
   useEffect(() => {
     if (showRotationPrompt) {
       const timer = setTimeout(() => {
         setShowRotationPrompt(false);
-      }, 5000);
+      }, 3000);
       return () => clearTimeout(timer);
     }
   }, [showRotationPrompt]);
@@ -69,13 +68,12 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     if (isOpen) {
       setIsLoading(true);
       setIsVideoReady(false);
-      setShowPlayButton(false);
       
-      // Load video immediately for autoplay
+      // Load video with shorter delay
       const timer = setTimeout(() => {
         setIsLoading(false);
         setIsVideoReady(true);
-      }, 1200);
+      }, 800);
       
       return () => clearTimeout(timer);
     }
@@ -85,17 +83,6 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     if (e.target === e.currentTarget) {
       onClose();
     }
-  };
-
-  const handleCloseClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    onClose();
-  };
-
-  const handlePlayVideo = () => {
-    setShowPlayButton(false);
-    setIsVideoReady(true);
   };
 
   useEffect(() => {
@@ -125,198 +112,134 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-black/98 backdrop-blur-lg flex flex-col p-1 sm:p-2 md:p-4 lg:p-6"
+      className="fixed inset-0 z-50 bg-black/98 backdrop-blur-lg touch-manipulation"
       onClick={handleBackdropClick}
-      tabIndex={-1}
     >
-      {/* Mobile Rotation Prompt */}
+      {/* Mobile Rotation Prompt - Only when needed */}
       {isMobile && showRotationPrompt && (
-        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 pointer-events-auto">
-          <div className="text-center space-y-6 max-w-sm pointer-events-auto">
+        <div className="fixed inset-0 z-[60] bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="text-center space-y-4 max-w-sm">
             <div className="relative">
-              <RotateCcw className="w-16 h-16 text-accent mx-auto animate-spin" />
-              <div className="absolute inset-0 w-16 h-16 border-2 border-accent/30 rounded-full animate-pulse mx-auto" />
+              <RotateCcw className="w-12 h-12 text-accent mx-auto animate-spin" />
             </div>
-            <div className="space-y-3">
-              <h3 className="text-white text-xl font-bold">
-                Rotate Your Device
+            <div className="space-y-2">
+              <h3 className="text-white text-lg font-bold">
+                Rotate for Better View
               </h3>
-              <p className="text-white/80 text-sm leading-relaxed">
-                For the best viewing experience, please rotate your device to landscape mode.
+              <p className="text-white/80 text-sm">
+                Rotate your device to landscape for the best experience.
               </p>
             </div>
             <Button
               variant="outline"
               size="sm"
               onClick={() => setShowRotationPrompt(false)}
-              className="border-accent/30 text-accent hover:bg-accent/10 pointer-events-auto"
+              className="border-accent/30 text-accent hover:bg-accent/10 min-h-[44px] min-w-[120px]"
             >
-              Continue Anyway
+              Continue
             </Button>
           </div>
         </div>
       )}
 
-      {/* Animated background elements */}
-      <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-1/4 left-1/4 w-3 h-3 bg-accent/20 rounded-full animate-pulse" />
-        <div className="absolute top-3/4 right-1/4 w-2 h-2 bg-accent/30 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-1/4 left-1/3 w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '2s' }} />
-        <div className="absolute top-1/2 right-1/3 w-2 h-2 bg-accent/25 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-        
-        {/* Floating geometric shapes */}
-        <div className="absolute top-1/3 left-1/6 w-4 h-4 border border-accent/20 rotate-45 animate-float-1" />
-        <div className="absolute bottom-1/3 right-1/6 w-3 h-3 border border-accent/30 rotate-12 animate-float-2" />
-      </div>
-
-      {/* Modal Container - Remove centering and start from top */}
-      <div className="relative w-full max-w-7xl mx-auto flex-1 flex flex-col">
-        {/* Professional frame with multiple layers */}
-        <div className="relative bg-gradient-to-br from-background/20 via-background/10 to-background/5 backdrop-blur-2xl border-2 border-accent/30 rounded-xl sm:rounded-2xl lg:rounded-3xl p-2 sm:p-3 md:p-4 lg:p-6 shadow-2xl flex-1 flex flex-col">
-          
-          {/* Glowing border effect */}
-          <div className="absolute inset-0 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 blur-sm -z-10" />
-          
-          {/* Header with enhanced design */}
-          <div className="flex items-center justify-between mb-3 sm:mb-4 flex-shrink-0 relative z-10">
-            <div className="flex items-center space-x-2 sm:space-x-4">
-              {/* Animated status indicators */}
-              <div className="flex items-center space-x-1 sm:space-x-2">
-                <div className="w-2 h-2 sm:w-3 sm:h-3 bg-accent rounded-full animate-pulse" />
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent/60 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
-                <div className="w-1 h-1 bg-accent/40 rounded-full animate-pulse" style={{ animationDelay: '1s' }} />
-              </div>
-              
-              <div className="flex flex-col">
-                <span className="text-accent font-mono text-xs sm:text-sm uppercase tracking-wider font-bold">
-                  Professional Showreel
-                </span>
-                <span className="text-accent/70 font-mono text-xs">
-                  Darkroom Production • 2025
-                </span>
-              </div>
+      {/* Main Container - Mobile First Layout */}
+      <div className="h-full w-full flex flex-col">
+        {/* Header - Minimal on mobile */}
+        <div className="flex-shrink-0 flex items-center justify-between p-2 sm:p-4 md:p-6 bg-gradient-to-b from-black/50 to-transparent">
+          {/* Brand info - hidden on mobile */}
+          <div className="hidden sm:flex items-center space-x-3">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+              <div className="w-1.5 h-1.5 bg-accent/60 rounded-full animate-pulse" style={{ animationDelay: '0.5s' }} />
             </div>
-            
-            {/* Enhanced close button */}
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={handleCloseClick}
-              className="text-white hover:text-accent hover:bg-accent/10 transition-all duration-300 border border-accent/20 hover:border-accent/40 rounded-full p-2 sm:p-3 touch-manipulation pointer-events-auto z-10"
-            >
-              <X className="w-4 h-4 sm:w-5 sm:h-5" />
-            </Button>
+            <div className="flex flex-col">
+              <span className="text-accent font-mono text-sm uppercase tracking-wider font-bold">
+                Professional Showreel
+              </span>
+              <span className="text-accent/70 font-mono text-xs">
+                Darkroom Production • 2025
+              </span>
+            </div>
           </div>
+          
+          {/* Mobile title */}
+          <div className="flex sm:hidden items-center space-x-2">
+            <div className="w-2 h-2 bg-accent rounded-full animate-pulse" />
+            <span className="text-accent font-mono text-sm uppercase tracking-wider font-bold">
+              Showreel
+            </span>
+          </div>
+          
+          {/* Close Button - Larger and more visible on mobile */}
+          <Button
+            variant="ghost"
+            onClick={onClose}
+            className="text-white hover:text-accent hover:bg-accent/10 transition-all duration-300 border-2 border-accent/30 hover:border-accent/60 rounded-full min-h-[44px] min-w-[44px] sm:min-h-[48px] sm:min-w-[48px] touch-manipulation z-[70]"
+          >
+            <X className="w-5 h-5 sm:w-6 sm:h-6" />
+          </Button>
+        </div>
 
-          {/* Video Container with enhanced styling - Takes remaining space */}
-          <div className="relative flex-1 bg-gradient-to-br from-black/80 via-black/60 to-black/80 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden border-2 border-accent/20 shadow-2xl">
+        {/* Video Container - Takes remaining space */}
+        <div className="flex-1 p-2 sm:p-4 md:p-6 pt-0">
+          <div className="relative h-full bg-gradient-to-br from-black/80 via-black/60 to-black/80 rounded-lg sm:rounded-xl overflow-hidden border border-accent/20">
             
-            {/* Corner decorative elements */}
-            <div className="absolute top-1 left-1 sm:top-2 sm:left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-t-2 border-accent/60 rounded-tl-lg pointer-events-none" />
-            <div className="absolute top-1 right-1 sm:top-2 sm:right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-t-2 border-accent/60 rounded-tr-lg pointer-events-none" />
-            <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-b-2 border-accent/60 rounded-bl-lg pointer-events-none" />
-            <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-b-2 border-accent/60 rounded-br-lg pointer-events-none" />
-            
-            {/* Loading state with enhanced animation */}
+            {/* Loading State */}
             {isLoading && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/90 via-black/80 to-black/90 backdrop-blur-sm">
-                <div className="text-center space-y-4 sm:space-y-6 px-4">
+              <div className="absolute inset-0 flex items-center justify-center bg-black/90 z-[55]">
+                <div className="text-center space-y-4 px-4">
                   <div className="relative">
-                    <Loader2 className="w-8 h-8 sm:w-12 sm:h-12 text-accent animate-spin mx-auto" />
-                    <div className="absolute inset-0 w-8 h-8 sm:w-12 sm:h-12 border-2 border-accent/30 rounded-full animate-pulse mx-auto" />
+                    <Loader2 className="w-10 h-10 sm:w-12 sm:h-12 text-accent animate-spin mx-auto" />
+                    <div className="absolute inset-0 w-10 h-10 sm:w-12 sm:h-12 border-2 border-accent/30 rounded-full animate-pulse mx-auto" />
                   </div>
                   <div className="space-y-2">
-                    <p className="text-white text-base sm:text-lg font-medium">Loading Professional Content</p>
+                    <p className="text-white text-base sm:text-lg font-medium">Loading Content</p>
                     <p className="text-white/60 text-sm">Preparing your viewing experience...</p>
-                  </div>
-                  
-                  {/* Loading progress bar */}
-                  <div className="w-32 sm:w-48 h-1 bg-accent/20 rounded-full overflow-hidden mx-auto">
-                    <div className="h-full bg-accent/60 rounded-full animate-pulse" style={{ width: '70%' }} />
                   </div>
                 </div>
               </div>
             )}
             
-            {/* Video iframe with autoplay */}
+            {/* Video iframe - Audio enabled by default */}
             {isVideoReady && (
               <iframe
-                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1&mute=1`}
+                src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1&showinfo=0&controls=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=1&mute=0&enablejsapi=1`}
                 title="Darkroom Production Professional Showreel"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="w-full h-full border-0 rounded-lg sm:rounded-xl lg:rounded-2xl pointer-events-auto"
+                className="w-full h-full border-0 rounded-lg sm:rounded-xl"
+                style={{ pointerEvents: 'auto' }}
               />
             )}
-
-            {/* Enhanced play button overlay - only shown if autoplay fails */}
-            {!isVideoReady && !isLoading && showPlayButton && (
-              <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-black/70 via-black/50 to-black/70 backdrop-blur-sm">
-                <div className="text-center space-y-4 sm:space-y-6 px-4">
-                  <Button
-                    size="lg"
-                    onClick={handlePlayVideo}
-                    className="relative group bg-gradient-to-r from-accent/20 to-accent/30 hover:from-accent/40 hover:to-accent/50 border-3 border-accent/50 hover:border-accent rounded-full p-6 sm:p-8 transition-all duration-500 transform hover:scale-110 touch-manipulation pointer-events-auto"
-                  >
-                    <Play className="w-6 h-6 sm:w-10 sm:h-10 text-accent group-hover:text-white transition-colors duration-300" />
-                    
-                    {/* Ripple effect */}
-                    <div className="absolute inset-0 rounded-full bg-accent/20 animate-ping" />
-                    <div className="absolute inset-0 rounded-full bg-accent/10 animate-pulse" />
-                  </Button>
-                  
-                  <div className="space-y-2">
-                    <p className="text-white text-lg sm:text-xl font-bold">Watch Our Professional Work</p>
-                    <p className="text-white/80 text-sm">Discover the artistry behind our photography</p>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {/* Video controls overlay (when video is playing) */}
-            {isVideoReady && (
-              <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-                <div className="flex items-center space-x-2">
-                  <Volume2 className="w-3 h-3 sm:w-4 sm:h-4 text-white/80" />
-                  <span className="text-white/80 text-xs sm:text-sm">HD Quality</span>
-                </div>
-                <div className="flex items-center space-x-2">
-                  <Maximize2 className="w-3 h-3 sm:w-4 sm:h-4 text-white/80" />
-                  <span className="text-white/80 text-xs sm:text-sm">Fullscreen</span>
-                </div>
-              </div>
-            )}
           </div>
+        </div>
 
-          {/* Enhanced footer */}
-          <div className="mt-3 sm:mt-4 text-center space-y-2 sm:space-y-3 flex-shrink-0">
-            <p className="text-white/90 text-base sm:text-lg font-medium">
+        {/* Footer - Simplified on mobile */}
+        <div className="flex-shrink-0 p-2 sm:p-4 md:p-6 pt-0 text-center">
+          <div className="space-y-2 sm:space-y-3">
+            <p className="text-white/90 text-sm sm:text-base md:text-lg font-medium">
               Professional Wedding Photography & Cinematography
             </p>
-            <p className="text-white/60 text-xs sm:text-sm max-w-2xl mx-auto">
-              Experience our creative vision, professional excellence, and dedication to capturing life's most precious moments with artistic flair and technical precision.
+            <p className="text-white/60 text-xs sm:text-sm max-w-2xl mx-auto line-clamp-2 sm:line-clamp-none">
+              Experience our creative vision and dedication to capturing life's precious moments.
             </p>
             
-            {/* Professional badges */}
-            <div className="flex items-center justify-center space-x-2 sm:space-x-4 mt-3 sm:mt-4">
-              <div className="flex items-center space-x-1 sm:space-x-2 bg-accent/10 px-2 sm:px-3 py-1 rounded-full border border-accent/20">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full" />
-                <span className="text-accent text-xs font-mono">4K Quality</span>
+            {/* Professional badges - Responsive */}
+            <div className="flex items-center justify-center space-x-2 sm:space-x-4 mt-3">
+              <div className="flex items-center space-x-1 bg-accent/10 px-2 sm:px-3 py-1 rounded-full border border-accent/20">
+                <div className="w-1.5 h-1.5 bg-accent rounded-full" />
+                <span className="text-accent text-xs font-mono">4K</span>
               </div>
-              <div className="flex items-center space-x-1 sm:space-x-2 bg-accent/10 px-2 sm:px-3 py-1 rounded-full border border-accent/20">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full" />
+              <div className="flex items-center space-x-1 bg-accent/10 px-2 sm:px-3 py-1 rounded-full border border-accent/20">
+                <div className="w-1.5 h-1.5 bg-accent rounded-full" />
                 <span className="text-accent text-xs font-mono">Professional</span>
               </div>
-              <div className="flex items-center space-x-1 sm:space-x-2 bg-accent/10 px-2 sm:px-3 py-1 rounded-full border border-accent/20">
-                <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-accent rounded-full" />
+              <div className="hidden sm:flex items-center space-x-1 bg-accent/10 px-2 sm:px-3 py-1 rounded-full border border-accent/20">
+                <div className="w-1.5 h-1.5 bg-accent rounded-full" />
                 <span className="text-accent text-xs font-mono">Award Winning</span>
               </div>
             </div>
           </div>
-
-          {/* Enhanced glow effects */}
-          <div className="absolute inset-0 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-br from-accent/5 via-transparent to-accent/10 pointer-events-none" />
-          <div className="absolute -inset-1 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-accent/10 via-accent/5 to-accent/10 blur-lg -z-20" />
         </div>
       </div>
     </div>
