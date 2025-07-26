@@ -12,9 +12,20 @@ interface DigitalInterfaceProps {
     icon: any;
     suffix?: string;
   }>;
+  onWatchOurWork: () => void;
 }
 
-export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => {
+export const DigitalInterface = ({ isLoaded, stats, onWatchOurWork }: DigitalInterfaceProps) => {
+  const handleViewPortfolio = () => {
+    const portfolioSection = document.getElementById('portfolio');
+    if (portfolioSection) {
+      portfolioSection.scrollIntoView({ 
+        behavior: 'smooth',
+        block: 'start'
+      });
+    }
+  };
+
   return (
     <div className="digital-interface-panel relative min-h-[700px] lg:min-h-[900px] flex flex-col justify-center">
       {/* Glassmorphism Panel */}
@@ -92,6 +103,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
              style={{ animationDelay: '1.2s' }}>
           <Button 
             size="lg" 
+            onClick={handleViewPortfolio}
             className="hero-primary-button energy-button group relative overflow-hidden bg-accent hover:bg-accent/90 text-accent-foreground font-medium px-8 py-6 rounded-lg transition-all duration-300"
           >
             <span className="relative z-10 flex items-center">
@@ -103,6 +115,7 @@ export const DigitalInterface = ({ isLoaded, stats }: DigitalInterfaceProps) => 
           <Button 
             variant="outline" 
             size="lg" 
+            onClick={onWatchOurWork}
             className="hero-secondary-button energy-button-secondary group relative overflow-hidden border-2 border-accent/30 hover:border-accent hover:bg-accent/10 hover:text-accent font-medium px-8 py-6 rounded-lg transition-all duration-300"
           >
             <span className="relative z-10 flex items-center">

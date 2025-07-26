@@ -178,6 +178,16 @@
     cursor: default !important;
   }
 
+  /* Enhanced mobile button interactions */
+  .photo-carousel-3d button {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .photo-carousel-3d button:active {
+    transform: scale(0.95);
+  }
+
   /* Prevent any Instagram-related content in hero */
   .hero-section-container *[href*="instagram"],
   .hero-section-container .instagram-icon {
@@ -329,6 +339,12 @@
     max-width: 88rem; /* 1408px */
   }
 
+  /* Touch manipulation for better mobile interactions */
+  .touch-manipulation {
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+
   /* Mobile Responsive Adjustments */
   @media (max-width: 768px) {
     .futuristic-hero-container {
@@ -345,6 +361,12 @@
 
     .stats-label {
       font-size: 0.75rem;
+    }
+
+    /* Improve button sizes for mobile */
+    .photo-carousel-3d button {
+      min-width: 48px;
+      min-height: 48px;
     }
   }
 
