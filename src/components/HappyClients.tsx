@@ -1,5 +1,5 @@
 
-import { Star, Quote, Heart, Camera, Users, CheckCircle } from 'lucide-react';
+import { Star, Quote, Heart, Camera, Users, CheckCircle, Sparkles, Award, Zap } from 'lucide-react';
 
 export const HappyClients = () => {
   const testimonials = [
@@ -8,24 +8,30 @@ export const HappyClients = () => {
       type: "Photo Session",
       rating: 5,
       text: "We contacted Darkroom Productions just one day earlier for a photo session in Jaipur and they were so quick to respond! The photos turned out really lovely and they were great to work with. Highly recommend the team 😊",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b9a45c1f?w=100&h=100&fit=crop&auto=format",
-      event: "Jaipur Photo Session"
+      icon: Camera,
+      event: "Jaipur Photo Session",
+      color: "from-blue-500/20 to-purple-500/20",
+      iconColor: "text-blue-500"
     },
     {
       name: "Darshan HR",
       type: "Wedding Photography",
       rating: 5,
       text: "Incredible photography and an unforgettable experience! Every shot captured the essence of the moment with such creativity and attention to detail. The photos turned out absolutely stunning, exceeding all expectations. They even suggest good make-up artist and rental outfits for pre-wedding, it's helped us a lot...",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format",
-      event: "Wedding Photography"
+      icon: Heart,
+      event: "Wedding Photography",
+      color: "from-pink-500/20 to-red-500/20",
+      iconColor: "text-pink-500"
     },
     {
       name: "Pooja Kothari",
       type: "Pre-Wedding Session",
       rating: 5,
       text: "I recently had a pre-wedding shoot with Darkroom Production in Manali, and I couldn't be happier with the experience. The team was incredibly professional and attentive, capturing every moment beautifully. The quality of the photos exceeded my expectations, showcasing the stunning scenery and our chemistry perfectly.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&auto=format",
-      event: "Manali Pre-Wedding"
+      icon: Sparkles,
+      event: "Manali Pre-Wedding",
+      color: "from-green-500/20 to-emerald-500/20",
+      iconColor: "text-green-500"
     }
   ];
 
@@ -55,7 +61,7 @@ export const HappyClients = () => {
             style={{ animationDelay: `${index * 200}ms` }}
           >
             {/* Subtle Background Glow */}
-            <div className="absolute inset-0 bg-gradient-to-br from-accent/15 to-accent/8 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"></div>
+            <div className={`absolute inset-0 bg-gradient-to-br ${testimonial.color} rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500`}></div>
             
             {/* Clean Main Card */}
             <div className="relative bg-gradient-to-br from-background/95 to-background/80 backdrop-blur-sm rounded-2xl p-6 border border-accent/15 hover:border-accent/25 transition-all duration-500 hover:shadow-lg hover:transform hover:scale-105 h-full">
@@ -64,14 +70,10 @@ export const HappyClients = () => {
                 <Quote className="w-4 h-4 text-accent" />
               </div>
               
-              {/* Client Info */}
+              {/* Client Info with Creative Icon Avatar */}
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-gradient-to-br from-muted/80 to-muted/50 rounded-full overflow-hidden">
-                  <img 
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-full h-full object-cover"
-                  />
+                <div className={`w-12 h-12 bg-gradient-to-br ${testimonial.color} rounded-full flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                  <testimonial.icon className={`w-6 h-6 ${testimonial.iconColor}`} />
                 </div>
                 <div>
                   <h4 className="font-playfair text-lg font-bold text-foreground">

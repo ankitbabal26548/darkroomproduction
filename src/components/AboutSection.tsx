@@ -116,20 +116,6 @@ export const AboutSection = () => {
           <HappyClients />
         </div>
       </div>
-
-      {/* Enhanced Footer Element */}
-      <div className="relative py-12">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="relative inline-block">
-            <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-xl opacity-75 animate-pulse"></div>
-            <div className="relative inline-flex items-center gap-4 px-8 py-4 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm">
-              <Heart className="w-6 h-6 text-accent" />
-              <span className="text-foreground font-semibold text-lg">Ready to capture your story together?</span>
-              <Sparkles className="w-6 h-6 text-accent animate-pulse" style={{ animationDelay: '1s' }} />
-            </div>
-          </div>
-        </div>
-      </div>
     </section>
   );
 };
