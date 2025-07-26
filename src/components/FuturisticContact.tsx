@@ -11,13 +11,13 @@ export const FuturisticContact = ({ mobile = false }: FuturisticContactProps) =>
     return (
       <div className="space-y-4">
         <a 
-          href="tel:+91" 
+          href="tel:+919929795556" 
           className="futuristic-mobile-contact-item group"
         >
           <div className="futuristic-contact-icon-container">
             <Phone className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
           </div>
-          <span className="futuristic-contact-text">+91 XXX XXX XXXX</span>
+          <span className="futuristic-contact-text">+91 9929795556</span>
           <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 transition-all duration-300 
                                  group-hover:translate-x-1" />
         </a>
@@ -40,13 +40,13 @@ export const FuturisticContact = ({ mobile = false }: FuturisticContactProps) =>
   return (
     <div className="flex items-center space-x-6">
       <a 
-        href="tel:+91" 
+        href="tel:+919929795556" 
         className="futuristic-desktop-contact group"
       >
         <div className="futuristic-contact-icon-wrapper">
           <Phone className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
         </div>
-        <span className="futuristic-contact-number">+91 XXX XXX XXXX</span>
+        <span className="futuristic-contact-number">+91 9929795556</span>
       </a>
       
       <div className="futuristic-contact-divider" />

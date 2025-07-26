@@ -1,4 +1,3 @@
-
 import { Camera, Heart, Instagram, Facebook, Youtube, Mail, Phone, MapPin, Sparkles, Aperture, Play, ExternalLink, Eye } from 'lucide-react';
 import { useInstagramFeed } from '@/hooks/useInstagramFeed';
 import { useState } from 'react';
@@ -33,9 +32,7 @@ export const Footer = () => {
 
   return (
     <footer className="footer-container bg-primary text-primary-foreground relative overflow-hidden">
-      {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating Photography Elements */}
         <div className="absolute top-20 left-10 text-accent/10 animate-floating-slow">
           <Camera className="w-8 h-8" />
         </div>
@@ -45,8 +42,6 @@ export const Footer = () => {
         <div className="absolute bottom-60 left-1/4 text-accent/10 animate-floating-fast">
           <Play className="w-5 h-5" />
         </div>
-        
-        {/* Sparkle Effects */}
         <div className="absolute top-32 right-1/3 text-accent/20 animate-sparkle-twinkle">
           <Sparkles className="w-4 h-4" />
         </div>
@@ -56,12 +51,9 @@ export const Footer = () => {
         <div className="absolute top-60 left-1/3 text-accent/20 animate-sparkle-twinkle" style={{ animationDelay: '2s' }}>
           <Sparkles className="w-5 h-5" />
         </div>
-        
-        {/* Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-br from-accent/5 via-transparent to-accent/5" />
       </div>
 
-      {/* Instagram Gallery Section */}
       <div className="border-b border-white/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
           <div className="text-center mb-12">
@@ -101,7 +93,6 @@ export const Footer = () => {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   
-                  {/* Hover Overlay */}
                   <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
                     <div className="text-center text-white">
                       <Eye className="w-6 h-6 mx-auto mb-2" />
@@ -122,10 +113,9 @@ export const Footer = () => {
             </div>
           )}
           
-          {/* View More Button */}
           <div className="text-center mt-8">
             <a
-              href="https://instagram.com/darkroomproduction.in"
+              href="https://www.instagram.com/darkroomproduction.in"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-accent-darker to-accent hover:from-accent to-accent-lighter text-white rounded-full font-semibold transition-all duration-300 hover:scale-105 hover:shadow-lg"
@@ -138,10 +128,8 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* Main Footer Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {/* Enhanced Brand Section */}
           <div className="lg:col-span-2">
             <div className="flex items-center space-x-4 mb-6">
               <div className="footer-logo-container w-16 h-16 flex items-center justify-center rounded-full bg-gradient-to-br from-accent-darker to-accent border-2 border-accent/30 animate-gentle-bounce">
@@ -156,15 +144,14 @@ export const Footer = () => {
             </div>
             
             <p className="text-white/80 mb-8 max-w-md leading-relaxed">
-              Creating timeless visual stories since 2010. We specialize in capturing 
+              Creating timeless visual stories since 2015. We specialize in capturing 
               the beauty, emotion, and authenticity of your most precious moments with 
               artistic excellence and professional quality.
             </p>
 
-            {/* Enhanced Social Links */}
             <div className="flex space-x-4">
               <a
-                href="https://instagram.com/darkroomproduction.in"
+                href="https://www.instagram.com/darkroomproduction.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-link w-12 h-12 bg-gradient-to-br from-pink-500/20 to-purple-500/20 rounded-full flex items-center justify-center hover:from-pink-500 hover:to-purple-500 transition-all duration-300 hover:scale-110 hover:shadow-lg group"
@@ -172,7 +159,7 @@ export const Footer = () => {
                 <Instagram className="w-6 h-6 text-pink-400 group-hover:text-white transition-colors" />
               </a>
               <a
-                href="https://facebook.com/darkroomproduction"
+                href="https://www.facebook.com/darkroomproduction.in"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-link w-12 h-12 bg-gradient-to-br from-blue-500/20 to-indigo-500/20 rounded-full flex items-center justify-center hover:from-blue-500 hover:to-indigo-500 transition-all duration-300 hover:scale-110 hover:shadow-lg group"
@@ -180,7 +167,7 @@ export const Footer = () => {
                 <Facebook className="w-6 h-6 text-blue-400 group-hover:text-white transition-colors" />
               </a>
               <a
-                href="https://youtube.com/darkroomproduction"
+                href="https://www.youtube.com/@darkroomproduction5738"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="footer-social-link w-12 h-12 bg-gradient-to-br from-red-500/20 to-orange-500/20 rounded-full flex items-center justify-center hover:from-red-500 hover:to-orange-500 transition-all duration-300 hover:scale-110 hover:shadow-lg group"
@@ -190,7 +177,6 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h3 className="font-playfair text-xl font-semibold mb-6 text-accent">Quick Links</h3>
             <ul className="space-y-3">
@@ -208,7 +194,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Services */}
           <div>
             <h3 className="font-playfair text-xl font-semibold mb-6 text-accent">Our Services</h3>
             <ul className="space-y-3">
@@ -222,14 +207,13 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Enhanced Contact Info */}
         <div className="grid md:grid-cols-3 gap-8 mt-16 pt-8 border-t border-white/10">
           <div className="flex items-center space-x-4 group">
             <div className="w-12 h-12 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-full flex items-center justify-center group-hover:from-green-500 group-hover:to-emerald-500 transition-all duration-300">
               <Phone className="w-6 h-6 text-green-400 group-hover:text-white transition-colors" />
             </div>
             <div>
-              <p className="text-white/90 font-semibold">+91 98765 43210</p>
+              <p className="text-white/90 font-semibold">+91 9929795556</p>
               <p className="text-white/70 text-sm">Call us anytime</p>
             </div>
           </div>
@@ -249,14 +233,13 @@ export const Footer = () => {
               <MapPin className="w-6 h-6 text-purple-400 group-hover:text-white transition-colors" />
             </div>
             <div>
-              <p className="text-white/90 font-semibold">Mumbai, Maharashtra</p>
+              <p className="text-white/90 font-semibold">Jaipur, Rajasthan</p>
               <p className="text-white/70 text-sm">Visit our studio</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Enhanced Bottom Bar */}
       <div className="border-t border-white/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col md:flex-row justify-between items-center">
@@ -273,7 +256,6 @@ export const Footer = () => {
         </div>
       </div>
 
-      {/* Lightbox Modal */}
       {selectedPost && (
         <div className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4" onClick={() => setSelectedPost(null)}>
           <div className="relative max-w-2xl w-full">

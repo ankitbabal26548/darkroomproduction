@@ -20,11 +20,11 @@ export const CleanContact = ({ mobile = false }: CleanContactProps) => {
       <>
         <div className="space-y-3">
           <a 
-            href="tel:+917976249390" 
+            href="tel:+919929795556" 
             className="flex items-center space-x-3 px-4 py-2 text-sm text-muted-foreground hover:text-accent transition-colors rounded-md"
           >
             <Phone className="w-4 h-4" />
-            <span>+91 7976249390</span>
+            <span>+91 9929795556</span>
           </a>
           
           <Button 
@@ -49,11 +49,11 @@ export const CleanContact = ({ mobile = false }: CleanContactProps) => {
     <>
       <div className="flex items-center space-x-4">
         <a 
-          href="tel:+917976249390" 
+          href="tel:+919929795556" 
           className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-accent transition-colors"
         >
           <Phone className="w-4 h-4" />
-          <span className="font-medium">+91 7976249390</span>
+          <span className="font-medium">+91 9929795556</span>
         </a>
         
         <div className="w-px h-4 bg-border" />

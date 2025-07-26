@@ -15,7 +15,7 @@ export const ProfessionalContact = ({ mobile = false }: ProfessionalContactProps
           className="flex items-center space-x-3 px-4 py-2 text-sm text-muted-foreground hover:text-accent transition-colors rounded-md"
         >
           <Phone className="w-4 h-4" />
-          <span>+91 99297 95556</span>
+          <span>+91 9929795556</span>
         </a>
         <a 
           href="mailto:hello@darkroomproduction.in"
@@ -35,7 +35,7 @@ export const ProfessionalContact = ({ mobile = false }: ProfessionalContactProps
         className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-accent transition-colors"
       >
         <Phone className="w-4 h-4" />
-        <span className="font-medium">+91 99297 95556</span>
+        <span className="font-medium">+91 9929795556</span>
       </a>
       
       <div className="w-px h-4 bg-border" />
