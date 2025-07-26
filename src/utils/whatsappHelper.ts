@@ -1,82 +1,64 @@
 
 import { QuoteFormData } from '@/types/quote';
-import { format } from 'date-fns';
 
-export const generateWhatsAppMessage = (formData: QuoteFormData): string => {
+export const generateWhatsAppMessage = (formData: QuoteFormData) => {
   const { personalDetails, eventDetails, packageSelection, addOns, requirements } = formData;
   
-  const formatDate = (date: Date | null) => {
-    if (!date) return 'Not specified';
-    return format(date, 'PPP');
-  };
-
-  const getPackageName = (type: string) => {
-    switch (type) {
-      case 'silver': return 'Silver Wedding Package';
-      case 'gold': return 'Gold Wedding Package';
-      case 'platinum': return 'Platinum Wedding Package';
-      case 'pre-wedding-jaipur': return 'Pre-wedding Jaipur Package';
-      case 'pre-wedding-udaipur': return 'Pre-wedding Udaipur Package';
-      default: return 'Selected Package';
-    }
-  };
-
-  const getAddOnsList = () => {
-    const selectedAddOns = [];
-    if (addOns.extraReels) selectedAddOns.push('• Extra Reels - ₹5,000');
-    if (addOns.additionalPhotos) selectedAddOns.push('• Additional Photos - ₹3,000');
-    if (addOns.travelCharges) selectedAddOns.push('• Travel Charges - ₹2,000');
-    if (addOns.customAddOns.length > 0) {
-      addOns.customAddOns.forEach(addon => selectedAddOns.push(`• ${addon}`));
-    }
-    return selectedAddOns.length > 0 ? selectedAddOns.join('\n') : 'None selected';
-  };
-
-  const calculateTotal = () => {
-    let total = packageSelection.basePrice;
-    if (addOns.extraReels) total += 5000;
-    if (addOns.additionalPhotos) total += 3000;
-    if (addOns.travelCharges) total += 2000;
-    return total;
-  };
-
-  const message = `🌸 *Wedding Photography Quote Request* 🌸
-
-*Personal Details:*
-👤 Name: ${personalDetails.name}
-📧 Email: ${personalDetails.email}
-📱 Phone: ${personalDetails.phone}
-
-*Event Details:*
-💒 Event Type: ${eventDetails.eventType === 'wedding' ? 'Wedding' : 'Pre-wedding'}
-📅 Event Date: ${formatDate(eventDetails.eventDate)}
-📍 Location: ${eventDetails.location}${eventDetails.customLocation ? ` (${eventDetails.customLocation})` : ''}
-
-*Selected Package:*
-📦 Package: ${getPackageName(packageSelection.packageType)}
-💰 Base Price: ₹${packageSelection.basePrice.toLocaleString()}
-
-*Add-ons Selected:*
-${getAddOnsList()}
-
-*Total Estimated Cost: ₹${calculateTotal().toLocaleString()}*
-
-*Budget Range: ₹${requirements.budgetRange[0].toLocaleString()} - ₹${requirements.budgetRange[1].toLocaleString()}*
-
-*Special Requirements:*
-${requirements.message || 'None specified'}
-
-*Payment Terms:*
-• ₹5,000 advance booking
-• Remaining amount as per package terms
-
-Looking forward to capturing your special moments! 📸✨`;
-
+  let message = `🎉 *Quote Request - Darkroom Production*\n\n`;
+  
+  // Personal Details
+  message += `👤 *Personal Details:*\n`;
+  message += `• Name: ${personalDetails.name}\n`;
+  message += `• Email: ${personalDetails.email}\n`;
+  message += `• Phone: ${personalDetails.phone}\n\n`;
+  
+  // Event Details
+  message += `📅 *Event Details:*\n`;
+  message += `• Type: ${eventDetails.eventType}\n`;
+  message += `• Date: ${eventDetails.eventDate}\n`;
+  message += `• Location: ${eventDetails.location}\n`;
+  if (eventDetails.guestCount) {
+    message += `• Guest Count: ${eventDetails.guestCount}\n`;
+  }
+  message += `\n`;
+  
+  // Package Selection
+  message += `📦 *Package Selection:*\n`;
+  message += `• Package: ${packageSelection.packageType}\n`;
+  message += `• Starting Price: ₹${packageSelection.basePrice?.toLocaleString()}\n\n`;
+  
+  // Add-ons
+  if (addOns.extraReels || addOns.additionalPhotos || addOns.travelCharges) {
+    message += `✨ *Add-ons:*\n`;
+    if (addOns.extraReels) message += `• Extra Reels: Yes\n`;
+    if (addOns.additionalPhotos) message += `• Additional Photos: Yes\n`;
+    if (addOns.travelCharges) message += `• Travel Charges: Yes\n`;
+    message += `\n`;
+  }
+  
+  // Requirements
+  if (requirements.specialRequests) {
+    message += `📝 *Special Requirements:*\n`;
+    message += `${requirements.specialRequests}\n\n`;
+  }
+  
+  // Estimated Total
+  let total = packageSelection.basePrice || 0;
+  if (addOns.extraReels) total += 5000;
+  if (addOns.additionalPhotos) total += 3000;
+  if (addOns.travelCharges) total += 2000;
+  
+  message += `💰 *Estimated Total:* ₹${total.toLocaleString()}\n`;
+  message += `*(Starting from - Final price may vary based on specific requirements)*\n\n`;
+  
+  message += `Please provide a detailed quote for the above requirements. Thank you! 🙏`;
+  
   return message;
 };
 
-export const openWhatsApp = (message: string, phoneNumber: string = '9929795556') => {
+export const openWhatsApp = (message: string) => {
+  const phoneNumber = '919929795556';
   const encodedMessage = encodeURIComponent(message);
-  const whatsappUrl = `https://wa.me/91${phoneNumber}?text=${encodedMessage}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   window.open(whatsappUrl, '_blank');
 };

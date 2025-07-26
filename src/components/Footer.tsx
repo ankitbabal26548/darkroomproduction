@@ -1,3 +1,4 @@
+
 import { Camera, Heart, Instagram, Facebook, Youtube, Mail, Phone, MapPin, Sparkles, Aperture, Play, ExternalLink, Eye } from 'lucide-react';
 import { useInstagramFeed } from '@/hooks/useInstagramFeed';
 import { useState } from 'react';
