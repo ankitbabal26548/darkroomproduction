@@ -4,28 +4,28 @@ import { Star, Quote, Heart, Camera, Users, CheckCircle } from 'lucide-react';
 export const HappyClients = () => {
   const testimonials = [
     {
-      name: "Sarah & Michael",
+      name: "Gargi Behere",
+      type: "Photo Session",
+      rating: 5,
+      text: "We contacted Darkroom Productions just one day earlier for a photo session in Jaipur and they were so quick to respond! The photos turned out really lovely and they were great to work with. Highly recommend the team 😊",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b9a45c1f?w=100&h=100&fit=crop&auto=format",
+      event: "Jaipur Photo Session"
+    },
+    {
+      name: "Darshan HR",
       type: "Wedding Photography",
       rating: 5,
-      text: "Absolutely stunning photos! The team captured every precious moment of our wedding day. Their attention to detail and creativity exceeded our expectations.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b9a45c1f?w=100&h=100&fit=crop&auto=format",
-      event: "June 2024 Wedding"
+      text: "Incredible photography and an unforgettable experience! Every shot captured the essence of the moment with such creativity and attention to detail. The photos turned out absolutely stunning, exceeding all expectations. They even suggest good make-up artist and rental outfits for pre-wedding, it's helped us a lot...",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&auto=format",
+      event: "Wedding Photography"
     },
     {
-      name: "Emma & David",
+      name: "Pooja Kothari",
       type: "Pre-Wedding Session",
       rating: 5,
-      text: "The pre-wedding shoot was so much fun! They made us feel comfortable and natural. The photos are absolutely beautiful and perfectly capture our love story.",
+      text: "I recently had a pre-wedding shoot with Darkroom Production in Manali, and I couldn't be happier with the experience. The team was incredibly professional and attentive, capturing every moment beautifully. The quality of the photos exceeded my expectations, showcasing the stunning scenery and our chemistry perfectly.",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&auto=format",
-      event: "March 2024 Session"
-    },
-    {
-      name: "Jessica & Ryan",
-      type: "Engagement Photos",
-      rating: 5,
-      text: "Professional, creative, and so easy to work with! The photos turned out amazing and we couldn't be happier with the results. Highly recommend!",
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=100&h=100&fit=crop&auto=format",
-      event: "January 2024 Engagement"
+      event: "Manali Pre-Wedding"
     }
   ];
 
@@ -112,7 +112,7 @@ export const HappyClients = () => {
               <Users className="w-8 h-8 text-accent" />
             </div>
           </div>
-          <div className="text-3xl font-bold text-foreground mb-2">100+</div>
+          <div className="text-3xl font-bold text-foreground mb-2">600+</div>
           <div className="text-muted-foreground">Happy Couples</div>
         </div>
         
@@ -123,7 +123,7 @@ export const HappyClients = () => {
               <Star className="w-8 h-8 text-accent fill-accent" />
             </div>
           </div>
-          <div className="text-3xl font-bold text-foreground mb-2">4.9</div>
+          <div className="text-3xl font-bold text-foreground mb-2">5.0</div>
           <div className="text-muted-foreground">Average Rating</div>
         </div>
         
@@ -145,7 +145,7 @@ export const HappyClients = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md"></div>
           <div className="relative inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm">
             <Heart className="w-5 h-5 text-accent" />
-            <span className="text-foreground font-semibold">Join our family of happy couples</span>
+            <span className="text-foreground font-semibold">Join our family of 600+ happy couples</span>
           </div>
         </div>
       </div>

@@ -75,7 +75,7 @@ Looking forward to capturing your special moments! 📸✨`;
   return message;
 };
 
-export const openWhatsApp = (message: string, phoneNumber: string = '7976249390') => {
+export const openWhatsApp = (message: string, phoneNumber: string = '9929795556') => {
   const encodedMessage = encodeURIComponent(message);
   const whatsappUrl = `https://wa.me/91${phoneNumber}?text=${encodedMessage}`;
   window.open(whatsappUrl, '_blank');

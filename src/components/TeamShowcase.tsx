@@ -1,58 +1,58 @@
 
-import { Camera, Award, Heart, Star, Edit3 } from 'lucide-react';
+import { Camera, Award, Heart, Star, Edit3, Video, Plane } from 'lucide-react';
 
 export const TeamShowcase = () => {
   const owner = {
-    name: "Alex Thompson",
+    name: "Sachin Singh",
     role: "Owner & Lead Photographer",
-    experience: "5 Years",
-    specialty: "Wedding Photography",
-    description: "Founded our studio with a passion for capturing love stories. Specializes in candid moments and artistic compositions.",
+    experience: "10 Years",
+    specialty: "All Types Photography",
+    description: "Founded Darkroom Production in 2015 with a passion for capturing love stories. Has photographed 300+ weddings with 5-star rating and specializes in creating timeless memories.",
     image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop&auto=format",
-    stats: { weddings: "80+", rating: "4.9" },
+    stats: { weddings: "300+", rating: "5.0" },
     gradient: "from-accent/15 to-accent/8"
   };
 
   const teamMembers = [
     {
-      name: "Sarah Mitchell",
-      role: "Senior Photographer",
-      experience: "3 Years",
-      specialty: "Portrait Specialist",
-      description: "Expert in capturing personality and emotion in every portrait session.",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b9a45c1f?w=300&h=300&fit=crop&auto=format",
-      icon: Camera,
+      name: "Mohan Saini",
+      role: "Cinematographer",
+      experience: "6 Years",
+      specialty: "Wedding Cinematography",
+      description: "Expert cinematographer specializing in wedding films and storytelling through moving images.",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&auto=format",
+      icon: Video,
       gradient: "from-blue-500/15 to-blue-500/8"
     },
     {
-      name: "Mark Rodriguez",
-      role: "Creative Photographer",
-      experience: "2 Years",
-      specialty: "Artistic Shots",
-      description: "Brings a unique creative vision to every project with innovative techniques.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=300&h=300&fit=crop&auto=format",
-      icon: Star,
+      name: "Vikas",
+      role: "Candid Photographer",
+      experience: "7 Years",
+      specialty: "Candid Photography",
+      description: "Specializes in capturing natural, unposed moments and genuine emotions during weddings.",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&h=300&fit=crop&auto=format",
+      icon: Camera,
       gradient: "from-purple-500/15 to-purple-500/8"
     },
     {
-      name: "Lisa Chen",
-      role: "Event Photographer",
-      experience: "1.5 Years",
-      specialty: "Event Coverage",
-      description: "Specializes in capturing the energy and excitement of special events.",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&auto=format",
-      icon: Heart,
-      gradient: "from-pink-500/15 to-pink-500/8"
-    },
-    {
-      name: "David Park",
-      role: "Photo Editor",
-      experience: "3 Years",
-      specialty: "Post-Production",
-      description: "Master of digital artistry, bringing out the best in every photograph.",
+      name: "Shubham Kumar",
+      role: "Post Production",
+      experience: "6 Years",
+      specialty: "Photo Editor",
+      description: "Master of digital artistry and photo editing, bringing out the best in every photograph through post-production.",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=300&h=300&fit=crop&auto=format",
       icon: Edit3,
       gradient: "from-green-500/15 to-green-500/8"
+    },
+    {
+      name: "Kanhaiya",
+      role: "Drone Operator",
+      experience: "8 Years",
+      specialty: "Aerial Photography",
+      description: "Expert drone operator capturing stunning aerial shots and unique perspectives for weddings and events.",
+      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=300&h=300&fit=crop&auto=format",
+      icon: Plane,
+      gradient: "from-pink-500/15 to-pink-500/8"
     }
   ];
 
@@ -69,7 +69,7 @@ export const TeamShowcase = () => {
           </h3>
         </div>
         <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-          A passionate group of professionals dedicated to capturing your most precious moments
+          A passionate team of 25+ professionals dedicated to capturing your most precious moments
         </p>
       </div>
 
@@ -115,7 +115,7 @@ export const TeamShowcase = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-2xl font-bold text-accent mb-1">{owner.stats.rating}</div>
-                  <div className="text-sm text-muted-foreground">Client Rating</div>
+                  <div className="text-sm text-muted-foreground">Star Rating</div>
                 </div>
               </div>
             </div>
@@ -185,7 +185,7 @@ export const TeamShowcase = () => {
       <div className="mt-16 text-center">
         <div className="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm">
           <Heart className="w-5 h-5 text-accent" />
-          <span className="text-accent font-semibold">United by passion, driven by creativity</span>
+          <span className="text-accent font-semibold">25+ professionals united by passion, driven by creativity</span>
         </div>
       </div>
     </div>

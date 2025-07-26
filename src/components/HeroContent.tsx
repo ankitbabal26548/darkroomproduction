@@ -7,22 +7,22 @@ interface HeroContentProps {
 
 const contentSlides = [
   {
-    subtitle: "Professional Photography",
+    subtitle: "Professional Wedding Photography",
     title: "Capturing Life's Most Precious Moments",
-    description: "We transform your special occasions into timeless memories with our artistic vision and professional expertise.",
-    highlight: "Wedding & Event Specialists"
+    description: "Since 2015, we've been transforming your special occasions into timeless memories with our artistic vision and professional expertise.",
+    highlight: "600+ Weddings Captured"
   },
   {
     subtitle: "Creative Storytelling",
     title: "Every Picture Tells Your Unique Story",
-    description: "From intimate pre-wedding sessions to grand celebrations, we craft visual narratives that speak to the heart.",
-    highlight: "Pre-Wedding Specialists"
+    description: "From intimate pre-wedding sessions to grand celebrations, our 25+ team members craft visual narratives that speak to the heart.",
+    highlight: "10 Years Experience"
   },
   {
     subtitle: "Artistic Excellence",
-    title: "Moments That Last Forever",
-    description: "Our passion for photography meets your vision to create extraordinary visual experiences that transcend time.",
-    highlight: "Event Photography Experts"
+    title: "Memories That Last Forever",
+    description: "Our passion for photography meets your vision to create extraordinary visual experiences with 100% client satisfaction.",
+    highlight: "100% Happy Clients"
   }
 ];
 
@@ -70,11 +70,11 @@ export const HeroContent = ({ currentSlide }: HeroContentProps) => {
       <div className="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6 pt-4 max-w-full">
         <div className="flex items-center space-x-2 group">
           <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-          <span className="text-xs sm:text-sm font-medium text-foreground group-hover:text-accent transition-colors">5+ Years Experience</span>
+          <span className="text-xs sm:text-sm font-medium text-foreground group-hover:text-accent transition-colors">10 Years Experience</span>
         </div>
         <div className="flex items-center space-x-2 group">
           <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0 group-hover:scale-125 transition-transform"></div>
-          <span className="text-xs sm:text-sm font-medium text-foreground group-hover:text-accent transition-colors">200+ Happy Couples</span>
+          <span className="text-xs sm:text-sm font-medium text-foreground group-hover:text-accent transition-colors">600+ Happy Couples</span>
         </div>
       </div>
     </div>

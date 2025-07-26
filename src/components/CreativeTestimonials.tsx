@@ -4,28 +4,28 @@ import { Star, Quote, Heart } from 'lucide-react';
 export const CreativeTestimonials = () => {
   const testimonials = [
     {
-      quote: "Darkroom Production didn't just photograph our wedding, they captured our souls. Every image tells the story of our love in the most beautiful way imaginable.",
-      client: "Emma & James",
-      event: "Destination Wedding • Tuscany",
+      quote: "We contacted Darkroom Productions just one day earlier for a photo session in Jaipur and they were so quick to respond! The photos turned out really lovely and they were great to work with. Highly recommend the team 😊",
+      client: "Gargi Behere",
+      event: "Photo Session • Jaipur",
       rating: 5,
-      initials: "E&J",
-      image: "photo-1500673922987-e212871fec22"
+      initials: "GB",
+      image: "photo-1494790108755-2616b9a45c1f"
     },
     {
-      quote: "The team's artistic vision and attention to detail exceeded all our expectations. Our photos are pure magic - every single one could be framed as art.",
-      client: "Maria & David",
-      event: "Garden Wedding • California",
+      quote: "Incredible photography and an unforgettable experience! Every shot captured the essence of the moment with such creativity and attention to detail. The photos turned out absolutely stunning, exceeding all expectations. They even suggest good make-up artist and rental outfits for pre-wedding, it's helped us a lot...",
+      client: "Darshan HR",
+      event: "Wedding Photography • Rajasthan",
       rating: 5,
-      initials: "M&D",
-      image: "photo-1618160702438-9b02ab6515c9"
+      initials: "DH",
+      image: "photo-1507003211169-0a1dd7228f2d"
     },
     {
-      quote: "Professional, creative, and incredibly talented. They made us feel comfortable and captured moments we didn't even know were happening. Simply incredible!",
-      client: "Lisa & Michael",
-      event: "Beach Wedding • Hawaii",
+      quote: "I recently had a pre-wedding shoot with Darkroom Production in Manali, and I couldn't be happier with the experience. The team was incredibly professional and attentive, capturing every moment beautifully. The quality of the photos exceeded my expectations, showcasing the stunning scenery and our chemistry perfectly.",
+      client: "Pooja Kothari",
+      event: "Pre-Wedding • Manali",
       rating: 5,
-      initials: "L&M",
-      image: "photo-1466442929976-97f336a657be"
+      initials: "PK",
+      image: "photo-1438761681033-6461ffad8d80"
     }
   ];
 
@@ -117,12 +117,12 @@ export const CreativeTestimonials = () => {
         <div className="inline-flex items-center gap-6 px-8 py-4 bg-accent/10 rounded-2xl border border-accent/20">
           <div className="flex items-center gap-2">
             <Star className="w-6 h-6 fill-accent text-accent" />
-            <span className="text-2xl font-bold text-accent">4.9</span>
+            <span className="text-2xl font-bold text-accent">5.0</span>
             <span className="text-muted-foreground">out of 5</span>
           </div>
           <div className="w-px h-8 bg-accent/20"></div>
           <div className="text-muted-foreground">
-            <span className="font-semibold text-foreground">500+</span> Happy Couples
+            <span className="font-semibold text-foreground">600+</span> Happy Couples
           </div>
         </div>
       </div>

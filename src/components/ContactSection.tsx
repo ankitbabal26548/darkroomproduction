@@ -33,11 +33,11 @@ export const ContactSection = () => {
           <div className="flex flex-wrap justify-center items-center gap-6 text-sm">
             <div className="flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
               <Star className="w-4 h-4 fill-accent text-accent" />
-              <span className="font-semibold text-accent">4.9/5 Rating</span>
+              <span className="font-semibold text-accent">5.0/5 Rating</span>
             </div>
             <div className="flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
               <Camera className="w-4 h-4 text-accent" />
-              <span className="font-semibold text-accent">500+ Projects</span>
+              <span className="font-semibold text-accent">600+ Weddings</span>
             </div>
             <div className="flex items-center space-x-2 px-4 py-2 bg-accent/10 rounded-full border border-accent/20">
               <CheckCircle className="w-4 h-4 text-accent" />
@@ -60,7 +60,7 @@ export const ContactSection = () => {
                 </h3>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <a
-                    href="https://wa.me/919876543210"
+                    href="https://wa.me/919929795556"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="group relative overflow-hidden p-6 bg-gradient-to-br from-green-50 to-green-100/50 hover:from-green-100 hover:to-green-200/50 rounded-xl transition-all duration-300 hover:scale-105 border border-green-200/50"
@@ -73,7 +73,7 @@ export const ContactSection = () => {
                     <div className="absolute inset-0 bg-gradient-to-br from-green-400/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                   <a 
-                    href="tel:+919876543210" 
+                    href="tel:+919929795556" 
                     className="group relative overflow-hidden p-6 bg-gradient-to-br from-blue-50 to-blue-100/50 hover:from-blue-100 hover:to-blue-200/50 rounded-xl transition-all duration-300 hover:scale-105 border border-blue-200/50"
                   >
                     <div className="relative z-10">
@@ -98,7 +98,7 @@ export const ContactSection = () => {
         <div className="mt-16 text-center">
           <div className="inline-flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/10 to-accent/5 rounded-full border border-accent/20">
             <CheckCircle className="w-5 h-5 text-accent" />
-            <span className="text-sm font-medium text-accent">Trusted by 500+ happy clients across India</span>
+            <span className="text-sm font-medium text-accent">Trusted by 600+ happy clients across India</span>
           </div>
         </div>
       </div>

@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 
 const stats = [
-  { number: 200, suffix: '+', label: 'Happy Couples' },
-  { number: 5, suffix: '+', label: 'Years Experience' },
-  { number: 1000, suffix: '+', label: 'Photos Captured' }
+  { number: 600, suffix: '+', label: 'Weddings Captured' },
+  { number: 10, suffix: '', label: 'Years Experience' },
+  { number: 25, suffix: '+', label: 'Team Members' }
 ];
 
 export const HeroStats = () => {

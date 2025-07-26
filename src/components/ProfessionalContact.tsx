@@ -11,11 +11,11 @@ export const ProfessionalContact = ({ mobile = false }: ProfessionalContactProps
     return (
       <div className="space-y-3">
         <a 
-          href="tel:+91" 
+          href="tel:+919929795556" 
           className="flex items-center space-x-3 px-4 py-2 text-sm text-muted-foreground hover:text-accent transition-colors rounded-md"
         >
           <Phone className="w-4 h-4" />
-          <span>+91 XXX XXX XXXX</span>
+          <span>+91 99297 95556</span>
         </a>
         <a 
           href="mailto:hello@darkroomproduction.in"
@@ -31,11 +31,11 @@ export const ProfessionalContact = ({ mobile = false }: ProfessionalContactProps
   return (
     <div className="flex items-center space-x-4">
       <a 
-        href="tel:+91" 
+        href="tel:+919929795556" 
         className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-accent transition-colors"
       >
         <Phone className="w-4 h-4" />
-        <span className="font-medium">+91 XXX XXX XXXX</span>
+        <span className="font-medium">+91 99297 95556</span>
       </a>
       
       <div className="w-px h-4 bg-border" />

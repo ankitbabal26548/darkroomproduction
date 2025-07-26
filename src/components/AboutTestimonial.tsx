@@ -32,20 +32,18 @@ export const AboutTestimonial = () => {
           {/* Testimonial Content */}
           <div className="testimonial-content">
             <blockquote className="testimonial-quote">
-              "Darkroom Production exceeded all our expectations. They captured our wedding 
-              day with such artistry and professionalism. Every photo tells a story, and 
-              we couldn't be happier with the memories they've preserved for us."
+              "I can't speak highly enough of the Darkroom Production team! Their collaboration on our wedding day was impressive. Each member brought their unique skills, resulting in a diverse and beautiful collection of images. They worked efficiently and creatively, making the entire process enjoyable. Highly recommend!"
             </blockquote>
             
             {/* Client Information */}
             <div className="client-info">
               <div className="client-avatar-section">
                 <div className="client-avatar">
-                  <span className="avatar-initials">S&M</span>
+                  <span className="avatar-initials">L</span>
                 </div>
                 <div className="client-details">
-                  <cite className="client-name">Sarah & Michael Chen</cite>
-                  <p className="client-event">Wedding • June 2023</p>
+                  <cite className="client-name">Lokesh</cite>
+                  <p className="client-event">Wedding • Rajasthan</p>
                 </div>
               </div>
             </div>
@@ -61,11 +59,11 @@ export const AboutTestimonial = () => {
         {/* Side Statistics */}
         <div className="testimonial-side-stats">
           <div className="side-stat">
-            <span className="side-stat-number">98%</span>
+            <span className="side-stat-number">100%</span>
             <span className="side-stat-label">Satisfaction Rate</span>
           </div>
           <div className="side-stat">
-            <span className="side-stat-number">4.9</span>
+            <span className="side-stat-number">5.0</span>
             <span className="side-stat-label">Average Rating</span>
           </div>
         </div>

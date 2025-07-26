@@ -50,9 +50,9 @@ export const FuturisticHeroSection = () => {
   ];
 
   const stats = [
-    { value: 500, label: "Weddings Captured", icon: Camera },
+    { value: 600, label: "Weddings Captured", icon: Camera },
     { value: 10, label: "Years Experience", icon: Award },
-    { value: 98, label: "Happy Couples", icon: Users, suffix: "%" }
+    { value: 100, label: "Happy Clients", icon: Users, suffix: "%" }
   ];
 
   const handleImageClick = (index: number) => {
