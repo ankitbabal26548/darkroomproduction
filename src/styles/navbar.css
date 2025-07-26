@@ -1,6 +1,6 @@
 
 @layer components {
-  /* Clean Navbar Styles - Enhanced for Dynamic Sizing */
+  /* Clean Navbar Styles - Enhanced for Bigger Logo */
   .clean-navbar-top {
     background: linear-gradient(135deg, 
       rgba(255, 255, 255, 0.7) 0%, 
@@ -18,7 +18,7 @@
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
   }
 
-  /* Clean Logo Styles - Enhanced for Dynamic Sizing */
+  /* Enhanced Clean Logo Styles for Bigger Size */
   .clean-logo-glow {
     background: radial-gradient(circle, rgba(var(--accent), 0.2) 0%, transparent 70%);
     border-radius: 50%;
@@ -30,16 +30,18 @@
       rgba(255, 255, 255, 0.8), 
       rgba(255, 255, 255, 0.6));
     border: 1px solid rgba(var(--accent), 0.15);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     backdrop-filter: blur(10px);
     position: relative;
     overflow: hidden;
     transition: all 0.5s ease;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.05);
   }
 
   .clean-logo-container:hover {
     border-color: rgba(var(--accent), 0.3);
     transform: translateY(-1px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   }
 
   /* Clean Navigation Container */
@@ -121,24 +123,29 @@
     box-shadow: 0 4px 16px rgba(var(--accent), 0.3);
   }
 
-  /* Clean Mobile Styles */
+  /* Enhanced Mobile Styles */
   .clean-mobile-trigger {
     background: linear-gradient(135deg, 
-      rgba(255, 255, 255, 0.8), 
-      rgba(255, 255, 255, 0.6));
+      rgba(255, 255, 255, 0.9), 
+      rgba(255, 255, 255, 0.7));
     border: 1px solid rgba(var(--accent), 0.15);
-    border-radius: 0.5rem;
+    border-radius: 0.75rem;
     backdrop-filter: blur(10px);
     color: hsl(var(--muted-foreground));
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
   .clean-mobile-trigger:hover {
     background: linear-gradient(135deg, 
-      rgba(var(--accent), 0.08), 
-      rgba(var(--accent), 0.04));
+      rgba(var(--accent), 0.12), 
+      rgba(var(--accent), 0.08));
     color: hsl(var(--accent));
     border-color: rgba(var(--accent), 0.25);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
   .clean-mobile-menu {
@@ -147,24 +154,63 @@
       rgba(255, 255, 255, 0.95));
     border-top: 1px solid hsl(var(--border));
     backdrop-filter: blur(25px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clean-mobile-menu::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(var(--accent), 0.3), 
+      transparent);
+    animation: shimmer 2s infinite;
   }
 
   .clean-mobile-link {
     display: block;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-    color: hsl(var(--muted-foreground));
+    padding: 1rem 1.5rem;
+    border-radius: 0.75rem;
+    color: hsl(var(--foreground));
     font-weight: 500;
-    transition: all 0.2s ease;
+    transition: all 0.3s ease;
     border: 1px solid transparent;
+    margin-bottom: 0.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .clean-mobile-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, 
+      transparent, 
+      rgba(var(--accent), 0.1), 
+      transparent);
+    transition: left 0.5s ease;
   }
 
   .clean-mobile-link:hover {
     color: hsl(var(--accent));
     background: linear-gradient(135deg, 
-      rgba(var(--accent), 0.05), 
-      rgba(var(--accent), 0.02));
-    border-color: rgba(var(--accent), 0.1);
+      rgba(var(--accent), 0.08), 
+      rgba(var(--accent), 0.04));
+    border-color: rgba(var(--accent), 0.2);
+    transform: translateX(8px);
+  }
+
+  .clean-mobile-link:hover::before {
+    left: 100%;
   }
 
   .clean-mobile-cta {
@@ -173,12 +219,23 @@
       hsl(var(--accent-darker)));
     color: hsl(var(--accent-foreground));
     font-weight: 600;
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(var(--accent), 0.2);
   }
 
   .clean-mobile-cta:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(var(--accent), 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(var(--accent), 0.3);
+  }
+
+  /* Animation for shimmer effect */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
   }
 }

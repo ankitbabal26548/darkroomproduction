@@ -11,11 +11,11 @@ export const CleanLogo = ({ className = "", scrolled = false }: CleanLogoProps) 
         {/* Subtle glow effect */}
         <div className="absolute inset-0 clean-logo-glow opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         
-        {/* Main logo container with dynamic sizing */}
+        {/* Main logo container with enhanced dynamic sizing */}
         <div className={`clean-logo-container transition-all duration-500 ${
           scrolled 
-            ? 'w-10 h-10' 
-            : 'w-16 h-16 lg:w-16 lg:h-16'
+            ? 'w-12 h-12' 
+            : 'w-20 h-20 lg:w-20 lg:h-20'
         }`}>
           <div className="relative w-full h-full rounded-lg overflow-hidden">
             <img 
