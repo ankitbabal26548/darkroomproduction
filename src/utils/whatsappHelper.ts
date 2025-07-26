@@ -54,12 +54,12 @@ export const generateWhatsAppMessage = (formData: QuoteFormData): string => {
 
 *Selected Package:*
 📦 Package: ${getPackageName(packageSelection.packageType)}
-💰 Base Price: ₹${packageSelection.basePrice.toLocaleString()}
+💰 Starting Price: ₹${packageSelection.basePrice.toLocaleString()}
 
 *Add-ons Selected:*
 ${getAddOnsList()}
 
-*Total Estimated Cost: ₹${calculateTotal().toLocaleString()}*
+*Estimated Total (Starting from): ₹${calculateTotal().toLocaleString()}*
 
 *Budget Range: ₹${requirements.budgetRange[0].toLocaleString()} - ₹${requirements.budgetRange[1].toLocaleString()}*
 
@@ -68,7 +68,8 @@ ${requirements.message || 'None specified'}
 
 *Payment Terms:*
 • ₹5,000 advance booking
-• Remaining amount as per package terms
+• Final pricing depends on specific requirements
+• Package pricing starts from the mentioned amount
 
 Looking forward to capturing your special moments! 📸✨`;
 

@@ -1,4 +1,3 @@
-
 import { TeamShowcase } from './TeamShowcase';
 import { OurApproach } from './OurApproach';
 import { SimpleProcess } from './SimpleProcess';
@@ -50,27 +49,27 @@ export const AboutSection = () => {
             We're a passionate team of photographers dedicated to telling your unique story through beautiful, timeless images that you'll treasure forever.
           </p>
           
-          {/* Enhanced Stats with Better Contrast */}
+          {/* Enhanced Stats with Correct Numbers */}
           <div className="flex flex-wrap justify-center items-center gap-6 mt-8 animate-fade-in-up" style={{ animationDelay: '0.6s' }}>
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
                 <Star className="w-4 h-4 text-accent fill-accent" />
-                <span className="text-foreground font-semibold">5 Team Members</span>
+                <span className="text-foreground font-semibold">25+ Team Members</span>
               </div>
             </div>
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
                 <Camera className="w-4 h-4 text-accent" />
-                <span className="text-foreground font-semibold">100+ Happy Couples</span>
+                <span className="text-foreground font-semibold">600+ Weddings</span>
               </div>
             </div>
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-r from-accent/15 to-accent/8 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               <div className="relative flex items-center space-x-3 px-6 py-3 bg-gradient-to-r from-accent/8 to-accent/4 rounded-full border border-accent/20 backdrop-blur-sm group-hover:border-accent/30 transition-all duration-300">
                 <Heart className="w-4 h-4 text-accent" />
-                <span className="text-foreground font-semibold">3 Years Experience</span>
+                <span className="text-foreground font-semibold">10 Years Experience</span>
               </div>
             </div>
           </div>

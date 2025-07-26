@@ -55,6 +55,7 @@ export const PackageSelectionStep = ({ data, eventType, packageOptions, onChange
                   )}
                 </div>
                 <div className="text-right">
+                  <div className="text-xs text-muted-foreground font-medium mb-1">Starting from</div>
                   <div className="text-2xl font-bold text-accent">₹{pkg.price.toLocaleString()}</div>
                 </div>
               </div>

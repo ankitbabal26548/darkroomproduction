@@ -153,20 +153,23 @@ export const ServiceCard = ({
           </div>
         )}
 
-        {/* Pricing */}
+        {/* Pricing with "Starting from" */}
         <div className="flex items-center justify-between mb-4 md:mb-6 flex-wrap gap-2">
           <div className="space-y-1">
             <div className="flex items-baseline gap-2 md:gap-3">
-              <span className="font-playfair text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-accent-darker bg-clip-text text-transparent">
-                ₹{price.toLocaleString()}
-              </span>
+              <div className="flex flex-col">
+                <span className="text-xs md:text-sm text-muted-foreground font-medium">Starting from</span>
+                <span className="font-playfair text-2xl md:text-3xl font-bold bg-gradient-to-r from-accent to-accent-darker bg-clip-text text-transparent">
+                  ₹{price.toLocaleString()}
+                </span>
+              </div>
               {originalPrice && originalPrice > price && (
                 <span className="text-base md:text-lg text-muted-foreground line-through">
                   ₹{originalPrice.toLocaleString()}
                 </span>
               )}
             </div>
-            <div className="text-xs md:text-sm text-muted-foreground">Package price</div>
+            <div className="text-xs md:text-sm text-muted-foreground">Package starts from this price</div>
           </div>
           
           {originalPrice && originalPrice > price && (
