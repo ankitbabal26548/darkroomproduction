@@ -87,16 +87,10 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
     }
   };
 
-  const handleCloseClick = (e: React.MouseEvent | React.TouchEvent) => {
+  const handleCloseClick = (e: React.MouseEvent) => {
     e.preventDefault();
     e.stopPropagation();
     onClose();
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    if (e.key === 'Escape') {
-      onClose();
-    }
   };
 
   const handlePlayVideo = () => {
@@ -131,15 +125,14 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
 
   return (
     <div
-      className="fixed inset-0 z-[9999] bg-black/98 backdrop-blur-lg flex items-center justify-center p-2 sm:p-4 md:p-6 lg:p-8"
+      className="fixed inset-0 z-50 bg-black/98 backdrop-blur-lg flex flex-col p-1 sm:p-2 md:p-4 lg:p-6"
       onClick={handleBackdropClick}
-      onKeyDown={handleKeyDown}
       tabIndex={-1}
     >
       {/* Mobile Rotation Prompt */}
       {isMobile && showRotationPrompt && (
-        <div className="absolute inset-0 z-[10000] bg-black/95 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="text-center space-y-6 max-w-sm">
+        <div className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 pointer-events-auto">
+          <div className="text-center space-y-6 max-w-sm pointer-events-auto">
             <div className="relative">
               <RotateCcw className="w-16 h-16 text-accent mx-auto animate-spin" />
               <div className="absolute inset-0 w-16 h-16 border-2 border-accent/30 rounded-full animate-pulse mx-auto" />
@@ -156,7 +149,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
               variant="outline"
               size="sm"
               onClick={() => setShowRotationPrompt(false)}
-              className="border-accent/30 text-accent hover:bg-accent/10"
+              className="border-accent/30 text-accent hover:bg-accent/10 pointer-events-auto"
             >
               Continue Anyway
             </Button>
@@ -176,16 +169,16 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
         <div className="absolute bottom-1/3 right-1/6 w-3 h-3 border border-accent/30 rotate-12 animate-float-2" />
       </div>
 
-      {/* Modal Container with enhanced design */}
-      <div className="relative w-full max-w-7xl mx-auto mt-0 sm:mt-2 md:mt-4">
+      {/* Modal Container - Remove centering and start from top */}
+      <div className="relative w-full max-w-7xl mx-auto flex-1 flex flex-col">
         {/* Professional frame with multiple layers */}
-        <div className="relative bg-gradient-to-br from-background/20 via-background/10 to-background/5 backdrop-blur-2xl border-2 border-accent/30 rounded-xl sm:rounded-2xl lg:rounded-3xl p-3 sm:p-4 md:p-6 lg:p-8 shadow-2xl">
+        <div className="relative bg-gradient-to-br from-background/20 via-background/10 to-background/5 backdrop-blur-2xl border-2 border-accent/30 rounded-xl sm:rounded-2xl lg:rounded-3xl p-2 sm:p-3 md:p-4 lg:p-6 shadow-2xl flex-1 flex flex-col">
           
           {/* Glowing border effect */}
           <div className="absolute inset-0 rounded-xl sm:rounded-2xl lg:rounded-3xl bg-gradient-to-r from-accent/20 via-accent/10 to-accent/20 blur-sm -z-10" />
           
           {/* Header with enhanced design */}
-          <div className="flex items-center justify-between mb-4 sm:mb-6">
+          <div className="flex items-center justify-between mb-3 sm:mb-4 flex-shrink-0 relative z-10">
             <div className="flex items-center space-x-2 sm:space-x-4">
               {/* Animated status indicators */}
               <div className="flex items-center space-x-1 sm:space-x-2">
@@ -209,22 +202,20 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
               variant="ghost"
               size="sm"
               onClick={handleCloseClick}
-              onMouseDown={handleCloseClick}
-              onTouchStart={handleCloseClick}
-              className="text-white hover:text-accent hover:bg-accent/10 transition-all duration-300 border border-accent/20 hover:border-accent/40 rounded-full p-2 sm:p-3 touch-manipulation"
+              className="text-white hover:text-accent hover:bg-accent/10 transition-all duration-300 border border-accent/20 hover:border-accent/40 rounded-full p-2 sm:p-3 touch-manipulation pointer-events-auto z-10"
             >
               <X className="w-4 h-4 sm:w-5 sm:h-5" />
             </Button>
           </div>
 
-          {/* Video Container with enhanced styling */}
-          <div className="relative aspect-video bg-gradient-to-br from-black/80 via-black/60 to-black/80 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden border-2 border-accent/20 shadow-2xl">
+          {/* Video Container with enhanced styling - Takes remaining space */}
+          <div className="relative flex-1 bg-gradient-to-br from-black/80 via-black/60 to-black/80 rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden border-2 border-accent/20 shadow-2xl">
             
             {/* Corner decorative elements */}
-            <div className="absolute top-1 left-1 sm:top-2 sm:left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-t-2 border-accent/60 rounded-tl-lg" />
-            <div className="absolute top-1 right-1 sm:top-2 sm:right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-t-2 border-accent/60 rounded-tr-lg" />
-            <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-b-2 border-accent/60 rounded-bl-lg" />
-            <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-b-2 border-accent/60 rounded-br-lg" />
+            <div className="absolute top-1 left-1 sm:top-2 sm:left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-t-2 border-accent/60 rounded-tl-lg pointer-events-none" />
+            <div className="absolute top-1 right-1 sm:top-2 sm:right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-t-2 border-accent/60 rounded-tr-lg pointer-events-none" />
+            <div className="absolute bottom-1 left-1 sm:bottom-2 sm:left-2 w-4 h-4 sm:w-6 sm:h-6 border-l-2 border-b-2 border-accent/60 rounded-bl-lg pointer-events-none" />
+            <div className="absolute bottom-1 right-1 sm:bottom-2 sm:right-2 w-4 h-4 sm:w-6 sm:h-6 border-r-2 border-b-2 border-accent/60 rounded-br-lg pointer-events-none" />
             
             {/* Loading state with enhanced animation */}
             {isLoading && (
@@ -254,7 +245,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
                 title="Darkroom Production Professional Showreel"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
-                className="w-full h-full border-0 rounded-lg sm:rounded-xl lg:rounded-2xl"
+                className="w-full h-full border-0 rounded-lg sm:rounded-xl lg:rounded-2xl pointer-events-auto"
               />
             )}
 
@@ -265,7 +256,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
                   <Button
                     size="lg"
                     onClick={handlePlayVideo}
-                    className="relative group bg-gradient-to-r from-accent/20 to-accent/30 hover:from-accent/40 hover:to-accent/50 border-3 border-accent/50 hover:border-accent rounded-full p-6 sm:p-8 transition-all duration-500 transform hover:scale-110 touch-manipulation"
+                    className="relative group bg-gradient-to-r from-accent/20 to-accent/30 hover:from-accent/40 hover:to-accent/50 border-3 border-accent/50 hover:border-accent rounded-full p-6 sm:p-8 transition-all duration-500 transform hover:scale-110 touch-manipulation pointer-events-auto"
                   >
                     <Play className="w-6 h-6 sm:w-10 sm:h-10 text-accent group-hover:text-white transition-colors duration-300" />
                     
@@ -284,7 +275,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
 
             {/* Video controls overlay (when video is playing) */}
             {isVideoReady && (
-              <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between opacity-0 hover:opacity-100 transition-opacity duration-300">
+              <div className="absolute bottom-2 left-2 right-2 sm:bottom-4 sm:left-4 sm:right-4 flex items-center justify-between opacity-0 hover:opacity-100 transition-opacity duration-300 pointer-events-none">
                 <div className="flex items-center space-x-2">
                   <Volume2 className="w-3 h-3 sm:w-4 sm:h-4 text-white/80" />
                   <span className="text-white/80 text-xs sm:text-sm">HD Quality</span>
@@ -298,7 +289,7 @@ export const YouTubePlayer = ({ isOpen, onClose, videoId }: YouTubePlayerProps) 
           </div>
 
           {/* Enhanced footer */}
-          <div className="mt-4 sm:mt-6 text-center space-y-2 sm:space-y-3">
+          <div className="mt-3 sm:mt-4 text-center space-y-2 sm:space-y-3 flex-shrink-0">
             <p className="text-white/90 text-base sm:text-lg font-medium">
               Professional Wedding Photography & Cinematography
             </p>

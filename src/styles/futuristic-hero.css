@@ -35,7 +35,7 @@
     contain: layout style;
   }
 
-  /* Lightbox specific styles - Completely redesigned */
+  /* YouTube Player specific styles - Improved for better functionality */
   .lightbox-open {
     overflow: hidden !important;
     height: 100vh !important;
@@ -46,6 +46,54 @@
     display: none !important;
   }
 
+  /* YouTube Player container improvements */
+  .youtube-player-container {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 50 !important;
+    isolation: isolate;
+  }
+
+  .youtube-player-modal {
+    position: relative !important;
+    width: 100% !important;
+    height: 100% !important;
+    height: 100vh !important;
+    height: 100dvh !important;
+    display: flex !important;
+    flex-direction: column !important;
+    pointer-events: auto !important;
+  }
+
+  .youtube-player-content {
+    position: relative !important;
+    flex: 1 !important;
+    display: flex !important;
+    flex-direction: column !important;
+    pointer-events: auto !important;
+  }
+
+  .youtube-player-header {
+    position: relative !important;
+    flex-shrink: 0 !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+  }
+
+  .youtube-player-video {
+    position: relative !important;
+    flex: 1 !important;
+    pointer-events: auto !important;
+  }
+
+  .youtube-player-footer {
+    position: relative !important;
+    flex-shrink: 0 !important;
+    z-index: 10 !important;
+    pointer-events: auto !important;
+  }
+
+  /* Original lightbox styles for image gallery */
   .lightbox-container {
     position: fixed !important;
     inset: 0 !important;
